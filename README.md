@@ -22,4 +22,4 @@ This repository falls under the IPFS [Code of Conduct](https://github.com/ipfs/c
 
 ## License
 
-[MIT](LICENSE)
+[Apache-2.0](LICENSE-APACHE) OR [MIT](LICENSE-MIT)
