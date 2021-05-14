@@ -1,0 +1,26 @@
+{
+  "name": "interface-blockstore",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "aegir ts -p check && aegir lint",
+    "build": "aegir build"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore#readme",
+  "bugs": "https://github.com/ipfs/js-ipfs-interfaces/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
+  },
+  "dependencies": {
+    "interface-store": "^0.0.1",
+    "multiformats": "^8.0.4"
+  },
+  "devDependencies": {
+    "aegir": "^33.1.2"
+  }
+}

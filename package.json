@@ -1,0 +1,29 @@
+{
+  "name": "ipfs-interfaces",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "release": "lerna publish"
+  },
+  "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master#readme",
+  "bugs": "https://github.com/ipfs/js-ipfs-interfaces/issues",
+  "license": "(Apache-2.0 OR MIT)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "lerna": "^4.0.0"
+  },
+  "engines": {
+    "npm": ">=7.0.0"
+  }
+}
