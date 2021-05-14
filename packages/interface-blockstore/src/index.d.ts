@@ -7,11 +7,16 @@ import {
   KeyQueryFilter as StoreKeyQueryFilter,
   KeyQueryOrder as StoreKeyQueryOrder,
   KeyQuery as StoreKeyQuery,
+  Options as StoreOptions,
   Store
 } from 'interface-store'
 import {
   CID
 } from 'multiformats'
+
+export interface Options extends StoreOptions{
+
+}
 
 export interface Pair extends StorePair<CID, Uint8Array> {
 
