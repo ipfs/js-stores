@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "lerna run build",
     "lint": "lerna run lint",
-    "release": "lerna publish"
+    "release": "lerna run build && lerna publish"
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master#readme",
   "bugs": "https://github.com/ipfs/js-ipfs-interfaces/issues",
