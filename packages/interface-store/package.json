@@ -1,7 +1,7 @@
 {
   "name": "interface-store",
   "version": "0.0.1",
-  "description": "",
+  "description": "A generic interface for storing and retrieving data",
   "main": "src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {

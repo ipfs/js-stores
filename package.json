@@ -1,7 +1,7 @@
 {
   "name": "ipfs-interfaces",
   "version": "1.0.0",
-  "description": "",
+  "description": "TypeScript interfaces used by IPFS internals",
   "main": "index.js",
   "private": true,
   "scripts": {
