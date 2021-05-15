@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "reset": "rimraf ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json packages/*/dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "lerna run build",
     "lint": "lerna run lint",
