@@ -1,6 +1,7 @@
 'use strict'
 
 const BlockstoreAdapter = require('./adapter')
+const MemoryBlockstore = require('./memory')
 
 /**
  * @typedef {import('./types').Options} Options
@@ -16,5 +17,6 @@ const BlockstoreAdapter = require('./adapter')
  */
 
 module.exports = {
-  BlockstoreAdapter
+  BlockstoreAdapter,
+  MemoryBlockstore
 }
