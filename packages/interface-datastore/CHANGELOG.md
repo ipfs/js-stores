@@ -1,3 +1,24 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 5.0.0 (2021-06-28)
+
+
+### Features
+
+* import interface-datastore ([294b249](https://github.com/ipfs/js-ipfs-interfaces/commit/294b249de30e6fa80c4246a6a253db0ab493886b))
+
+
+### BREAKING CHANGES
+
+* the compliance tests for interface-datastore have been removed - use the interface-datastore-tests module instead
+
+
+
+
+
 ## [4.0.2](https://github.com/ipfs/interface-datastore/compare/v4.0.1...v4.0.2) (2021-06-10)
 
 
@@ -270,6 +291,3 @@
 ### Bug Fixes
 
 * libp2p-crypto is a regular dependency ([3db267b](https://github.com/ipfs/interface-datastore/commit/3db267b))
-
-
-
