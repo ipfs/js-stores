@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "reset": "rimraf ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json packages/*/dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "lerna run test",
     "build": "lerna run build",
     "lint": "lerna run lint",
     "release": "lerna run build && lerna publish"
@@ -22,7 +22,8 @@
     "packages/*"
   ],
   "dependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "rimraf": "^3.0.2"
   },
   "engines": {
     "npm": ">=7.0.0"

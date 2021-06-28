@@ -1,0 +1,31 @@
+version: 2
+updates:
+  - directory: "/packages/interface-blockstore"
+    package-ecosystem: npm
+    schedule:
+      interval: daily
+      time: "11:00"
+
+  - directory: "/packages/interface-blockstore-tests"
+    package-ecosystem: npm
+    schedule:
+      interval: daily
+      time: "11:00"
+
+  - directory: "/packages/interface-datastore"
+    package-ecosystem: npm
+    schedule:
+      interval: daily
+      time: "11:00"
+
+  - directory: "/packages/interface-datastore-tests"
+    package-ecosystem: npm
+    schedule:
+      interval: daily
+      time: "11:00"
+
+  - directory: "/packages/interface-store"
+    package-ecosystem: npm
+    schedule:
+      interval: daily
+      time: "11:00"

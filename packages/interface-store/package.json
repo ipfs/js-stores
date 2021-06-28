@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "aegir ts -p check && aegir lint",
-    "build": "aegir build"
+    "build": "aegir build",
+    "test": "echo \"No tests configured\"",
+    "lint": "aegir ts -p check && aegir lint"
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-store#readme",
   "bugs": "https://github.com/ipfs/js-ipfs-interfaces/issues",
