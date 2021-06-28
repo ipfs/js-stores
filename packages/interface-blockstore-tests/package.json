@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore-tests",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compliance tests for the blockstore interface",
   "leadMaintainer": "Alex Potsides <alex.potsides@protocol.ai>",
   "main": "src/index.js",
