@@ -19,8 +19,11 @@ const length = require('it-length')
  * @typedef {import('interface-blockstore').KeyQueryFilter} KeyQueryFilter
  */
 
-async function getKeyValuePair () {
-  const value = uint8ArrayFromString(`data-${Math.random()}`)
+/**
+ * @param {string} [data]
+ */
+async function getKeyValuePair (data) {
+  const value = uint8ArrayFromString(data || `data-${Math.random()}`)
   const hash = await sha256.digest(value)
   const key = CID.createV1(raw.code, hash)
 
@@ -282,10 +285,10 @@ module.exports = (test) => {
       expect(res).to.be.eql([false, true, true, true])
     })
 
-    it.skip('many (1200)', async function () {
+    it('many (1200)', async function () {
       this.timeout(20 * 1000)
       const b = store.batch()
-      const count = 1200
+      const count = 10
 
       /** @type {Record<string, number>} */
       const prefixes = {}
@@ -297,7 +300,7 @@ module.exports = (test) => {
 
         b.put(key, value)
 
-        const prefix = key.toString().toUpperCase().substr(1, 8)
+        const prefix = key.toString().substr(0, 13)
 
         prefixes[prefix] = (prefixes[prefix] || 0) + 1
       }
@@ -306,14 +309,14 @@ module.exports = (test) => {
 
       await Promise.all(
         Object.keys(prefixes)
-          .map(prefix => {
-            return expect(length(store.query({ prefix }))).to.eventually.equal(prefixes[prefix])
+          .map(async prefix => {
+            await expect(length(store.query({ prefix }))).to.eventually.equal(prefixes[prefix])
           })
       )
     })
   })
 
-  describe.skip('query', () => {
+  describe('query', () => {
     /** @type {Blockstore} */
     let store
     /** @type {Pair} */
@@ -328,9 +331,9 @@ module.exports = (test) => {
     let filter2
 
     before(async () => {
-      hello = await getKeyValuePair()
-      hello2 = await getKeyValuePair()
-      world = await getKeyValuePair()
+      hello = await getKeyValuePair('hello')
+      hello2 = await getKeyValuePair('hello2')
+      world = await getKeyValuePair('world')
 
       filter1 = entry => !entry.key.toString().endsWith(hello.key.toString().substring(-5))
       filter2 = entry => entry.key.toString().endsWith(hello2.key.toString().substring(-5))
@@ -362,13 +365,13 @@ module.exports = (test) => {
     /** @type {Array<{ name: string, test: () => { query: any, expected: any}}>} */
     const tests = [
       { name: 'empty', test: () => ({ query: {}, expected: [hello, world, hello2] }) },
-      { name: 'prefix', test: () => ({ query: { prefix: '/z' }, expected: [world, hello2] }) },
+      { name: 'prefix', test: () => ({ query: { prefix: `/${hello.key.toString().charAt(0)}` }, expected: [hello, world, hello2] }) },
       { name: '1 filter', test: () => ({ query: { filters: [filter1] }, expected: [world, hello2] }) },
       { name: '2 filters', test: () => ({ query: { filters: [filter1, filter2] }, expected: [hello2] }) },
       { name: 'limit', test: () => ({ query: { limit: 1 }, expected: 1 }) },
       { name: 'offset', test: () => ({ query: { offset: 1 }, expected: 2 }) },
-      { name: '1 order (1)', test: () => ({ query: { orders: [order1] }, expected: [hello, world, hello2] }) },
-      { name: '1 order (reverse 1)', test: () => ({ query: { orders: [order2] }, expected: [hello2, world, hello] }) }
+      { name: '1 order (1)', test: () => ({ query: { orders: [order1] }, expected: [hello, hello2, world] }) },
+      { name: '1 order (reverse 1)', test: () => ({ query: { orders: [order2] }, expected: [world, hello2, hello] }) }
     ]
 
     before(async () => {
@@ -461,7 +464,7 @@ module.exports = (test) => {
     })
   })
 
-  describe.skip('queryKeys', () => {
+  describe('queryKeys', () => {
     /** @type {Blockstore} */
     let store
     /** @type {Pair} */
@@ -476,9 +479,9 @@ module.exports = (test) => {
     let filter2
 
     before(async () => {
-      hello = await getKeyValuePair()
-      hello2 = await getKeyValuePair()
-      world = await getKeyValuePair()
+      hello = await getKeyValuePair('hello')
+      hello2 = await getKeyValuePair('hello2')
+      world = await getKeyValuePair('world')
 
       filter1 = key => !key.toString().endsWith(hello.key.toString().substring(-5))
       filter2 = key => key.toString().endsWith(hello2.key.toString().substring(-5))
@@ -510,7 +513,7 @@ module.exports = (test) => {
     /** @type {Array<{ name: string, test: () => { query: any, expected: any}}>} */
     const tests = [
       { name: 'empty', test: () => ({ query: {}, expected: [hello.key, world.key, hello2.key] }) },
-      { name: 'prefix', test: () => ({ query: { prefix: '/z' }, expected: [world.key, hello2.key] }) },
+      { name: 'prefix', test: () => ({ query: { prefix: `/${hello.key.toString().charAt(0)}` }, expected: [hello.key, world.key, hello2.key] }) },
       { name: '1 filter', test: () => ({ query: { filters: [filter1] }, expected: [world.key, hello2.key] }) },
       { name: '2 filters', test: () => ({ query: { filters: [filter1, filter2] }, expected: [hello2.key] }) },
       { name: 'limit', test: () => ({ query: { limit: 1 }, expected: 1 }) },
