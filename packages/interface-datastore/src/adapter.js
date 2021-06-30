@@ -225,10 +225,6 @@ class Adapter {
 
     return it
   }
-
-  unwrap () {
-    return this
-  }
 }
 
 module.exports = Adapter
