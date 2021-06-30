@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.0.0...interface-datastore@5.1.0) (2021-06-30)
+
+
+### Features
+
+* add unwrap method ([0c22c9f](https://github.com/ipfs/js-ipfs-interfaces/commit/0c22c9ff4fe12ac92e38bcfb6ced626077fdb0ed))
+
+
+
+
+
 # 5.0.0 (2021-06-28)
 
 
