@@ -172,6 +172,11 @@ export interface Store<Key, Value> {
    * ```
    */
    queryKeys: (query: KeyQuery<Key>, options?: Options) => AsyncIterable<Key>
+
+   /**
+    * Where a store wraps another store, return the wrapped store
+    */
+   unwrap: () => Store<Key, Value>
 }
 
 export type QueryFilter<Key, Value> = (item: Pair<Key, Value>) => boolean

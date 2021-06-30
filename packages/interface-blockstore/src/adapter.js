@@ -240,6 +240,10 @@ class BlockstoreAdapter {
 
     return it
   }
+
+  unwrap () {
+    return this
+  }
 }
 
 module.exports = BlockstoreAdapter
