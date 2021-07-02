@@ -365,7 +365,7 @@ module.exports = (test) => {
     /** @type {Array<{ name: string, test: () => { query: any, expected: any}}>} */
     const tests = [
       { name: 'empty', test: () => ({ query: {}, expected: [hello, world, hello2] }) },
-      { name: 'prefix', test: () => ({ query: { prefix: `/${hello.key.toString().charAt(0)}` }, expected: [hello, world, hello2] }) },
+      { name: 'prefix', test: () => ({ query: { prefix: hello.key.toString().charAt(0) }, expected: [hello, world, hello2] }) },
       { name: '1 filter', test: () => ({ query: { filters: [filter1] }, expected: [world, hello2] }) },
       { name: '2 filters', test: () => ({ query: { filters: [filter1, filter2] }, expected: [hello2] }) },
       { name: 'limit', test: () => ({ query: { limit: 1 }, expected: 1 }) },
@@ -513,7 +513,7 @@ module.exports = (test) => {
     /** @type {Array<{ name: string, test: () => { query: any, expected: any}}>} */
     const tests = [
       { name: 'empty', test: () => ({ query: {}, expected: [hello.key, world.key, hello2.key] }) },
-      { name: 'prefix', test: () => ({ query: { prefix: `/${hello.key.toString().charAt(0)}` }, expected: [hello.key, world.key, hello2.key] }) },
+      { name: 'prefix', test: () => ({ query: { prefix: hello.key.toString().charAt(0) }, expected: [hello.key, world.key, hello2.key] }) },
       { name: '1 filter', test: () => ({ query: { filters: [filter1] }, expected: [world.key, hello2.key] }) },
       { name: '2 filters', test: () => ({ query: { filters: [filter1, filter2] }, expected: [hello2.key] }) },
       { name: 'limit', test: () => ({ query: { limit: 1 }, expected: 1 }) },
