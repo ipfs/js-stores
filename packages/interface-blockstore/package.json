@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore",
-  "version": "1.0.0-1",
+  "version": "1.0.0",
   "description": "An interface for storing and retrieving blocks",
   "main": "src/index.js",
   "types": "dist/src/index.d.ts",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store@0.1.1...interface-store@1.0.0) (2021-07-06)
+
+
+### Features
+
+* prep for v1 release ([b95a516](https://github.com/ipfs/js-ipfs-interfaces/commit/b95a51610738e8ce6b5e29e9769f19f98e525a94))
+
+
+
+
+
 ## [0.1.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store@0.1.0...interface-store@0.1.1) (2021-06-30)
 
 **Note:** Version bump only for package interface-store
