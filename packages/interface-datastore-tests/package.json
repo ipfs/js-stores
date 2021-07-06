@@ -1,6 +1,6 @@
 {
   "name": "interface-datastore-tests",
-  "version": "0.0.3",
+  "version": "1.0.0-1",
   "description": "Compliance tests for the datastore interface",
   "leadMaintainer": "Alex Potsides <alex.potsides@protocol.ai>",
   "main": "src/index.js",
