@@ -17,6 +17,6 @@
     "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
   },
   "devDependencies": {
-    "aegir": "^33.1.2"
+    "aegir": "^34.0.3"
   }
 }
