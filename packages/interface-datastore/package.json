@@ -43,7 +43,7 @@
     "it-filter": "^1.0.2",
     "it-take": "^1.0.1",
     "nanoid": "^3.0.2",
-    "uint8arrays": "^2.1.5"
+    "uint8arrays": "^3.0.0"
   },
   "eslintConfig": {
     "extends": "ipfs"
