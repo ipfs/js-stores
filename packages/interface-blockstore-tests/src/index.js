@@ -4,7 +4,7 @@
 const { expect } = require('aegir/utils/chai')
 const all = require('it-all')
 const drain = require('it-drain')
-const uint8ArrayFromString = require('uint8arrays/from-string')
+const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 const { CID } = require('multiformats/cid')
 const { sha256 } = require('multiformats/hashes/sha2')
 const raw = require('multiformats/codecs/raw')
