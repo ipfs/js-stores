@@ -5,7 +5,7 @@ const { randomBytes } = require('iso-random-stream')
 const { expect } = require('aegir/utils/chai')
 const all = require('it-all')
 const drain = require('it-drain')
-const uint8ArrayFromString = require('uint8arrays/from-string')
+const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 const { Key } = require('interface-datastore')
 
 /**

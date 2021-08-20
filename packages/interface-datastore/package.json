@@ -31,8 +31,9 @@
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-datastore#readme",
   "devDependencies": {
-    "aegir": "^33.1.2",
-    "it-map": "^1.0.5"
+    "aegir": "^35.0.0",
+    "it-map": "^1.0.5",
+    "util": "^0.12.4"
   },
   "dependencies": {
     "err-code": "^3.0.1",
@@ -43,7 +44,7 @@
     "it-filter": "^1.0.2",
     "it-take": "^1.0.1",
     "nanoid": "^3.0.2",
-    "uint8arrays": "^2.1.5"
+    "uint8arrays": "^3.0.0"
   },
   "eslintConfig": {
     "extends": "ipfs"
