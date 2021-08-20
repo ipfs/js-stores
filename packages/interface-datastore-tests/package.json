@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-datastore-tests#readme",
   "dependencies": {
-    "aegir": "^33.1.2",
+    "aegir": "^35.0.2",
     "interface-datastore": "^5.1.1",
     "iso-random-stream": "^2.0.0",
     "it-all": "^1.0.2",
