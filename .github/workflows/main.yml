@@ -40,11 +40,7 @@ jobs:
       matrix:
           os: [windows-latest, ubuntu-latest, macos-latest]
           project:
-            - packages/interface-blockstore
-            - packages/interface-blockstore-tests
             - packages/interface-datastore
-            - packages/interface-datastore-tests
-            - packages/interface-store
     needs: check
     runs-on: ${{ matrix.os }}
     steps:
