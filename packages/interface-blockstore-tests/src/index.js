@@ -287,7 +287,7 @@ module.exports = (test) => {
     })
 
     it('many (1200)', async function () {
-      this.timeout(60 * 1000)
+      this.timeout(360 * 1000)
       const b = store.batch()
       const count = 1200
 
