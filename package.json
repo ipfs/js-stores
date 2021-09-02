@@ -9,7 +9,8 @@
     "test": "lerna run test",
     "build": "lerna run build",
     "lint": "lerna run lint",
-    "release": "lerna run build && lerna publish"
+    "release": "lerna run build && lerna publish",
+    "dep-check": "lerna run dep-check"
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master#readme",
   "bugs": "https://github.com/ipfs/js-ipfs-interfaces/issues",
