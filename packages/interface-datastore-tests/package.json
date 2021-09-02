@@ -12,7 +12,8 @@
   "scripts": {
     "build": "aegir build",
     "lint": "aegir ts -p check && aegir lint",
-    "test": "echo \"No tests configured\""
+    "test": "echo \"No tests configured\"",
+    "dep-check": "aegir dep-check"
   },
   "repository": {
     "type": "git",

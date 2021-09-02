@@ -7,7 +7,8 @@
   "scripts": {
     "build": "aegir build",
     "test": "echo \"No tests configured\"",
-    "lint": "aegir ts -p check && aegir lint"
+    "lint": "aegir ts -p check && aegir lint",
+    "dep-check": "aegir dep-check"
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-store#readme",
   "bugs": "https://github.com/ipfs/js-ipfs-interfaces/issues",

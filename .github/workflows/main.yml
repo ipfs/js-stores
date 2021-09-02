@@ -32,7 +32,7 @@ jobs:
         uses: gozala/typescript-error-reporter-action@v1.0.8
         with:
           project: ${{ matrix.project }}
-      - run: npx aegir dep-check
+      - run: npm run dep-check
       - uses: ipfs/aegir/actions/bundle-size@master
         name: size
         with:

@@ -7,7 +7,8 @@
   "scripts": {
     "build": "aegir build",
     "test": "echo \"No tests configured\"",
-    "lint": "aegir ts -p check && aegir lint"
+    "lint": "aegir ts -p check && aegir lint",
+    "dep-check": "aegir dep-check"
   },
   "license": "(Apache-2.0 OR MIT)",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore#readme",
