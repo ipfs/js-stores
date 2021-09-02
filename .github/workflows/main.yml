@@ -26,10 +26,9 @@ jobs:
           node-version: 16.x
       - name: Install dependencies
         run: npm install
-      - name: Typecheck ${{ matrix.project }}
-        uses: gozala/typescript-error-reporter-action@v1.0.8
-        with:
-          project: ${{ matrix.project }}
+      - name: Build project
+        run: npm run build
+      - name: Check deps
       - run: npm run dep-check
       - uses: ipfs/aegir/actions/bundle-size@master
         name: size
