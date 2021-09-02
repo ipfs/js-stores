@@ -52,11 +52,6 @@ jobs:
             - packages/interface-store
     needs: check
     runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        node: ${{ matrix.node-version }}
-      fail-fast: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
