@@ -80,7 +80,7 @@ jobs:
         with:
           node-version: 16.x
       - run: npm install
-      - run: npm run test -- -- -- -t electron-main --bail
+      - run: npx xvfb-maybe npm run test -- -- -- -t electron-main --bail
   test-electron-renderer:
     needs: check
     runs-on: ubuntu-latest
@@ -90,4 +90,4 @@ jobs:
         with:
           node-version: 16.x
       - run: npm install
-      - run: npm run test -- -- -- -t electron-renderer --bail
+      - run: npx xvfb-maybe npm run test -- -- -- -t electron-renderer --bail
