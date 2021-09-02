@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/ipfs/interface-blockstore/compare/interface-blockstore-tests@1.0.1...interface-blockstore-tests@1.0.2) (2021-09-02)
+
+
+### Bug Fixes
+
+* make tests more stable ([#38](https://github.com/ipfs/interface-blockstore/issues/38)) ([595de43](https://github.com/ipfs/interface-blockstore/commit/595de438cbb5bda7444bdd8c4ce561215855d190))
+
+
+
+
+
 ## [1.0.1](https://github.com/ipfs/interface-blockstore/compare/interface-blockstore-tests@1.0.0...interface-blockstore-tests@1.0.1) (2021-08-20)
 
 **Note:** Version bump only for package interface-blockstore-tests

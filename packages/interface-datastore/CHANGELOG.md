@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.1.2...interface-datastore@5.1.3) (2021-09-02)
+
+
+### Bug Fixes
+
+* make tests more stable ([#38](https://github.com/ipfs/js-ipfs-interfaces/issues/38)) ([595de43](https://github.com/ipfs/js-ipfs-interfaces/commit/595de438cbb5bda7444bdd8c4ce561215855d190))
+
+
+
+
+
 ## [5.1.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.1.1...interface-datastore@5.1.2) (2021-08-20)
 
 **Note:** Version bump only for package interface-datastore
