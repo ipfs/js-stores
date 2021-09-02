@@ -7,6 +7,7 @@ const drain = require('it-drain')
 const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 const { CID } = require('multiformats/cid')
 const { sha256 } = require('multiformats/hashes/sha2')
+const { base32 } = require('multiformats/bases/base32')
 const raw = require('multiformats/codecs/raw')
 const length = require('it-length')
 
@@ -286,9 +287,9 @@ module.exports = (test) => {
     })
 
     it('many (1200)', async function () {
-      this.timeout(20 * 1000)
+      this.timeout(60 * 1000)
       const b = store.batch()
-      const count = 10
+      const count = 1200
 
       /** @type {Record<string, number>} */
       const prefixes = {}
@@ -300,7 +301,20 @@ module.exports = (test) => {
 
         b.put(key, value)
 
-        const prefix = key.toString().substr(0, 13)
+        // find the shortest stringified key that aligns with a byte boundary
+        const keyStr = key.toString()
+        let prefix = ''
+
+        for (let j = keyStr.length - 1; j > 20; j--) {
+          try {
+            base32.decode(keyStr.substring(0, j))
+            prefix = keyStr.substring(0, j)
+          } catch (err) {
+            if (err.message !== 'Unexpected end of data') {
+              throw err
+            }
+          }
+        }
 
         prefixes[prefix] = (prefixes[prefix] || 0) + 1
       }
