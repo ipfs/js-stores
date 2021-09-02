@@ -20,10 +20,10 @@ jobs:
             - packages/interface-store
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
       - name: Install dependencies
         run: npm install
       - name: Build types
@@ -42,7 +42,6 @@ jobs:
   test-node:
     strategy:
       matrix:
-          node-version: [14.x, 16.x]
           os: [windows-latest, ubuntu-latest, macos-latest]
           project:
             - packages/interface-blockstore
@@ -56,7 +55,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
       - run: npm install
       - run: npx aegir test -t node --cov --bail
       - uses: codecov/codecov-action@v1
