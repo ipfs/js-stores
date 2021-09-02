@@ -1,4 +1,4 @@
-import {
+import type {
   Pair as StorePair,
   Batch as StoreBatch,
   QueryFilter as StoreQueryFilter,
@@ -10,7 +10,7 @@ import {
   Options as StoreOptions,
   Store
 } from 'interface-store'
-import {
+import type {
   CID
 } from 'multiformats'
 

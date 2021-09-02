@@ -1,4 +1,4 @@
-import {
+import type {
   Pair as StorePair,
   Batch as StoreBatch,
   QueryFilter as StoreQueryFilter,
