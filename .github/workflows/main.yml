@@ -49,7 +49,7 @@ jobs:
         with:
           node-version: 16.x
       - run: npm install
-      - run: npx aegir test -t node --cov --bail
+      - run: npm run test -- -- -- -t node --cov --bail
       - uses: codecov/codecov-action@v1
   test-chrome:
     needs: check
@@ -57,25 +57,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx aegir test -t browser -t webworker --bail
+      - run: npm run test -- -- -- -t browser -t webworker --bail
   test-firefox:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx aegir test -t browser -t webworker --bail -- --browser firefox
+      - run: npm run test -- -- -- -t browser -t webworker --bail -- --browser firefox
   test-electron-main:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx xvfb-maybe aegir test -t electron-main --bail
+      - run: npm run test -- -- -- -t electron-main --bail
   test-electron-renderer:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx xvfb-maybe aegir test -t electron-renderer --bail
+      - run: npm run test -- -- -- -t electron-renderer --bail
