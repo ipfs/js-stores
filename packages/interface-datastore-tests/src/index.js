@@ -1,5 +1,4 @@
 /* eslint-env mocha */
-'use strict'
 
 import { randomBytes } from 'iso-random-stream'
 import { expect } from 'aegir/utils/chai.js'
@@ -20,7 +19,7 @@ import { Key } from 'interface-datastore'
 /**
  * @param {{ teardown: () => void; setup: () => Datastore; }} test
  */
- export function interfaceDatastoreTests (test) {
+export function interfaceDatastoreTests (test) {
   /**
    * @param {Datastore} store
    */

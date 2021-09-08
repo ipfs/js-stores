@@ -47,7 +47,10 @@
     "uint8arrays": "^3.0.0"
   },
   "eslintConfig": {
-    "extends": "ipfs"
+    "extends": "ipfs",
+    "parserOptions": {
+      "sourceType": "module"
+    }
   },
   "contributors": [
     "achingbrain <alex@achingbrain.net>",

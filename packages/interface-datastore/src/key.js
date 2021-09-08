@@ -1,4 +1,3 @@
-'use strict'
 
 import { nanoid } from 'nanoid'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
