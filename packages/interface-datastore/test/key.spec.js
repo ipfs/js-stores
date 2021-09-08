@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/utils/chai.js'
-import { Key } from 'interface-datastore/key'
+import { Key } from '../src/key.js'
 
 const pathSep = '/'
 
