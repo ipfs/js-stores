@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.1.3...interface-datastore@6.0.0) (2021-09-08)
+
+
+### chore
+
+* switch to ESM ([#39](https://github.com/ipfs/js-ipfs-interfaces/issues/39)) ([c04aa80](https://github.com/ipfs/js-ipfs-interfaces/commit/c04aa80d48a84b681962cae227dd2628e7d35cb5))
+
+
+### BREAKING CHANGES
+
+* deep requires/imports are no longer possible, moves adapters/in-memory impls etc to core packages
+
+
+
+
+
 ## [5.1.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.1.2...interface-datastore@5.1.3) (2021-09-02)
 
 
