@@ -1,6 +1,6 @@
 {
   "name": "interface-datastore",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "datastore interface",
   "leadMaintainer": "Alex Potsides <alex.potsides@protocol.ai>",
   "types": "types/src/index.d.ts",
@@ -44,7 +44,7 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "interface-store": "^2.0.0",
+    "interface-store": "^2.0.1",
     "nanoid": "^3.0.2",
     "uint8arrays": "^3.0.0"
   },
