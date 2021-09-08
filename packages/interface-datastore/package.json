@@ -5,6 +5,19 @@
   "leadMaintainer": "Alex Potsides <alex.potsides@protocol.ai>",
   "types": "types/src/index.d.ts",
   "type": "module",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/src/*"
+      ],
+      "types/*": [
+        "types/src/*"
+      ],
+      "types/src/*": [
+        "types/src/*"
+      ]
+    }
+  },
   "exports": {
     ".": {
       "import": "./src/index.js"
@@ -22,7 +35,8 @@
     "lint": "aegir ts -p check && aegir lint",
     "coverage": "aegir test --cov",
     "dep-check": "aegir dep-check -i rimraf",
-    "clean": "rimraf dist types"
+    "clean": "rimraf dist types",
+    "test": "aegir test"
   },
   "repository": {
     "type": "git",
@@ -41,7 +55,8 @@
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-datastore#readme",
   "devDependencies": {
     "aegir": "^35.0.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "util": "^0.12.4"
   },
   "dependencies": {
     "interface-store": "^2.0.1",

@@ -15,10 +15,7 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [Implementations](#implementations)
-- [Adapter](#adapter)
 - [Install](#install)
-- [Usage](#usage)
-  - [Wrapping Stores](#wrapping-stores)
   - [Test suite](#test-suite)
   - [Aborting requests](#aborting-requests)
   - [Concurrency](#concurrency)
@@ -30,9 +27,10 @@
 ## Implementations
 
 - Backed Implementations
-  - Memory: [`src/memory`](src/memory.js)
+  - Memory: [`datastore-core/memory`](https://github.com/ipfs/js-datastore-core/tree/master/src/memory.js)
   - level: [`datastore-level`](https://github.com/ipfs/js-datastore-level) (supports any levelup compatible backend)
   - File System: [`datstore-fs`](https://github.com/ipfs/js-datastore-fs)
+  - S3: [`datstore-s3`](https://github.com/ipfs/js-datastore-s3)
 - Wrapper Implementations
   - Mount: [`datastore-core/src/mount`](https://github.com/ipfs/js-datastore-core/tree/master/src/mount.js)
   - Keytransform: [`datstore-core/src/keytransform`](https://github.com/ipfs/js-datastore-core/tree/master/src/keytransform.js)
@@ -53,57 +51,21 @@ const fs = new FsStore('path/to/store')
 const flatfs = await ShardingStore.createOrOpen(fs, new NextToLast(2))
 ```
 
-## Adapter
-
-An adapter is made available to make implementing your own datastore easier:
-
-```javascript
-const { Adapter } from 'interface-datastore')
-
-class MyDatastore extends Adapter {
-  constructor () {
-    super()
-  }
-
-  async put (key, val) {
-    // your implementation here
-  }
-
-  async get (key) {
-    // your implementation here
-  }
-
-  // etc...
-}
-```
-
-See the [MemoryDatastore](./src/memory.js) for an example of how it is used.
-
 ## Install
 
 ```sh
 $ npm install interface-datastore
 ```
 
-## Usage
-
-### Wrapping Stores
-
-```js
-const MemoryStore from 'interface-datastore').MemoryDatastore
-const MountStore from 'datastore-core').MountDatastore
-const Key from 'interface-datastore').Key
-
-const store = new MountStore({ prefix: new Key('/a'), datastore: new MemoryStore() })
-```
-
 ### Test suite
 
-Available under [`src/tests.js`](src/tests.js)
+Available via the [`interface-datastore-tests`](https://npmjs.com/package/interface-datastore-tests) module
 
 ```js
+import { interfaceDatastoreTests } from 'interface-datastore-tests'
+
 describe('mystore', () => {
-  require('interface-datastore/src/tests')({
+  interfaceDatastoreTests({
     async setup () {
       return instanceOfMyStore
     },

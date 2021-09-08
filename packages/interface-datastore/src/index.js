@@ -1,2 +1,2 @@
 
-export { Key } from './key'
+export { Key } from './key.js'
