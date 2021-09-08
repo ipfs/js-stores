@@ -1,15 +1,14 @@
 /* eslint-env mocha */
-'use strict'
 
-const { expect } = require('aegir/utils/chai')
-const all = require('it-all')
-const drain = require('it-drain')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
-const { CID } = require('multiformats/cid')
-const { sha256 } = require('multiformats/hashes/sha2')
-const { base32 } = require('multiformats/bases/base32')
-const raw = require('multiformats/codecs/raw')
-const length = require('it-length')
+import { expect } from 'aegir/utils/chai.js'
+import all from 'it-all'
+import drain from 'it-drain'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import { CID } from 'multiformats/cid'
+import { sha256 } from 'multiformats/hashes/sha2'
+import { base32 } from 'multiformats/bases/base32'
+import * as raw from 'multiformats/codecs/raw'
+import length from 'it-length'
 
 /**
  * @typedef {import('interface-blockstore').Blockstore} Blockstore
@@ -43,7 +42,7 @@ async function getKeyValuePairs (count) {
 /**
  * @param {{ teardown: () => void; setup: () => Blockstore; }} test
  */
-module.exports = (test) => {
+export function interfaceBlockstoreTests (test) {
   /**
    * @param {Blockstore} store
    */
@@ -309,7 +308,7 @@ module.exports = (test) => {
           try {
             base32.decode(keyStr.substring(0, j))
             prefix = keyStr.substring(0, j)
-          } catch (err) {
+          } catch (/** @type {any} */ err) {
             if (err.message !== 'Unexpected end of data') {
               throw err
             }

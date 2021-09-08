@@ -2,13 +2,10 @@
   "name": "interface-blockstore",
   "version": "1.0.2",
   "description": "An interface for storing and retrieving blocks",
-  "main": "src/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "types/src/index.d.ts",
   "scripts": {
     "build": "aegir build",
-    "test": "echo \"No tests configured\"",
-    "lint": "aegir ts -p check && aegir lint",
-    "dep-check": "aegir dep-check"
+    "lint": "aegir ts -p check && aegir lint"
   },
   "license": "(Apache-2.0 OR MIT)",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore#readme",
@@ -18,15 +15,13 @@
     "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
   },
   "dependencies": {
-    "err-code": "^3.0.1",
     "interface-store": "^1.0.2",
-    "it-all": "^1.0.5",
-    "it-drain": "^1.0.4",
-    "it-filter": "^1.0.2",
-    "it-take": "^1.0.1",
     "multiformats": "^9.0.4"
   },
   "devDependencies": {
     "aegir": "^35.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist"
   }
 }

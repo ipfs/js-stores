@@ -1,12 +1,11 @@
 /* eslint-env mocha */
-'use strict'
 
-const { randomBytes } = require('iso-random-stream')
-const { expect } = require('aegir/utils/chai')
-const all = require('it-all')
-const drain = require('it-drain')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
-const { Key } = require('interface-datastore')
+import { randomBytes } from 'iso-random-stream'
+import { expect } from 'aegir/utils/chai.js'
+import all from 'it-all'
+import drain from 'it-drain'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import { Key } from 'interface-datastore'
 
 /**
  * @typedef {import('interface-datastore').Datastore} Datastore
@@ -20,7 +19,7 @@ const { Key } = require('interface-datastore')
 /**
  * @param {{ teardown: () => void; setup: () => Datastore; }} test
  */
-module.exports = (test) => {
+export function interfaceDatastoreTests (test) {
   /**
    * @param {Datastore} store
    */

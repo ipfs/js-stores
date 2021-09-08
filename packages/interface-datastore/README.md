@@ -43,9 +43,9 @@
 If you want the same functionality as [go-ds-flatfs](https://github.com/ipfs/go-ds-flatfs), use sharding with fs.
 
 ```js
-const FsStore = require('datastore-fs')
-const ShardingStore = require('datastore-core').ShardingDatatstore
-const NextToLast = require('datastore-core').shard.NextToLast
+const FsStore from 'datastore-fs')
+const ShardingStore from 'datastore-core').ShardingDatatstore
+const NextToLast from 'datastore-core').shard.NextToLast
 
 const fs = new FsStore('path/to/store')
 
@@ -58,7 +58,7 @@ const flatfs = await ShardingStore.createOrOpen(fs, new NextToLast(2))
 An adapter is made available to make implementing your own datastore easier:
 
 ```javascript
-const { Adapter } = require('interface-datastore')
+const { Adapter } from 'interface-datastore')
 
 class MyDatastore extends Adapter {
   constructor () {
@@ -90,9 +90,9 @@ $ npm install interface-datastore
 ### Wrapping Stores
 
 ```js
-const MemoryStore = require('interface-datastore').MemoryDatastore
-const MountStore = require('datastore-core').MountDatastore
-const Key = require('interface-datastore').Key
+const MemoryStore from 'interface-datastore').MemoryDatastore
+const MountStore from 'datastore-core').MountDatastore
+const Key from 'interface-datastore').Key
 
 const store = new MountStore({ prefix: new Key('/a'), datastore: new MemoryStore() })
 ```
@@ -123,7 +123,7 @@ Most API methods accept an [AbortSignal][] as part of an options object.  Implem
 The streaming `(put|get|delete)Many` methods are intended to be used with modules such as [it-parallel-batch](https://www.npmjs.com/package/it-parallel-batch) to allow calling code to control levels of parallelisation.  The batching method ensures results are returned in the correct order, but interface implementations should be thread safe.
 
 ```js
-const batch = require('it-parallel-batch')
+const batch from 'it-parallel-batch')
 const source = [{
   key: ..,
   value: ..

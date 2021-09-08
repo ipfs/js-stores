@@ -4,7 +4,7 @@
   "description": "Compliance tests for the blockstore interface",
   "leadMaintainer": "Alex Potsides <alex.potsides@protocol.ai>",
   "main": "src/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "types/src/index.d.ts",
   "files": [
     "src",
     "dist"
@@ -12,7 +12,6 @@
   "scripts": {
     "build": "aegir build",
     "lint": "aegir ts -p check && aegir lint",
-    "test": "echo \"No tests configured\"",
     "dep-check": "aegir dep-check"
   },
   "repository": {
@@ -40,6 +39,12 @@
     "uint8arrays": "^3.0.0"
   },
   "eslintConfig": {
-    "extends": "ipfs"
+    "extends": "ipfs",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "publishConfig": {
+    "directory": "dist"
   }
 }

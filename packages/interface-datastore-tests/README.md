@@ -11,8 +11,8 @@
 ## Usage
 
 ```js
-const MyDatastore = require('./path/to/my-datastore')
-const suite = require('interface-datastore-tests')
+const MyDatastore from './path/to/my-datastore')
+const suite from 'interface-datastore-tests')
 
 describe('MyDatastore', () => {
   describe('interface-datastore compliance tests', () => {

@@ -156,9 +156,9 @@ export interface Store<Key, Value> {
    * console.log('ALL THE VALUES', list)
    * ```
    */
-   query: (query: Query<Key, Value>, options?: Options) => AsyncIterable<Pair<Key, Value>>
+  query: (query: Query<Key, Value>, options?: Options) => AsyncIterable<Pair<Key, Value>>
 
-   /**
+  /**
    * Query the store.
    *
    * @example
@@ -171,27 +171,27 @@ export interface Store<Key, Value> {
    * console.log('ALL THE KEYS', key)
    * ```
    */
-   queryKeys: (query: KeyQuery<Key>, options?: Options) => AsyncIterable<Key>
+  queryKeys: (query: KeyQuery<Key>, options?: Options) => AsyncIterable<Key>
 }
 
-export type QueryFilter<Key, Value> = (item: Pair<Key, Value>) => boolean
-export type QueryOrder<Key, Value> = (a: Pair<Key, Value>, b: Pair<Key, Value>) => -1 | 0 | 1
+export interface QueryFilter<Key, Value> { (item: Pair<Key, Value>): boolean }
+export interface QueryOrder<Key, Value> { (a: Pair<Key, Value>, b: Pair<Key, Value>): -1 | 0 | 1 }
 
 export interface Query<Key, Value> {
   prefix?: string
-  filters?: QueryFilter<Key, Value>[]
-  orders?: QueryOrder<Key, Value>[]
+  filters?: Array<QueryFilter<Key, Value>>
+  orders?: Array<QueryOrder<Key, Value>>
   limit?: number
   offset?: number
 }
 
-export type KeyQueryFilter<Key> = (item: Key) => boolean
-export type KeyQueryOrder<Key> = (a: Key, b: Key) => -1 | 0 | 1
+export interface KeyQueryFilter<Key> { (item: Key): boolean }
+export interface KeyQueryOrder<Key> { (a: Key, b: Key): -1 | 0 | 1 }
 
 export interface KeyQuery<Key> {
   prefix?: string
-  filters?: KeyQueryFilter<Key>[]
-  orders?: KeyQueryOrder<Key>[]
+  filters?: Array<KeyQueryFilter<Key>>
+  orders?: Array<KeyQueryOrder<Key>>
   limit?: number
   offset?: number
 }
