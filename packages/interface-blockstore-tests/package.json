@@ -4,6 +4,7 @@
   "description": "Compliance tests for the blockstore interface",
   "leadMaintainer": "Alex Potsides <alex.potsides@protocol.ai>",
   "main": "src/index.js",
+  "type": "module",
   "types": "types/src/index.d.ts",
   "files": [
     "src",
