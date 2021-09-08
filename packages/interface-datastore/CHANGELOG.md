@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@6.0.2...interface-datastore@6.0.3) (2021-09-08)
+
+
+### Bug Fixes
+
+* export key properly ([749b656](https://github.com/ipfs/js-ipfs-interfaces/commit/749b656c23fb91aa13bfaf9a5ad99703490b24b4))
+
+
+
+
+
 ## [6.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@6.0.1...interface-datastore@6.0.2) (2021-09-08)
 
 **Note:** Version bump only for package interface-datastore
