@@ -11,8 +11,8 @@
 ## Usage
 
 ```js
-const MyBlockstore = require('./path/to/my-blockstore')
-const suite = require('interface-blockstore-tests')
+const MyBlockstore from './path/to/my-blockstore')
+const suite from 'interface-blockstore-tests')
 
 describe('MyBlockstore', () => {
   describe('interface-blockstore compliance tests', () => {

@@ -10,7 +10,7 @@ import type {
   Options as StoreOptions,
   Store
 } from 'interface-store'
-import type Key from './key'
+import type { Key } from './key'
 
 export interface Options extends StoreOptions{
 
@@ -51,3 +51,5 @@ export interface KeyQueryOrder extends StoreKeyQueryOrder<Key> {
 export interface KeyQuery extends StoreKeyQuery<Key> {
 
 }
+
+export { Key } from './key'

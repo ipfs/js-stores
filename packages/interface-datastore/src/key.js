@@ -1,9 +1,8 @@
 'use strict'
 
-const { nanoid } = require('nanoid')
-
-const { toString: uint8ArrayToString } = require('uint8arrays/to-string')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
+import { nanoid } from 'nanoid'
+import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 const pathSepS = '/'
 const pathSepB = new TextEncoder().encode(pathSepS)
@@ -25,7 +24,7 @@ const pathSep = pathSepB[0]
  * - `new Key('/Comedy/MontyPython/Sketch:CheeseShop/Character:Mousebender')`
  *
  */
-class Key {
+export class Key {
   /**
    * @param {string | Uint8Array} s
    * @param {boolean} [clean]
@@ -420,5 +419,3 @@ function namespaceValue (ns) {
 function flatten (arr) {
   return /** @type {T[]} */([]).concat(...arr)
 }
-
-module.exports = Key

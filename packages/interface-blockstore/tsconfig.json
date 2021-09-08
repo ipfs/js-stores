@@ -1,11 +1,17 @@
 {
   "extends": "aegir/src/config/tsconfig.aegir.json",
   "compilerOptions": {
-      "outDir": "dist",
-      "skipLibCheck": false
+    "outDir": "types"
   },
   "include": [
-    "test",
     "src"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "references": [
+    {
+      "path": "../interface-store"
+    }
   ]
 }
