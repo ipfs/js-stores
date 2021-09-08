@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "reset": "rimraf ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json packages/*/dist",
+    "reset": "npm run clean && rimraf ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json",
+    "clean": "lerna run clean",
     "test": "lerna run test",
     "build": "lerna run build",
     "lint": "lerna run lint",

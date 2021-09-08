@@ -7,13 +7,14 @@
   "type": "module",
   "types": "types/src/index.d.ts",
   "files": [
-    "src",
-    "dist"
+    "*",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "build": "aegir build",
     "lint": "aegir ts -p check && aegir lint",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check -i rimraf",
+    "clean": "rimraf dist types"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,9 @@
     "it-length": "^1.0.2",
     "multiformats": "^9.1.0",
     "uint8arrays": "^3.0.0"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   },
   "eslintConfig": {
     "extends": "ipfs",

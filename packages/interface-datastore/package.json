@@ -14,14 +14,15 @@
     }
   },
   "files": [
-    "src",
-    "dist"
+    "*",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "build": "aegir build",
     "lint": "aegir ts -p check && aegir lint",
     "coverage": "aegir test --cov",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check -i rimraf",
+    "clean": "rimraf dist types"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,8 @@
   },
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-datastore#readme",
   "devDependencies": {
-    "aegir": "^35.0.0"
+    "aegir": "^35.0.0",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "interface-store": "^2.0.0",

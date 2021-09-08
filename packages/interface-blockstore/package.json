@@ -3,10 +3,16 @@
   "version": "2.0.0",
   "description": "An interface for storing and retrieving blocks",
   "types": "dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!**/*.tsbuildinfo"
+  ],
   "scripts": {
     "build": "aegir build",
     "lint": "aegir ts -p check && aegir lint",
-    "preleaseOnly": "npx json -I -f dist/package.json -e this.types='\"src/index.d.ts\"'"
+    "preleaseOnly": "npx json -I -f dist/package.json -e this.types='\"src/index.d.ts\"'",
+    "clean": "rimraf dist types"
   },
   "license": "(Apache-2.0 OR MIT)",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore#readme",
@@ -20,7 +26,8 @@
     "multiformats": "^9.0.4"
   },
   "devDependencies": {
-    "aegir": "^35.0.0"
+    "aegir": "^35.0.0",
+    "rimraf": "^3.0.2"
   },
   "publishConfig": {
     "directory": "dist"
