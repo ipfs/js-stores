@@ -47,5 +47,8 @@
     "parserOptions": {
       "sourceType": "module"
     }
+  },
+  "publishConfig": {
+    "directory": "dist"
   }
 }
