@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "An interface for storing and retrieving blocks",
   "types": "dist/src/index.d.ts",
   "files": [
