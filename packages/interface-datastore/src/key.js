@@ -110,6 +110,23 @@ export class Key {
   }
 
   /**
+   * @param {*} other
+   */
+  static asKey (other) {
+    if (other instanceof Uint8Array || typeof other === 'string') {
+      // we can create a key from this
+      return new Key(other)
+    }
+
+    if (other.uint8Array) {
+      // this is an older version or may have crossed the esm/cjs boundary
+      return new Key(other.uint8Array())
+    }
+
+    return null
+  }
+
+  /**
    * Cleanup the current key
    *
    * @returns {void}
