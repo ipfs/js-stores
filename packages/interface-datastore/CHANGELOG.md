@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.1.3...interface-datastore@5.2.0) (2021-09-17)
+
+
+### Features
+
+* backport Key.asKey ([#42](https://github.com/ipfs/js-ipfs-interfaces/issues/42)) ([4932a7d](https://github.com/ipfs/js-ipfs-interfaces/commit/4932a7d0a384e18e2c72b388232ff65226595d63))
+
+
+
+
+
 ## [5.1.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@5.1.2...interface-datastore@5.1.3) (2021-09-02)
 
 
