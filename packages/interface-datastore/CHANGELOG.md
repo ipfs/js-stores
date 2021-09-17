@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@6.0.3...interface-datastore@6.1.0) (2021-09-17)
+
+
+### Features
+
+* add Key.asKey method ([#41](https://github.com/ipfs/js-ipfs-interfaces/issues/41)) ([783dcc8](https://github.com/ipfs/js-ipfs-interfaces/commit/783dcc866e4ca6784d2801a8e18fa1135a137a6b))
+
+
+
+
+
 ## [6.0.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@6.0.2...interface-datastore@6.0.3) (2021-09-08)
 
 
