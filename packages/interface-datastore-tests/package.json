@@ -40,7 +40,7 @@
     "uint8arrays": "^3.0.0"
   },
   "devDependencies": {
-    "rimraf": "^1.0.1"
+    "rimraf": "^3.0.2"
   },
   "eslintConfig": {
     "extends": "ipfs",
