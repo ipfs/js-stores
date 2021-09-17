@@ -2,6 +2,7 @@
 
 import { expect } from 'aegir/utils/chai.js'
 import { Key } from '../src/key.js'
+import { fromString as uint8ArrayFromString } from 'uint8arrays'
 
 const pathSep = '/'
 
@@ -204,5 +205,38 @@ describe('Key', () => {
 
     // should be a view on the original buffer
     expect(buf.buffer).to.equal(arrWithSlashes.buffer)
+  })
+
+  it('should turn a string into a key', () => {
+    const str = '/foo/bar'
+    const key = Key.asKey(str)
+
+    expect(`${key}`).to.equal(str)
+  })
+
+  it('should turn a key into a key', () => {
+    const str = '/foo/bar'
+    const key = Key.asKey(new Key(str))
+
+    expect(`${key}`).to.equal(str)
+  })
+
+  it('should turn a uint8array into a key', () => {
+    const str = '/foo/bar'
+    const key = Key.asKey(uint8ArrayFromString(str))
+
+    expect(`${key}`).to.equal(str)
+  })
+
+  it('should not turn a falsy value into a key', () => {
+    const key = Key.asKey(false)
+
+    expect(key).to.be.null()
+  })
+
+  it('should not turn an invalid value into a key', () => {
+    expect(Key.asKey({})).to.be.null()
+    expect(Key.asKey(5)).to.be.null()
+    expect(Key.asKey(() => {})).to.be.null()
   })
 })
