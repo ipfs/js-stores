@@ -26,7 +26,7 @@
     "multiformats": "^9.0.4"
   },
   "devDependencies": {
-    "aegir": "^35.0.0",
+    "aegir": "^36.0.2",
     "rimraf": "^3.0.2"
   }
 }
