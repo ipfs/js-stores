@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@6.1.0...interface-datastore@6.1.1) (2022-01-26)
+
+**Note:** Version bump only for package interface-datastore
+
+
+
+
+
 # [6.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore@6.0.3...interface-datastore@6.1.0) (2021-09-17)
 
 

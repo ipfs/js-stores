@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "An interface for storing and retrieving blocks",
   "types": "dist/src/index.d.ts",
   "files": [
@@ -22,7 +22,7 @@
     "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
   },
   "dependencies": {
-    "interface-store": "^2.0.1",
+    "interface-store": "^2.0.2",
     "multiformats": "^9.0.4"
   },
   "devDependencies": {
