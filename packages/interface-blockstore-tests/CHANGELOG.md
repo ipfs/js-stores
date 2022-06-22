@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/ipfs/interface-blockstore/compare/interface-blockstore-tests@2.0.4...interface-blockstore-tests@2.0.5) (2022-06-22)
+
+
+### Bug Fixes
+
+* lower amount ([b7f9aab](https://github.com/ipfs/interface-blockstore/commit/b7f9aab399b026d34521aad5a9c3757baa60cb4d))
+
+
+
+
+
 ## [2.0.4](https://github.com/ipfs/interface-blockstore/compare/interface-blockstore-tests@2.0.3...interface-blockstore-tests@2.0.4) (2022-06-22)
 
 
