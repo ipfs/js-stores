@@ -285,10 +285,10 @@ export function interfaceBlockstoreTests (test) {
       expect(res).to.be.eql([false, true, true, true])
     })
 
-    it('many (1200)', async function () {
-      this.timeout(640 * 1000)
+    it('many (100)', async function () {
+      this.timeout(320 * 1000)
       const b = store.batch()
-      const count = 1200
+      const count = 100
 
       /** @type {Record<string, number>} */
       const prefixes = {}
