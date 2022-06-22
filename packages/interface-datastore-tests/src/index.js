@@ -259,7 +259,7 @@ export function interfaceDatastoreTests (test) {
     })
 
     it('many (3 * 400)', async function () {
-      this.timeout(320 * 1000)
+      this.timeout(640 * 1000)
       const b = store.batch()
       const count = 400
       for (let i = 0; i < count; i++) {
