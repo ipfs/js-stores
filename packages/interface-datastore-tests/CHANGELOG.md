@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests@2.0.6...interface-datastore-tests@2.0.7) (2022-06-22)
+
+
+### Bug Fixes
+
+* increase timeouts ([#131](https://github.com/ipfs/js-ipfs-interfaces/issues/131)) ([733c2ed](https://github.com/ipfs/js-ipfs-interfaces/commit/733c2edb32a3aa3a54c6cf2d39f780bd6018010b))
+
+
+
+
+
 ## [2.0.6](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests@2.0.5...interface-datastore-tests@2.0.6) (2022-01-26)
 
 **Note:** Version bump only for package interface-datastore-tests
