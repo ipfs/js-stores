@@ -210,21 +210,21 @@ describe('Key', () => {
     const str = '/foo/bar'
     const key = Key.asKey(str)
 
-    expect(`${key}`).to.equal(str)
+    expect(key?.toString()).to.equal(str)
   })
 
   it('should turn a key into a key', () => {
     const str = '/foo/bar'
     const key = Key.asKey(new Key(str))
 
-    expect(`${key}`).to.equal(str)
+    expect(key?.toString()).to.equal(str)
   })
 
   it('should turn a uint8array into a key', () => {
     const str = '/foo/bar'
     const key = Key.asKey(uint8ArrayFromString(str))
 
-    expect(`${key}`).to.equal(str)
+    expect(key?.toString()).to.equal(str)
   })
 
   it('should not turn a falsy value into a key', () => {
