@@ -42,7 +42,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "interface-store": "^2.0.0",
+    "interface-store": "^3.0.0",
     "multiformats": "^9.1.0"
   },
   "devDependencies": {
