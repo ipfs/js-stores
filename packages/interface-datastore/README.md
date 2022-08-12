@@ -1,21 +1,17 @@
 # interface-datastore <!-- omit in toc -->
 
-[![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
-[![](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](http://ipfs.io/)
-[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
-[![codecov](https://img.shields.io/codecov/c/github/ipfs/interface-datastore.svg?style=flat-square)](https://codecov.io/gh/ipfs/interface-datastore)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ipfs/interface-datastore/ci?label=ci&style=flat-square)](https://github.com/ipfs/interface-datastore/actions?query=branch%3Amaster+workflow%3Aci+)
+[![ipfs.io](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](http://ipfs.io)
+[![IRC](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
+[![Discord](https://img.shields.io/discord/806902334369824788?style=flat-square)](https://discord.gg/ipfs)
+[![codecov](https://img.shields.io/codecov/c/github/ipfs/js-ipfs-interfaces.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-ipfs-interfaces)
+[![CI](https://img.shields.io/github/workflow/status/ipfs/js-ipfs-interfaces/test%20&%20maybe%20release/master?style=flat-square)](https://github.com/ipfs/js-ipfs-interfaces/actions/workflows/js-test-and-release.yml)
 
-> Implementation of the [datastore](https://github.com/ipfs/go-datastore) interface in JavaScript
+> datastore interface
 
-## Lead Maintainer <!-- omit in toc -->
+## Table of contents <!-- omit in toc -->
 
-[Alex Potsides](https://github.com/achingbrain)
-
-## Table of Contents <!-- omit in toc -->
-
-- [Implementations](#implementations)
 - [Install](#install)
+- [Implementations](#implementations)
   - [Test suite](#test-suite)
   - [Aborting requests](#aborting-requests)
   - [Concurrency](#concurrency)
@@ -23,6 +19,13 @@
 - [API](#api)
 - [Contribute](#contribute)
 - [License](#license)
+- [Contribute](#contribute-1)
+
+## Install
+
+```console
+$ npm i interface-datastore
+```
 
 ## Implementations
 
@@ -50,12 +53,6 @@ const fs = new FsStore('path/to/store')
 const flatfs = await ShardingStore.createOrOpen(fs, new shard.NextToLast(2))
 ```
 
-## Install
-
-```sh
-$ npm install interface-datastore
-```
-
 ### Test suite
 
 Available via the [`interface-datastore-tests`](https://npmjs.com/package/interface-datastore-tests) module
@@ -77,7 +74,7 @@ describe('mystore', () => {
 
 ### Aborting requests
 
-Most API methods accept an [AbortSignal][] as part of an options object.  Implementations may listen for an `abort` event emitted by this object, or test the `signal.aborted` property. When received implementations should tear down any long-lived requests or resources created.
+Most API methods accept an \[AbortSignal]\[] as part of an options object.  Implementations may listen for an `abort` event emitted by this object, or test the `signal.aborted` property. When received implementations should tear down any long-lived requests or resources created.
 
 ### Concurrency
 
@@ -117,7 +114,8 @@ Also, every namespace can be parameterized to embed relevant object information.
 - `new Key('/Comedy/MontyPython/Sketch:CheeseShop/Character:Mousebender')`
 
 ## API
-https://ipfs.github.io/interface-datastore/
+
+<https://ipfs.github.io/interface-datastore/>
 
 ## Contribute
 
@@ -127,17 +125,37 @@ Small note: If editing the Readme, please conform to the [standard-readme](https
 
 ## License
 
-MIT 2017 © IPFS
+Licensed under either of
 
+- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+
+## Contribute
+
+Feel free to join in. All welcome. Open an [issue](https://github.com/ipfs/js-ipfs-unixfs-importer/issues)!
+
+This repository falls under the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
+
+[![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](https://github.com/ipfs/community/blob/master/CONTRIBUTING.md)
 
 [Key]: #Keys
+
 [Object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+
 [Uint8Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array
+
 [AbortSignal]: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+
 [AsyncIterator]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator
+
 [AsyncIterable]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+
 [String]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+
 [Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
 [Function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
+
 [Number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+
 [Boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
