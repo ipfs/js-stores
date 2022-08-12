@@ -41,7 +41,8 @@
   "scripts": {
     "build": "aegir build",
     "lint": "aegir lint",
-    "clean": "aegir clean"
+    "clean": "aegir clean",
+    "release": "aegir release"
   },
   "devDependencies": {
     "aegir": "^37.5.0"

@@ -61,7 +61,8 @@
     "build": "aegir build",
     "lint": "aegir lint",
     "dep-check": "aegir dep-check",
-    "clean": "aegir clean"
+    "clean": "aegir clean",
+    "release": "aegir release"
   },
   "dependencies": {
     "aegir": "^37.5.0",
