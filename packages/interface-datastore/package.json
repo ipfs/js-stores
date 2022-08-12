@@ -64,7 +64,7 @@
   "scripts": {
     "build": "aegir build",
     "lint": "aegir lint",
-    "dep-check": "aegir dep-check -i rimraf",
+    "dep-check": "aegir dep-check",
     "clean": "aegir clean",
     "test": "aegir test",
     "test:node": "aegir test -t node --cov",
@@ -79,11 +79,6 @@
     "uint8arrays": "^3.0.0"
   },
   "devDependencies": {
-    "aegir": "^37.5.0",
-    "rimraf": "^3.0.2",
-    "util": "^0.12.4"
-  },
-  "publishConfig": {
-    "directory": "dist"
+    "aegir": "^37.5.0"
   }
 }

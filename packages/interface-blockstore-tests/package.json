@@ -71,9 +71,5 @@
     "it-length": "^1.0.2",
     "multiformats": "^9.1.0",
     "uint8arrays": "^3.0.0"
-  },
-  "main": "src/index.js",
-  "publishConfig": {
-    "directory": "dist"
   }
 }

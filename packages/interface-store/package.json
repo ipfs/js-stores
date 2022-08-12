@@ -44,7 +44,6 @@
     "clean": "aegir clean"
   },
   "devDependencies": {
-    "aegir": "^37.5.0",
-    "rimraf": "^3.0.2"
+    "aegir": "^37.5.0"
   }
 }

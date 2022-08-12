@@ -120,7 +120,7 @@ export class Key {
       return new Key(other)
     }
 
-    if (other.uint8Array) {
+    if (typeof other.uint8Array === 'function') {
       // this is an older version or may have crossed the esm/cjs boundary
       return new Key(other.uint8Array())
     }
@@ -134,7 +134,7 @@ export class Key {
    * @returns {void}
    */
   clean (): void {
-    if (!this._buf || this._buf.byteLength === 0) {
+    if (this._buf == null || this._buf.byteLength === 0) {
       this._buf = pathSepB
     }
 
@@ -431,9 +431,9 @@ function namespaceValue (ns: string): string {
  * Flatten array of arrays (only one level)
  *
  * @template T
- * @param {Array<T|T[]>} arr
+ * @param {Array<any>} arr
  * @returns {T[]}
  */
-function flatten <T> (arr: any): string[] {
+function flatten (arr: any[]): string[] {
   return ([]).concat(...arr)
 }
