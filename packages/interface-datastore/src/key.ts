@@ -1,6 +1,6 @@
 
 import { nanoid } from 'nanoid'
-import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
+import { SupportedEncodings, toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 const pathSepS = '/'
@@ -24,11 +24,13 @@ const pathSep = pathSepB[0]
  *
  */
 export class Key {
+  private _buf: Uint8Array
+
   /**
    * @param {string | Uint8Array} s
    * @param {boolean} [clean]
    */
-  constructor (s, clean) {
+  constructor (s: string | Uint8Array, clean?: boolean) {
     if (typeof s === 'string') {
       this._buf = uint8ArrayFromString(s)
     } else if (s instanceof Uint8Array) {
@@ -56,7 +58,7 @@ export class Key {
    * @param {import('uint8arrays/to-string').SupportedEncodings} [encoding='utf8'] - The encoding to use.
    * @returns {string}
    */
-  toString (encoding = 'utf8') {
+  toString (encoding: SupportedEncodings = 'utf8'): string {
     return uint8ArrayToString(this._buf, encoding)
   }
 
@@ -65,7 +67,7 @@ export class Key {
    *
    * @returns {Uint8Array}
    */
-  uint8Array () {
+  uint8Array (): Uint8Array {
     return this._buf
   }
 
@@ -74,7 +76,7 @@ export class Key {
    *
    * @returns {string}
    */
-  get [Symbol.toStringTag] () {
+  get [Symbol.toStringTag] (): string {
     return `Key(${this.toString()})`
   }
 
@@ -90,7 +92,7 @@ export class Key {
    * // => Key('/one/two')
    * ```
    */
-  static withNamespaces (list) {
+  static withNamespaces (list: string[]): Key {
     return new Key(list.join(pathSepS))
   }
 
@@ -105,14 +107,14 @@ export class Key {
    * // => Key('/f98719ea086343f7b71f32ea9d9d521d')
    * ```
    */
-  static random () {
+  static random (): Key {
     return new Key(nanoid().replace(/-/g, ''))
   }
 
   /**
    * @param {*} other
    */
-  static asKey (other) {
+  static asKey (other: any): Key | null {
     if (other instanceof Uint8Array || typeof other === 'string') {
       // we can create a key from this
       return new Key(other)
@@ -131,7 +133,7 @@ export class Key {
    *
    * @returns {void}
    */
-  clean () {
+  clean (): void {
     if (!this._buf || this._buf.byteLength === 0) {
       this._buf = pathSepB
     }
@@ -155,7 +157,7 @@ export class Key {
    * @param {Key} key - The other Key to check against
    * @returns {boolean}
    */
-  less (key) {
+  less (key: Key): boolean {
     const list1 = this.list()
     const list2 = key.list()
 
@@ -188,7 +190,7 @@ export class Key {
    * // => Key('/Actor:JohnCleese/MontyPython/Comedy')
    * ```
    */
-  reverse () {
+  reverse (): Key {
     return Key.withNamespaces(this.list().slice().reverse())
   }
 
@@ -197,7 +199,7 @@ export class Key {
    *
    * @returns {Array<string>}
    */
-  namespaces () {
+  namespaces (): string[] {
     return this.list()
   }
 
@@ -211,7 +213,7 @@ export class Key {
    * // => 'Actor:JohnCleese'
    * ```
    */
-  baseNamespace () {
+  baseNamespace (): string {
     const ns = this.namespaces()
     return ns[ns.length - 1]
   }
@@ -227,7 +229,7 @@ export class Key {
    * // => ['Comedy', 'MontyPythong', 'Actor:JohnCleese']
    * ```
    */
-  list () {
+  list (): string[] {
     return this.toString().split(pathSepS).slice(1)
   }
 
@@ -242,7 +244,7 @@ export class Key {
    * // => 'Actor'
    * ```
    */
-  type () {
+  type (): string {
     return namespaceType(this.baseNamespace())
   }
 
@@ -257,7 +259,7 @@ export class Key {
    * // => 'JohnCleese'
    * ```
    */
-  name () {
+  name (): string {
     return namespaceValue(this.baseNamespace())
   }
 
@@ -273,7 +275,7 @@ export class Key {
    * // => Key('/Comedy/MontyPython/Actor:JohnCleese')
    * ```
    */
-  instance (s) {
+  instance (s: string): Key {
     return new Key(this.toString() + ':' + s)
   }
 
@@ -288,7 +290,7 @@ export class Key {
    * // => Key('/Comedy/MontyPython/Actor')
    * ```
    */
-  path () {
+  path (): Key {
     let p = this.parent().toString()
     if (!p.endsWith(pathSepS)) {
       p += pathSepS
@@ -308,7 +310,7 @@ export class Key {
    * // => Key("/Comedy/MontyPython")
    * ```
    */
-  parent () {
+  parent (): Key {
     const list = this.list()
     if (list.length === 1) {
       return new Key(pathSepS)
@@ -329,7 +331,7 @@ export class Key {
    * // => Key('/Comedy/MontyPython/Actor:JohnCleese')
    * ```
    */
-  child (key) {
+  child (key: Key): Key {
     if (this.toString() === pathSepS) {
       return key
     } else if (key.toString() === pathSepS) {
@@ -351,7 +353,7 @@ export class Key {
    * // => true
    * ```
    */
-  isAncestorOf (other) {
+  isAncestorOf (other: Key): boolean {
     if (other.toString() === this.toString()) {
       return false
     }
@@ -371,7 +373,7 @@ export class Key {
    * // => true
    * ```
    */
-  isDecendantOf (other) {
+  isDecendantOf (other: Key): boolean {
     if (other.toString() === this.toString()) {
       return false
     }
@@ -385,7 +387,7 @@ export class Key {
    * @returns {boolean}
    *
    */
-  isTopLevel () {
+  isTopLevel (): boolean {
     return this.list().length === 1
   }
 
@@ -395,7 +397,7 @@ export class Key {
    * @param {Array<Key>} keys - The array of keys to concatenate
    * @returns {Key}
    */
-  concat (...keys) {
+  concat (...keys: Key[]): Key {
     return Key.withNamespaces([...this.namespaces(), ...flatten(keys.map(key => key.namespaces()))])
   }
 }
@@ -406,7 +408,7 @@ export class Key {
  * @param {string} ns
  * @returns {string}
  */
-function namespaceType (ns) {
+function namespaceType (ns: string): string {
   const parts = ns.split(':')
   if (parts.length < 2) {
     return ''
@@ -420,7 +422,7 @@ function namespaceType (ns) {
  * @param {string} ns
  * @returns {string}
  */
-function namespaceValue (ns) {
+function namespaceValue (ns: string): string {
   const parts = ns.split(':')
   return parts[parts.length - 1]
 }
@@ -432,6 +434,6 @@ function namespaceValue (ns) {
  * @param {Array<T|T[]>} arr
  * @returns {T[]}
  */
-function flatten (arr) {
-  return /** @type {T[]} */([]).concat(...arr)
+function flatten <T> (arr: any): string[] {
+  return ([]).concat(...arr)
 }
