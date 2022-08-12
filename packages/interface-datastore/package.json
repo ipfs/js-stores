@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "interface-store": "^3.0.0",
-    "nanoid": "^3.0.2",
+    "nanoid": "^4.0.0",
     "uint8arrays": "^3.0.0"
   },
   "devDependencies": {
