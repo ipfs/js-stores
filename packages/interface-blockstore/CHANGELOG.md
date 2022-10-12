@@ -1,3 +1,12 @@
+## [interface-blockstore-v3.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v3.0.0...interface-blockstore-v3.0.1) (2022-10-12)
+
+
+### Dependencies
+
+* bump multiformats from 9.9.0 to 10.0.0 ([#174](https://github.com/ipfs/js-ipfs-interfaces/issues/174)) ([2a4f529](https://github.com/ipfs/js-ipfs-interfaces/commit/2a4f529e4a4087fb048b337fbaeedffb939f2ebd))
+* bump uint8arrays from 3.0.0 to 4.0.1 ([#175](https://github.com/ipfs/js-ipfs-interfaces/issues/175)) ([e8d5ea6](https://github.com/ipfs/js-ipfs-interfaces/commit/e8d5ea63feaaaf379890171f4660bfd8f1cfef5e))
+* update sibling dependencies ([9aedadd](https://github.com/ipfs/js-ipfs-interfaces/commit/9aedadd99b72768124ef4b7f3640f0b6527e55ca))
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
