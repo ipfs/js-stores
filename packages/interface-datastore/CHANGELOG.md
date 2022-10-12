@@ -1,3 +1,16 @@
+## [interface-datastore-v7.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v7.0.0...interface-datastore-v7.0.1) (2022-10-12)
+
+
+### Trivial Changes
+
+* **deps:** bump nanoid from 3.3.4 to 4.0.0 in /packages/interface-datastore ([#110](https://github.com/ipfs/js-ipfs-interfaces/issues/110)) ([5e40d9c](https://github.com/ipfs/js-ipfs-interfaces/commit/5e40d9c86170fc4c7f0d6c6ee54161327a5493f1))
+
+
+### Dependencies
+
+* bump uint8arrays from 3.0.0 to 4.0.1 ([#175](https://github.com/ipfs/js-ipfs-interfaces/issues/175)) ([e8d5ea6](https://github.com/ipfs/js-ipfs-interfaces/commit/e8d5ea63feaaaf379890171f4660bfd8f1cfef5e))
+* update sibling dependencies ([94dec57](https://github.com/ipfs/js-ipfs-interfaces/commit/94dec576ae4c259f5bd10c811f1d57785445beab))
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
