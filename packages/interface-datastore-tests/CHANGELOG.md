@@ -1,3 +1,11 @@
+## [interface-datastore-tests-v3.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v3.0.0...interface-datastore-tests-v3.0.1) (2022-10-12)
+
+
+### Dependencies
+
+* bump uint8arrays from 3.0.0 to 4.0.1 ([#175](https://github.com/ipfs/js-ipfs-interfaces/issues/175)) ([e8d5ea6](https://github.com/ipfs/js-ipfs-interfaces/commit/e8d5ea63feaaaf379890171f4660bfd8f1cfef5e))
+* update sibling dependencies ([dae86fd](https://github.com/ipfs/js-ipfs-interfaces/commit/dae86fd39a133969cd4355fb1e7099a560a75baa))
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
