@@ -1,11 +1,12 @@
+# File managed by web3-bot. DO NOT EDIT.
+# See https://github.com/protocol/.github/ for details.
+
 name: test & maybe release
 on:
   push:
     branches:
       - master # with #262 - ${{{ github.default_branch }}}
   pull_request:
-    branches:
-      - master # with #262 - ${{{ github.default_branch }}}
 
 jobs:
 
@@ -26,7 +27,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        node: [16]
+        node: [lts/*]
       fail-fast: true
     steps:
       - uses: actions/checkout@v3
