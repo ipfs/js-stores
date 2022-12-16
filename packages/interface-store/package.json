@@ -130,6 +130,9 @@
     "release": "aegir release"
   },
   "devDependencies": {
-    "aegir": "^37.5.0"
+    "aegir": "^37.7.8"
+  },
+  "typedoc": {
+    "entryPoint": "./src/index.ts"
   }
 }
