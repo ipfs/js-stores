@@ -1,6 +1,6 @@
 {
   "name": "interface-store",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A generic interface for storing and retrieving data",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-store#readme",

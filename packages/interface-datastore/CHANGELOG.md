@@ -1,3 +1,10 @@
+## [interface-datastore-v7.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v7.0.1...interface-datastore-v7.0.2) (2022-12-16)
+
+
+### Documentation
+
+* publish api docs ([#181](https://github.com/ipfs/js-ipfs-interfaces/issues/181)) ([64f8473](https://github.com/ipfs/js-ipfs-interfaces/commit/64f8473a1d646eda431972afb489ac81d23248fa))
+
 ## [interface-datastore-v7.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v7.0.0...interface-datastore-v7.0.1) (2022-10-12)
 
 

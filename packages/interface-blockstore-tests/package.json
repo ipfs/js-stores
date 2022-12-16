@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore-tests",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Compliance tests for the blockstore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore-tests#readme",
@@ -152,7 +152,7 @@
   "dependencies": {
     "aegir": "^37.7.8",
     "interface-blockstore": "^3.0.0",
-    "it-all": "^1.0.2",
+    "it-all": "^2.0.0",
     "it-drain": "^2.0.0",
     "it-length": "^1.0.2",
     "multiformats": "^10.0.0",
