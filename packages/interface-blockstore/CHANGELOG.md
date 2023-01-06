@@ -1,3 +1,24 @@
+## [interface-blockstore-v4.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v3.0.2...interface-blockstore-v4.0.0) (2023-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump multiformats from 10.0.3 to 11.0.0 (#182)
+
+### Trivial Changes
+
+* remove lerna ([#183](https://github.com/ipfs/js-ipfs-interfaces/issues/183)) ([04e77ec](https://github.com/ipfs/js-ipfs-interfaces/commit/04e77ec37ca5857b6156dd211f07a61eddcf19b0))
+
+
+### Dependencies
+
+* bump multiformats from 10.0.3 to 11.0.0 ([#182](https://github.com/ipfs/js-ipfs-interfaces/issues/182)) ([2342b17](https://github.com/ipfs/js-ipfs-interfaces/commit/2342b170dd69b1e055c6eda07cdd4e07ed1f9a4c)), closes [#234](https://github.com/ipfs/js-ipfs-interfaces/issues/234) [#226](https://github.com/ipfs/js-ipfs-interfaces/issues/226) [#234](https://github.com/ipfs/js-ipfs-interfaces/issues/234) [#226](https://github.com/ipfs/js-ipfs-interfaces/issues/226) [#226](https://github.com/ipfs/js-ipfs-interfaces/issues/226)
+
+
+### Documentation
+
+* remove duplicate readme section ([851a110](https://github.com/ipfs/js-ipfs-interfaces/commit/851a11033140e7ae0996adeaf880d6554d12837c))
+
 ## [interface-blockstore-v3.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v3.0.1...interface-blockstore-v3.0.2) (2022-12-16)
 
 
