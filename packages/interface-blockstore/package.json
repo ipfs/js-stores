@@ -128,7 +128,7 @@
   },
   "dependencies": {
     "interface-store": "^3.0.0",
-    "multiformats": "^10.0.0"
+    "multiformats": "^11.0.0"
   },
   "devDependencies": {
     "aegir": "^37.9.0"
