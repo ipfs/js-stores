@@ -1,6 +1,6 @@
 {
   "name": "interface-datastore-tests",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Compliance tests for the datastore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-datastore-tests#readme",
