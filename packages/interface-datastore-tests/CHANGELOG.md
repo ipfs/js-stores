@@ -1,3 +1,10 @@
+## [interface-datastore-tests-v3.0.4](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v3.0.3...interface-datastore-tests-v3.0.4) (2023-01-06)
+
+
+### Documentation
+
+* remove duplicate readme section ([851a110](https://github.com/ipfs/js-ipfs-interfaces/commit/851a11033140e7ae0996adeaf880d6554d12837c))
+
 ## [interface-datastore-tests-v3.0.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v3.0.2...interface-datastore-tests-v3.0.3) (2023-01-06)
 
 
