@@ -1,3 +1,15 @@
+## [interface-datastore-v7.0.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v7.0.2...interface-datastore-v7.0.3) (2023-01-06)
+
+
+### Trivial Changes
+
+* remove lerna ([#183](https://github.com/ipfs/js-ipfs-interfaces/issues/183)) ([04e77ec](https://github.com/ipfs/js-ipfs-interfaces/commit/04e77ec37ca5857b6156dd211f07a61eddcf19b0))
+
+
+### Documentation
+
+* remove duplicate readme section ([851a110](https://github.com/ipfs/js-ipfs-interfaces/commit/851a11033140e7ae0996adeaf880d6554d12837c))
+
 ## [interface-datastore-v7.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v7.0.1...interface-datastore-v7.0.2) (2022-12-16)
 
 
