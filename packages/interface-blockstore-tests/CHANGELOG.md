@@ -1,3 +1,17 @@
+## [interface-blockstore-tests-v3.0.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v3.0.2...interface-blockstore-tests-v3.0.3) (2023-01-06)
+
+
+### Dependencies
+
+* bump it-all from 1.0.6 to 2.0.0 ([#177](https://github.com/ipfs/js-ipfs-interfaces/issues/177)) ([b648877](https://github.com/ipfs/js-ipfs-interfaces/commit/b648877c5afb625c7d1e13efd3e0f72d125de734)), closes [#28](https://github.com/ipfs/js-ipfs-interfaces/issues/28) [#28](https://github.com/ipfs/js-ipfs-interfaces/issues/28) [#27](https://github.com/ipfs/js-ipfs-interfaces/issues/27) [#24](https://github.com/ipfs/js-ipfs-interfaces/issues/24)
+* bump it-drain from 1.0.5 to 2.0.0 ([#178](https://github.com/ipfs/js-ipfs-interfaces/issues/178)) ([73e4cfc](https://github.com/ipfs/js-ipfs-interfaces/commit/73e4cfcf41178fe6e27f0c7b431fb9511e1dda47)), closes [#28](https://github.com/ipfs/js-ipfs-interfaces/issues/28) [#28](https://github.com/ipfs/js-ipfs-interfaces/issues/28) [#27](https://github.com/ipfs/js-ipfs-interfaces/issues/27) [#24](https://github.com/ipfs/js-ipfs-interfaces/issues/24)
+* bump it-length from 1.0.4 to 2.0.0 ([#179](https://github.com/ipfs/js-ipfs-interfaces/issues/179)) ([d1919b4](https://github.com/ipfs/js-ipfs-interfaces/commit/d1919b40f4ec7ec0a20e0283d063e8b030ddc875)), closes [#28](https://github.com/ipfs/js-ipfs-interfaces/issues/28)
+
+
+### Trivial Changes
+
+* remove lerna ([#183](https://github.com/ipfs/js-ipfs-interfaces/issues/183)) ([04e77ec](https://github.com/ipfs/js-ipfs-interfaces/commit/04e77ec37ca5857b6156dd211f07a61eddcf19b0))
+
 ## [interface-blockstore-tests-v3.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v3.0.1...interface-blockstore-tests-v3.0.2) (2022-12-16)
 
 
