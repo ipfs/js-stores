@@ -17,7 +17,7 @@
   },
   "private": true,
   "scripts": {
-    "reset": "aegir run clean && rimraf ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json packages/*/dist",
+    "reset": "aegir run clean && aegir clean ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json packages/*/dist",
     "test": "aegir run test -- --",
     "test:node": "aegir run test:node -- --",
     "test:chrome": "aegir run test:chrome -- --",
@@ -35,8 +35,7 @@
     "release": "npm run docs:no-publish && aegir run release && npm run docs"
   },
   "dependencies": {
-    "aegir": "^37.9.0",
-    "rimraf": "^3.0.2"
+    "aegir": "^37.9.0"
   },
   "workspaces": [
     "packages/*"
