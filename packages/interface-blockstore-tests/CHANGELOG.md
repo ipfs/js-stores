@@ -1,3 +1,20 @@
+## [interface-blockstore-tests-v4.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v3.0.3...interface-blockstore-tests-v4.0.0) (2023-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump multiformats from 10.0.3 to 11.0.0 (#182)
+
+### Documentation
+
+* remove duplicate readme section ([851a110](https://github.com/ipfs/js-ipfs-interfaces/commit/851a11033140e7ae0996adeaf880d6554d12837c))
+
+
+### Dependencies
+
+* bump multiformats from 10.0.3 to 11.0.0 ([#182](https://github.com/ipfs/js-ipfs-interfaces/issues/182)) ([2342b17](https://github.com/ipfs/js-ipfs-interfaces/commit/2342b170dd69b1e055c6eda07cdd4e07ed1f9a4c)), closes [#234](https://github.com/ipfs/js-ipfs-interfaces/issues/234) [#226](https://github.com/ipfs/js-ipfs-interfaces/issues/226) [#234](https://github.com/ipfs/js-ipfs-interfaces/issues/234) [#226](https://github.com/ipfs/js-ipfs-interfaces/issues/226) [#226](https://github.com/ipfs/js-ipfs-interfaces/issues/226)
+* update sibling dependencies ([bbfb89c](https://github.com/ipfs/js-ipfs-interfaces/commit/bbfb89cbae37e0442df774e4dab63399c1e76d15))
+
 ## [interface-blockstore-tests-v3.0.3](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v3.0.2...interface-blockstore-tests-v3.0.3) (2023-01-06)
 
 
