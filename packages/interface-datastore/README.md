@@ -17,10 +17,9 @@
   - [Concurrency](#concurrency)
   - [Keys](#keys)
 - [API](#api)
-- [Contribute](#contribute)
 - [API Docs](#api-docs)
 - [License](#license)
-- [Contribute](#contribute-1)
+- [Contribute](#contribute)
 
 ## Install
 
@@ -125,12 +124,6 @@ Also, every namespace can be parameterized to embed relevant object information.
 ## API
 
 <https://ipfs.github.io/interface-datastore/>
-
-## Contribute
-
-PRs accepted.
-
-Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
 ## API Docs
 

@@ -11,10 +11,9 @@
 
 - [Install](#install)
 - [Usage](#usage)
-- [Contribute](#contribute)
 - [API Docs](#api-docs)
 - [License](#license)
-- [Contribute](#contribute-1)
+- [Contribute](#contribute)
 
 ## Install
 
@@ -39,12 +38,6 @@ describe('MyDatastore', () => {
   })
 })
 ```
-
-## Contribute
-
-PRs accepted.
-
-Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
 ## API Docs
 
