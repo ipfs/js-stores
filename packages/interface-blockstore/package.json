@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "An interface for storing and retrieving blocks",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore#readme",

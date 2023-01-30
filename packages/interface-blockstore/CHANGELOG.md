@@ -1,3 +1,10 @@
+## [interface-blockstore-v4.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v4.0.0...interface-blockstore-v4.0.1) (2023-01-30)
+
+
+### Dependencies
+
+* bump aegir from 37.12.1 to 38.1.0 ([#184](https://github.com/ipfs/js-ipfs-interfaces/issues/184)) ([c8ab418](https://github.com/ipfs/js-ipfs-interfaces/commit/c8ab418db835a6beefbb44c3ba9176779cebcd0d))
+
 ## [interface-blockstore-v4.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v3.0.2...interface-blockstore-v4.0.0) (2023-01-06)
 
 
