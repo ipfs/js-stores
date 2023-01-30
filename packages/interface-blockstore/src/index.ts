@@ -14,7 +14,7 @@ import type {
   CID
 } from 'multiformats'
 
-export interface Options extends StoreOptions{
+export interface Options extends StoreOptions {
 
 }
 

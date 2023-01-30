@@ -48,7 +48,7 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./src/index.js"
+      "import": "./dist/src/index.js"
     }
   },
   "eslintConfig": {
@@ -150,7 +150,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "aegir": "^37.9.0",
+    "aegir": "^38.1.0",
     "interface-blockstore": "^4.0.0",
     "it-all": "^2.0.0",
     "it-drain": "^2.0.0",

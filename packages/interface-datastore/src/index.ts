@@ -12,7 +12,7 @@ import type {
 } from 'interface-store'
 import { Key } from './key.js'
 
-export interface Options extends StoreOptions{
+export interface Options extends StoreOptions {
 
 }
 
