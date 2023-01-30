@@ -1,3 +1,10 @@
+## [interface-datastore-tests-v3.0.5](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v3.0.4...interface-datastore-tests-v3.0.5) (2023-01-30)
+
+
+### Dependencies
+
+* bump aegir from 37.12.1 to 38.1.0 ([#184](https://github.com/ipfs/js-ipfs-interfaces/issues/184)) ([c8ab418](https://github.com/ipfs/js-ipfs-interfaces/commit/c8ab418db835a6beefbb44c3ba9176779cebcd0d))
+
 ## [interface-datastore-tests-v3.0.4](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v3.0.3...interface-datastore-tests-v3.0.4) (2023-01-06)
 
 
