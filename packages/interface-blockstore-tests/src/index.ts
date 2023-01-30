@@ -9,75 +9,56 @@ import { sha256 } from 'multiformats/hashes/sha2'
 import { base32 } from 'multiformats/bases/base32'
 import * as raw from 'multiformats/codecs/raw'
 import length from 'it-length'
+import type { Blockstore, KeyQueryFilter, KeyQueryOrder, Pair, QueryFilter, QueryOrder } from 'interface-blockstore'
 
-/**
- * @typedef {import('interface-blockstore').Blockstore} Blockstore
- * @typedef {import('interface-blockstore').Pair} Pair
- * @typedef {import('interface-blockstore').QueryOrder} QueryOrder
- * @typedef {import('interface-blockstore').QueryFilter} QueryFilter
- * @typedef {import('interface-blockstore').KeyQueryOrder} KeyQueryOrder
- * @typedef {import('interface-blockstore').KeyQueryFilter} KeyQueryFilter
- */
-
-/**
- * @param {string} [data]
- */
-async function getKeyValuePair (data) {
-  const value = uint8ArrayFromString(data || `data-${Math.random()}`)
+async function getKeyValuePair (data?: string): Promise<Pair> {
+  const value = uint8ArrayFromString(data ?? `data-${Math.random()}`)
   const hash = await sha256.digest(value)
   const key = CID.createV1(raw.code, hash)
 
   return { key, value }
 }
 
-/**
- * @param {number} count
- */
-async function getKeyValuePairs (count) {
-  return Promise.all(
-    new Array(count).fill(0).map((_, i) => getKeyValuePair())
+async function getKeyValuePairs (count: number): Promise<Pair[]> {
+  return await Promise.all(
+    new Array(count).fill(0).map(async (_, i) => await getKeyValuePair())
   )
 }
 
-/**
- * @param {{ teardown: () => void; setup: () => Blockstore; }} test
- */
-export function interfaceBlockstoreTests (test) {
-  /**
-   * @param {Blockstore} store
-   */
-  const cleanup = async store => {
+export function interfaceBlockstoreTests (test: { teardown: () => void, setup: () => Blockstore }): void {
+  const cleanup = async (store: Blockstore): Promise<void> => {
     await store.close()
-    await test.teardown()
+    test.teardown()
   }
 
-  const createStore = async () => {
-    const store = await test.setup()
-    if (!store) throw new Error('missing store')
+  const createStore = async (): Promise<Blockstore> => {
+    const store = test.setup()
+    if (store == null) {
+      throw new Error('missing store')
+    }
     await store.open()
     return store
   }
 
   describe('put', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const { key, value } = await getKeyValuePair()
 
-      return store.put(key, value)
+      await store.put(key, value)
     })
 
     it('parallel', async () => {
       const data = await getKeyValuePairs(100)
 
-      await Promise.all(data.map(d => store.put(d.key, d.value)))
+      await Promise.all(data.map(async d => { await store.put(d.key, d.value) }))
 
       const res = await all(store.getMany(data.map(d => d.key)))
       expect(res).to.deep.equal(data.map(d => d.value))
@@ -85,14 +66,13 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('putMany', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
       const data = await getKeyValuePairs(100)
@@ -112,14 +92,13 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('get', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const {
@@ -149,14 +128,13 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('getMany', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
       const {
@@ -188,14 +166,13 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('delete', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const {
@@ -212,34 +189,33 @@ export function interfaceBlockstoreTests (test) {
     it('parallel', async () => {
       const data = await getKeyValuePairs(100)
 
-      await Promise.all(data.map(d => store.put(d.key, d.value)))
+      await Promise.all(data.map(async d => { await store.put(d.key, d.value) }))
 
-      const res0 = await Promise.all(data.map(d => store.has(d.key)))
+      const res0 = await Promise.all(data.map(async d => await store.has(d.key)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
-      await Promise.all(data.map(d => store.delete(d.key)))
+      await Promise.all(data.map(async d => { await store.delete(d.key) }))
 
-      const res1 = await Promise.all(data.map(d => store.has(d.key)))
+      const res1 = await Promise.all(data.map(async d => await store.has(d.key)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
 
   describe('deleteMany', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
       const data = await getKeyValuePairs(100)
 
       await drain(store.putMany(data))
 
-      const res0 = await Promise.all(data.map(d => store.has(d.key)))
+      const res0 = await Promise.all(data.map(async d => await store.has(d.key)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
@@ -251,20 +227,19 @@ export function interfaceBlockstoreTests (test) {
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(d => store.has(d.key)))
+      const res1 = await Promise.all(data.map(async d => await store.has(d.key)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
 
   describe('batch', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const data = await getKeyValuePairs(4)
@@ -280,7 +255,7 @@ export function interfaceBlockstoreTests (test) {
       await b.commit()
 
       const keys = data.map(d => d.key)
-      const res = await Promise.all(keys.map(k => store.has(k)))
+      const res = await Promise.all(keys.map(async k => await store.has(k)))
 
       expect(res).to.be.eql([false, true, true, true])
     })
@@ -290,8 +265,7 @@ export function interfaceBlockstoreTests (test) {
       const b = store.batch()
       const count = 100
 
-      /** @type {Record<string, number>} */
-      const prefixes = {}
+      const prefixes: Record<string, number> = {}
 
       for (let i = 0; i < count; i++) {
         const {
@@ -308,14 +282,14 @@ export function interfaceBlockstoreTests (test) {
           try {
             base32.decode(keyStr.substring(0, j))
             prefix = keyStr.substring(0, j)
-          } catch (/** @type {any} */ err) {
+          } catch (err: any) {
             if (err.message !== 'Unexpected end of data') {
               throw err
             }
           }
         }
 
-        prefixes[prefix] = (prefixes[prefix] || 0) + 1
+        prefixes[prefix] = (prefixes[prefix] ?? 0) + 1
       }
 
       await b.commit()
@@ -330,18 +304,12 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('query', () => {
-    /** @type {Blockstore} */
-    let store
-    /** @type {Pair} */
-    let hello
-    /** @type {Pair} */
-    let world
-    /** @type {Pair} */
-    let hello2
-    /** @type {QueryFilter} */
-    let filter1
-    /** @type {QueryFilter} */
-    let filter2
+    let store: Blockstore
+    let hello: Pair
+    let world: Pair
+    let hello2: Pair
+    let filter1: QueryFilter
+    let filter2: QueryFilter
 
     before(async () => {
       hello = await getKeyValuePair('hello')
@@ -352,20 +320,14 @@ export function interfaceBlockstoreTests (test) {
       filter2 = entry => entry.key.toString().endsWith(hello2.key.toString().substring(-5))
     })
 
-    /**
-     * @type {QueryOrder}
-     */
-    const order1 = (a, b) => {
+    const order1: QueryOrder = (a, b) => {
       if (a.value.toString() < b.value.toString()) {
         return -1
       }
       return 1
     }
 
-    /**
-     * @type {QueryOrder}
-     */
-    const order2 = (a, b) => {
+    const order2: QueryOrder = (a, b) => {
       if (a.value.toString() < b.value.toString()) {
         return 1
       }
@@ -375,8 +337,7 @@ export function interfaceBlockstoreTests (test) {
       return 0
     }
 
-    /** @type {Array<{ name: string, test: () => { query: any, expected: any}}>} */
-    const tests = [
+    const tests: Array<{ name: string, test: () => { query: any, expected: any } }> = [
       { name: 'empty', test: () => ({ query: {}, expected: [hello, world, hello2] }) },
       { name: 'prefix', test: () => ({ query: { prefix: hello.key.toString().charAt(0) }, expected: [hello, world, hello2] }) },
       { name: '1 filter', test: () => ({ query: { filters: [filter1] }, expected: [world, hello2] }) },
@@ -396,10 +357,10 @@ export function interfaceBlockstoreTests (test) {
       b.put(world.key, world.value)
       b.put(hello2.key, hello2.value)
 
-      return b.commit()
+      await b.commit()
     })
 
-    after(() => cleanup(store))
+    after(async () => { await cleanup(store) })
 
     tests.forEach(({ name, test }) => it(name, async () => {
       const {
@@ -410,11 +371,7 @@ export function interfaceBlockstoreTests (test) {
       if (Array.isArray(expected)) {
         if (query.orders == null) {
           expect(res).to.have.length(expected.length)
-          /**
-           * @param {Pair} a
-           * @param {Pair} b
-           */
-          const s = (a, b) => {
+          const s = (a: Pair, b: Pair): number => {
             if (a.key.toString() < b.key.toString()) {
               return 1
             } else {
@@ -478,18 +435,12 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('queryKeys', () => {
-    /** @type {Blockstore} */
-    let store
-    /** @type {Pair} */
-    let hello
-    /** @type {Pair} */
-    let world
-    /** @type {Pair} */
-    let hello2
-    /** @type {KeyQueryFilter} */
-    let filter1
-    /** @type {KeyQueryFilter} */
-    let filter2
+    let store: Blockstore
+    let hello: Pair
+    let world: Pair
+    let hello2: Pair
+    let filter1: KeyQueryFilter
+    let filter2: KeyQueryFilter
 
     before(async () => {
       hello = await getKeyValuePair('hello')
@@ -500,20 +451,14 @@ export function interfaceBlockstoreTests (test) {
       filter2 = key => key.toString().endsWith(hello2.key.toString().substring(-5))
     })
 
-    /**
-     * @type {KeyQueryOrder}
-     */
-    const order1 = (a, b) => {
+    const order1: KeyQueryOrder = (a, b) => {
       if (a.toString() < b.toString()) {
         return -1
       }
       return 1
     }
 
-    /**
-     * @type {KeyQueryOrder}
-     */
-    const order2 = (a, b) => {
+    const order2: KeyQueryOrder = (a, b) => {
       if (a.toString() < b.toString()) {
         return 1
       }
@@ -523,8 +468,7 @@ export function interfaceBlockstoreTests (test) {
       return 0
     }
 
-    /** @type {Array<{ name: string, test: () => { query: any, expected: any}}>} */
-    const tests = [
+    const tests: Array<{ name: string, test: () => { query: any, expected: any } }> = [
       { name: 'empty', test: () => ({ query: {}, expected: [hello.key, world.key, hello2.key] }) },
       { name: 'prefix', test: () => ({ query: { prefix: hello.key.toString().charAt(0) }, expected: [hello.key, world.key, hello2.key] }) },
       { name: '1 filter', test: () => ({ query: { filters: [filter1] }, expected: [world.key, hello2.key] }) },
@@ -544,10 +488,10 @@ export function interfaceBlockstoreTests (test) {
       b.put(world.key, world.value)
       b.put(hello2.key, hello2.value)
 
-      return b.commit()
+      await b.commit()
     })
 
-    after(() => cleanup(store))
+    after(async () => { await cleanup(store) })
 
     tests.forEach(({ name, test }) => it(name, async () => {
       const {
@@ -558,10 +502,8 @@ export function interfaceBlockstoreTests (test) {
       if (Array.isArray(expected)) {
         if (query.orders == null) {
           expect(res).to.have.length(expected.length)
-          /**
-           * @type {KeyQueryOrder}
-           */
-          const s = (a, b) => {
+
+          const s: KeyQueryOrder = (a, b) => {
             if (a.toString() < b.toString()) {
               return 1
             } else {
@@ -617,15 +559,16 @@ export function interfaceBlockstoreTests (test) {
   })
 
   describe('lifecycle', () => {
-    /** @type {Blockstore} */
-    let store
+    let store: Blockstore
 
-    before(async () => {
-      store = await test.setup()
-      if (!store) throw new Error('missing store')
+    before(() => {
+      store = test.setup()
+      if (store == null) {
+        throw new Error('missing store')
+      }
     })
 
-    after(() => cleanup(store))
+    after(async () => { await cleanup(store) })
 
     it('close and open', async () => {
       await store.close()

@@ -7,10 +7,7 @@ import { fromString as uint8ArrayFromString } from 'uint8arrays'
 const pathSep = '/'
 
 describe('Key', () => {
-  /**
-   * @param {string} s
-   */
-  const clean = (s: string) => {
+  const clean = (s: string): string => {
     let fixed = s
     if (fixed.startsWith(pathSep + pathSep)) {
       fixed = fixed.slice(1)
@@ -23,10 +20,7 @@ describe('Key', () => {
   }
 
   describe('basic', () => {
-    /**
-     * @param {string} s
-     */
-    const validKey = (s: string) => it(s, () => {
+    const validKey = (s: string): Mocha.Test => it(s, () => {
       const fixed = clean(pathSep + s)
       const namespaces = fixed.split(pathSep).slice(1)
       const lastNamespace = namespaces[namespaces.length - 1]
@@ -127,11 +121,7 @@ describe('Key', () => {
   })
 
   it('less', () => {
-    /**
-     * @param {string | Uint8Array} a
-     * @param {string | Uint8Array} b
-     */
-    const checkLess = (a: string | Uint8Array, b: string | Uint8Array) => {
+    const checkLess = (a: string | Uint8Array, b: string | Uint8Array): void => {
       const ak = new Key(a)
       const bk = new Key(b)
 
