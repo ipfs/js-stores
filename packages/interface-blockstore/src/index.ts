@@ -3,18 +3,18 @@ import type {
   AwaitIterable,
   Store
 } from 'interface-store'
-import type { MultihashDigest } from 'multiformats/hashes/digest'
+import type { CID } from 'multiformats/cid'
 
 export interface Options extends StoreOptions {
 
 }
 
 export interface Pair {
-  multihash: MultihashDigest
+  cid: CID
   block: Uint8Array
 }
 
-export interface Blockstore extends Store<MultihashDigest, Uint8Array, Pair> {
+export interface Blockstore extends Store<CID, Uint8Array, Pair> {
   /**
    * Retrieve all cid/block pairs from the blockstore as an unordered iterable
    *
