@@ -154,7 +154,6 @@
     "interface-blockstore": "^4.0.0",
     "it-all": "^2.0.0",
     "it-drain": "^2.0.0",
-    "it-length": "^2.0.0",
     "multiformats": "^11.0.0",
     "uint8arrays": "^4.0.2"
   },
