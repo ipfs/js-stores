@@ -32,7 +32,7 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./src/index.js"
+      "import": "./dist/src/index.js"
     }
   },
   "eslintConfig": {
@@ -143,6 +143,6 @@
     "uint8arrays": "^4.0.2"
   },
   "typedoc": {
-    "entryPoint": "./src/index.js"
+    "entryPoint": "./src/index.ts"
   }
 }
