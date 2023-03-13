@@ -177,6 +177,43 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     })
   })
 
+  describe('getAll', () => {
+    let store: B
+
+    beforeEach(async () => {
+      store = await createStore()
+    })
+
+    afterEach(async () => {
+      await cleanup(store)
+    })
+
+    it('returns all blocks', async () => {
+      const data = await getKeyValuePairs(100)
+
+      await drain(store.putMany(data))
+
+      const allBlocks = await all(store.getAll())
+
+      expect(allBlocks).of.have.lengthOf(data.length)
+
+      // order is not preserved
+      for (const { cid, block } of data) {
+        const retrievedPair = allBlocks.find(pair => {
+          return base32.encode(cid.multihash.bytes) === base32.encode(pair.cid.multihash.bytes)
+        })
+
+        expect(retrievedPair).to.be.ok()
+
+        if (retrievedPair == null) {
+          throw new Error('Could not find cid/block pair')
+        }
+
+        expect(retrievedPair.block).to.equalBytes(block)
+      }
+    })
+  })
+
   describe('delete', () => {
     let store: B
 
@@ -245,43 +282,6 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
       res1.forEach(res => expect(res).to.be.eql(false))
-    })
-  })
-
-  describe('blocks', () => {
-    let store: B
-
-    beforeEach(async () => {
-      store = await createStore()
-    })
-
-    afterEach(async () => {
-      await cleanup(store)
-    })
-
-    it('returns all blocks', async () => {
-      const data = await getKeyValuePairs(100)
-
-      await drain(store.putMany(data))
-
-      const allBlocks = await all(store.getAll())
-
-      expect(allBlocks).of.have.lengthOf(data.length)
-
-      // order is not preserved
-      for (const { cid, block } of data) {
-        const retrievedPair = allBlocks.find(pair => {
-          return base32.encode(cid.multihash.bytes) === base32.encode(pair.cid.multihash.bytes)
-        })
-
-        expect(retrievedPair).to.be.ok()
-
-        if (retrievedPair == null) {
-          throw new Error('Could not find cid/block pair')
-        }
-
-        expect(retrievedPair.block).to.equalBytes(block)
-      }
     })
   })
 }
