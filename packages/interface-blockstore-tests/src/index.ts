@@ -45,9 +45,13 @@ export function interfaceBlockstoreTests (test: { teardown: () => void, setup: (
 
     beforeEach(async () => {
       store = await createStore()
+      await store.open()
     })
 
-    afterEach(async () => { await cleanup(store) })
+    afterEach(async () => {
+      await store.close()
+      await cleanup(store)
+    })
 
     it('simple', async () => {
       const { key, value } = await getKeyValuePair()
