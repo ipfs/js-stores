@@ -1,3 +1,10 @@
+## [interface-blockstore-tests-v4.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v4.0.1...interface-blockstore-tests-v4.0.2) (2023-03-13)
+
+
+### Bug Fixes
+
+* open and close blockstore during interface tests ([#188](https://github.com/ipfs/js-ipfs-interfaces/issues/188)) ([a61a54b](https://github.com/ipfs/js-ipfs-interfaces/commit/a61a54ba53fa06800e91ea933924615fe6df5b01))
+
 ## [interface-blockstore-tests-v4.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v4.0.0...interface-blockstore-tests-v4.0.1) (2023-01-30)
 
 
