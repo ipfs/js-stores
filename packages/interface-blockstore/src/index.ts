@@ -3,28 +3,26 @@ import type {
   AwaitIterable,
   Store
 } from 'interface-store'
-import type {
-  CID
-} from 'multiformats'
+import type { MultihashDigest } from 'multiformats/hashes/digest'
 
 export interface Options extends StoreOptions {
 
 }
 
 export interface Pair {
-  cid: CID
+  multihash: MultihashDigest
   block: Uint8Array
 }
 
-export interface Blockstore extends Store<CID, Uint8Array, Pair> {
+export interface Blockstore extends Store<MultihashDigest, Uint8Array, Pair> {
   /**
    * Retrieve all cid/block pairs from the blockstore as an unordered iterable
    *
    * @example
    * ```js
-   * for await (const { cid, block } of store.getAll()) {
-   *   console.log('got:', cid, block)
-   *   // => got CID('Qmfoo') Uint8Array[...]
+   * for await (const { multihash, block } of store.getAll()) {
+   *   console.log('got:', multihash, block)
+   *   // => got MultihashDigest('Qmfoo') Uint8Array[...]
    * }
    * ```
    */

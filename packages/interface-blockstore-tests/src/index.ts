@@ -4,18 +4,15 @@ import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { CID } from 'multiformats/cid'
 import { sha256 } from 'multiformats/hashes/sha2'
-import * as raw from 'multiformats/codecs/raw'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import { base32 } from 'multiformats/bases/base32'
 
 async function getKeyValuePair (data?: string): Promise<Pair> {
   const block = uint8ArrayFromString(data ?? `data-${Math.random()}`)
-  const hash = await sha256.digest(block)
-  const cid = CID.createV1(raw.code, hash)
+  const multihash = await sha256.digest(block)
 
-  return { cid, block }
+  return { multihash, block }
 }
 
 async function getKeyValuePairs (count: number): Promise<Pair[]> {
@@ -56,17 +53,17 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     })
 
     it('simple', async () => {
-      const { cid, block } = await getKeyValuePair()
+      const { multihash, block } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(multihash, block)
     })
 
     it('parallel', async () => {
       const data = await getKeyValuePairs(100)
 
-      await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
+      await Promise.all(data.map(async d => { await store.put(d.multihash, d.block) }))
 
-      const res = await all(store.getMany(data.map(d => d.cid)))
+      const res = await all(store.getMany(data.map(d => d.multihash)))
       expect(res).to.deep.equal(data.map(d => d.block))
     })
   })
@@ -87,14 +84,14 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       let index = 0
 
-      for await (const { cid, block } of store.putMany(data)) {
-        expect(data[index]).to.deep.equal({ cid, block })
+      for await (const { multihash, block } of store.putMany(data)) {
+        expect(data[index]).to.deep.equal({ multihash, block })
         index++
       }
 
       expect(index).to.equal(data.length)
 
-      const res = await all(store.getMany(data.map(d => d.cid)))
+      const res = await all(store.getMany(data.map(d => d.multihash)))
       expect(res).to.deep.equal(data.map(d => d.block))
     })
   })
@@ -112,22 +109,22 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
     it('simple', async () => {
       const {
-        cid, block
+        multihash, block
       } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(multihash, block)
 
-      const res = await store.get(cid)
+      const res = await store.get(multihash)
       expect(res).to.equalBytes(block)
     })
 
     it('should throw error for missing key', async () => {
       const {
-        cid
+        multihash
       } = await getKeyValuePair()
 
       try {
-        await store.get(cid)
+        await store.get(multihash)
       } catch (err) {
         expect(err).to.have.property('code', 'ERR_NOT_FOUND')
         return
@@ -150,11 +147,11 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
     it('streaming', async () => {
       const {
-        cid, block
+        multihash, block
       } = await getKeyValuePair()
 
-      await store.put(cid, block)
-      const source = [cid]
+      await store.put(multihash, block)
+      const source = [multihash]
 
       const res = await all(store.getMany(source))
       expect(res).to.have.lengthOf(1)
@@ -163,11 +160,11 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
     it('should throw error for missing key', async () => {
       const {
-        cid
+        multihash
       } = await getKeyValuePair()
 
       try {
-        await drain(store.getMany([cid]))
+        await drain(store.getMany([multihash]))
       } catch (err) {
         expect(err).to.have.property('code', 'ERR_NOT_FOUND')
         return
@@ -190,27 +187,27 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
     it('simple', async () => {
       const {
-        cid, block
+        multihash, block
       } = await getKeyValuePair()
 
-      await store.put(cid, block)
-      await store.get(cid)
-      await store.delete(cid)
-      const exists = await store.has(cid)
+      await store.put(multihash, block)
+      await store.get(multihash)
+      await store.delete(multihash)
+      const exists = await store.has(multihash)
       expect(exists).to.be.eql(false)
     })
 
     it('parallel', async () => {
       const data = await getKeyValuePairs(100)
 
-      await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
+      await Promise.all(data.map(async d => { await store.put(d.multihash, d.block) }))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res0 = await Promise.all(data.map(async d => await store.has(d.multihash)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
-      await Promise.all(data.map(async d => { await store.delete(d.cid) }))
+      await Promise.all(data.map(async d => { await store.delete(d.multihash) }))
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res1 = await Promise.all(data.map(async d => await store.has(d.multihash)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -231,19 +228,19 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       await drain(store.putMany(data))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res0 = await Promise.all(data.map(async d => await store.has(d.multihash)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
 
-      for await (const key of store.deleteMany(data.map(d => d.cid))) {
-        expect(data[index].cid).to.deep.equal(key)
+      for await (const key of store.deleteMany(data.map(d => d.multihash))) {
+        expect(data[index].multihash).to.deep.equal(key)
         index++
       }
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res1 = await Promise.all(data.map(async d => await store.has(d.multihash)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -269,9 +266,9 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       expect(allBlocks).of.have.lengthOf(data.length)
 
       // order is not preserved
-      for (const { cid, block } of data) {
+      for (const { multihash, block } of data) {
         const retrievedPair = allBlocks.find(pair => {
-          return base32.encode(cid.multihash.bytes) === base32.encode(pair.cid.multihash.bytes)
+          return base32.encode(multihash.bytes) === base32.encode(pair.multihash.bytes)
         })
 
         expect(retrievedPair).to.be.ok()
