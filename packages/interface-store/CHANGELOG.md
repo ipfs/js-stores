@@ -1,3 +1,14 @@
+## [interface-store-v4.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store-v3.0.4...interface-store-v4.0.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* open/close/batch/query methods have been removed from store interface, query/batch added to datastore, getAll added to blockstore
+
+### Features
+
+* simplify store interface, move query/batch to datastore, add getAll to blockstore ([#189](https://github.com/ipfs/js-ipfs-interfaces/issues/189)) ([0b8f1a0](https://github.com/ipfs/js-ipfs-interfaces/commit/0b8f1a0d7644b32395059db250b301d3d5f024cb))
+
 ## [interface-store-v3.0.4](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store-v3.0.3...interface-store-v3.0.4) (2023-01-30)
 
 
