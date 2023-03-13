@@ -1,3 +1,19 @@
+## [interface-blockstore-tests-v5.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v4.0.2...interface-blockstore-tests-v5.0.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* open/close/batch/query methods have been removed from store interface, query/batch added to datastore, getAll added to blockstore
+
+### Features
+
+* simplify store interface, move query/batch to datastore, add getAll to blockstore ([#189](https://github.com/ipfs/js-ipfs-interfaces/issues/189)) ([0b8f1a0](https://github.com/ipfs/js-ipfs-interfaces/commit/0b8f1a0d7644b32395059db250b301d3d5f024cb))
+
+
+### Dependencies
+
+* update sibling dependencies ([9adf0bc](https://github.com/ipfs/js-ipfs-interfaces/commit/9adf0bc4c1b63ef0ae06ab5cb2f3dc19d83bc1a7))
+
 ## [interface-blockstore-tests-v4.0.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v4.0.1...interface-blockstore-tests-v4.0.2) (2023-03-13)
 
 

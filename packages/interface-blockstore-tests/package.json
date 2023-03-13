@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore-tests",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "Compliance tests for the blockstore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore-tests#readme",
