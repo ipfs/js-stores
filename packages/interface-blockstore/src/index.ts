@@ -1,55 +1,30 @@
 import type {
-  Pair as StorePair,
-  Batch as StoreBatch,
-  QueryFilter as StoreQueryFilter,
-  QueryOrder as StoreQueryOrder,
-  Query as StoreQuery,
-  KeyQueryFilter as StoreKeyQueryFilter,
-  KeyQueryOrder as StoreKeyQueryOrder,
-  KeyQuery as StoreKeyQuery,
   Options as StoreOptions,
+  AwaitIterable,
   Store
 } from 'interface-store'
-import type {
-  CID
-} from 'multiformats'
+import type { CID } from 'multiformats/cid'
 
 export interface Options extends StoreOptions {
 
 }
 
-export interface Pair extends StorePair<CID, Uint8Array> {
-
+export interface Pair {
+  cid: CID
+  block: Uint8Array
 }
 
-export interface Batch extends StoreBatch<CID, Uint8Array> {
-
-}
-
-export interface Blockstore extends Store<CID, Uint8Array> {
-
-}
-
-export interface QueryFilter extends StoreQueryFilter<CID, Uint8Array> {
-
-}
-
-export interface QueryOrder extends StoreQueryOrder<CID, Uint8Array> {
-
-}
-
-export interface Query extends StoreQuery<CID, Uint8Array> {
-
-}
-
-export interface KeyQueryFilter extends StoreKeyQueryFilter<CID> {
-
-}
-
-export interface KeyQueryOrder extends StoreKeyQueryOrder<CID> {
-
-}
-
-export interface KeyQuery extends StoreKeyQuery<CID> {
-
+export interface Blockstore extends Store<CID, Uint8Array, Pair> {
+  /**
+   * Retrieve all cid/block pairs from the blockstore as an unordered iterable
+   *
+   * @example
+   * ```js
+   * for await (const { multihash, block } of store.getAll()) {
+   *   console.log('got:', multihash, block)
+   *   // => got MultihashDigest('Qmfoo') Uint8Array[...]
+   * }
+   * ```
+   */
+  getAll: (options?: Options) => AwaitIterable<Pair>
 }

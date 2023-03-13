@@ -5,49 +5,35 @@ import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { Key } from 'interface-datastore'
+import { Datastore, Key, KeyQueryFilter, KeyQueryOrder, QueryFilter, QueryOrder } from 'interface-datastore'
+import length from 'it-length'
 
-/**
- * @typedef {import('interface-datastore').Datastore} Datastore
- * @typedef {import('interface-datastore').Pair} Pair
- * @typedef {import('interface-datastore').QueryOrder} QueryOrder
- * @typedef {import('interface-datastore').QueryFilter} QueryFilter
- * @typedef {import('interface-datastore').KeyQueryOrder} KeyQueryOrder
- * @typedef {import('interface-datastore').KeyQueryFilter} KeyQueryFilter
- */
+export interface InterfacDatastoreTest<D extends Datastore = Datastore> {
+  setup: () => D | Promise<D>
+  teardown: (store: D) => void | Promise<void>
+}
 
-/**
- * @param {{ teardown: () => void; setup: () => Datastore; }} test
- */
-export function interfaceDatastoreTests (test) {
-  /**
-   * @param {Datastore} store
-   */
-  const cleanup = async store => {
-    await store.close()
-    await test.teardown()
+export function interfaceDatastoreTests <D extends Datastore = Datastore> (test: InterfacDatastoreTest<D>): void {
+  const cleanup = async (store: D): Promise<void> => {
+    await test.teardown(store)
   }
 
-  const createStore = async () => {
-    const store = await test.setup()
-    if (!store) throw new Error('missing store')
-    await store.open()
-    return store
+  const createStore = async (): Promise<D> => {
+    return await test.setup()
   }
 
   describe('put', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
-    it('simple', () => {
+    it('simple', async () => {
       const k = new Key('/z/one')
-      return store.put(k, uint8ArrayFromString('one'))
+      await store.put(k, uint8ArrayFromString('one'))
     })
 
     it('parallel', async () => {
@@ -56,7 +42,7 @@ export function interfaceDatastoreTests (test) {
         data.push({ key: new Key(`/z/key${i}`), value: uint8ArrayFromString(`data${i}`) })
       }
 
-      await Promise.all(data.map(d => store.put(d.key, d.value)))
+      await Promise.all(data.map(async d => { await store.put(d.key, d.value) }))
 
       const res = await all(store.getMany(data.map(d => d.key)))
       expect(res).to.deep.equal(data.map(d => d.value))
@@ -64,14 +50,13 @@ export function interfaceDatastoreTests (test) {
   })
 
   describe('putMany', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
       const data = []
@@ -94,14 +79,13 @@ export function interfaceDatastoreTests (test) {
   })
 
   describe('get', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const k = new Key('/z/one')
@@ -125,14 +109,13 @@ export function interfaceDatastoreTests (test) {
   })
 
   describe('getMany', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
       const k = new Key('/z/one')
@@ -159,14 +142,13 @@ export function interfaceDatastoreTests (test) {
   })
 
   describe('delete', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const k = new Key('/z/one')
@@ -178,33 +160,31 @@ export function interfaceDatastoreTests (test) {
     })
 
     it('parallel', async () => {
-      /** @type {[Key, Uint8Array][]} */
-      const data = []
+      const data: Array<[Key, Uint8Array]> = []
       for (let i = 0; i < 100; i++) {
         data.push([new Key(`/a/key${i}`), uint8ArrayFromString(`data${i}`)])
       }
 
-      await Promise.all(data.map(d => store.put(d[0], d[1])))
+      await Promise.all(data.map(async d => { await store.put(d[0], d[1]) }))
 
-      const res0 = await Promise.all(data.map(d => store.has(d[0])))
+      const res0 = await Promise.all(data.map(async d => await store.has(d[0])))
       res0.forEach(res => expect(res).to.be.eql(true))
 
-      await Promise.all(data.map(d => store.delete(d[0])))
+      await Promise.all(data.map(async d => { await store.delete(d[0]) }))
 
-      const res1 = await Promise.all(data.map(d => store.has(d[0])))
+      const res1 = await Promise.all(data.map(async d => await store.has(d[0])))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
 
   describe('deleteMany', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
       const data = []
@@ -214,7 +194,7 @@ export function interfaceDatastoreTests (test) {
 
       await drain(store.putMany(data))
 
-      const res0 = await Promise.all(data.map(d => store.has(d.key)))
+      const res0 = await Promise.all(data.map(async d => await store.has(d.key)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
@@ -226,20 +206,19 @@ export function interfaceDatastoreTests (test) {
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(d => store.has(d.key)))
+      const res1 = await Promise.all(data.map(async d => await store.has(d.key)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
 
   describe('batch', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
 
     beforeEach(async () => {
       store = await createStore()
     })
 
-    afterEach(() => cleanup(store))
+    afterEach(async () => { await cleanup(store) })
 
     it('simple', async () => {
       const b = store.batch()
@@ -253,7 +232,7 @@ export function interfaceDatastoreTests (test) {
       await b.commit()
 
       const keys = ['/a/one', '/q/two', '/q/three', '/z/old']
-      const res = await Promise.all(keys.map(k => store.has(new Key(k))))
+      const res = await Promise.all(keys.map(async k => await store.has(new Key(k))))
 
       expect(res).to.be.eql([true, true, true, false])
     })
@@ -270,53 +249,28 @@ export function interfaceDatastoreTests (test) {
 
       await b.commit()
 
-      /**
-       * @param {AsyncIterable<Pair>} iterable
-       */
-      const total = async iterable => {
-        let count = 0
-        // eslint-disable-next-line no-unused-vars
-        for await (const _ of iterable) count++
-        return count
-      }
-
-      expect(await total(store.query({ prefix: '/a' }))).to.equal(count)
-      expect(await total(store.query({ prefix: '/z' }))).to.equal(count)
-      expect(await total(store.query({ prefix: '/q' }))).to.equal(count)
+      expect(await length(store.query({ prefix: '/a' }))).to.equal(count)
+      expect(await length(store.query({ prefix: '/z' }))).to.equal(count)
+      expect(await length(store.query({ prefix: '/q' }))).to.equal(count)
     })
   })
 
   describe('query', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
     const hello = { key: new Key('/q/1hello'), value: uint8ArrayFromString('1') }
     const world = { key: new Key('/z/2world'), value: uint8ArrayFromString('2') }
     const hello2 = { key: new Key('/z/3hello2'), value: uint8ArrayFromString('3') }
 
-    /**
-     * @type {QueryFilter}
-     */
-    const filter1 = entry => !entry.key.toString().endsWith('hello')
+    const filter1: QueryFilter = entry => !entry.key.toString().endsWith('hello')
+    const filter2: QueryFilter = entry => entry.key.toString().endsWith('hello2')
 
-    /**
-     * @type {QueryFilter}
-     */
-    const filter2 = entry => entry.key.toString().endsWith('hello2')
-
-    /**
-     * @type {QueryOrder}
-     */
-    const order1 = (a, b) => {
+    const order1: QueryOrder = (a, b) => {
       if (a.value.toString() < b.value.toString()) {
         return -1
       }
       return 1
     }
-
-    /**
-     * @type {QueryOrder}
-     */
-    const order2 = (a, b) => {
+    const order2: QueryOrder = (a, b) => {
       if (a.value.toString() < b.value.toString()) {
         return 1
       }
@@ -326,8 +280,7 @@ export function interfaceDatastoreTests (test) {
       return 0
     }
 
-    /** @type {Array<[string, any, any[]|number]>} */
-    const tests = [
+    const tests: Array<[string, any, any[] | number]> = [
       ['empty', {}, [hello, world, hello2]],
       ['prefix', { prefix: '/z' }, [world, hello2]],
       ['1 filter', { filters: [filter1] }, [world, hello2]],
@@ -347,10 +300,10 @@ export function interfaceDatastoreTests (test) {
       b.put(world.key, world.value)
       b.put(hello2.key, hello2.value)
 
-      return b.commit()
+      await b.commit()
     })
 
-    after(() => cleanup(store))
+    after(async () => { await cleanup(store) })
 
     tests.forEach(([name, query, expected]) => it(name, async () => {
       let res = await all(store.query(query))
@@ -358,11 +311,8 @@ export function interfaceDatastoreTests (test) {
       if (Array.isArray(expected)) {
         if (query.orders == null) {
           expect(res).to.have.length(expected.length)
-          /**
-           * @param {Pair} a
-           * @param {Pair} b
-           */
-          const s = (a, b) => {
+
+          const s: QueryOrder = (a, b) => {
             if (a.key.toString() < b.key.toString()) {
               return 1
             } else {
@@ -423,36 +373,22 @@ export function interfaceDatastoreTests (test) {
   })
 
   describe('queryKeys', () => {
-    /** @type {Datastore} */
-    let store
+    let store: D
     const hello = { key: new Key('/q/1hello'), value: uint8ArrayFromString('1') }
     const world = { key: new Key('/z/2world'), value: uint8ArrayFromString('2') }
     const hello2 = { key: new Key('/z/3hello2'), value: uint8ArrayFromString('3') }
 
-    /**
-     * @type {KeyQueryFilter}
-     */
-    const filter1 = key => !key.toString().endsWith('hello')
+    const filter1: KeyQueryFilter = key => !key.toString().endsWith('hello')
+    const filter2: KeyQueryFilter = key => key.toString().endsWith('hello2')
 
-    /**
-     * @type {KeyQueryFilter}
-     */
-    const filter2 = key => key.toString().endsWith('hello2')
-
-    /**
-     * @type {KeyQueryOrder}
-     */
-    const order1 = (a, b) => {
+    const order1: KeyQueryOrder = (a, b) => {
       if (a.toString() < b.toString()) {
         return -1
       }
       return 1
     }
 
-    /**
-     * @type {KeyQueryOrder}
-     */
-    const order2 = (a, b) => {
+    const order2: KeyQueryOrder = (a, b) => {
       if (a.toString() < b.toString()) {
         return 1
       }
@@ -462,8 +398,7 @@ export function interfaceDatastoreTests (test) {
       return 0
     }
 
-    /** @type {Array<[string, any, any[]|number]>} */
-    const tests = [
+    const tests: Array<[string, any, any[] | number]> = [
       ['empty', {}, [hello.key, world.key, hello2.key]],
       ['prefix', { prefix: '/z' }, [world.key, hello2.key]],
       ['1 filter', { filters: [filter1] }, [world.key, hello2.key]],
@@ -483,10 +418,10 @@ export function interfaceDatastoreTests (test) {
       b.put(world.key, world.value)
       b.put(hello2.key, hello2.value)
 
-      return b.commit()
+      await b.commit()
     })
 
-    after(() => cleanup(store))
+    after(async () => { await cleanup(store) })
 
     tests.forEach(([name, query, expected]) => it(name, async () => {
       let res = await all(store.queryKeys(query))
@@ -494,10 +429,8 @@ export function interfaceDatastoreTests (test) {
       if (Array.isArray(expected)) {
         if (query.orders == null) {
           expect(res).to.have.length(expected.length)
-          /**
-           * @type {KeyQueryOrder}
-           */
-          const s = (a, b) => {
+
+          const s: KeyQueryOrder = (a, b) => {
             if (a.toString() < b.toString()) {
               return 1
             } else {
@@ -548,25 +481,6 @@ export function interfaceDatastoreTests (test) {
       const results = await all(store.queryKeys({}))
       expect(results.length).to.be.greaterThan(0)
       await writePromise
-    })
-  })
-
-  describe('lifecycle', () => {
-    /** @type {Datastore} */
-    let store
-
-    before(async () => {
-      store = await test.setup()
-      if (!store) throw new Error('missing store')
-    })
-
-    after(() => cleanup(store))
-
-    it('close and open', async () => {
-      await store.close()
-      await store.open()
-      await store.close()
-      await store.open()
     })
   })
 }
