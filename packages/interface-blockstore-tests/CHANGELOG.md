@@ -1,3 +1,10 @@
+## [interface-blockstore-tests-v5.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v5.0.0...interface-blockstore-tests-v5.0.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* rename test from blocks to getMany ([#190](https://github.com/ipfs/js-ipfs-interfaces/issues/190)) ([60e6c3f](https://github.com/ipfs/js-ipfs-interfaces/commit/60e6c3f44596ff8fc7906f7d5fe86f8ebdf227d1))
+
 ## [interface-blockstore-tests-v5.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-tests-v4.0.2...interface-blockstore-tests-v5.0.0) (2023-03-13)
 
 
