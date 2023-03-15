@@ -1,20 +1,22 @@
 import type {
-  Options as StoreOptions,
+  AbortOptions,
   AwaitIterable,
   Store
 } from 'interface-store'
 import type { CID } from 'multiformats/cid'
-
-export interface Options extends StoreOptions {
-
-}
 
 export interface Pair {
   cid: CID
   block: Uint8Array
 }
 
-export interface Blockstore extends Store<CID, Uint8Array, Pair> {
+export interface Blockstore <HasOptionsExtension = {},
+PutOptionsExtension = {}, PutManyOptionsExtension = {},
+GetOptionsExtension = {}, GetManyOptionsExtension = {}, GetAllOptionsExtension = {},
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array, Pair, HasOptionsExtension,
+  PutOptionsExtension, PutManyOptionsExtension,
+  GetOptionsExtension, GetManyOptionsExtension,
+  DeleteOptionsExtension, DeleteManyOptionsExtension> {
   /**
    * Retrieve all cid/block pairs from the blockstore as an unordered iterable
    *
@@ -26,5 +28,5 @@ export interface Blockstore extends Store<CID, Uint8Array, Pair> {
    * }
    * ```
    */
-  getAll: (options?: Options) => AwaitIterable<Pair>
+  getAll: (options?: AbortOptions & GetAllOptionsExtension) => AwaitIterable<Pair>
 }

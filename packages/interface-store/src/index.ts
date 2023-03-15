@@ -1,15 +1,25 @@
 
+/**
+ * An iterable or async iterable of values
+ */
 export type AwaitIterable<T> = Iterable<T> | AsyncIterable<T>
+
+/**
+ * A value or a promise of a value
+ */
 export type Await<T> = Promise<T> | T
 
 /**
  * Options for async operations.
  */
-export interface Options {
+export interface AbortOptions {
   signal?: AbortSignal
 }
 
-export interface Store<Key, Value, Pair> {
+export interface Store<Key, Value, Pair, HasOptionsExtension = {},
+  PutOptionsExtension = {}, PutManyOptionsExtension = {},
+  GetOptionsExtension = {}, GetManyOptionsExtension = {},
+  DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> {
   /**
    * Check for the existence of a value for the passed key
    *
@@ -24,7 +34,7 @@ export interface Store<Key, Value, Pair> {
    *}
    *```
    */
-  has: (key: Key, options?: Options) => Await<boolean>
+  has: (key: Key, options?: AbortOptions & HasOptionsExtension) => Await<boolean>
 
   /**
    * Store the passed value under the passed key
@@ -35,7 +45,7 @@ export interface Store<Key, Value, Pair> {
    * await store.put([{ key: new Key('awesome'), value: new Uint8Array([0, 1, 2, 3]) }])
    * ```
    */
-  put: (key: Key, val: Value, options?: Options) => Await<void>
+  put: (key: Key, val: Value, options?: AbortOptions & PutOptionsExtension) => Await<void>
 
   /**
    * Store the given key/value pairs
@@ -51,7 +61,7 @@ export interface Store<Key, Value, Pair> {
    */
   putMany: (
     source: AwaitIterable<Pair>,
-    options?: Options
+    options?: AbortOptions & PutManyOptionsExtension
   ) => AwaitIterable<Pair>
 
   /**
@@ -64,7 +74,7 @@ export interface Store<Key, Value, Pair> {
    * // => got content: datastore
    * ```
    */
-  get: (key: Key, options?: Options) => Await<Value>
+  get: (key: Key, options?: AbortOptions & GetOptionsExtension) => Await<Value>
 
   /**
    * Retrieve values for the passed keys
@@ -79,7 +89,7 @@ export interface Store<Key, Value, Pair> {
    */
   getMany: (
     source: AwaitIterable<Key>,
-    options?: Options
+    options?: AbortOptions & GetManyOptionsExtension
   ) => AwaitIterable<Value>
 
   /**
@@ -92,7 +102,7 @@ export interface Store<Key, Value, Pair> {
    * console.log('deleted awesome content :(')
    * ```
    */
-  delete: (key: Key, options?: Options) => Await<void>
+  delete: (key: Key, options?: AbortOptions & DeleteOptionsExtension) => Await<void>
 
   /**
    * Remove values for the passed keys
@@ -109,6 +119,6 @@ export interface Store<Key, Value, Pair> {
    */
   deleteMany: (
     source: AwaitIterable<Key>,
-    options?: Options
+    options?: AbortOptions & DeleteManyOptionsExtension
   ) => AwaitIterable<Key>
 }
