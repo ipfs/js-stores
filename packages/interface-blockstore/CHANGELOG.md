@@ -1,3 +1,10 @@
+## [interface-blockstore-v5.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v5.0.0...interface-blockstore-v5.1.0) (2023-03-15)
+
+
+### Features
+
+* allow extending store method options ([#193](https://github.com/ipfs/js-ipfs-interfaces/issues/193)) ([007e8ac](https://github.com/ipfs/js-ipfs-interfaces/commit/007e8ac83a43ec185368cfad57193f57ef700c45))
+
 ## [interface-blockstore-v5.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v4.0.1...interface-blockstore-v5.0.0) (2023-03-13)
 
 
