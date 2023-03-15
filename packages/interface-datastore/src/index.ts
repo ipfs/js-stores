@@ -1,26 +1,32 @@
 import type {
-  Options as StoreOptions,
   Await,
-  Store
+  AwaitIterable,
+  Store,
+  AbortOptions
 } from 'interface-store'
 import { Key } from './key.js'
-
-export interface Options extends StoreOptions {
-
-}
 
 export interface Pair {
   key: Key
   value: Uint8Array
 }
 
-export interface Batch {
+export interface Batch<BatchOptionsExtension> {
   put: (key: Key, value: Uint8Array) => void
   delete: (key: Key) => void
-  commit: (options?: Options) => Await<void>
+  commit: (options?: AbortOptions & BatchOptionsExtension) => Await<void>
 }
 
-export interface Datastore extends Store<Key, Uint8Array, Pair> {
+export interface Datastore <HasOptionsExtension = {},
+PutOptionsExtension = {}, PutManyOptionsExtension = {},
+GetOptionsExtension = {}, GetManyOptionsExtension = {},
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {},
+QueryOptionsExtension = {}, QueryKeysOptionsExtension = {},
+BatchOptionsExtension = {}
+> extends Store<Key, Uint8Array, Pair, HasOptionsExtension,
+  PutOptionsExtension, PutManyOptionsExtension,
+  GetOptionsExtension, GetManyOptionsExtension,
+  DeleteOptionsExtension, DeleteManyOptionsExtension> {
   /**
    * This will return an object with which you can chain multiple operations together, with them only being executed on calling `commit`.
    *
@@ -36,7 +42,7 @@ export interface Datastore extends Store<Key, Uint8Array, Pair> {
    * console.log('put 100 values')
    * ```
    */
-  batch: () => Batch
+  batch: () => Batch<BatchOptionsExtension>
 
   /**
    * Query the datastore.
@@ -51,7 +57,7 @@ export interface Datastore extends Store<Key, Uint8Array, Pair> {
    * console.log('ALL THE VALUES', list)
    * ```
    */
-  query: (query: Query, options?: Options) => AsyncIterable<Pair>
+  query: (query: Query, options?: AbortOptions & QueryOptionsExtension) => AwaitIterable<Pair>
 
   /**
    * Query the datastore.
@@ -66,7 +72,7 @@ export interface Datastore extends Store<Key, Uint8Array, Pair> {
    * console.log('ALL THE KEYS', key)
    * ```
    */
-  queryKeys: (query: KeyQuery, options?: Options) => AsyncIterable<Key>
+  queryKeys: (query: KeyQuery, options?: AbortOptions & QueryKeysOptionsExtension) => AwaitIterable<Key>
 }
 
 export interface QueryFilter { (item: Pair): boolean }
