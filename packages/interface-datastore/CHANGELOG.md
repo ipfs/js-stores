@@ -1,3 +1,10 @@
+## [interface-datastore-v8.1.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v8.1.0...interface-datastore-v8.1.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* make datastore batch commit option extension optional ([#194](https://github.com/ipfs/js-ipfs-interfaces/issues/194)) ([7bb6729](https://github.com/ipfs/js-ipfs-interfaces/commit/7bb6729f616546284c107eaf5dacf12598ea37a0))
+
 ## [interface-datastore-v8.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v8.0.0...interface-datastore-v8.1.0) (2023-03-15)
 
 
