@@ -11,7 +11,7 @@ export interface Pair {
   value: Uint8Array
 }
 
-export interface Batch<BatchOptionsExtension> {
+export interface Batch<BatchOptionsExtension = {}> {
   put: (key: Key, value: Uint8Array) => void
   delete: (key: Key) => void
   commit: (options?: AbortOptions & BatchOptionsExtension) => Await<void>
