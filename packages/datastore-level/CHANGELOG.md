@@ -1,3 +1,10 @@
+## [datastore-level-v10.1.0](https://github.com/ipfs/js-stores/compare/datastore-level-v10.0.2...datastore-level-v10.1.0) (2023-03-23)
+
+
+### Features
+
+* add all blockstore and datastore implementations ([#197](https://github.com/ipfs/js-stores/issues/197)) ([0d85128](https://github.com/ipfs/js-stores/commit/0d851286d48c357b07df3f7419c1e903ed0e7fac))
+
 ## [10.0.2](https://github.com/ipfs/js-datastore-level/compare/v10.0.1...v10.0.2) (2023-03-23)
 
 
