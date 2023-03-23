@@ -1,3 +1,10 @@
+## [datastore-idb-v2.1.0](https://github.com/ipfs/js-stores/compare/datastore-idb-v2.0.1...datastore-idb-v2.1.0) (2023-03-23)
+
+
+### Features
+
+* add all blockstore and datastore implementations ([#197](https://github.com/ipfs/js-stores/issues/197)) ([0d85128](https://github.com/ipfs/js-stores/commit/0d851286d48c357b07df3f7419c1e903ed0e7fac))
+
 ## [2.0.1](https://github.com/ipfs/js-datastore-idb/compare/v2.0.0...v2.0.1) (2023-03-23)
 
 
