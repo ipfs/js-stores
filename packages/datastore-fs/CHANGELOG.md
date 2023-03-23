@@ -1,3 +1,10 @@
+## [datastore-fs-v9.1.0](https://github.com/ipfs/js-stores/compare/datastore-fs-v9.0.1...datastore-fs-v9.1.0) (2023-03-23)
+
+
+### Features
+
+* add all blockstore and datastore implementations ([#197](https://github.com/ipfs/js-stores/issues/197)) ([0d85128](https://github.com/ipfs/js-stores/commit/0d851286d48c357b07df3f7419c1e903ed0e7fac))
+
 ## [9.0.1](https://github.com/ipfs/js-datastore-fs/compare/v9.0.0...v9.0.1) (2023-03-23)
 
 
