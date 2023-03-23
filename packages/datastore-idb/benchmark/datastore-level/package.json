@@ -1,0 +1,21 @@
+{
+  "name": "benchmarks-datastore-level",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "aegir clean",
+    "build": "aegir build --bundle false",
+    "lint": "aegir lint",
+    "dep-check": "aegir dep-check",
+    "start": "npm run build && playwright-test dist/src/index.js --runner benchmark"
+  },
+  "devDependencies": {
+    "datastore-level": "^10.0.1",
+    "datastore-idb": "file:../../",
+    "multiformats": "^11.0.1",
+    "playwright-test": "^8.2.0",
+    "tinybench": "^2.4.0"
+  }
+}

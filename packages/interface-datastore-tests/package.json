@@ -3,13 +3,13 @@
   "version": "5.0.0",
   "description": "Compliance tests for the datastore interface",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-datastore-tests#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-datastore-tests#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
+    "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
-    "url": "https://github.com/ipfs/js-ipfs-interfaces/issues"
+    "url": "https://github.com/ipfs/js-stores/issues"
   },
   "keywords": [
     "datastore",
