@@ -1,3 +1,10 @@
+## [interface-store-v5.0.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store-v5.0.0...interface-store-v5.0.1) (2023-03-23)
+
+
+### Bug Fixes
+
+* return key from put and put many ([#196](https://github.com/ipfs/js-ipfs-interfaces/issues/196)) ([dfc4697](https://github.com/ipfs/js-ipfs-interfaces/commit/dfc4697868d23b3a62154ddda3ae0747e124e3e1))
+
 ## [interface-store-v5.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store-v4.1.0...interface-store-v5.0.0) (2023-03-23)
 
 
