@@ -1,3 +1,15 @@
+## [interface-datastore-tests-v5.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v4.0.0...interface-datastore-tests-v5.0.0) (2023-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* the output of store.getMany is now a stream of pairs
+
+### Bug Fixes
+
+* return key from put and put many ([#196](https://github.com/ipfs/js-ipfs-interfaces/issues/196)) ([dfc4697](https://github.com/ipfs/js-ipfs-interfaces/commit/dfc4697868d23b3a62154ddda3ae0747e124e3e1))
+* return stream of pairs from getmany ([#195](https://github.com/ipfs/js-ipfs-interfaces/issues/195)) ([252bced](https://github.com/ipfs/js-ipfs-interfaces/commit/252bced0ad3111711bd502e8d2a5932d6289e0f9))
+
 ## [interface-datastore-tests-v4.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-tests-v3.0.5...interface-datastore-tests-v4.0.0) (2023-03-13)
 
 
