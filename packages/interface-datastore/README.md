@@ -2,8 +2,8 @@
 
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
-[![codecov](https://img.shields.io/codecov/c/github/ipfs/js-ipfs-interfaces.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-ipfs-interfaces)
-[![CI](https://img.shields.io/github/actions/workflow/status/ipfs/js-ipfs-interfaces/js-test-and-release.yml?branch=master\&style=flat-square)](https://github.com/ipfs/js-ipfs-interfaces/actions/workflows/js-test-and-release.yml?query=branch%3Amaster)
+[![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
+[![CI](https://img.shields.io/github/actions/workflow/status/ipfs/js-stores/js-test-and-release.yml?branch=master\&style=flat-square)](https://github.com/ipfs/js-stores/actions/workflows/js-test-and-release.yml?query=branch%3Amaster)
 
 > datastore interface
 
@@ -127,7 +127,7 @@ Also, every namespace can be parameterized to embed relevant object information.
 
 ## API Docs
 
-- <https://ipfs.github.io/js-ipfs-interfaces/modules/interface_datastore.html>
+- <https://ipfs.github.io/js-stores/modules/interface_datastore.html>
 
 ## License
 
@@ -138,7 +138,7 @@ Licensed under either of
 
 ## Contribute
 
-Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-ipfs-interfaces/issues).
+Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-stores/issues).
 
 Also see our [contributing document](https://github.com/ipfs/community/blob/master/CONTRIBUTING_JS.md) for more information on how we work, and about contributing in general.
 

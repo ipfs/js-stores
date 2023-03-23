@@ -3,13 +3,13 @@
   "version": "5.1.1",
   "description": "An interface for storing and retrieving blocks",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-blockstore#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
+    "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
-    "url": "https://github.com/ipfs/js-ipfs-interfaces/issues"
+    "url": "https://github.com/ipfs/js-stores/issues"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -128,10 +128,10 @@
   },
   "dependencies": {
     "interface-store": "^5.0.0",
-    "multiformats": "^11.0.0"
+    "multiformats": "^11.0.2"
   },
   "devDependencies": {
-    "aegir": "^38.1.0"
+    "aegir": "^38.1.7"
   },
   "typedoc": {
     "entryPoint": "./src/index.ts"

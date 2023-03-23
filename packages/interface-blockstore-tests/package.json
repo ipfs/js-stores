@@ -3,13 +3,13 @@
   "version": "6.0.0",
   "description": "Compliance tests for the blockstore interface",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-ipfs-interfaces/tree/master/packages/interface-blockstore-tests#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-blockstore-tests#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
+    "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
-    "url": "https://github.com/ipfs/js-ipfs-interfaces/issues"
+    "url": "https://github.com/ipfs/js-stores/issues"
   },
   "keywords": [
     "blockstore",
@@ -138,7 +138,7 @@
     "interface-blockstore": "^5.0.0",
     "it-all": "^2.0.0",
     "it-drain": "^2.0.0",
-    "multiformats": "^11.0.0",
+    "multiformats": "^11.0.2",
     "uint8arrays": "^4.0.2"
   },
   "typedoc": {

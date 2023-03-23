@@ -1,15 +1,15 @@
 {
-  "name": "ipfs-interfaces",
+  "name": "stores",
   "version": "1.0.0",
-  "description": "TypeScript interfaces used by IPFS internals",
+  "description": "Blockstores and datastores used by IP-JS internals",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-ipfs-interfaces#readme",
+  "homepage": "https://github.com/ipfs/js-stores#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipfs/js-ipfs-interfaces.git"
+    "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
-    "url": "https://github.com/ipfs/js-ipfs-interfaces/issues"
+    "url": "https://github.com/ipfs/js-stores/issues"
   },
   "engines": {
     "node": ">=16.0.0",
