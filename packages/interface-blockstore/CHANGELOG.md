@@ -1,3 +1,10 @@
+## [interface-blockstore-v5.1.1](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v5.1.0...interface-blockstore-v5.1.1) (2023-03-23)
+
+
+### Dependencies
+
+* update sibling dependencies ([7c84601](https://github.com/ipfs/js-ipfs-interfaces/commit/7c84601df3a17b5e163de68b224c0efef5d5b746))
+
 ## [interface-blockstore-v5.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-blockstore-v5.0.0...interface-blockstore-v5.1.0) (2023-03-15)
 
 
