@@ -5,7 +5,7 @@ import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { Datastore, Key, KeyQueryFilter, KeyQueryOrder, QueryFilter, QueryOrder } from 'interface-datastore'
+import { Datastore, Key, KeyQueryFilter, KeyQueryOrder, Pair, QueryFilter, QueryOrder } from 'interface-datastore'
 import length from 'it-length'
 
 export interface InterfacDatastoreTest<D extends Datastore = Datastore> {
@@ -37,7 +37,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
     })
 
     it('parallel', async () => {
-      const data = []
+      const data: Pair[] = []
       for (let i = 0; i < 100; i++) {
         data.push({ key: new Key(`/z/key${i}`), value: uint8ArrayFromString(`data${i}`) })
       }
@@ -45,7 +45,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await Promise.all(data.map(async d => { await store.put(d.key, d.value) }))
 
       const res = await all(store.getMany(data.map(d => d.key)))
-      expect(res).to.deep.equal(data.map(d => d.value))
+      expect(res).to.deep.equal(data)
     })
   })
 
@@ -59,7 +59,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
     afterEach(async () => { await cleanup(store) })
 
     it('streaming', async () => {
-      const data = []
+      const data: Pair[] = []
       for (let i = 0; i < 100; i++) {
         data.push({ key: new Key(`/z/key${i}`), value: uint8ArrayFromString(`data${i}`) })
       }
@@ -74,7 +74,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       expect(index).to.equal(data.length)
 
       const res = await all(store.getMany(data.map(d => d.key)))
-      expect(res).to.deep.equal(data.map(d => d.value))
+      expect(res).to.deep.equal(data)
     })
   })
 
@@ -124,7 +124,8 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       const res = await all(store.getMany(source))
       expect(res).to.have.lengthOf(1)
-      expect(res[0]).to.be.eql(uint8ArrayFromString('hello'))
+      expect(res[0].key).to.be.eql(k)
+      expect(res[0].value).to.be.eql(uint8ArrayFromString('hello'))
     })
 
     it('should throw error for missing key', async () => {
