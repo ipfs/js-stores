@@ -1,3 +1,14 @@
+## [interface-store-v5.0.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store-v4.1.0...interface-store-v5.0.0) (2023-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* the output of store.getMany is now a stream of pairs
+
+### Bug Fixes
+
+* return stream of pairs from getmany ([#195](https://github.com/ipfs/js-ipfs-interfaces/issues/195)) ([252bced](https://github.com/ipfs/js-ipfs-interfaces/commit/252bced0ad3111711bd502e8d2a5932d6289e0f9))
+
 ## [interface-store-v4.1.0](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-store-v4.0.0...interface-store-v4.1.0) (2023-03-15)
 
 
