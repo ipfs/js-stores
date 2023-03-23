@@ -81,16 +81,16 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    *
    * @example
    * ```js
-   * for await (const value of store.getMany([new Key('awesome')])) {
-   *   console.log('got content:', new TextDecoder('utf8').decode(value))
-   *   // => got content: datastore
+   * for await (const { key, value } of store.getMany([new Key('awesome')])) {
+   *   console.log(`got "${key}" = "${new TextDecoder('utf8').decode(value)}"`')
+   *   // => got "/awesome" = "datastore"
    * }
    * ```
    */
   getMany: (
     source: AwaitIterable<Key>,
     options?: AbortOptions & GetManyOptionsExtension
-  ) => AwaitIterable<Value>
+  ) => AwaitIterable<Pair>
 
   /**
    * Remove the record for the passed key

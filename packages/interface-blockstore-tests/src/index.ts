@@ -67,7 +67,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
 
       const res = await all(store.getMany(data.map(d => d.cid)))
-      expect(res).to.deep.equal(data.map(d => d.block))
+      expect(res).to.deep.equal(data)
     })
   })
 
@@ -95,7 +95,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       expect(index).to.equal(data.length)
 
       const res = await all(store.getMany(data.map(d => d.cid)))
-      expect(res).to.deep.equal(data.map(d => d.block))
+      expect(res).to.deep.equal(data)
     })
   })
 
@@ -158,7 +158,8 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       const res = await all(store.getMany(source))
       expect(res).to.have.lengthOf(1)
-      expect(res[0]).to.equalBytes(block)
+      expect(res[0].cid).to.deep.equal(cid)
+      expect(res[0].block).to.equalBytes(block)
     })
 
     it('should throw error for missing key', async () => {
