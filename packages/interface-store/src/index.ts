@@ -45,7 +45,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * await store.put([{ key: new Key('awesome'), value: new Uint8Array([0, 1, 2, 3]) }])
    * ```
    */
-  put: (key: Key, val: Value, options?: AbortOptions & PutOptionsExtension) => Await<void>
+  put: (key: Key, val: Value, options?: AbortOptions & PutOptionsExtension) => Await<Key>
 
   /**
    * Store the given key/value pairs
@@ -62,7 +62,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
   putMany: (
     source: AwaitIterable<Pair>,
     options?: AbortOptions & PutManyOptionsExtension
-  ) => AwaitIterable<Pair>
+  ) => AwaitIterable<Key>
 
   /**
    * Retrieve the value stored under the given key

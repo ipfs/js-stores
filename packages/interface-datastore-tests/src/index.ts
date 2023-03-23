@@ -66,8 +66,8 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       let index = 0
 
-      for await (const { key, value } of store.putMany(data)) {
-        expect(data[index]).to.deep.equal({ key, value })
+      for await (const key of store.putMany(data)) {
+        expect(data[index].key).to.deep.equal(key)
         index++
       }
 

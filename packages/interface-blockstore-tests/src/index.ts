@@ -87,8 +87,8 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       let index = 0
 
-      for await (const { cid, block } of store.putMany(data)) {
-        expect(data[index]).to.deep.equal({ cid, block })
+      for await (const cid of store.putMany(data)) {
+        expect(data[index].cid).to.deep.equal(cid)
         index++
       }
 
