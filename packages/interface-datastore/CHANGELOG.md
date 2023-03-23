@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.0](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.1.2...interface-datastore-v8.2.0) (2023-03-23)
+
+
+### Features
+
+* add all blockstore and datastore implementations ([#197](https://github.com/ipfs/js-stores/issues/197)) ([0d85128](https://github.com/ipfs/js-stores/commit/0d851286d48c357b07df3f7419c1e903ed0e7fac))
+
 ## [interface-datastore-v8.1.2](https://github.com/ipfs/js-ipfs-interfaces/compare/interface-datastore-v8.1.1...interface-datastore-v8.1.2) (2023-03-23)
 
 
