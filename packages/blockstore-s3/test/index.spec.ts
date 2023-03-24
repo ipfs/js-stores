@@ -2,7 +2,7 @@
 
 import { expect } from 'aegir/chai'
 import sinon from 'sinon'
-import { CreateBucketCommand, PutObjectCommand, HeadObjectCommand, S3, GetObjectCommand } from '@aws-sdk/client-s3'
+import { CreateBucketCommand, HeadObjectCommand, S3 } from '@aws-sdk/client-s3'
 import defer from 'p-defer'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import { CID } from 'multiformats/cid'
@@ -43,25 +43,6 @@ describe('S3Blockstore', () => {
   })
 
   describe('put', () => {
-    it('should include the path in the key', async () => {
-      const s3 = new S3({ region: 'REGION' })
-      const store = new S3Blockstore(s3, 'test', {
-        path: '.ipfs/datastore'
-      })
-
-      const deferred = defer<PutObjectCommand>()
-
-      sinon.replace(s3, 'send', (command: PutObjectCommand) => {
-        deferred.resolve(command)
-        return s3Resolve(null)
-      })
-
-      await store.put(cid, new TextEncoder().encode('test data'))
-
-      const command = await deferred.promise
-      expect(command).to.have.nested.property('input.Key', '.ipfs/datastore/BCIQPGZJ6QLZOFG3OP45NLMSJUWGJCO72QQKHLDTB6FXIB6BDSLRQYLY')
-    })
-
     it('should return a standard error when the put fails', async () => {
       const s3 = new S3({ region: 'REGION' })
       const store = new S3Blockstore(s3, 'test')
@@ -80,32 +61,6 @@ describe('S3Blockstore', () => {
   })
 
   describe('get', () => {
-    it('should include the path in the fetch key', async () => {
-      const s3 = new S3({ region: 'REGION' })
-      const store = new S3Blockstore(s3, 'test', {
-        path: '.ipfs/datastore'
-      })
-      const buf = new TextEncoder().encode('test')
-
-      const deferred = defer<GetObjectCommand>()
-
-      sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'GetObjectCommand') {
-          deferred.resolve(command)
-          return s3Resolve({ Body: buf })
-        }
-
-        return s3Reject(new S3Error('UnknownCommand'))
-      })
-
-      const value = await store.get(cid)
-
-      expect(value).to.equalBytes(buf)
-
-      const getObjectCommand = await deferred.promise
-      expect(getObjectCommand).to.have.nested.property('input.Key', '.ipfs/datastore/BCIQPGZJ6QLZOFG3OP45NLMSJUWGJCO72QQKHLDTB6FXIB6BDSLRQYLY')
-    })
-
     it('should return a standard not found error code if the key isn\'t found', async () => {
       const s3 = new S3({ region: 'REGION' })
       const store = new S3Blockstore(s3, 'test')

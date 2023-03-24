@@ -13,43 +13,29 @@ import {
   DeleteObjectCommand,
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
-import { CID } from 'multiformats/cid'
-import { base32upper } from 'multiformats/bases/base32'
-import type { MultibaseCodec } from 'multiformats/bases/interface'
+import type { CID } from 'multiformats/cid'
+import { NextToLast, ShardingStrategy } from './sharding.js'
 
 export interface S3DatastoreInit {
-  /**
-   * An optional path to use within the bucket for all files - this setting can
-   * affect S3 performance as it does internal sharding based on 'prefixes' -
-   * these can be delimited by '/' so it's often better  to wrap this datastore in
-   * a sharding datastore which will generate prefixed datastore keys for you.
-   *
-   * See - https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html
-   * and https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html
-   */
-  path?: string
-
   /**
    * Whether to try to create the bucket if it is missing when `.open` is called
    */
   createIfMissing?: boolean
 
   /**
-   * The multibase codec to use - nb. should be case insensitive.
-   * default: base32upper
+   * Control how CIDs map to paths and back
    */
-  base?: MultibaseCodec<string>
+  shardingStrategy?: ShardingStrategy
 }
 
 /**
  * A blockstore backed by AWS S3
  */
 export class S3Blockstore extends BaseBlockstore {
-  public path?: string
   public createIfMissing: boolean
   private readonly s3: S3
   private readonly bucket: string
-  private readonly base: MultibaseCodec<string>
+  private readonly shardingStrategy: ShardingStrategy
 
   constructor (s3: S3, bucket: string, init?: S3DatastoreInit) {
     super()
@@ -62,21 +48,10 @@ export class S3Blockstore extends BaseBlockstore {
       throw new Error('An bucket must be supplied. See the datastore-s3 README for examples.')
     }
 
-    this.path = init?.path
     this.s3 = s3
     this.bucket = bucket
     this.createIfMissing = init?.createIfMissing ?? false
-    this.base = init?.base ?? base32upper
-  }
-
-  /**
-   * Returns the full key which includes the path to the ipfs store
-   */
-  _getFullKey (cid: CID): string {
-    // Avoid absolute paths with s3
-    const str = this.base.encoder.encode(cid.multihash.bytes)
-
-    return [this.path, str].filter(Boolean).join('/').replace(/\/\/+/g, '/')
+    this.shardingStrategy = init?.shardingStrategy ?? new NextToLast()
   }
 
   /**
@@ -88,7 +63,7 @@ export class S3Blockstore extends BaseBlockstore {
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.bucket,
-          Key: this._getFullKey(key),
+          Key: this.shardingStrategy.encode(key),
           Body: val
         }), {
           abortSignal: options?.signal
@@ -110,7 +85,7 @@ export class S3Blockstore extends BaseBlockstore {
       const data = await this.s3.send(
         new GetObjectCommand({
           Bucket: this.bucket,
-          Key: this._getFullKey(key)
+          Key: this.shardingStrategy.encode(key)
         }), {
           abortSignal: options?.signal
         }
@@ -154,7 +129,7 @@ export class S3Blockstore extends BaseBlockstore {
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
-          Key: this._getFullKey(key)
+          Key: this.shardingStrategy.encode(key)
         }), {
           abortSignal: options?.signal
         }
@@ -185,7 +160,7 @@ export class S3Blockstore extends BaseBlockstore {
       await this.s3.send(
         new DeleteObjectCommand({
           Bucket: this.bucket,
-          Key: this._getFullKey(key)
+          Key: this.shardingStrategy.encode(key)
         }), {
           abortSignal: options?.signal
         }
@@ -224,7 +199,7 @@ export class S3Blockstore extends BaseBlockstore {
           }
 
           // Remove the path from the key
-          const cid = CID.decode(this.base.decoder.decode(d.Key.slice((this.path ?? '').length)))
+          const cid = this.shardingStrategy.decode(d.Key)
 
           yield {
             cid,
@@ -257,7 +232,7 @@ export class S3Blockstore extends BaseBlockstore {
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
-          Key: this.path ?? ''
+          Key: ''
         }), {
           abortSignal: options?.signal
         }
