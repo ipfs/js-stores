@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.1](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.0...blockstore-s3-v1.0.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* add sharding to s3 blockstore ([#202](https://github.com/ipfs/js-stores/issues/202)) ([e1324a1](https://github.com/ipfs/js-stores/commit/e1324a16dcfae0a39a325e7a9929eb1c2f8ca6c8))
+
 ## [blockstore-s3-v1.0.0](https://github.com/ipfs/js-stores/compare/blockstore-s3-v0.1.0...blockstore-s3-v1.0.0) (2023-03-24)
 
 
