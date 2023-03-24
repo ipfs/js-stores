@@ -1,3 +1,19 @@
+## [blockstore-s3-v1.0.0](https://github.com/ipfs/js-stores/compare/blockstore-s3-v0.1.0...blockstore-s3-v1.0.0) (2023-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* s3 filenames are now all base32upper
+
+### Bug Fixes
+
+* encode/decode blockstore-s3 keys in base32upper ([#201](https://github.com/ipfs/js-stores/issues/201)) ([513fd9c](https://github.com/ipfs/js-stores/commit/513fd9ca35059c422d440ad955d34042c6bc301e))
+
+
+### Trivial Changes
+
+* rename master to main ([#200](https://github.com/ipfs/js-stores/issues/200)) ([f85d719](https://github.com/ipfs/js-stores/commit/f85d719b711cd60237bdaa6a0bcd418e69a98598))
+
 ## [blockstore-s3-v0.1.0](https://github.com/ipfs/js-stores/compare/blockstore-s3-v0.0.0...blockstore-s3-v0.1.0) (2023-03-23)
 
 
