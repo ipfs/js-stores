@@ -14,6 +14,8 @@ import {
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
 import { CID } from 'multiformats/cid'
+import { base32upper } from 'multiformats/bases/base32'
+import type { MultibaseCodec } from 'multiformats/bases/interface'
 
 export interface S3DatastoreInit {
   /**
@@ -31,6 +33,12 @@ export interface S3DatastoreInit {
    * Whether to try to create the bucket if it is missing when `.open` is called
    */
   createIfMissing?: boolean
+
+  /**
+   * The multibase codec to use - nb. should be case insensitive.
+   * default: base32upper
+   */
+  base?: MultibaseCodec<string>
 }
 
 /**
@@ -41,6 +49,7 @@ export class S3Blockstore extends BaseBlockstore {
   public createIfMissing: boolean
   private readonly s3: S3
   private readonly bucket: string
+  private readonly base: MultibaseCodec<string>
 
   constructor (s3: S3, bucket: string, init?: S3DatastoreInit) {
     super()
@@ -57,14 +66,17 @@ export class S3Blockstore extends BaseBlockstore {
     this.s3 = s3
     this.bucket = bucket
     this.createIfMissing = init?.createIfMissing ?? false
+    this.base = init?.base ?? base32upper
   }
 
   /**
    * Returns the full key which includes the path to the ipfs store
    */
-  _getFullKey (key: CID): string {
+  _getFullKey (cid: CID): string {
     // Avoid absolute paths with s3
-    return [this.path, key.toString()].filter(Boolean).join('/').replace(/\/\/+/g, '/')
+    const str = this.base.encoder.encode(cid.multihash.bytes)
+
+    return [this.path, str].filter(Boolean).join('/').replace(/\/\/+/g, '/')
   }
 
   /**
@@ -212,7 +224,7 @@ export class S3Blockstore extends BaseBlockstore {
           }
 
           // Remove the path from the key
-          const cid = CID.parse(d.Key.slice((this.path ?? '').length))
+          const cid = CID.decode(this.base.decoder.decode(d.Key.slice((this.path ?? '').length)))
 
           yield {
             cid,
