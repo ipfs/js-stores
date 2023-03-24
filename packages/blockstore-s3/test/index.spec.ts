@@ -59,7 +59,7 @@ describe('S3Blockstore', () => {
       await store.put(cid, new TextEncoder().encode('test data'))
 
       const command = await deferred.promise
-      expect(command).to.have.nested.property('input.Key', '.ipfs/datastore/QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
+      expect(command).to.have.nested.property('input.Key', '.ipfs/datastore/BCIQPGZJ6QLZOFG3OP45NLMSJUWGJCO72QQKHLDTB6FXIB6BDSLRQYLY')
     })
 
     it('should return a standard error when the put fails', async () => {
@@ -103,7 +103,7 @@ describe('S3Blockstore', () => {
       expect(value).to.equalBytes(buf)
 
       const getObjectCommand = await deferred.promise
-      expect(getObjectCommand).to.have.nested.property('input.Key', '.ipfs/datastore/QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
+      expect(getObjectCommand).to.have.nested.property('input.Key', '.ipfs/datastore/BCIQPGZJ6QLZOFG3OP45NLMSJUWGJCO72QQKHLDTB6FXIB6BDSLRQYLY')
     })
 
     it('should return a standard not found error code if the key isn\'t found', async () => {
