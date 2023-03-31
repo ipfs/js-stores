@@ -169,7 +169,7 @@
     "interface-store": "^5.0.0",
     "it-glob": "^2.0.1",
     "it-map": "^2.0.1",
-    "it-parallel-batch": "^2.0.1",
+    "it-parallel-batch": "^3.0.0",
     "multiformats": "^11.0.2"
   },
   "devDependencies": {
