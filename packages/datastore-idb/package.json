@@ -146,8 +146,8 @@
   "dependencies": {
     "idb": "^7.1.1",
     "interface-datastore": "^8.0.0",
-    "it-filter": "^2.0.1",
-    "it-sort": "^2.0.1"
+    "it-filter": "^3.0.0",
+    "it-sort": "^3.0.1"
   },
   "devDependencies": {
     "aegir": "^38.1.7",

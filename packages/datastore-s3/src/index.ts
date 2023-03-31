@@ -72,7 +72,6 @@ export class S3Datastore extends BaseDatastore {
    */
   async put (key: Key, val: Uint8Array, options?: AbortOptions): Promise<Key> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.bucket,
@@ -138,7 +137,6 @@ export class S3Datastore extends BaseDatastore {
    */
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
@@ -169,7 +167,6 @@ export class S3Datastore extends BaseDatastore {
    */
   async delete (key: Key, options?: AbortOptions): Promise<void> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new DeleteObjectCommand({
           Bucket: this.bucket,
@@ -188,7 +185,6 @@ export class S3Datastore extends BaseDatastore {
    */
   async * _listKeys (params: { Prefix?: string, StartAfter?: string }, options?: AbortOptions): AsyncIterable<Key> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       const data = await this.s3.send(
         new ListObjectsV2Command({
           Bucket: this.bucket,
@@ -266,7 +262,6 @@ export class S3Datastore extends BaseDatastore {
    */
   async open (options?: AbortOptions): Promise<void> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
@@ -278,7 +273,6 @@ export class S3Datastore extends BaseDatastore {
     } catch (err: any) {
       if (err.statusCode !== 404) {
         if (this.createIfMissing) {
-          // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
           await this.s3.send(
             new CreateBucketCommand({
               Bucket: this.bucket

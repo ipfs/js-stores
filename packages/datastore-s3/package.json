@@ -146,8 +146,8 @@
     "datastore-core": "^9.0.0",
     "interface-datastore": "^8.0.0",
     "interface-store": "^5.0.0",
-    "it-filter": "^2.0.1",
-    "it-to-buffer": "^3.0.0",
+    "it-filter": "^3.0.0",
+    "it-to-buffer": "^4.0.1",
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
