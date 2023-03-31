@@ -1,3 +1,15 @@
+## [datastore-core-v9.1.1](https://github.com/ipfs/js-stores/compare/datastore-core-v9.1.0...datastore-core-v9.1.1) (2023-03-31)
+
+
+### Trivial Changes
+
+* rename master to main ([#200](https://github.com/ipfs/js-stores/issues/200)) ([f85d719](https://github.com/ipfs/js-stores/commit/f85d719b711cd60237bdaa6a0bcd418e69a98598))
+
+
+### Dependencies
+
+* update all it-* deps ([#213](https://github.com/ipfs/js-stores/issues/213)) ([e963497](https://github.com/ipfs/js-stores/commit/e963497fdb33e61e2fe702866abbd42fba648fee))
+
 ## [datastore-core-v9.1.0](https://github.com/ipfs/js-stores/compare/datastore-core-v9.0.4...datastore-core-v9.1.0) (2023-03-23)
 
 
