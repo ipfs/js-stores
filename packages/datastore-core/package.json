@@ -199,7 +199,7 @@
     "interface-store": "^5.0.0",
     "it-all": "^2.0.0",
     "it-drain": "^2.0.0",
-    "it-filter": "^2.0.1",
+    "it-filter": "^3.0.0",
     "it-map": "^2.0.1",
     "it-merge": "^2.0.0",
     "it-pipe": "^2.0.3",
