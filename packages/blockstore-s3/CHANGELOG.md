@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.2](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.1...blockstore-s3-v1.0.2) (2023-03-31)
+
+
+### Dependencies
+
+* update all it-* deps ([#213](https://github.com/ipfs/js-stores/issues/213)) ([e963497](https://github.com/ipfs/js-stores/commit/e963497fdb33e61e2fe702866abbd42fba648fee))
+
 ## [blockstore-s3-v1.0.1](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.0...blockstore-s3-v1.0.1) (2023-03-24)
 
 
