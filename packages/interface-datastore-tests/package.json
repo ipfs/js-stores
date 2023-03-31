@@ -139,7 +139,7 @@
     "iso-random-stream": "^2.0.0",
     "it-all": "^2.0.0",
     "it-drain": "^2.0.0",
-    "it-length": "^2.0.1",
+    "it-length": "^3.0.1",
     "uint8arrays": "^4.0.2"
   },
   "typedoc": {
