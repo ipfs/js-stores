@@ -137,7 +137,7 @@
     "aegir": "^38.1.0",
     "interface-blockstore": "^5.0.0",
     "it-all": "^2.0.0",
-    "it-drain": "^2.0.0",
+    "it-drain": "^3.0.1",
     "multiformats": "^11.0.2",
     "uint8arrays": "^4.0.2"
   },
