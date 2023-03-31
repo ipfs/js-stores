@@ -149,7 +149,7 @@
     "interface-datastore": "^8.0.0",
     "it-filter": "^2.0.1",
     "it-map": "^2.0.1",
-    "it-sort": "^2.0.1",
+    "it-sort": "^3.0.0",
     "it-take": "^2.0.0",
     "level": "^8.0.0"
   },

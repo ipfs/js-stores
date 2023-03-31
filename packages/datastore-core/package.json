@@ -204,7 +204,7 @@
     "it-merge": "^2.0.0",
     "it-pipe": "^2.0.3",
     "it-pushable": "^3.0.0",
-    "it-sort": "^2.0.1",
+    "it-sort": "^3.0.0",
     "it-take": "^2.0.0",
     "uint8arrays": "^4.0.2"
   },
