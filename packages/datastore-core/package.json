@@ -202,7 +202,7 @@
     "it-filter": "^2.0.1",
     "it-map": "^2.0.1",
     "it-merge": "^2.0.0",
-    "it-pipe": "^2.0.3",
+    "it-pipe": "^3.0.0",
     "it-pushable": "^3.0.0",
     "it-sort": "^2.0.1",
     "it-take": "^2.0.0",
