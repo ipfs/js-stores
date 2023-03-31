@@ -59,7 +59,6 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async put (key: CID, val: Uint8Array, options?: AbortOptions): Promise<CID> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.bucket,
@@ -81,7 +80,6 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       const data = await this.s3.send(
         new GetObjectCommand({
           Bucket: this.bucket,
@@ -125,7 +123,6 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async has (key: CID, options?: AbortOptions): Promise<boolean> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
@@ -156,7 +153,6 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async delete (key: CID, options?: AbortOptions): Promise<void> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new DeleteObjectCommand({
           Bucket: this.bucket,
@@ -175,7 +171,6 @@ export class S3Blockstore extends BaseBlockstore {
 
     try {
       while (true) {
-        // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
         const data = await this.s3.send(
           new ListObjectsV2Command({
             Bucket: this.bucket,
@@ -228,7 +223,6 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async open (options?: AbortOptions): Promise<void> {
     try {
-      // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
@@ -240,7 +234,6 @@ export class S3Blockstore extends BaseBlockstore {
     } catch (err: any) {
       if (err.statusCode !== 404) {
         if (this.createIfMissing) {
-          // @ts-expect-error the AWS AbortSignal types are different to the @types/node version
           await this.s3.send(
             new CreateBucketCommand({
               Bucket: this.bucket
