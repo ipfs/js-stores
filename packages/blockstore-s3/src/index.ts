@@ -16,7 +16,7 @@ import {
 import type { CID } from 'multiformats/cid'
 import { NextToLast, ShardingStrategy } from './sharding.js'
 
-export interface S3DatastoreInit {
+export interface S3BlockstoreInit {
   /**
    * Whether to try to create the bucket if it is missing when `.open` is called
    */
@@ -37,15 +37,15 @@ export class S3Blockstore extends BaseBlockstore {
   private readonly bucket: string
   private readonly shardingStrategy: ShardingStrategy
 
-  constructor (s3: S3, bucket: string, init?: S3DatastoreInit) {
+  constructor (s3: S3, bucket: string, init?: S3BlockstoreInit) {
     super()
 
     if (s3 == null) {
-      throw new Error('An S3 instance must be supplied. See the datastore-s3 README for examples.')
+      throw new Error('An S3 instance must be supplied. See the blockstore-s3 README for examples.')
     }
 
     if (bucket == null) {
-      throw new Error('An bucket must be supplied. See the datastore-s3 README for examples.')
+      throw new Error('An bucket must be supplied. See the blockstore-s3 README for examples.')
     }
 
     this.s3 = s3
