@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.3](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.2...blockstore-s3-v1.0.3) (2023-04-15)
+
+
+### Bug Fixes
+
+* replace datastore references in blockstore-s3 ([#214](https://github.com/ipfs/js-stores/issues/214)) ([1a65042](https://github.com/ipfs/js-stores/commit/1a65042cc37aa0f074b64cf070ed32df174ef1a1))
+
 ## [blockstore-s3-v1.0.2](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.1...blockstore-s3-v1.0.2) (2023-03-31)
 
 
