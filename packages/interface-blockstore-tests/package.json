@@ -134,7 +134,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "aegir": "^38.1.0",
+    "aegir": "^39.0.5",
     "interface-blockstore": "^5.0.0",
     "it-all": "^3.0.1",
     "it-drain": "^3.0.1",
