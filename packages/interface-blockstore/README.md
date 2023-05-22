@@ -10,6 +10,7 @@
 ## Table of contents <!-- omit in toc -->
 
 - [Install](#install)
+- [Implementations](#implementations)
 - [API Docs](#api-docs)
 - [License](#license)
 - [Contribute](#contribute)
@@ -19,6 +20,14 @@
 ```console
 $ npm i interface-blockstore
 ```
+
+## Implementations
+
+- File System: [`blockstore-fs`](https://github.com/ipfs/js-stores/tree/main/packages/blockstore-fs)
+- IndexedDB: [`blockstore-idb`](https://github.com/ipfs/js-stores/blob/main/packages/blockstore-idb)
+- level: [`blockstore-level`](https://github.com/ipfs/js-stores/tree/main/packages/blockstore-level) (supports any levelup compatible backend)
+- Memory: [`blockstore-core/memory`](https://github.com/ipfs/js-stores/blob/main/packages/blockstore-core/src/memory.ts)
+- S3: [`blockstore-s3`](https://github.com/ipfs/js-stores/tree/main/packages/blockstore-s3)
 
 ## API Docs
 
