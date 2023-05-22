@@ -39,6 +39,7 @@ Loading this module through a script tag will make it's exports available as `In
 
 - Backed Implementations
   - File System: [`datastore-fs`](https://github.com/ipfs/js-stores/tree/main/packages/datastore-fs)
+  - IndexedDB: [`datastore-idb`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-idb)
   - level: [`datastore-level`](https://github.com/ipfs/js-stores/tree/main/packages/datastore-level) (supports any levelup compatible backend)
   - Memory: [`datastore-core/memory`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/memory.ts)
   - S3: [`datastore-s3`](https://github.com/ipfs/js-stores/tree/main/packages/datastore-s3)
