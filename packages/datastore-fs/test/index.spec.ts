@@ -1,12 +1,12 @@
 /* eslint-env mocha */
-import { expect } from 'aegir/chai'
-import path from 'node:path'
 import fs from 'node:fs/promises'
-import { Key } from 'interface-datastore'
+import path from 'node:path'
+import { expect } from 'aegir/chai'
 import { ShardingDatastore, shard } from 'datastore-core'
+import { Key } from 'interface-datastore'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
-import { FsDatastore } from '../src/index.js'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
+import { FsDatastore } from '../src/index.js'
 
 const utf8Encoder = new TextEncoder()
 
@@ -115,7 +115,7 @@ describe('FsDatastore', () => {
     await fstore.open()
     await ShardingDatastore.create(fstore, new shard.NextToLast(2))
 
-    const file = await fs.readFile(path.join(dir, shard.SHARDING_FN + '.data'))
+    const file = await fs.readFile(path.join(dir, `${shard.SHARDING_FN}.data`))
     expect(file.toString()).to.be.eql('/repo/flatfs/shard/v1/next-to-last/2\n')
 
     await fs.rm(dir, {

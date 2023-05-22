@@ -3,12 +3,12 @@
 import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { sha256 } from 'multiformats/hashes/sha2'
-import type { Blockstore, Pair } from 'interface-blockstore'
 import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
+import { sha256 } from 'multiformats/hashes/sha2'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import type { Blockstore, Pair } from 'interface-blockstore'
 
 async function getKeyValuePair (data?: string): Promise<Pair> {
   const block = uint8ArrayFromString(data ?? `data-${Math.random()}`)
@@ -19,8 +19,8 @@ async function getKeyValuePair (data?: string): Promise<Pair> {
 }
 
 async function getKeyValuePairs (count: number): Promise<Pair[]> {
-  return await Promise.all(
-    new Array(count).fill(0).map(async (_, i) => await getKeyValuePair())
+  return Promise.all(
+    new Array(count).fill(0).map(async (_, i) => getKeyValuePair())
   )
 }
 
@@ -66,7 +66,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
 
-      const res = await all(store.getMany(data.map(d => d.cid)))
+      const res = await Promise.resolve(all(store.getMany(data.map(d => d.cid))))
       expect(res).to.deep.equal(data)
     })
   })
@@ -94,7 +94,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       expect(index).to.equal(data.length)
 
-      const res = await all(store.getMany(data.map(d => d.cid)))
+      const res = await Promise.resolve(all(store.getMany(data.map(d => d.cid))))
       expect(res).to.deep.equal(data)
     })
   })
@@ -156,7 +156,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       await store.put(cid, block)
       const source = [cid]
 
-      const res = await all(store.getMany(source))
+      const res = await Promise.resolve(all(store.getMany(source)))
       expect(res).to.have.lengthOf(1)
       expect(res[0].cid).to.deep.equal(cid)
       expect(res[0].block).to.equalBytes(block)
@@ -168,7 +168,8 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       } = await getKeyValuePair()
 
       try {
-        await drain(store.getMany([cid]))
+        // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+        await Promise.resolve(drain(store.getMany([cid])))
       } catch (err) {
         expect(err).to.have.property('code', 'ERR_NOT_FOUND')
         return
@@ -192,9 +193,10 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     it('returns all blocks', async () => {
       const data = await getKeyValuePairs(100)
 
-      await drain(store.putMany(data))
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+      await Promise.resolve(drain(store.putMany(data)))
 
-      const allBlocks = await all(store.getAll())
+      const allBlocks = await Promise.resolve(all(store.getAll()))
 
       expect(allBlocks).of.have.lengthOf(data.length)
 
@@ -243,12 +245,12 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       await Promise.all(data.map(async d => { await store.delete(d.cid) }))
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -267,9 +269,10 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     it('streaming', async () => {
       const data = await getKeyValuePairs(100)
 
-      await drain(store.putMany(data))
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+      await Promise.resolve(drain(store.putMany(data)))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
@@ -281,7 +284,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })

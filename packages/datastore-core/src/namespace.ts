@@ -1,6 +1,6 @@
 import { Key } from 'interface-datastore'
-import type { Datastore } from 'interface-datastore'
 import { KeyTransformDatastore } from './keytransform.js'
+import type { Datastore } from 'interface-datastore'
 
 /**
  * Wraps a given datastore into a keytransform which

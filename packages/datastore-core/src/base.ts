@@ -1,6 +1,6 @@
-import sort from 'it-sort'
 import drain from 'it-drain'
 import filter from 'it-filter'
+import sort from 'it-sort'
 import take from 'it-take'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
@@ -50,16 +50,22 @@ export class BaseDatastore implements Datastore {
     let dels: Key[] = []
 
     return {
-      put (key, value) {
+      put (key: Key, value) {
         puts.push({ key, value })
       },
 
       delete (key) {
         dels.push(key)
       },
+
       commit: async (options) => {
+        // @see https://github.com/ipfs/js-stores/issues/221
+        // eslint-disable-next-line @typescript-eslint/await-thenable, @typescript-eslint/no-confusing-void-expression
         await drain(this.putMany(puts, options))
         puts = []
+
+        // @see https://github.com/ipfs/js-stores/issues/221
+        // eslint-disable-next-line @typescript-eslint/await-thenable, @typescript-eslint/no-confusing-void-expression
         await drain(this.deleteMany(dels, options))
         dels = []
       }

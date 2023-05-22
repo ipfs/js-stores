@@ -1,17 +1,17 @@
 import fs from 'node:fs/promises'
-import glob from 'it-glob'
 import path from 'node:path'
 import { promisify } from 'util'
 import {
-  Key, KeyQuery, Pair, Query
-} from 'interface-datastore'
-import {
   BaseDatastore, Errors
 } from 'datastore-core'
-import map from 'it-map'
-import parallel from 'it-parallel-batch'
 // @ts-expect-error no types
 import fwa from 'fast-write-atomic'
+import {
+  Key, type KeyQuery, type Pair, type Query
+} from 'interface-datastore'
+import glob from 'it-glob'
+import map from 'it-map'
+import parallel from 'it-parallel-batch'
 import type { AwaitIterable } from 'interface-store'
 
 const writeAtomic = promisify(fwa)

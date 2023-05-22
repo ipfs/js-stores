@@ -1,28 +1,28 @@
+import { Key } from './key.js'
 import type {
   Await,
   AwaitIterable,
   Store,
   AbortOptions
 } from 'interface-store'
-import { Key } from './key.js'
 
 export interface Pair {
   key: Key
   value: Uint8Array
 }
 
-export interface Batch<BatchOptionsExtension = {}> {
+export interface Batch<BatchOptionsExtension = unknown> {
   put: (key: Key, value: Uint8Array) => void
   delete: (key: Key) => void
   commit: (options?: AbortOptions & BatchOptionsExtension) => Await<void>
 }
 
-export interface Datastore <HasOptionsExtension = {},
-PutOptionsExtension = {}, PutManyOptionsExtension = {},
-GetOptionsExtension = {}, GetManyOptionsExtension = {},
-DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {},
-QueryOptionsExtension = {}, QueryKeysOptionsExtension = {},
-BatchOptionsExtension = {}
+export interface Datastore <HasOptionsExtension = unknown,
+PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
+GetOptionsExtension = unknown, GetManyOptionsExtension = unknown,
+DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown,
+QueryOptionsExtension = unknown, QueryKeysOptionsExtension = unknown,
+BatchOptionsExtension = unknown,
 > extends Store<Key, Uint8Array, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,

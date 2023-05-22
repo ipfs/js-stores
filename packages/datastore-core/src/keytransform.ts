@@ -1,6 +1,6 @@
-import { BaseDatastore } from './base.js'
 import map from 'it-map'
 import { pipe } from 'it-pipe'
+import { BaseDatastore } from './base.js'
 import type { KeyTransform } from './index.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
@@ -22,17 +22,15 @@ export class KeyTransformDatastore extends BaseDatastore {
   }
 
   async put (key: Key, val: Uint8Array, options?: AbortOptions): Promise<Key> {
-    await this.child.put(this.transform.convert(key), val, options)
-
-    return key
+    return this.child.put(this.transform.convert(key), val, options)
   }
 
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
-    return await this.child.get(this.transform.convert(key), options)
+    return this.child.get(this.transform.convert(key), options)
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
-    return await this.child.has(this.transform.convert(key), options)
+    return this.child.has(this.transform.convert(key), options)
   }
 
   async delete (key: Key, options?: AbortOptions): Promise<void> {

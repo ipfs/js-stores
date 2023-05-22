@@ -1,11 +1,3 @@
-import filter from 'it-filter'
-import { Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import { BaseDatastore } from 'datastore-core/base'
-import * as Errors from 'datastore-core/errors'
-import { fromString as unint8arrayFromString } from 'uint8arrays'
-import toBuffer from 'it-to-buffer'
-import type { S3 } from '@aws-sdk/client-s3'
-import type { AbortOptions } from 'interface-store'
 import {
   PutObjectCommand,
   CreateBucketCommand,
@@ -14,6 +6,13 @@ import {
   DeleteObjectCommand,
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
+import { BaseDatastore, Errors } from 'datastore-core'
+import { Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import filter from 'it-filter'
+import toBuffer from 'it-to-buffer'
+import { fromString as unint8arrayFromString } from 'uint8arrays'
+import type { S3 } from '@aws-sdk/client-s3'
+import type { AbortOptions } from 'interface-store'
 
 export interface S3DatastoreInit {
   /**

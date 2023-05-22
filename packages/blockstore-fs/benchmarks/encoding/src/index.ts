@@ -1,11 +1,11 @@
-import { Bench } from 'tinybench'
-import { CID } from 'multiformats/cid'
-import { base8 } from 'multiformats/bases/base8'
 import { base10 } from 'multiformats/bases/base10'
 import { base16upper } from 'multiformats/bases/base16'
+import { base256emoji } from 'multiformats/bases/base256emoji'
 import { base32, base32upper, base32hexupper, base32z } from 'multiformats/bases/base32'
 import { base36, base36upper } from 'multiformats/bases/base36'
-import { base256emoji } from 'multiformats/bases/base256emoji'
+import { base8 } from 'multiformats/bases/base8'
+import { CID } from 'multiformats/cid'
+import { Bench } from 'tinybench'
 
 const RESULT_PRECISION = 2
 

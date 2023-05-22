@@ -1,12 +1,12 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import all from 'it-all'
 import { Key } from 'interface-datastore/key'
-import { MemoryDatastore } from '../src/memory.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { NamespaceDatastore } from '../src/namespace.js'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
+import all from 'it-all'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import { MemoryDatastore } from '../src/memory.js'
+import { NamespaceDatastore } from '../src/namespace.js'
 
 describe('NamespaceDatastore', () => {
   const prefixes = [
@@ -27,10 +27,10 @@ describe('NamespaceDatastore', () => {
     ].map((s) => new Key(s))
 
     await Promise.all(keys.map(async key => { await store.put(key, uint8ArrayFromString(key.toString())) }))
-    const nResults = Promise.all(keys.map(async (key) => await store.get(key)))
-    const mResults = Promise.all(keys.map(async (key) => await mStore.get(new Key(prefix).child(key))))
+    const nResults = Promise.all(keys.map(async (key) => store.get(key)))
+    const mResults = Promise.all(keys.map(async (key) => mStore.get(new Key(prefix).child(key))))
     const results = await Promise.all([nResults, mResults])
-    const mRes = await all(mStore.query({}))
+    const mRes = await Promise.resolve(all(mStore.query({})))
     const nRes = await all(store.query({}))
 
     expect(nRes).to.have.length(mRes.length)

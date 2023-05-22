@@ -1,12 +1,12 @@
 /* eslint-env mocha */
 
-import { randomBytes } from 'iso-random-stream'
 import { expect } from 'aegir/chai'
+import { type Datastore, Key, type KeyQueryFilter, type KeyQueryOrder, type Pair, type QueryFilter, type QueryOrder } from 'interface-datastore'
+import { randomBytes } from 'iso-random-stream'
 import all from 'it-all'
 import drain from 'it-drain'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { Datastore, Key, KeyQueryFilter, KeyQueryOrder, Pair, QueryFilter, QueryOrder } from 'interface-datastore'
 import length from 'it-length'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 export interface InterfacDatastoreTest<D extends Datastore = Datastore> {
   setup: () => D | Promise<D>
@@ -19,7 +19,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
   }
 
   const createStore = async (): Promise<D> => {
-    return await test.setup()
+    return test.setup()
   }
 
   describe('put', () => {
@@ -44,7 +44,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       await Promise.all(data.map(async d => { await store.put(d.key, d.value) }))
 
-      const res = await all(store.getMany(data.map(d => d.key)))
+      const res = await Promise.resolve(all(store.getMany(data.map(d => d.key))))
       expect(res).to.deep.equal(data)
     })
   })
@@ -73,7 +73,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       expect(index).to.equal(data.length)
 
-      const res = await all(store.getMany(data.map(d => d.key)))
+      const res = await Promise.resolve(all(store.getMany(data.map(d => d.key))))
       expect(res).to.deep.equal(data)
     })
   })
@@ -122,7 +122,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await store.put(k, uint8ArrayFromString('hello'))
       const source = [k]
 
-      const res = await all(store.getMany(source))
+      const res = await Promise.resolve(all(store.getMany(source)))
       expect(res).to.have.lengthOf(1)
       expect(res[0].key).to.be.eql(k)
       expect(res[0].value).to.be.eql(uint8ArrayFromString('hello'))
@@ -132,7 +132,8 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       const k = new Key('/does/not/exist')
 
       try {
-        await drain(store.getMany([k]))
+        // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+        await Promise.resolve(drain(store.getMany([k])))
       } catch (err) {
         expect(err).to.have.property('code', 'ERR_NOT_FOUND')
         return
@@ -168,12 +169,12 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       await Promise.all(data.map(async d => { await store.put(d[0], d[1]) }))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d[0])))
+      const res0 = await Promise.all(data.map(async d => store.has(d[0])))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       await Promise.all(data.map(async d => { await store.delete(d[0]) }))
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d[0])))
+      const res1 = await Promise.all(data.map(async d => store.has(d[0])))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -193,9 +194,10 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
         data.push({ key: new Key(`/a/key${i}`), value: uint8ArrayFromString(`data${i}`) })
       }
 
-      await drain(store.putMany(data))
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+      await Promise.resolve(drain(store.putMany(data)))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.key)))
+      const res0 = await Promise.all(data.map(async d => store.has(d.key)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
@@ -207,7 +209,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.key)))
+      const res1 = await Promise.all(data.map(async d => store.has(d.key)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -233,7 +235,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await b.commit()
 
       const keys = ['/a/one', '/q/two', '/q/three', '/z/old']
-      const res = await Promise.all(keys.map(async k => await store.has(new Key(k))))
+      const res = await Promise.all(keys.map(async k => store.has(new Key(k))))
 
       expect(res).to.be.eql([true, true, true, false])
     })
@@ -250,9 +252,13 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       await b.commit()
 
-      expect(await length(store.query({ prefix: '/a' }))).to.equal(count)
-      expect(await length(store.query({ prefix: '/z' }))).to.equal(count)
-      expect(await length(store.query({ prefix: '/q' }))).to.equal(count)
+      const length1 = await Promise.resolve(length(store.query({ prefix: '/a' })))
+      const length2 = await Promise.resolve(length(store.query({ prefix: '/z' })))
+      const length3 = await Promise.resolve(length(store.query({ prefix: '/q' })))
+
+      expect(length1).to.equal(count)
+      expect(length2).to.equal(count)
+      expect(length3).to.equal(count)
     })
   })
 
@@ -307,7 +313,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
     after(async () => { await cleanup(store) })
 
     tests.forEach(([name, query, expected]) => it(name, async () => {
-      let res = await all(store.query(query))
+      let res = await Promise.resolve(all(store.query(query)))
 
       if (Array.isArray(expected)) {
         if (query.orders == null) {
@@ -355,7 +361,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
         }
       }
 
-      const results = await all(store.query({}))
+      const results = await Promise.resolve(all(store.query({})))
 
       expect(firstIteration).to.be.false('Query did not return anything')
       expect(results.map(result => result.key)).to.have.deep.members([
@@ -367,7 +373,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
     it('queries while the datastore is being mutated', async () => {
       const writePromise = store.put(new Key(`/z/key-${Math.random()}`), uint8ArrayFromString('0'))
-      const results = await all(store.query({}))
+      const results = await Promise.resolve(all(store.query({})))
       expect(results.length).to.be.greaterThan(0)
       await writePromise
     })
@@ -425,7 +431,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
     after(async () => { await cleanup(store) })
 
     tests.forEach(([name, query, expected]) => it(name, async () => {
-      let res = await all(store.queryKeys(query))
+      let res = await Promise.resolve(all(store.queryKeys(query)))
 
       if (Array.isArray(expected)) {
         if (query.orders == null) {
@@ -467,7 +473,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
         }
       }
 
-      const results = await all(store.queryKeys({}))
+      const results = await Promise.resolve(all(store.queryKeys({})))
 
       expect(firstIteration).to.be.false('Query did not return anything')
       expect(results).to.have.deep.members([
@@ -479,7 +485,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
     it('queries while the datastore is being mutated', async () => {
       const writePromise = store.put(new Key(`/z/key-${Math.random()}`), uint8ArrayFromString('0'))
-      const results = await all(store.queryKeys({}))
+      const results = await Promise.resolve(all(store.queryKeys({})))
       expect(results.length).to.be.greaterThan(0)
       await writePromise
     })

@@ -1,18 +1,18 @@
 import fs from 'node:fs/promises'
-import glob from 'it-glob'
 import path from 'node:path'
 import { promisify } from 'node:util'
 import {
   Errors
 } from 'blockstore-core'
-import map from 'it-map'
-import parallelBatch from 'it-parallel-batch'
 // @ts-expect-error no types
 import fwa from 'fast-write-atomic'
-import type { CID } from 'multiformats/cid'
+import glob from 'it-glob'
+import map from 'it-map'
+import parallelBatch from 'it-parallel-batch'
+import { NextToLast, type ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AwaitIterable } from 'interface-store'
-import { NextToLast, ShardingStrategy } from './sharding.js'
+import type { CID } from 'multiformats/cid'
 
 const writeAtomic = promisify(fwa)
 
