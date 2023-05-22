@@ -134,12 +134,14 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "aegir": "^38.1.0",
     "interface-blockstore": "^5.0.0",
     "it-all": "^3.0.1",
     "it-drain": "^3.0.1",
     "multiformats": "^11.0.2",
     "uint8arrays": "^4.0.2"
+  },
+  "devDependencies": {
+    "aegir": "^39.0.8"
   },
   "typedoc": {
     "entryPoint": "./src/index.js"
