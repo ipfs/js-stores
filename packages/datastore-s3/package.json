@@ -151,7 +151,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^38.1.7",
+    "aegir": "^39.0.9",
     "interface-datastore-tests": "^5.0.0",
     "p-defer": "^4.0.0",
     "sinon": "^15.0.2"
