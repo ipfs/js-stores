@@ -24,9 +24,9 @@ $ npm i blockstore-fs
 ## Usage
 
 ```js
-import { FSBlockstore } from 'blockstore-fs'
+import { FsBlockstore } from 'blockstore-fs'
 
-const store = new FSBlockstore('path/to/store')
+const store = new FsBlockstore('path/to/store')
 ```
 
 ## API Docs
