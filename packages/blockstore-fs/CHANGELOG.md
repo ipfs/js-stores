@@ -1,3 +1,10 @@
+## [blockstore-fs-v1.1.3](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.2...blockstore-fs-v1.1.3) (2023-06-03)
+
+
+### Documentation
+
+* fix capitalization of import ([#226](https://github.com/ipfs/js-stores/issues/226)) ([837221a](https://github.com/ipfs/js-stores/commit/837221aff3ef4d217063eb17953aff03764e7600))
+
 ## [blockstore-fs-v1.1.2](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.1...blockstore-fs-v1.1.2) (2023-06-03)
 
 
