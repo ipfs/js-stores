@@ -4,6 +4,7 @@ import { promisify } from 'util'
 import {
   BaseDatastore, Errors
 } from 'datastore-core'
+// @ts-expect-error no types
 import fwa from 'fast-write-atomic'
 import {
   Key, type KeyQuery, type Pair, type Query
@@ -11,7 +12,6 @@ import {
 import glob from 'it-glob'
 import map from 'it-map'
 import parallel from 'it-parallel-batch'
-// @ts-expect-error no types
 import type { AwaitIterable } from 'interface-store'
 
 const writeAtomic = promisify(fwa)
