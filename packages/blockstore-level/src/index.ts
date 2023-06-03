@@ -1,13 +1,13 @@
-import type { Pair } from 'interface-blockstore'
 import { BaseBlockstore, Errors } from 'blockstore-core'
 import { Level } from 'level'
-import { CID } from 'multiformats/cid'
-import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
-import type { MultibaseCodec } from 'multiformats/bases/interface'
 import { base32upper } from 'multiformats/bases/base32'
+import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
+import type { Pair } from 'interface-blockstore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
+import type { MultibaseCodec } from 'multiformats/bases/interface'
 
 export interface LevelBlockstoreInit extends DatabaseOptions<string, Uint8Array>, OpenOptions {
   /**

@@ -3,12 +3,12 @@
 import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { sha256 } from 'multiformats/hashes/sha2'
-import type { Blockstore, Pair } from 'interface-blockstore'
 import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
+import { sha256 } from 'multiformats/hashes/sha2'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import type { Blockstore, Pair } from 'interface-blockstore'
 
 async function getKeyValuePair (data?: string): Promise<Pair> {
   const block = uint8ArrayFromString(data ?? `data-${Math.random()}`)
@@ -19,8 +19,8 @@ async function getKeyValuePair (data?: string): Promise<Pair> {
 }
 
 async function getKeyValuePairs (count: number): Promise<Pair[]> {
-  return await Promise.all(
-    new Array(count).fill(0).map(async (_, i) => await getKeyValuePair())
+  return Promise.all(
+    new Array(count).fill(0).map(async (_, i) => getKeyValuePair())
   )
 }
 
@@ -243,12 +243,12 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       await Promise.all(data.map(async d => { await store.delete(d.cid) }))
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -269,7 +269,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       await drain(store.putMany(data))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
@@ -281,7 +281,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.cid)))
+      const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })

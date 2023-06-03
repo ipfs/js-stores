@@ -2,13 +2,13 @@
 /* eslint max-nested-callbacks: ["error", 8] */
 
 import { expect, assert } from 'aegir/chai'
-import all from 'it-all'
 import { Key } from 'interface-datastore/key'
+import { interfaceDatastoreTests } from 'interface-datastore-tests'
+import all from 'it-all'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import { KeyTransformDatastore } from '../src/keytransform.js'
 import { MemoryDatastore } from '../src/memory.js'
 import { MountDatastore } from '../src/mount.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { interfaceDatastoreTests } from 'interface-datastore-tests'
-import { KeyTransformDatastore } from '../src/keytransform.js'
 import type { Datastore } from 'interface-datastore'
 
 const stripPrefixDatastore = (datastore: Datastore, prefix: Key): Datastore => {

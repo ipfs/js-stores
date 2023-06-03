@@ -1,6 +1,6 @@
-import type { Datastore } from 'interface-datastore'
 import { Key } from 'interface-datastore/key'
 import type { Shard } from './index.js'
+import type { Datastore } from 'interface-datastore'
 
 export const PREFIX = '/repo/flatfs/shard/'
 export const SHARDING_FN = 'SHARDING'
@@ -108,7 +108,7 @@ export function parseShardFun (str: string): Shard {
 
 export const readShardFun = async (path: string | Uint8Array, store: Datastore): Promise<Shard> => {
   const key = new Key(path).child(new Key(SHARDING_FN))
-  // @ts-expect-error
+  // @ts-expect-error not all stores have this
   const get = typeof store.getRaw === 'function' ? store.getRaw.bind(store) : store.get.bind(store)
   const res = await get(key)
   return parseShardFun(new TextDecoder().decode(res ?? '').trim())
