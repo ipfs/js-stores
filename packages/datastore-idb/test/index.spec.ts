@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
+import { expect } from 'aegir/chai'
 import { MountDatastore } from 'datastore-core'
 import { Key } from 'interface-datastore'
-import { IDBDatastore } from '../src/index.js'
-import { expect } from 'aegir/chai'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
+import { IDBDatastore } from '../src/index.js'
 
 describe('IndexedDB Datastore', function () {
   describe('interface-datastore (idb)', () => {

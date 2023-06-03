@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import all from 'it-all'
 import { Key } from 'interface-datastore/key'
-import { MemoryDatastore } from '../src/memory.js'
+import all from 'it-all'
 import { KeyTransformDatastore } from '../src/keytransform.js'
+import { MemoryDatastore } from '../src/memory.js'
 
 describe('KeyTransformDatastore', () => {
   it('basic', async () => {
@@ -33,8 +33,8 @@ describe('KeyTransformDatastore', () => {
       'foo/bar/baz/barb'
     ].map((s) => new Key(s))
     await Promise.all(keys.map(async (key) => { await kStore.put(key, key.uint8Array()) }))
-    const kResults = Promise.all(keys.map(async (key) => await kStore.get(key)))
-    const mResults = Promise.all(keys.map(async (key) => await mStore.get(new Key('abc').child(key))))
+    const kResults = Promise.all(keys.map(async (key) => kStore.get(key)))
+    const mResults = Promise.all(keys.map(async (key) => mStore.get(new Key('abc').child(key))))
     const results = await Promise.all([kResults, mResults])
     expect(results[0]).to.eql(results[1])
 

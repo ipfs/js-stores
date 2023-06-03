@@ -1,6 +1,6 @@
-import { openDB, deleteDB, IDBPDatabase } from 'idb'
-import { Batch, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import { Errors, BaseDatastore } from 'datastore-core'
+import { openDB, deleteDB, type IDBPDatabase } from 'idb'
+import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
 import filter from 'it-filter'
 import sort from 'it-sort'
 

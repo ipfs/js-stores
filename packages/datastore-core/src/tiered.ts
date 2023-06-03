@@ -1,8 +1,8 @@
+import { logger } from '@libp2p/logger'
+import drain from 'it-drain'
+import { pushable } from 'it-pushable'
 import { BaseDatastore } from './base.js'
 import * as Errors from './errors.js'
-import { logger } from '@libp2p/logger'
-import { pushable } from 'it-pushable'
-import drain from 'it-drain'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 

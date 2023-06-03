@@ -1,13 +1,12 @@
-import { Batch, Key, KeyQuery, KeyQueryFilter, Pair, Query, QueryFilter } from 'interface-datastore'
+import { type Batch, Key, type KeyQuery, type KeyQueryFilter, type Pair, type Query, type QueryFilter, type Datastore } from 'interface-datastore'
+import { BaseDatastore } from './base.js'
+import * as Errors from './errors.js'
+import { KeyTransformDatastore } from './keytransform.js'
 import {
   readShardFun,
   SHARDING_FN
 } from './shard.js'
-import { BaseDatastore } from './base.js'
-import { KeyTransformDatastore } from './keytransform.js'
-import * as Errors from './errors.js'
 import type { Shard } from './index.js'
-import type { Datastore } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 
 const shardKey = new Key(SHARDING_FN)
@@ -88,11 +87,11 @@ export class ShardingDatastore extends BaseDatastore {
   }
 
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
-    return await this.child.get(key, options)
+    return this.child.get(key, options)
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
-    return await this.child.has(key, options)
+    return this.child.has(key, options)
   }
 
   async delete (key: Key, options?: AbortOptions): Promise<void> {

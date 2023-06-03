@@ -1,6 +1,6 @@
-import sort from 'it-sort'
 import drain from 'it-drain'
 import filter from 'it-filter'
+import sort from 'it-sort'
 import take from 'it-take'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, Await, AwaitIterable } from 'interface-store'

@@ -1,11 +1,11 @@
-import { BaseBlockstore } from './base.js'
 import { base32 } from 'multiformats/bases/base32'
-import * as raw from 'multiformats/codecs/raw'
 import { CID } from 'multiformats/cid'
+import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
+import { BaseBlockstore } from './base.js'
 import * as Errors from './errors.js'
-import type { Await, AwaitIterable } from 'interface-store'
 import type { Pair } from 'interface-blockstore'
+import type { Await, AwaitIterable } from 'interface-store'
 
 export class MemoryBlockstore extends BaseBlockstore {
   private readonly data: Map<string, Uint8Array>

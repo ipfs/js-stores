@@ -1,13 +1,13 @@
 /* eslint-env mocha */
-import { expect } from 'aegir/chai'
-import path from 'node:path'
-import os from 'node:os'
 import fs from 'node:fs/promises'
-import { CID } from 'multiformats/cid'
+import os from 'node:os'
+import path from 'node:path'
+import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
+import { base256emoji } from 'multiformats/bases/base256emoji'
+import { CID } from 'multiformats/cid'
 import { FsBlockstore } from '../src/index.js'
 import { FlatDirectory, NextToLast } from '../src/sharding.js'
-import { base256emoji } from 'multiformats/bases/base256emoji'
 
 const utf8Encoder = new TextEncoder()
 

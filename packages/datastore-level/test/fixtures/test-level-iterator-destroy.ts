@@ -1,6 +1,6 @@
 import { Key } from 'interface-datastore/key'
-import { LevelDatastore } from '../../src/index.js'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
+import { LevelDatastore } from '../../src/index.js'
 
 async function testLevelIteratorDestroy (): Promise<void> {
   const store = new LevelDatastore(tempdir())
