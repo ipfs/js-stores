@@ -10,10 +10,10 @@ export interface Pair {
   block: Uint8Array
 }
 
-export interface Blockstore <HasOptionsExtension = {},
-PutOptionsExtension = {}, PutManyOptionsExtension = {},
-GetOptionsExtension = {}, GetManyOptionsExtension = {}, GetAllOptionsExtension = {},
-DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array, Pair, HasOptionsExtension,
+export interface Blockstore <HasOptionsExtension = unknown,
+PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
+GetOptionsExtension = unknown, GetManyOptionsExtension = unknown, GetAllOptionsExtension = unknown,
+DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown> extends Store<CID, Uint8Array, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
   DeleteOptionsExtension, DeleteManyOptionsExtension> {

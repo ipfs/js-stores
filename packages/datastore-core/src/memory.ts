@@ -1,5 +1,5 @@
-import { BaseDatastore } from './base.js'
 import { Key } from 'interface-datastore/key'
+import { BaseDatastore } from './base.js'
 import * as Errors from './errors.js'
 import type { Pair } from 'interface-datastore'
 import type { Await, AwaitIterable } from 'interface-store'

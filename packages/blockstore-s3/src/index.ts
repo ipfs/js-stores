@@ -1,10 +1,3 @@
-import type { Pair } from 'interface-blockstore'
-import { BaseBlockstore } from 'blockstore-core/base'
-import * as Errors from 'blockstore-core/errors'
-import { fromString as unint8arrayFromString } from 'uint8arrays'
-import toBuffer from 'it-to-buffer'
-import type { S3 } from '@aws-sdk/client-s3'
-import type { AbortOptions } from 'interface-store'
 import {
   PutObjectCommand,
   CreateBucketCommand,
@@ -13,8 +6,15 @@ import {
   DeleteObjectCommand,
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
+import { BaseBlockstore } from 'blockstore-core/base'
+import * as Errors from 'blockstore-core/errors'
+import toBuffer from 'it-to-buffer'
+import { fromString as unint8arrayFromString } from 'uint8arrays'
+import { NextToLast, type ShardingStrategy } from './sharding.js'
+import type { S3 } from '@aws-sdk/client-s3'
+import type { Pair } from 'interface-blockstore'
+import type { AbortOptions } from 'interface-store'
 import type { CID } from 'multiformats/cid'
-import { NextToLast, ShardingStrategy } from './sharding.js'
 
 export interface S3BlockstoreInit {
   /**

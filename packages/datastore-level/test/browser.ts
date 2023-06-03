@@ -2,8 +2,8 @@
 
 import { MountDatastore } from 'datastore-core'
 import { Key } from 'interface-datastore/key'
-import { LevelDatastore } from '../src/index.js'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
+import { LevelDatastore } from '../src/index.js'
 
 describe('LevelDatastore', () => {
   describe('interface-datastore (leveljs)', () => {

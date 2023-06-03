@@ -1,7 +1,7 @@
 
 import { nanoid } from 'nanoid'
-import { SupportedEncodings, toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import { type SupportedEncodings, toString as uint8ArrayToString } from 'uint8arrays/to-string'
 
 const pathSepS = '/'
 const pathSepB = new TextEncoder().encode(pathSepS)
@@ -385,7 +385,6 @@ export class Key {
    * Checks if this key has only one namespace.
    *
    * @returns {boolean}
-   *
    */
   isTopLevel (): boolean {
     return this.list().length === 1

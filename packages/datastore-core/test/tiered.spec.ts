@@ -2,10 +2,10 @@
 
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
+import { interfaceDatastoreTests } from 'interface-datastore-tests'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { MemoryDatastore } from '../src/memory.js'
 import { TieredDatastore } from '../src/tiered.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import type { Datastore } from 'interface-datastore'
 
 /**

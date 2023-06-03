@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 
-import { expect } from 'aegir/chai'
-import path from 'path'
-import { Key } from 'interface-datastore/key'
-import { MountDatastore } from 'datastore-core'
 import childProcess from 'child_process'
+import path from 'path'
+import { expect } from 'aegir/chai'
+import { MountDatastore } from 'datastore-core'
+import { Key } from 'interface-datastore/key'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
-import { LevelDatastore } from '../src/index.js'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
+import { LevelDatastore } from '../src/index.js'
 
 describe('LevelDatastore', () => {
   describe('interface-datastore (leveldown)', () => {

@@ -1,11 +1,11 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import { MemoryLevel } from 'memory-level'
-import { Level } from 'level'
-import { LevelBlockstore } from '../src/index.js'
-import tempdir from 'ipfs-utils/src/temp-dir.js'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
+import tempdir from 'ipfs-utils/src/temp-dir.js'
+import { Level } from 'level'
+import { MemoryLevel } from 'memory-level'
+import { LevelBlockstore } from '../src/index.js'
 
 describe('LevelBlockstore', () => {
   describe('initialization', () => {

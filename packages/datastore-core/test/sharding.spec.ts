@@ -2,9 +2,10 @@
 
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
-import { MemoryDatastore } from '../src/memory.js'
+import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
+import { MemoryDatastore } from '../src/memory.js'
 import {
   NextToLast,
   SHARDING_FN
@@ -12,7 +13,6 @@ import {
 import {
   ShardingDatastore
 } from '../src/sharding.js'
-import { interfaceDatastoreTests } from 'interface-datastore-tests'
 
 describe('ShardingDatastore', () => {
   it('create', async () => {
@@ -28,7 +28,7 @@ describe('ShardingDatastore', () => {
 
   it('open - empty', () => {
     const ms = new MemoryDatastore()
-    // @ts-expect-error
+    // @ts-expect-error shard is missing
     const store = new ShardingDatastore(ms)
     return expect(store.open())
       .to.eventually.be.rejected()
