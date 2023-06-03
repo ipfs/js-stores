@@ -15,6 +15,7 @@
 - [Usage](#usage)
   - [BaseBlockstore](#baseblockstore)
   - [MemoryBlockstore](#memoryblockstore)
+  - [BlackHoleBlockstore](#blackholeblockstore)
 - [API Docs](#api-docs)
 - [License](#license)
 - [Contribute](#contribute)
@@ -35,8 +36,9 @@ Loading this module through a script tag will make it's exports available as `Bl
 
 ## Implementations
 
-- Base: [`src/base`](src/base.js)
-- Memory: [`src/memory`](src/memory.js)
+- Base: [`src/base`](src/base.ts)
+- Memory: [`src/memory`](src/memory.ts)
+- BlackHole: ['src/blackhole](src/blackhole.ts)
 
 ## Usage
 
@@ -68,6 +70,16 @@ A simple Blockstore that stores blocks in memory.
 import { MemoryBlockstore } from 'blockstore-core/memory'
 
 const store = new MemoryBlockstore()
+```
+
+### BlackHoleBlockstore
+
+A Blockstore that does not store any blocks.
+
+```js
+import { BlackHoleBlockstore } from 'blockstore-core/black-hole'
+
+const store = new BlackHoleBlockstore()
 ```
 
 ## API Docs

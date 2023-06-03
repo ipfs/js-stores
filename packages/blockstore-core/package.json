@@ -55,6 +55,10 @@
       "types": "./dist/src/base.d.ts",
       "import": "./dist/src/base.js"
     },
+    "./black-hole": {
+      "types": "./dist/src/black-hole.d.ts",
+      "import": "./dist/src/black-hole.js"
+    },
     "./errors": {
       "types": "./dist/src/errors.d.ts",
       "import": "./dist/src/errors.js"

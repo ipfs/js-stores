@@ -37,11 +37,12 @@ Loading this module through a script tag will make it's exports available as `Da
 ## Implementations
 
 - Wrapper Implementations
-  - Mount: [`src/mount`](src/mount.js)
-  - Keytransform: [`src/keytransform`](src/keytransform.js)
-  - Sharding: [`src/sharding`](src/sharding.js)
-  - Tiered: [`src/tiered`](src/tirered.js)
-  - Namespace: [`src/namespace`](src/namespace.js)
+  - Mount: [`src/mount`](src/mount.ts)
+  - Keytransform: [`src/keytransform`](src/keytransform.ts)
+  - Sharding: [`src/sharding`](src/sharding.ts)
+  - Tiered: [`src/tiered`](src/tirered.ts)
+  - Namespace: [`src/namespace`](src/namespace.ts)
+  - BlackHole: [`src/black-hole`](src/black-hole.ts)
 
 ## Usage
 
@@ -81,6 +82,16 @@ import {
 } from 'datastore-core'
 
 const store = new MountStore({prefix: new Key('/a'), datastore: new MemoryStore()})
+```
+
+### BlackHoleDatastore
+
+A datastore that does not store any data.
+
+```js
+import { BlackHoleDatastore } from 'datastore-core/black-hole'
+
+const store = new BlackHoleDatastore()
 ```
 
 ## Contribute
