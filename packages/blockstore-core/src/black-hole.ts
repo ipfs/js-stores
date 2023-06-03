@@ -1,8 +1,8 @@
-import { type CID } from 'multiformats/cid'
 import { BaseBlockstore } from './base.js'
 import * as Errors from './errors.js'
 import type { Pair } from 'interface-blockstore'
 import type { Await, AwaitIterable } from 'interface-store'
+import type { CID } from 'multiformats/cid'
 
 export class BlackHoleBlockstore extends BaseBlockstore {
   put (key: CID): Await<CID> {
