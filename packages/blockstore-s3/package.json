@@ -151,6 +151,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
+    "@types/sinon": "^10.0.15",
     "aegir": "^39.0.9",
     "interface-blockstore-tests": "^6.0.0",
     "p-defer": "^4.0.0",

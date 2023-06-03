@@ -1,12 +1,12 @@
 /* eslint-env mocha */
 
-import { randomBytes } from 'iso-random-stream'
 import { expect } from 'aegir/chai'
+import { type Datastore, Key, type KeyQueryFilter, type KeyQueryOrder, type Pair, type QueryFilter, type QueryOrder } from 'interface-datastore'
+import { randomBytes } from 'iso-random-stream'
 import all from 'it-all'
 import drain from 'it-drain'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { Datastore, Key, KeyQueryFilter, KeyQueryOrder, Pair, QueryFilter, QueryOrder } from 'interface-datastore'
 import length from 'it-length'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 export interface InterfacDatastoreTest<D extends Datastore = Datastore> {
   setup: () => D | Promise<D>
@@ -19,7 +19,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
   }
 
   const createStore = async (): Promise<D> => {
-    return await test.setup()
+    return test.setup()
   }
 
   describe('put', () => {
