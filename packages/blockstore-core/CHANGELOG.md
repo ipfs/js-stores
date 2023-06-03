@@ -1,3 +1,10 @@
+## [blockstore-core-v4.2.0](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.1.1...blockstore-core-v4.2.0) (2023-06-03)
+
+
+### Features
+
+* add black hole stores ([#227](https://github.com/ipfs/js-stores/issues/227)) ([6074f0f](https://github.com/ipfs/js-stores/commit/6074f0fa831abc45b40177ea498a2e0fbb3eeb32))
+
 ## [blockstore-core-v4.1.1](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.1.0...blockstore-core-v4.1.1) (2023-06-03)
 
 
