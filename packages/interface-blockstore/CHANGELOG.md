@@ -1,3 +1,10 @@
+## [interface-blockstore-v5.2.2](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.1...interface-blockstore-v5.2.2) (2023-06-03)
+
+
+### Documentation
+
+* Update Blockstore and Datastore implementation lists ([#224](https://github.com/ipfs/js-stores/issues/224)) ([ab3b31b](https://github.com/ipfs/js-stores/commit/ab3b31b5ae2dba4b5ddb4b79740afb7c003aedae))
+
 ## [interface-blockstore-v5.2.1](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.0...interface-blockstore-v5.2.1) (2023-06-03)
 
 
