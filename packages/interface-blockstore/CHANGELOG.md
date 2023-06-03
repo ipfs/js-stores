@@ -1,3 +1,15 @@
+## [interface-blockstore-v5.2.1](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.0...interface-blockstore-v5.2.1) (2023-06-03)
+
+
+### Trivial Changes
+
+* rename master to main ([#200](https://github.com/ipfs/js-stores/issues/200)) ([f85d719](https://github.com/ipfs/js-stores/commit/f85d719b711cd60237bdaa6a0bcd418e69a98598))
+
+
+### Dependencies
+
+* bump aegir from 38.1.8 to 39.0.9 ([#225](https://github.com/ipfs/js-stores/issues/225)) ([d0f301b](https://github.com/ipfs/js-stores/commit/d0f301b1243a0f4f692011449567b51b2706e70f))
+
 ## [interface-blockstore-v5.2.0](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.1.1...interface-blockstore-v5.2.0) (2023-03-23)
 
 
