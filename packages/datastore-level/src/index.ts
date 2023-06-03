@@ -1,9 +1,9 @@
-import { Batch, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import { BaseDatastore, Errors } from 'datastore-core'
+import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
 import filter from 'it-filter'
 import map from 'it-map'
-import take from 'it-take'
 import sort from 'it-sort'
+import take from 'it-take'
 import { Level } from 'level'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
@@ -232,7 +232,7 @@ function oldLevelIteratorToIterator (li: OldLevelIterator): AsyncIterable<Pair> 
   return {
     [Symbol.asyncIterator] () {
       return {
-        next: async () => await new Promise((resolve, reject) => {
+        next: async () => new Promise((resolve, reject) => {
           li.next((err, key, value) => {
             if (err != null) {
               reject(err); return
@@ -249,7 +249,7 @@ function oldLevelIteratorToIterator (li: OldLevelIterator): AsyncIterable<Pair> 
             resolve({ done: false, value: { key: new Key(key, false), value } })
           })
         }),
-        return: async () => await new Promise((resolve, reject) => {
+        return: async () => new Promise((resolve, reject) => {
           li.end(err => {
             if (err != null) {
               reject(err); return

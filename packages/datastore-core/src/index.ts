@@ -1,7 +1,7 @@
-import type { Key } from 'interface-datastore'
 
 import * as Errors from './errors.js'
 import * as shard from './shard.js'
+import type { Key } from 'interface-datastore'
 
 export { BaseDatastore } from './base.js'
 export { MemoryDatastore } from './memory.js'

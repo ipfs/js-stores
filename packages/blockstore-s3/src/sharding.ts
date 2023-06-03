@@ -1,5 +1,5 @@
-import { CID } from 'multiformats/cid'
 import { base32upper } from 'multiformats/bases/base32'
+import { CID } from 'multiformats/cid'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
 
 export interface ShardingStrategy {

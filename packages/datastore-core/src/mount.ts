@@ -1,9 +1,9 @@
 import filter from 'it-filter'
-import take from 'it-take'
 import merge from 'it-merge'
+import sort from 'it-sort'
+import take from 'it-take'
 import { BaseDatastore } from './base.js'
 import * as Errors from './errors.js'
-import sort from 'it-sort'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions } from 'interface-store'
 
@@ -54,15 +54,15 @@ export class MountDatastore extends BaseDatastore {
     if (match == null) {
       throw Errors.notFoundError(new Error('No datastore mounted for this key'))
     }
-    return await match.datastore.get(key, options)
+    return match.datastore.get(key, options)
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
     const match = this._lookup(key)
     if (match == null) {
-      return await Promise.resolve(false)
+      return Promise.resolve(false)
     }
-    return await match.datastore.has(key, options)
+    return match.datastore.has(key, options)
   }
 
   async delete (key: Key, options?: AbortOptions): Promise<void> {

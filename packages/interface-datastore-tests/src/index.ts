@@ -168,12 +168,12 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       await Promise.all(data.map(async d => { await store.put(d[0], d[1]) }))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d[0])))
+      const res0 = await Promise.all(data.map(async d => store.has(d[0])))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       await Promise.all(data.map(async d => { await store.delete(d[0]) }))
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d[0])))
+      const res1 = await Promise.all(data.map(async d => store.has(d[0])))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -195,7 +195,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       await drain(store.putMany(data))
 
-      const res0 = await Promise.all(data.map(async d => await store.has(d.key)))
+      const res0 = await Promise.all(data.map(async d => store.has(d.key)))
       res0.forEach(res => expect(res).to.be.eql(true))
 
       let index = 0
@@ -207,7 +207,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
 
       expect(index).to.equal(data.length)
 
-      const res1 = await Promise.all(data.map(async d => await store.has(d.key)))
+      const res1 = await Promise.all(data.map(async d => store.has(d.key)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
   })
@@ -233,7 +233,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await b.commit()
 
       const keys = ['/a/one', '/q/two', '/q/three', '/z/old']
-      const res = await Promise.all(keys.map(async k => await store.has(new Key(k))))
+      const res = await Promise.all(keys.map(async k => store.has(new Key(k))))
 
       expect(res).to.be.eql([true, true, true, false])
     })

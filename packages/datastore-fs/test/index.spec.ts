@@ -1,12 +1,12 @@
 /* eslint-env mocha */
-import { expect } from 'aegir/chai'
-import path from 'node:path'
 import fs from 'node:fs/promises'
-import { Key } from 'interface-datastore'
+import path from 'node:path'
+import { expect } from 'aegir/chai'
 import { ShardingDatastore, shard } from 'datastore-core'
+import { Key } from 'interface-datastore'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
-import { FsDatastore } from '../src/index.js'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
+import { FsDatastore } from '../src/index.js'
 
 const utf8Encoder = new TextEncoder()
 

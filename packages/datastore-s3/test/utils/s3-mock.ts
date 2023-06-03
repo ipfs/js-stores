@@ -30,7 +30,7 @@ export const s3Reject = <T> (err: T): any => {
  */
 export function s3Mock (s3: S3): S3 {
   const mocks: any = {}
-  const storage: Map<string, any> = new Map()
+  const storage = new Map<string, any>()
 
   mocks.send = sinon.replace(s3, 'send', (command: any) => {
     const commandName = command.constructor.name
