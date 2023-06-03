@@ -38,16 +38,17 @@ Loading this module through a script tag will make it's exports available as `In
 ## Implementations
 
 - Backed Implementations
-  - Memory: [`datastore-core/memory`](https://github.com/ipfs/js-datastore-core/tree/master/src/memory.js)
-  - level: [`datastore-level`](https://github.com/ipfs/js-datastore-level) (supports any levelup compatible backend)
-  - File System: [`datstore-fs`](https://github.com/ipfs/js-datastore-fs)
-  - S3: [`datstore-s3`](https://github.com/ipfs/js-datastore-s3)
+  - File System: [`datastore-fs`](https://github.com/ipfs/js-stores/tree/main/packages/datastore-fs)
+  - IndexedDB: [`datastore-idb`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-idb)
+  - level: [`datastore-level`](https://github.com/ipfs/js-stores/tree/main/packages/datastore-level) (supports any levelup compatible backend)
+  - Memory: [`datastore-core/memory`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/memory.ts)
+  - S3: [`datastore-s3`](https://github.com/ipfs/js-stores/tree/main/packages/datastore-s3)
 - Wrapper Implementations
-  - Mount: [`datastore-core/src/mount`](https://github.com/ipfs/js-datastore-core/tree/master/src/mount.js)
-  - Keytransform: [`datstore-core/src/keytransform`](https://github.com/ipfs/js-datastore-core/tree/master/src/keytransform.js)
-  - Sharding: [`datastore-core/src/sharding`](https://github.com/ipfs/js-datastore-core/tree/master/src/sharding.js)
-  - Tiered: [`datstore-core/src/tiered`](https://github.com/ipfs/js-datastore-core/blob/master/src/tiered.js)
-  - Namespace: [`datastore-core/src/namespace`](https://github.com/ipfs/js-datastore-core/tree/master/src/namespace.js)
+  - Keytransform: [`datstore-core/src/keytransform`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/keytransform.ts)
+  - Mount: [`datastore-core/src/mount`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/mount.ts)
+  - Namespace: [`datastore-core/src/namespace`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/namespace.ts)
+  - Sharding: [`datastore-core/src/sharding`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/sharding.ts)
+  - Tiered: [`datstore-core/src/tiered`](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/tiered.ts)
 
 If you want the same functionality as [go-ds-flatfs](https://github.com/ipfs/go-ds-flatfs), use sharding with fs.
 
