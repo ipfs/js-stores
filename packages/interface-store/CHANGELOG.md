@@ -1,3 +1,10 @@
+## [interface-store-v5.1.2](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.1...interface-store-v5.1.2) (2023-06-07)
+
+
+### Bug Fixes
+
+* restore empty object default ([#228](https://github.com/ipfs/js-stores/issues/228)) ([f82d02c](https://github.com/ipfs/js-stores/commit/f82d02cc8742b595939b58e2eae0a86bb1cec6b1))
+
 ## [interface-store-v5.1.1](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.0...interface-store-v5.1.1) (2023-06-03)
 
 
