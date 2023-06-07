@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-types */
+// this ignore is so we can use {} as the default value for the options
+// extensions below - it normally means "any non-nullish value" but here
+// we are using it as an intersection type - see the aside at the bottom:
+// https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
+
 import type {
   AbortOptions,
   AwaitIterable,
@@ -10,10 +16,10 @@ export interface Pair {
   block: Uint8Array
 }
 
-export interface Blockstore <HasOptionsExtension = unknown,
-PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
-GetOptionsExtension = unknown, GetManyOptionsExtension = unknown, GetAllOptionsExtension = unknown,
-DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown> extends Store<CID, Uint8Array, Pair, HasOptionsExtension,
+export interface Blockstore <HasOptionsExtension = {},
+PutOptionsExtension = {}, PutManyOptionsExtension = {},
+GetOptionsExtension = {}, GetManyOptionsExtension = {}, GetAllOptionsExtension = {},
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
   DeleteOptionsExtension, DeleteManyOptionsExtension> {

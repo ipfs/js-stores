@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-types */
+// this ignore is so we can use {} as the default value for the options
+// extensions below - it normally means "any non-nullish value" but here
+// we are using it as an intersection type - see the aside at the bottom:
+// https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
 
 /**
  * An iterable or async iterable of values
@@ -16,10 +21,10 @@ export interface AbortOptions {
   signal?: AbortSignal
 }
 
-export interface Store<Key, Value, Pair, HasOptionsExtension = unknown,
-  PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
-  GetOptionsExtension = unknown, GetManyOptionsExtension = unknown,
-  DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown> {
+export interface Store<Key, Value, Pair, HasOptionsExtension = {},
+  PutOptionsExtension = {}, PutManyOptionsExtension = {},
+  GetOptionsExtension = {}, GetManyOptionsExtension = {},
+  DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> {
   /**
    * Check for the existence of a value for the passed key
    *

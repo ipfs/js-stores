@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-types */
+// this ignore is so we can use {} as the default value for the options
+// extensions below - it normally means "any non-nullish value" but here
+// we are using it as an intersection type - see the aside at the bottom:
+// https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
+
 import { Key } from './key.js'
 import type {
   Await,
@@ -11,18 +17,18 @@ export interface Pair {
   value: Uint8Array
 }
 
-export interface Batch<BatchOptionsExtension = unknown> {
+export interface Batch<BatchOptionsExtension = {}> {
   put: (key: Key, value: Uint8Array) => void
   delete: (key: Key) => void
   commit: (options?: AbortOptions & BatchOptionsExtension) => Await<void>
 }
 
-export interface Datastore <HasOptionsExtension = unknown,
-PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
-GetOptionsExtension = unknown, GetManyOptionsExtension = unknown,
-DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown,
-QueryOptionsExtension = unknown, QueryKeysOptionsExtension = unknown,
-BatchOptionsExtension = unknown
+export interface Datastore <HasOptionsExtension = {},
+PutOptionsExtension = {}, PutManyOptionsExtension = {},
+GetOptionsExtension = {}, GetManyOptionsExtension = {},
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {},
+QueryOptionsExtension = {}, QueryKeysOptionsExtension = {},
+BatchOptionsExtension = {}
 > extends Store<Key, Uint8Array, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
