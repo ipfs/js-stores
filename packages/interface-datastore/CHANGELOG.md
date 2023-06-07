@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.3](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.2...interface-datastore-v8.2.3) (2023-06-07)
+
+
+### Bug Fixes
+
+* restore empty object default ([#228](https://github.com/ipfs/js-stores/issues/228)) ([f82d02c](https://github.com/ipfs/js-stores/commit/f82d02cc8742b595939b58e2eae0a86bb1cec6b1))
+
 ## [interface-datastore-v8.2.2](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.1...interface-datastore-v8.2.2) (2023-06-03)
 
 
