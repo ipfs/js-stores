@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
 import { Key } from './key.js'
 import type {
   Await,
@@ -11,18 +13,18 @@ export interface Pair {
   value: Uint8Array
 }
 
-export interface Batch<BatchOptionsExtension = unknown> {
+export interface Batch<BatchOptionsExtension = {}> {
   put: (key: Key, value: Uint8Array) => void
   delete: (key: Key) => void
   commit: (options?: AbortOptions & BatchOptionsExtension) => Await<void>
 }
 
-export interface Datastore <HasOptionsExtension = unknown,
-PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
-GetOptionsExtension = unknown, GetManyOptionsExtension = unknown,
-DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown,
-QueryOptionsExtension = unknown, QueryKeysOptionsExtension = unknown,
-BatchOptionsExtension = unknown
+export interface Datastore <HasOptionsExtension = {},
+PutOptionsExtension = {}, PutManyOptionsExtension = {},
+GetOptionsExtension = {}, GetManyOptionsExtension = {},
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {},
+QueryOptionsExtension = {}, QueryKeysOptionsExtension = {},
+BatchOptionsExtension = {}
 > extends Store<Key, Uint8Array, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,

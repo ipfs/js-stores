@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 
 /**
  * An iterable or async iterable of values
@@ -16,10 +17,10 @@ export interface AbortOptions {
   signal?: AbortSignal
 }
 
-export interface Store<Key, Value, Pair, HasOptionsExtension = unknown,
-  PutOptionsExtension = unknown, PutManyOptionsExtension = unknown,
-  GetOptionsExtension = unknown, GetManyOptionsExtension = unknown,
-  DeleteOptionsExtension = unknown, DeleteManyOptionsExtension = unknown> {
+export interface Store<Key, Value, Pair, HasOptionsExtension = {},
+  PutOptionsExtension = {}, PutManyOptionsExtension = {},
+  GetOptionsExtension = {}, GetManyOptionsExtension = {},
+  DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> {
   /**
    * Check for the existence of a value for the passed key
    *
