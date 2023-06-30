@@ -24,9 +24,9 @@ $ npm i blockstore-filestore
 ## Usage
 
 ```js
-import { FilestoreBlockstore } from 'blockstore-filestore'
+import { Filestore } from 'blockstore-filestore'
 
-const store = new FilestoreBlockstore(blockstore, datastore)
+const store = new Filestore(blockstore, datastore)
 ```
 
 ## API Docs
