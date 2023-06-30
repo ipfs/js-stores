@@ -18,20 +18,18 @@
 ## Install
 
 ```console
-$ npm i blockstore-fs
+$ npm i blockstore-filestore
 ```
 
 ## Usage
 
 ```js
-import { FsBlockstore } from 'blockstore-fs'
+import { FilestoreBlockstore } from 'blockstore-filestore'
 
-const store = new FsBlockstore('path/to/store')
+const store = new FilestoreBlockstore(blockstore, datastore)
 ```
 
 ## API Docs
-
-- <https://ipfs.github.io/js-stores/modules/blockstore_fs.html>
 
 ## License
 
