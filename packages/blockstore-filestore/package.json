@@ -160,18 +160,15 @@
     "docs": "aegir docs"
   },
   "dependencies": {
-    "blockstore-core": "^4.0.0",
-    "fast-write-atomic": "^0.2.0",
-    "interface-blockstore": "^5.0.0",
-    "interface-store": "^5.0.0",
-    "it-glob": "^2.0.1",
-    "it-map": "^3.0.1",
-    "it-parallel-batch": "^3.0.0",
-    "multiformats": "^11.0.2"
+    "interface-datastore": "^8.2.3",
+    "multiformats": "^12.0.1",
+    "protons-runtime": "^5.0.0"
   },
   "devDependencies": {
     "aegir": "^39.0.9",
-    "interface-blockstore-tests": "^6.0.0"
+    "interface-blockstore": "^5.2.3",
+    "interface-store": "^5.1.2",
+    "protons": "^7.0.2"
   },
   "typedoc": {
     "entryPoint": "./src/index.ts"
