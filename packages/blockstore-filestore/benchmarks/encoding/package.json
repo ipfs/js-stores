@@ -1,0 +1,18 @@
+{
+  "name": "benchmarks-encoding",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "aegir clean",
+    "build": "aegir build --bundle false",
+    "lint": "aegir lint",
+    "dep-check": "aegir dep-check",
+    "start": "npm run build && node dist/src/index.js"
+  },
+  "devDependencies": {
+    "multiformats": "^11.0.1",
+    "tinybench": "^2.4.0"
+  }
+}
