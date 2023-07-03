@@ -161,7 +161,6 @@
     "docs": "aegir docs"
   },
   "dependencies": {
-    "@ipld/dag-pb": "^4.0.4",
     "interface-datastore": "^8.2.3",
     "multiformats": "^12.0.1",
     "protons-runtime": "^5.0.0"

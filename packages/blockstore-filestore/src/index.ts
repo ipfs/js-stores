@@ -1,10 +1,10 @@
 import { DataObj } from './pb/dataobj.js'
 import { readChunk, cidToKey, keyToCid } from './utils.js'
-import * as dagPb from '@ipld/dag-pb'
+import { CID } from 'multiformats/cid'
+import { sha256 } from 'multiformats/hashes/sha2'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { Datastore } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable, Await } from 'interface-store'
-import type { CID } from 'multiformats/cid'
 
 export class Filestore implements Blockstore {
   private readonly blockstore: Blockstore
@@ -26,13 +26,14 @@ export class Filestore implements Blockstore {
     const index = await this.datastore.get(dKey, options)
     const dataObj = DataObj.decode(index)
     const chunk = await readChunk(dataObj.FilePath, dataObj.Offset, dataObj.Size)
+    const hash = await sha256.digest(chunk)
+    const cid = CID.create(1, 0x55, hash)
 
-    const block = dagPb.encode({
-      Links: [],
-      Data: chunk
-    });
+    if (!cid.equals(key)) {
+      throw new Error("CID does not match.")
+    }
 
-    return block
+    return chunk
   }
 
   async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<Pair, void, undefined> {
