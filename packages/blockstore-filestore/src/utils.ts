@@ -13,7 +13,7 @@ export const keyToCid = (key: Key): CID => {
   return CID.createV1(raw.code, Digest.decode(base32.decode(`b${key.toString().slice(1).toLowerCase()}`)))
 }
 
-export const readChunk = async (path: string, offset: bigint, size: number): Promise<Uint8Array> => {
+export const readChunk = async (path: string, offset: bigint, size: bigint): Promise<Uint8Array> => {
   const fd = await new Promise<number>((resolve, reject) => {
     fs.open(path, (err, fd) => {
       if (err != null) {
@@ -25,7 +25,7 @@ export const readChunk = async (path: string, offset: bigint, size: number): Pro
   })
 
   const data = await new Promise<Uint8Array>((resolve, reject) => {
-    fs.read(fd, { position: offset, length: size }, (err, _, data: Uint8Array) => {
+    fs.read(fd, { position: offset, length: Number(size) }, (err, _, data: Uint8Array) => {
       if (err != null) {
         reject(err)
       } else {

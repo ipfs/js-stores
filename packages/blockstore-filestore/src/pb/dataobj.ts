@@ -11,7 +11,7 @@ import type { Uint8ArrayList } from 'uint8arraylist'
 export interface DataObj {
   FilePath: string
   Offset: bigint
-  Size: number
+  Size: bigint
 }
 
 export namespace DataObj {
@@ -34,9 +34,9 @@ export namespace DataObj {
           w.uint64(obj.Offset)
         }
 
-        if ((obj.Size != null && obj.Size !== 0)) {
+        if ((obj.Size != null && obj.Size !== 0n)) {
           w.uint32(24)
-          w.uint32(obj.Size)
+          w.uint64(obj.Size)
         }
 
         if (opts.lengthDelimited !== false) {
@@ -46,7 +46,7 @@ export namespace DataObj {
         const obj: any = {
           FilePath: '',
           Offset: 0n,
-          Size: 0
+          Size: 0n
         }
 
         const end = length == null ? reader.len : reader.pos + length
@@ -62,7 +62,7 @@ export namespace DataObj {
               obj.Offset = reader.uint64()
               break
             case 3:
-              obj.Size = reader.uint32()
+              obj.Size = reader.uint64()
               break
             default:
               reader.skipType(tag & 7)

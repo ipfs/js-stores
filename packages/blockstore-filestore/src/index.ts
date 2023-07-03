@@ -92,7 +92,7 @@ export class Filestore implements Blockstore {
     }
   }
 
-  async putLink (key: CID, path: string, offset: bigint, size: number, options?: AbortOptions): Promise<CID> {
+  async putLink (key: CID, path: string, offset: bigint, size: bigint, options?: AbortOptions): Promise<CID> {
     const data = DataObj.encode({
       FilePath: path,
       Offset: offset,
