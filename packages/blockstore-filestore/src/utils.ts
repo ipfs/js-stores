@@ -25,7 +25,11 @@ export const readChunk = async (path: string, offset: bigint, size: bigint): Pro
   })
 
   const data = await new Promise<Uint8Array>((resolve, reject) => {
-    fs.read(fd, { position: offset, length: Number(size) }, (err, _, data: Uint8Array) => {
+    fs.read(fd, {
+      position: offset,
+      length: Number(size),
+      buffer: Buffer.alloc(Number(size))
+    }, (err, _, data: Uint8Array) => {
       if (err != null) {
         reject(err)
       } else {
