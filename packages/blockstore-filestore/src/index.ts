@@ -28,7 +28,7 @@ export class Filestore implements Blockstore {
     const dataObj = DataObj.decode(index)
     const chunk = await readChunk(dataObj.FilePath, dataObj.Offset, dataObj.Size)
     const hash = await sha256.digest(chunk)
-    const cid = CID.createV1(raw.code, hash)
+    const cid = CID.create(key.version, raw.code, hash)
 
     if (!cid.equals(key)) {
       throw new Error('CID does not match.')
