@@ -66,6 +66,10 @@
     "./memory": {
       "types": "./dist/src/memory.d.ts",
       "import": "./dist/src/memory.js"
+    },
+    "./tiered": {
+      "types": "./dist/src/tiered.d.ts",
+      "import": "./dist/src/tiered.js"
     }
   },
   "eslintConfig": {
@@ -175,10 +179,16 @@
     "docs": "aegir docs"
   },
   "dependencies": {
+    "@libp2p/logger": "^2.0.0",
     "err-code": "^3.0.1",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^5.0.0",
-    "multiformats": "^11.0.2"
+    "it-drain": "^3.0.1",
+    "it-filter": "^3.0.0",
+    "it-merge": "^3.0.1",
+    "it-pushable": "^3.0.0",
+    "multiformats": "^11.0.2",
+    "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
     "aegir": "^39.0.9",
