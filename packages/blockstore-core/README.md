@@ -16,6 +16,7 @@
   - [BaseBlockstore](#baseblockstore)
   - [MemoryBlockstore](#memoryblockstore)
   - [BlackHoleBlockstore](#blackholeblockstore)
+  - [TieredBlockstore](#tieredblockstore)
 - [API Docs](#api-docs)
 - [License](#license)
 - [Contribute](#contribute)
@@ -38,7 +39,8 @@ Loading this module through a script tag will make it's exports available as `Bl
 
 - Base: [`src/base`](src/base.ts)
 - Memory: [`src/memory`](src/memory.ts)
-- BlackHole: ['src/blackhole](src/blackhole.ts)
+- BlackHole: ['src/black-hole](src/black-hole.ts)
+- Tiered: ['src/tiered](src/tiered.ts)
 
 ## Usage
 
@@ -80,6 +82,22 @@ A Blockstore that does not store any blocks.
 import { BlackHoleBlockstore } from 'blockstore-core/black-hole'
 
 const store = new BlackHoleBlockstore()
+```
+
+### TieredBlockstore
+
+A tiered blockstore wraps one or more blockstores and will query each in parallel to retrieve a block - the operation will succeed if any wrapped store has the block.
+
+Writes are invoked on all wrapped blockstores.
+
+```js
+import { TieredBlockstore } from 'blockstore-core/tiered'
+
+const store = new TieredBlockstore([
+  store1,
+  store2,
+  // ...etc
+])
 ```
 
 ## API Docs
