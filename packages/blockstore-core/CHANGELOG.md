@@ -1,3 +1,10 @@
+## [blockstore-core-v4.3.0](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.2.0...blockstore-core-v4.3.0) (2023-07-27)
+
+
+### Features
+
+* add tiered blockstore ([#238](https://github.com/ipfs/js-stores/issues/238)) ([5143948](https://github.com/ipfs/js-stores/commit/51439486d5fcd719b9af9182b35565e87da96c99))
+
 ## [blockstore-core-v4.2.0](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.1.1...blockstore-core-v4.2.0) (2023-06-03)
 
 
