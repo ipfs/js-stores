@@ -142,7 +142,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^39.0.9"
+    "aegir": "^40.0.2"
   },
   "typedoc": {
     "entryPoint": "./src/index.ts"
