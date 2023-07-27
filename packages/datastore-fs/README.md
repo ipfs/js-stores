@@ -24,9 +24,9 @@ $ npm i datastore-fs
 ## Usage
 
 ```js
-import { FSDatastore } from 'datastore-fs'
+import { FsDatastore } from 'datastore-fs'
 
-const store = new FSDatastore('path/to/store')
+const store = new FsDatastore('path/to/store')
 ```
 
 ## API Docs
