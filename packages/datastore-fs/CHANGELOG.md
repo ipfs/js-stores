@@ -1,3 +1,10 @@
+## [datastore-fs-v9.1.3](https://github.com/ipfs/js-stores/compare/datastore-fs-v9.1.2...datastore-fs-v9.1.3) (2023-07-27)
+
+
+### Documentation
+
+* fix capitalization in readme of datastore-fs. ([#232](https://github.com/ipfs/js-stores/issues/232)) ([01492bf](https://github.com/ipfs/js-stores/commit/01492bfc90ab3025ff81f098a9bb7e60475be196))
+
 ## [datastore-fs-v9.1.2](https://github.com/ipfs/js-stores/compare/datastore-fs-v9.1.1...datastore-fs-v9.1.2) (2023-06-03)
 
 
