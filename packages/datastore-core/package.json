@@ -198,7 +198,7 @@
     "dep-check": "aegir dep-check"
   },
   "dependencies": {
-    "@libp2p/logger": "^2.0.0",
+    "@libp2p/logger": "^3.0.0",
     "err-code": "^3.0.1",
     "interface-store": "^5.0.0",
     "it-all": "^3.0.1",
