@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.4](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.3...interface-datastore-v8.2.4) (2023-08-03)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 39.0.13 to 40.0.8 ([#241](https://github.com/ipfs/js-stores/issues/241)) ([00741ff](https://github.com/ipfs/js-stores/commit/00741ff043b40cf10ecc185665fcb705160c9877))
+
 ## [interface-datastore-v8.2.3](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.2...interface-datastore-v8.2.3) (2023-06-07)
 
 
