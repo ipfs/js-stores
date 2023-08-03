@@ -1,4 +1,3 @@
-
 import { nanoid } from 'nanoid'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { type SupportedEncodings, toString as uint8ArrayToString } from 'uint8arrays/to-string'

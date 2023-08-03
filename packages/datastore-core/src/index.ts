@@ -1,4 +1,3 @@
-
 import * as Errors from './errors.js'
 import * as shard from './shard.js'
 import type { Key } from 'interface-datastore'
