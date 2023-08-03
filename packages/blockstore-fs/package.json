@@ -173,7 +173,7 @@
     "multiformats": "^11.0.2"
   },
   "devDependencies": {
-    "aegir": "^39.0.9",
+    "aegir": "^40.0.8",
     "interface-blockstore-tests": "^6.0.0"
   },
   "typedoc": {
