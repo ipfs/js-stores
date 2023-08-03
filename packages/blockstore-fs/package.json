@@ -170,7 +170,7 @@
     "it-glob": "^2.0.1",
     "it-map": "^3.0.1",
     "it-parallel-batch": "^3.0.0",
-    "multiformats": "^11.0.2"
+    "multiformats": "^12.0.1"
   },
   "devDependencies": {
     "aegir": "^39.0.9",
