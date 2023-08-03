@@ -1,3 +1,10 @@
+## [datastore-core-v9.2.2](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.1...datastore-core-v9.2.2) (2023-08-03)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 39.0.13 to 40.0.8 ([#241](https://github.com/ipfs/js-stores/issues/241)) ([00741ff](https://github.com/ipfs/js-stores/commit/00741ff043b40cf10ecc185665fcb705160c9877))
+
 ## [datastore-core-v9.2.1](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.0...datastore-core-v9.2.1) (2023-08-03)
 
 
