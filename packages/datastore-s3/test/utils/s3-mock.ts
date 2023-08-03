@@ -36,12 +36,12 @@ export function s3Mock (s3: S3): S3 {
     const commandName = command.constructor.name
     const input: any = command.input
 
-    if (commandName === 'PutObjectCommand') {
+    if (commandName.includes('PutObjectCommand') === true) {
       storage.set(input.Key, input.Body)
       return s3Resolve({})
     }
 
-    if (commandName === 'HeadObjectCommand') {
+    if (commandName.includes('HeadObjectCommand') === true) {
       if (storage.has(input.Key)) {
         return s3Resolve({})
       }
@@ -49,7 +49,7 @@ export function s3Mock (s3: S3): S3 {
       return s3Reject(new S3Error('NotFound', 404))
     }
 
-    if (commandName === 'GetObjectCommand') {
+    if (commandName.includes('GetObjectCommand') === true) {
       if (!storage.has(input.Key)) {
         return s3Reject(new S3Error('NotFound', 404))
       }
@@ -59,12 +59,12 @@ export function s3Mock (s3: S3): S3 {
       })
     }
 
-    if (commandName === 'DeleteObjectCommand') {
+    if (commandName.includes('DeleteObjectCommand') === true) {
       storage.delete(input.Key)
       return s3Resolve({})
     }
 
-    if (commandName === 'ListObjectsV2Command') {
+    if (commandName.includes('ListObjectsV2Command') === true) {
       const results: { Contents: Array<{ Key: string }> } = {
         Contents: []
       }
