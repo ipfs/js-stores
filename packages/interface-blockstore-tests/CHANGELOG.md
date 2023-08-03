@@ -1,3 +1,10 @@
+## [interface-blockstore-tests-v6.1.3](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.2...interface-blockstore-tests-v6.1.3) (2023-08-03)
+
+
+### Dependencies
+
+* bump multiformats from 11.0.2 to 12.0.1 ([#231](https://github.com/ipfs/js-stores/issues/231)) ([93b7c13](https://github.com/ipfs/js-stores/commit/93b7c13d0dd0508b04bae2ac5a9fb9c265fc5589))
+
 ## [interface-blockstore-tests-v6.1.2](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.1...interface-blockstore-tests-v6.1.2) (2023-06-03)
 
 
