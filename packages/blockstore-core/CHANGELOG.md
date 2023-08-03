@@ -1,3 +1,10 @@
+## [blockstore-core-v4.3.3](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.2...blockstore-core-v4.3.3) (2023-08-03)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 39.0.13 to 40.0.8 ([#241](https://github.com/ipfs/js-stores/issues/241)) ([00741ff](https://github.com/ipfs/js-stores/commit/00741ff043b40cf10ecc185665fcb705160c9877))
+
 ## [blockstore-core-v4.3.2](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.1...blockstore-core-v4.3.2) (2023-08-03)
 
 
