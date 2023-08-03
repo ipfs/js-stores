@@ -64,7 +64,7 @@ describe('S3Datastore', () => {
       const store = new S3Datastore(s3, 'test')
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'PutObjectCommand') {
+        if (command.constructor.name.includes('PutObjectCommand') === true) {
           return s3Reject(new Error('bad things happened'))
         }
 
@@ -87,7 +87,7 @@ describe('S3Datastore', () => {
       const deferred = defer<GetObjectCommand>()
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'GetObjectCommand') {
+        if (command.constructor.name.includes('GetObjectCommand') === true) {
           deferred.resolve(command)
           return s3Resolve({ Body: buf })
         }
@@ -108,7 +108,7 @@ describe('S3Datastore', () => {
       const store = new S3Datastore(s3, 'test')
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'GetObjectCommand') {
+        if (command.constructor.name.includes('GetObjectCommand') === true) {
           return s3Reject(new S3Error('NotFound', 404))
         }
 
@@ -126,7 +126,7 @@ describe('S3Datastore', () => {
       const store = new S3Datastore(s3, 'test')
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'DeleteObjectCommand') {
+        if (command.constructor.name.includes('DeleteObjectCommand') === true) {
           return s3Reject(new Error('bad things'))
         }
 
@@ -151,12 +151,12 @@ describe('S3Datastore', () => {
       const bucketCreated = defer<CreateBucketCommand>()
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'HeadObjectCommand') {
+        if (command.constructor.name.includes('HeadObjectCommand') === true) {
           bucketTested.resolve(command)
           return s3Reject(new S3Error('NoSuchBucket'))
         }
 
-        if (command.constructor.name === 'CreateBucketCommand') {
+        if (command.constructor.name.includes('CreateBucketCommand') === true) {
           bucketCreated.resolve(command)
           return s3Resolve(null)
         }
@@ -180,7 +180,7 @@ describe('S3Datastore', () => {
       const bucketTested = defer<HeadObjectCommand>()
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'HeadObjectCommand') {
+        if (command.constructor.name.includes('HeadObjectCommand') === true) {
           bucketTested.resolve(command)
           return s3Reject(new S3Error('NoSuchBucket'))
         }
@@ -200,7 +200,7 @@ describe('S3Datastore', () => {
       const store = new S3Datastore(s3, 'test')
 
       sinon.replace(s3, 'send', (command: any) => {
-        if (command.constructor.name === 'HeadObjectCommand') {
+        if (command.constructor.name.includes('HeadObjectCommand') === true) {
           return s3Reject(new Error('bad things'))
         }
 
