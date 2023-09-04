@@ -18,10 +18,6 @@
     "ipfs",
     "key-value"
   ],
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "typesVersions": {
@@ -205,7 +201,7 @@
     "it-drain": "^3.0.1",
     "it-filter": "^3.0.0",
     "it-map": "^3.0.1",
-    "it-merge": "^3.0.0",
+    "it-merge": "^3.0.1",
     "it-pipe": "^3.0.0",
     "it-pushable": "^3.0.0",
     "it-sort": "^3.0.1",
@@ -216,8 +212,5 @@
     "aegir": "^40.0.8",
     "interface-datastore": "^8.0.0",
     "interface-datastore-tests": "^5.0.0"
-  },
-  "typedoc": {
-    "entryPoint": "./src/index.ts"
   }
 }

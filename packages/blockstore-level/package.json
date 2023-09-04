@@ -20,10 +20,6 @@
     "leveldown",
     "levelup"
   ],
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
@@ -156,8 +152,5 @@
     "interface-blockstore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.4",
     "memory-level": "^1.0.0"
-  },
-  "typedoc": {
-    "entryPoint": "./src/index.ts"
   }
 }
