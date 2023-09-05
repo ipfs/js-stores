@@ -15,6 +15,7 @@
 - [Usage](#usage)
   - [BaseDatastore](#basedatastore)
   - [Wrapping Stores](#wrapping-stores)
+  - [BlackHoleDatastore](#blackholedatastore)
 - [Contribute](#contribute)
 - [API Docs](#api-docs)
 - [License](#license)
@@ -84,7 +85,7 @@ import {
 const store = new MountStore({prefix: new Key('/a'), datastore: new MemoryStore()})
 ```
 
-### BlackHoleDatastore
+### BlackHoleDatastore
 
 A datastore that does not store any data.
 

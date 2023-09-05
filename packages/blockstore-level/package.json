@@ -137,8 +137,7 @@
     "test:firefox": "aegir test -t browser -- --browser firefox",
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check",
-    "docs": "aegir docs"
+    "dep-check": "aegir dep-check"
   },
   "dependencies": {
     "blockstore-core": "^4.0.0",

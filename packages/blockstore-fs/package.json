@@ -155,8 +155,7 @@
     "test": "aegir test -t node -t electron-main",
     "test:node": "aegir test -t node",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check",
-    "docs": "aegir docs"
+    "dep-check": "aegir dep-check"
   },
   "dependencies": {
     "blockstore-core": "^4.0.0",
