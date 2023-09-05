@@ -123,7 +123,8 @@
     "build": "aegir build",
     "lint": "aegir lint",
     "clean": "aegir clean",
-    "release": "aegir release"
+    "release": "aegir release",
+    "dep-check": "aegir dep-check"
   },
   "devDependencies": {
     "aegir": "^40.0.8"

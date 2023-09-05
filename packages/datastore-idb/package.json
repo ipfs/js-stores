@@ -136,8 +136,7 @@
     "build": "aegir build",
     "lint": "aegir lint",
     "release": "aegir release",
-    "dep-check": "aegir dep-check",
-    "docs": "aegir docs"
+    "dep-check": "aegir dep-check"
   },
   "dependencies": {
     "idb": "^7.1.1",
