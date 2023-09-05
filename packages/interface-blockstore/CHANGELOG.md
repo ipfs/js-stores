@@ -1,3 +1,10 @@
+## [interface-blockstore-v5.2.6](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.5...interface-blockstore-v5.2.6) (2023-09-05)
+
+
+### Documentation
+
+* update api docs ([#244](https://github.com/ipfs/js-stores/issues/244)) ([e0f6145](https://github.com/ipfs/js-stores/commit/e0f614575d675fe4db2ab30ea6a2a854e892d635))
+
 ## [interface-blockstore-v5.2.5](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.4...interface-blockstore-v5.2.5) (2023-08-03)
 
 
