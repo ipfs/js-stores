@@ -25,7 +25,7 @@ $ npm i interface-datastore-tests
 
 ```js
 const MyDatastore from './path/to/my-datastore')
-const suite from 'interface-datastore-tests')
+const { interfaceDatastoreTests as suite } from 'interface-datastore-tests')
 
 describe('MyDatastore', () => {
   describe('interface-datastore compliance tests', () => {
