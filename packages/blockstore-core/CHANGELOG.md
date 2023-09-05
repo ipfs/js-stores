@@ -1,3 +1,10 @@
+## [blockstore-core-v4.3.4](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.3...blockstore-core-v4.3.4) (2023-09-05)
+
+
+### Documentation
+
+* update api docs ([#244](https://github.com/ipfs/js-stores/issues/244)) ([e0f6145](https://github.com/ipfs/js-stores/commit/e0f614575d675fe4db2ab30ea6a2a854e892d635))
+
 ## [blockstore-core-v4.3.3](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.2...blockstore-core-v4.3.3) (2023-08-03)
 
 
