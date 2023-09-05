@@ -1,3 +1,10 @@
+## [datastore-core-v9.2.3](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.2...datastore-core-v9.2.3) (2023-09-05)
+
+
+### Documentation
+
+* update api docs ([#244](https://github.com/ipfs/js-stores/issues/244)) ([e0f6145](https://github.com/ipfs/js-stores/commit/e0f614575d675fe4db2ab30ea6a2a854e892d635))
+
 ## [datastore-core-v9.2.2](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.1...datastore-core-v9.2.2) (2023-08-03)
 
 
