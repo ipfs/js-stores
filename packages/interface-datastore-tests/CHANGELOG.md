@@ -1,3 +1,10 @@
+## [interface-datastore-tests-v5.1.4](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.3...interface-datastore-tests-v5.1.4) (2023-09-05)
+
+
+### Documentation
+
+* update api docs ([#244](https://github.com/ipfs/js-stores/issues/244)) ([e0f6145](https://github.com/ipfs/js-stores/commit/e0f614575d675fe4db2ab30ea6a2a854e892d635))
+
 ## [interface-datastore-tests-v5.1.3](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.2...interface-datastore-tests-v5.1.3) (2023-08-03)
 
 
