@@ -19,10 +19,6 @@
     "ipfs",
     "key-value"
   ],
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
@@ -153,8 +149,5 @@
     "aegir": "^40.0.8",
     "interface-datastore-tests": "^5.0.0",
     "ipfs-utils": "^9.0.4"
-  },
-  "typedoc": {
-    "entryPoint": "./src/index.ts"
   }
 }

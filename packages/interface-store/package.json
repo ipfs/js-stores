@@ -11,10 +11,6 @@
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
   },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "main": "src/index.js",
   "types": "dist/src/index.d.ts",
   "typesVersions": {
@@ -131,8 +127,5 @@
   },
   "devDependencies": {
     "aegir": "^40.0.8"
-  },
-  "typedoc": {
-    "entryPoint": "./src/index.ts"
   }
 }

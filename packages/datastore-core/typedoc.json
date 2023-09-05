@@ -1,0 +1,15 @@
+{
+  "entryPoints": [
+    "./src/index.ts",
+    "./src/base.ts",
+    "./src/black-hole.ts",
+    "./src/errors.ts",
+    "./src/keytransform.ts",
+    "./src/memory.ts",
+    "./src/mount.ts",
+    "./src/namespace.ts",
+    "./src/shard.ts",
+    "./src/sharding.ts",
+    "./src/tiered.ts"
+  ]
+}
