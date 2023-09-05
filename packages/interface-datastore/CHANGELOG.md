@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.5](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.4...interface-datastore-v8.2.5) (2023-09-05)
+
+
+### Documentation
+
+* update api docs ([#244](https://github.com/ipfs/js-stores/issues/244)) ([e0f6145](https://github.com/ipfs/js-stores/commit/e0f614575d675fe4db2ab30ea6a2a854e892d635))
+
 ## [interface-datastore-v8.2.4](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.3...interface-datastore-v8.2.4) (2023-08-03)
 
 
