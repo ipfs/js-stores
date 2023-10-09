@@ -186,7 +186,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^40.0.8",
+    "aegir": "^41.0.3",
     "interface-blockstore-tests": "^6.0.0"
   }
 }
