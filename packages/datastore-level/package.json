@@ -150,7 +150,7 @@
     "level": "^8.0.0"
   },
   "devDependencies": {
-    "aegir": "^40.0.8",
+    "aegir": "^41.1.6",
     "interface-datastore-tests": "^5.0.0",
     "ipfs-utils": "^9.0.4",
     "memory-level": "^1.0.0"

@@ -127,6 +127,6 @@
     "dep-check": "aegir dep-check"
   },
   "devDependencies": {
-    "aegir": "^40.0.8"
+    "aegir": "^41.1.6"
   }
 }
