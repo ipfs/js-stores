@@ -96,7 +96,7 @@ export class IDBDatastore extends BaseDatastore {
 
   async has (key: Key): Promise<boolean> {
     if (this.db == null) {
-      throw new Error('Blockstore needs to be opened.')
+      throw new Error('Datastore needs to be opened.')
     }
 
     try {
