@@ -14,14 +14,22 @@ A Blockstore implementation that stores blocks on Amazon S3.
 If the flag `createIfMissing` is not set or is false, then the bucket must be created prior to using blockstore-s3. Please see the AWS docs for information on how to configure the S3 instance. A bucket name is required to be set at the s3 instance level, see the below example.
 
 ```js
-import S3 from 'aws-sdk/clients/s3.js'
+import { S3 } from '@aws-sdk/client-s3'
 import { S3Blockstore } from 'blockstore-s3'
 
-const s3Instance = new S3({ params: { Bucket: 'my-ipfs-bucket' } })
-const store = new S3Blockstore('.ipfs/blockstore', {
-  s3: s3Instance
-  createIfMissing: false
+const s3 = new S3({
+  region: 'region',
+  credentials: {
+    accessKeyId: 'myaccesskey',
+    secretAccessKey: 'mysecretkey'
+  }
 })
+
+const store = new S3Blockstore(
+  s3,
+  'my-bucket',
+  { path: '.ipfs/blockstore', createIfMissing: false }
+)
 ```
 
 ## Example
