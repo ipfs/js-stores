@@ -37,11 +37,11 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
-      "sourceType": "module",
       "project": [
         "tsconfig.json",
         "benchmarks/datastore-level/tsconfig.json"
-      ]
+      ],
+      "sourceType": "module"
     }
   },
   "release": {

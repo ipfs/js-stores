@@ -1,5 +1,3 @@
-# interface-datastore-tests <!-- omit in toc -->
-
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
@@ -7,21 +5,11 @@
 
 > Compliance tests for the datastore interface
 
-## Table of contents <!-- omit in toc -->
+# About
 
-- [Install](#install)
-- [Usage](#usage)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribute](#contribute)
+A test suite that ensures a given implementation implements the Datastore interface properly.
 
-## Install
-
-```console
-$ npm i interface-datastore-tests
-```
-
-## Usage
+## Example
 
 ```js
 const MyDatastore from './path/to/my-datastore')
@@ -39,18 +27,24 @@ describe('MyDatastore', () => {
 })
 ```
 
-## API Docs
+# Install
+
+```console
+$ npm i interface-datastore-tests
+```
+
+# API Docs
 
 - <https://ipfs.github.io/js-stores/modules/interface_datastore_tests.html>
 
-## License
+# License
 
 Licensed under either of
 
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+# Contribute
 
 Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-stores/issues).
 

@@ -55,11 +55,11 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
-      "sourceType": "module",
       "project": [
         "tsconfig.json",
         "benchmarks/encoding/tsconfig.json"
-      ]
+      ],
+      "sourceType": "module"
     }
   },
   "release": {

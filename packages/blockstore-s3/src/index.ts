@@ -1,3 +1,28 @@
+/**
+ * @packageDocumentation
+ *
+ * A Blockstore implementation that stores blocks on Amazon S3.
+ *
+ * @example Quickstart
+ *
+ * If the flag `createIfMissing` is not set or is false, then the bucket must be created prior to using blockstore-s3. Please see the AWS docs for information on how to configure the S3 instance. A bucket name is required to be set at the s3 instance level, see the below example.
+ *
+ * ```js
+ * import S3 from 'aws-sdk/clients/s3.js'
+ * import { S3Blockstore } from 'blockstore-s3'
+ *
+ * const s3Instance = new S3({ params: { Bucket: 'my-ipfs-bucket' } })
+ * const store = new S3Blockstore('.ipfs/datastore', {
+ *   s3: s3Instance
+ *   createIfMissing: false
+ * })
+ * ```
+ *
+ * @example Using with Helia
+ *
+ * See [examples/helia](./examples/helia) for a full example of how to use Helia with an S3 backed blockstore.
+ */
+
 import {
   PutObjectCommand,
   CreateBucketCommand,
@@ -15,6 +40,8 @@ import type { S3 } from '@aws-sdk/client-s3'
 import type { Pair } from 'interface-blockstore'
 import type { AbortOptions } from 'interface-store'
 import type { CID } from 'multiformats/cid'
+
+export type { ShardingStrategy }
 
 export interface S3BlockstoreInit {
   /**

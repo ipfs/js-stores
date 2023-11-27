@@ -1,5 +1,3 @@
-# datastore-fs <!-- omit in toc -->
-
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
@@ -7,21 +5,11 @@
 
 > Datastore implementation with file system backend
 
-## Table of contents <!-- omit in toc -->
+# About
 
-- [Install](#install)
-- [Usage](#usage)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribute](#contribute)
+A Datastore implementation with a file system backend.
 
-## Install
-
-```console
-$ npm i datastore-fs
-```
-
-## Usage
+## Example
 
 ```js
 import { FsDatastore } from 'datastore-fs'
@@ -29,18 +17,24 @@ import { FsDatastore } from 'datastore-fs'
 const store = new FsDatastore('path/to/store')
 ```
 
-## API Docs
+# Install
+
+```console
+$ npm i datastore-fs
+```
+
+# API Docs
 
 - <https://ipfs.github.io/js-stores/modules/datastore_fs.html>
 
-## License
+# License
 
 Licensed under either of
 
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+# Contribute
 
 Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-stores/issues).
 

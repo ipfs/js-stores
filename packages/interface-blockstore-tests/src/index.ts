@@ -1,5 +1,29 @@
 /* eslint-env mocha */
 
+/**
+ * @packageDocumentation
+ *
+ * A test suite that ensures a given implementation implements the Blockstore interface properly.
+ *
+ * @example
+ *
+ * ```js
+ * const MyBlockstore from './path/to/my-blockstore')
+ * const suite from 'interface-blockstore-tests')
+ *
+ * describe('MyBlockstore', () => {
+ *   describe('interface-blockstore compliance tests', () => {
+ *     suite({
+ *       setup () {
+ *         return new MyBlockstore()
+ *       },
+ *       teardown () {}
+ *     })
+ *   })
+ * })
+ * ```
+ */
+
 import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
@@ -25,8 +49,8 @@ async function getKeyValuePairs (count: number): Promise<Pair[]> {
 }
 
 export interface InterfaceBlockstoreTest<B extends Blockstore = Blockstore> {
-  setup: () => B | Promise<B>
-  teardown: (store: B) => void | Promise<void>
+  setup(): B | Promise<B>
+  teardown(store: B): void | Promise<void>
 }
 
 export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (test: InterfaceBlockstoreTest<B>): void {

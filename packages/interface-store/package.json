@@ -32,7 +32,10 @@
     "dist"
   ],
   "eslintConfig": {
-    "extends": "ipfs"
+    "extends": "ipfs",
+    "parserOptions": {
+      "project": true
+    }
   },
   "release": {
     "branches": [
