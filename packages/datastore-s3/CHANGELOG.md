@@ -1,3 +1,10 @@
+## [datastore-s3-v11.1.7](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.6...datastore-s3-v11.1.7) (2023-11-27)
+
+
+### Bug Fixes
+
+* incorrect export path ([#273](https://github.com/ipfs/js-stores/issues/273)) ([e840ed4](https://github.com/ipfs/js-stores/commit/e840ed4f0e601062c7cb727bd71390381644caa6))
+
 ## [datastore-s3-v11.1.6](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.5...datastore-s3-v11.1.6) (2023-11-27)
 
 
