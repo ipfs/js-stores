@@ -1,6 +1,6 @@
 {
   "name": "blockstore-fs",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Blockstore implementation with file system backend",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/blockstore-fs#readme",
