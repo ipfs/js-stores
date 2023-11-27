@@ -4,8 +4,8 @@ import type { MultibaseCodec } from 'multiformats/bases/interface'
 
 export interface ShardingStrategy {
   extension: string
-  encode: (cid: CID) => string
-  decode: (path: string) => CID
+  encode(cid: CID): string
+  decode(path: string): CID
 }
 
 export interface NextToLastInit {

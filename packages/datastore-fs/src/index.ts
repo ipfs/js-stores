@@ -1,3 +1,17 @@
+/**
+ * @packageDocumentation
+ *
+ * A Datastore implementation with a file system backend.
+ *
+ * @example
+ *
+ * ```js
+ * import { FsDatastore } from 'datastore-fs'
+ *
+ * const store = new FsDatastore('path/to/store')
+ * ```
+ */
+
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { promisify } from 'util'

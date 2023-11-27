@@ -169,7 +169,7 @@ describe('S3Blockstore', () => {
     })
   })
 
-  describe('interface-datastore', () => {
+  describe('interface-blockstore', () => {
     interfaceBlockstoreTests({
       setup () {
         const s3 = s3Mock(new S3({ region: 'REGION' }))

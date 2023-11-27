@@ -5,6 +5,12 @@
 // https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
 
 /**
+ * @packageDocumentation
+ *
+ * An abstraction of the Datastore/Blockstore codebases.
+ */
+
+/**
  * An iterable or async iterable of values
  */
 export type AwaitIterable<T> = Iterable<T> | AsyncIterable<T>
@@ -39,7 +45,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    *}
    *```
    */
-  has: (key: Key, options?: AbortOptions & HasOptionsExtension) => Await<boolean>
+  has(key: Key, options?: AbortOptions & HasOptionsExtension): Await<boolean>
 
   /**
    * Store the passed value under the passed key
@@ -50,7 +56,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * await store.put([{ key: new Key('awesome'), value: new Uint8Array([0, 1, 2, 3]) }])
    * ```
    */
-  put: (key: Key, val: Value, options?: AbortOptions & PutOptionsExtension) => Await<Key>
+  put(key: Key, val: Value, options?: AbortOptions & PutOptionsExtension): Await<Key>
 
   /**
    * Store the given key/value pairs
@@ -64,10 +70,10 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * }
    * ```
    */
-  putMany: (
+  putMany(
     source: AwaitIterable<Pair>,
     options?: AbortOptions & PutManyOptionsExtension
-  ) => AwaitIterable<Key>
+  ): AwaitIterable<Key>
 
   /**
    * Retrieve the value stored under the given key
@@ -79,7 +85,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * // => got content: datastore
    * ```
    */
-  get: (key: Key, options?: AbortOptions & GetOptionsExtension) => Await<Value>
+  get(key: Key, options?: AbortOptions & GetOptionsExtension): Await<Value>
 
   /**
    * Retrieve values for the passed keys
@@ -92,10 +98,10 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * }
    * ```
    */
-  getMany: (
+  getMany(
     source: AwaitIterable<Key>,
     options?: AbortOptions & GetManyOptionsExtension
-  ) => AwaitIterable<Pair>
+  ): AwaitIterable<Pair>
 
   /**
    * Remove the record for the passed key
@@ -107,7 +113,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * console.log('deleted awesome content :(')
    * ```
    */
-  delete: (key: Key, options?: AbortOptions & DeleteOptionsExtension) => Await<void>
+  delete(key: Key, options?: AbortOptions & DeleteOptionsExtension): Await<void>
 
   /**
    * Remove values for the passed keys
@@ -122,8 +128,8 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * }
    * ```
    */
-  deleteMany: (
+  deleteMany(
     source: AwaitIterable<Key>,
     options?: AbortOptions & DeleteManyOptionsExtension
-  ) => AwaitIterable<Key>
+  ): AwaitIterable<Key>
 }
