@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.9](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.8...blockstore-s3-v1.0.9) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump sinon from 15.2.0 to 17.0.1 ([#265](https://github.com/ipfs/js-stores/issues/265)) ([316d3c5](https://github.com/ipfs/js-stores/commit/316d3c54c3a113a8deebc8e53480ac38d40f3a41))
+
 ## [blockstore-s3-v1.0.8](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.7...blockstore-s3-v1.0.8) (2023-11-27)
 
 
