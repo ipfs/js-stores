@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.10](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.9...blockstore-s3-v1.0.10) (2023-11-27)
+
+
+### Bug Fixes
+
+* incorrect export path ([#273](https://github.com/ipfs/js-stores/issues/273)) ([e840ed4](https://github.com/ipfs/js-stores/commit/e840ed4f0e601062c7cb727bd71390381644caa6))
+
 ## [blockstore-s3-v1.0.9](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.8...blockstore-s3-v1.0.9) (2023-11-27)
 
 
