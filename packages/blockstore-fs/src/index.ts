@@ -1,3 +1,17 @@
+/**
+ * @packageDocumentation
+ *
+ * A Blockstore implementation that stores blocks in the local filesystem.
+ *
+ * @example
+ *
+ * ```js
+ * import { FsBlockstore } from 'blockstore-fs'
+ *
+ * const store = new FsBlockstore('path/to/store')
+ * ```
+ */
+
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { promisify } from 'node:util'

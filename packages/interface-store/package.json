@@ -32,7 +32,10 @@
     "dist"
   ],
   "eslintConfig": {
-    "extends": "ipfs"
+    "extends": "ipfs",
+    "parserOptions": {
+      "project": true
+    }
   },
   "release": {
     "branches": [
@@ -127,6 +130,6 @@
     "dep-check": "aegir dep-check"
   },
   "devDependencies": {
-    "aegir": "^40.0.8"
+    "aegir": "^41.1.9"
   }
 }

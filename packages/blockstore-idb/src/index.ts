@@ -1,3 +1,17 @@
+/**
+ * @packageDocumentation
+ *
+ * A Blockstore implementation for browsers that stores blocks in [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+ *
+ * @example
+ *
+ * ```js
+ * import { IDBBlockstore } from 'blockstore-idb'
+ *
+ * const store = new IDBBlockstore('path/to/store')
+ * ```
+ */
+
 import {
   BaseBlockstore,
   Errors
