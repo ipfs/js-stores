@@ -34,7 +34,7 @@ export interface LevelBlockstoreInit extends DatabaseOptions<string, Uint8Array>
 }
 
 /**
- * A datastore backed by leveldb
+ * A blockstore backed by leveldb
  */
 export class LevelBlockstore extends BaseBlockstore {
   public db: Level<string, Uint8Array>

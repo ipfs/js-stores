@@ -18,7 +18,7 @@ import S3 from 'aws-sdk/clients/s3.js'
 import { S3Blockstore } from 'blockstore-s3'
 
 const s3Instance = new S3({ params: { Bucket: 'my-ipfs-bucket' } })
-const store = new S3Blockstore('.ipfs/datastore', {
+const store = new S3Blockstore('.ipfs/blockstore', {
   s3: s3Instance
   createIfMissing: false
 })
