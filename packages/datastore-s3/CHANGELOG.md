@@ -1,3 +1,10 @@
+## [datastore-s3-v11.1.6](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.5...datastore-s3-v11.1.6) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump sinon from 15.2.0 to 17.0.1 ([#265](https://github.com/ipfs/js-stores/issues/265)) ([316d3c5](https://github.com/ipfs/js-stores/commit/316d3c54c3a113a8deebc8e53480ac38d40f3a41))
+
 ## [datastore-s3-v11.1.5](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.4...datastore-s3-v11.1.5) (2023-11-27)
 
 
