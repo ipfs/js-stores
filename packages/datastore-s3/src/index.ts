@@ -1,3 +1,28 @@
+/**
+ * @packageDocumentation
+ *
+ * A Datastore implementation that stores data on Amazon S3.
+ *
+ * @example Quickstart
+ *
+ * If the flag `createIfMissing` is not set or is false, then the bucket must be created prior to using datastore-s3. Please see the AWS docs for information on how to configure the S3 instance. A bucket name is required to be set at the s3 instance level, see the below example.
+ *
+ * ```js
+ * import S3 from 'aws-sdk/clients/s3.js'
+ * import { S3Datastore } from 'datastore-s3'
+ *
+ * const s3Instance = new S3({ params: { Bucket: 'my-ipfs-bucket' } })
+ * const store = new S3Datastore('.ipfs/datastore', {
+ *   s3: s3Instance
+ *   createIfMissing: false
+ * })
+ * ```
+ *
+ * @example Using with Helia
+ *
+ * See [examples/helia](./examples/helia) for a full example of how to use Helia with an S3 backed datastore.
+ */
+
 import {
   PutObjectCommand,
   CreateBucketCommand,

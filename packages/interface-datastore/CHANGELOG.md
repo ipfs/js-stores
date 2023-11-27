@@ -1,3 +1,17 @@
+## [interface-datastore-v8.2.7](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.6...interface-datastore-v8.2.7) (2023-11-27)
+
+
+### Dependencies
+
+* bump nanoid from 4.0.2 to 5.0.3 ([#269](https://github.com/ipfs/js-stores/issues/269)) ([02cb8cd](https://github.com/ipfs/js-stores/commit/02cb8cd82de4174e7c417ea7e45ef7111f38e990))
+
+## [interface-datastore-v8.2.6](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.5...interface-datastore-v8.2.6) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [interface-datastore-v8.2.5](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.4...interface-datastore-v8.2.5) (2023-09-05)
 
 

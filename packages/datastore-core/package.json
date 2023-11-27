@@ -1,6 +1,6 @@
 {
   "name": "datastore-core",
-  "version": "9.2.3",
+  "version": "9.2.4",
   "description": "Wrapper implementation for interface-datastore",
   "author": "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
@@ -91,6 +91,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -209,7 +210,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^40.0.8",
+    "aegir": "^41.1.9",
     "interface-datastore": "^8.0.0",
     "interface-datastore-tests": "^5.0.0"
   }

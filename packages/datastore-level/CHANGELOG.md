@@ -1,3 +1,10 @@
+## [datastore-level-v10.1.5](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.4...datastore-level-v10.1.5) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [datastore-level-v10.1.4](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.3...datastore-level-v10.1.4) (2023-09-05)
 
 

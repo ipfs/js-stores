@@ -1,6 +1,6 @@
 {
   "name": "interface-store",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "A generic interface for storing and retrieving data",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-store#readme",
@@ -32,7 +32,10 @@
     "dist"
   ],
   "eslintConfig": {
-    "extends": "ipfs"
+    "extends": "ipfs",
+    "parserOptions": {
+      "project": true
+    }
   },
   "release": {
     "branches": [
@@ -127,6 +130,6 @@
     "dep-check": "aegir dep-check"
   },
   "devDependencies": {
-    "aegir": "^40.0.8"
+    "aegir": "^41.1.9"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "datastore-level",
-  "version": "10.1.4",
+  "version": "10.1.5",
   "description": "Datastore implementation with level(up|down) backend",
   "author": "Friedel Ziegelmayer<dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
@@ -38,6 +38,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -150,7 +151,7 @@
     "level": "^8.0.0"
   },
   "devDependencies": {
-    "aegir": "^40.0.8",
+    "aegir": "^41.1.9",
     "interface-datastore-tests": "^5.0.0",
     "ipfs-utils": "^9.0.4",
     "memory-level": "^1.0.0"

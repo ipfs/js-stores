@@ -1,5 +1,3 @@
-# blockstore-core <!-- omit in toc -->
-
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
@@ -7,27 +5,13 @@
 
 > Contains various implementations of the API contract described in interface-blockstore
 
-## Table of contents <!-- omit in toc -->
-
-- [Install](#install)
-  - [Browser `<script>` tag](#browser-script-tag)
-- [Implementations](#implementations)
-- [Usage](#usage)
-  - [BaseBlockstore](#baseblockstore)
-  - [MemoryBlockstore](#memoryblockstore)
-  - [BlackHoleBlockstore](#blackholeblockstore)
-  - [TieredBlockstore](#tieredblockstore)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribute](#contribute)
-
-## Install
+# Install
 
 ```console
 $ npm i blockstore-core
 ```
 
-### Browser `<script>` tag
+## Browser `<script>` tag
 
 Loading this module through a script tag will make it's exports available as `BlockstoreCore` in the global namespace.
 
@@ -35,83 +19,18 @@ Loading this module through a script tag will make it's exports available as `Bl
 <script src="https://unpkg.com/blockstore-core/dist/index.min.js"></script>
 ```
 
-## Implementations
-
-- Base: [`src/base`](src/base.ts)
-- Memory: [`src/memory`](src/memory.ts)
-- BlackHole: ['src/black-hole](src/black-hole.ts)
-- Tiered: ['src/tiered](src/tiered.ts)
-
-## Usage
-
-### BaseBlockstore
-
-Provides a complete implementation of the Blockstore interface.  You must implement `.get`, `.put`, etc.
-
-```js
-import { BaseBlockstore } from 'blockstore-core/base'
-
-class MyCustomBlockstore extends BaseBlockstore {
-  put (key, val, options) {
-    // store a block
-  }
-
-  get (key, options) {
-    // retrieve a block
-  }
-
-  // ...etc
-}
-```
-
-### MemoryBlockstore
-
-A simple Blockstore that stores blocks in memory.
-
-```js
-import { MemoryBlockstore } from 'blockstore-core/memory'
-
-const store = new MemoryBlockstore()
-```
-
-### BlackHoleBlockstore
-
-A Blockstore that does not store any blocks.
-
-```js
-import { BlackHoleBlockstore } from 'blockstore-core/black-hole'
-
-const store = new BlackHoleBlockstore()
-```
-
-### TieredBlockstore
-
-A tiered blockstore wraps one or more blockstores and will query each in parallel to retrieve a block - the operation will succeed if any wrapped store has the block.
-
-Writes are invoked on all wrapped blockstores.
-
-```js
-import { TieredBlockstore } from 'blockstore-core/tiered'
-
-const store = new TieredBlockstore([
-  store1,
-  store2,
-  // ...etc
-])
-```
-
-## API Docs
+# API Docs
 
 - <https://ipfs.github.io/js-stores/modules/blockstore_core.html>
 
-## License
+# License
 
 Licensed under either of
 
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+# Contribute
 
 Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-stores/issues).
 

@@ -1,6 +1,6 @@
 {
   "name": "blockstore-core",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "description": "Contains various implementations of the API contract described in interface-blockstore",
   "author": "Alex Potsides <alex.potsides@protocol.ai>",
   "license": "Apache-2.0 OR MIT",
@@ -71,6 +71,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -186,7 +187,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^40.0.8",
+    "aegir": "^41.1.9",
     "interface-blockstore-tests": "^6.0.0"
   }
 }

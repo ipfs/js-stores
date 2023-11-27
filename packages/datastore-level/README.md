@@ -1,5 +1,3 @@
-# datastore-level <!-- omit in toc -->
-
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
@@ -7,32 +5,13 @@
 
 > Datastore implementation with level(up|down) backend
 
-## Table of contents <!-- omit in toc -->
+# About
 
-- [Install](#install)
-  - [Browser `<script>` tag](#browser-script-tag)
-- [Usage](#usage)
-  - [Browser Shimming Leveldown](#browser-shimming-leveldown)
-  - [Database names](#database-names)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribute](#contribute)
+A Datastore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
 
-## Install
+This module is targetted at Node.js. It is possible to use it in a browser but you should probably use IDBDatastore instead.
 
-```console
-$ npm i datastore-level
-```
-
-### Browser `<script>` tag
-
-Loading this module through a script tag will make it's exports available as `DatastoreLevel` in the global namespace.
-
-```html
-<script src="https://unpkg.com/datastore-level/dist/index.min.js"></script>
-```
-
-## Usage
+## Example
 
 ```js
 import { LevelDatastore } from 'datastore-level'
@@ -49,13 +28,13 @@ const memStore = new LevelDatastore(
 )
 ```
 
-### Browser Shimming Leveldown
+## Browser Shimming Leveldown
 
 `LevelStore` uses the `level` module to automatically use `level` if a modern bundler is used which can detect bundle targets based on the `pkg.browser` property in your `package.json`.
 
 If you are using a bundler that does not support `pkg.browser`, you will need to handle the shimming yourself, as was the case with versions of `LevelStore` 0.7.0 and earlier.
 
-### Database names
+## Database names
 
 `level-js@3` changed the database prefix from `IDBWrapper-` to `level-js-`, so please specify the old prefix if you wish to continue using databases created using `datastore-level` prior to `v0.12.0`.  E.g.
 
@@ -70,18 +49,32 @@ import browserStore = new LevelDatastore(
 
 More information: [https://github.com/Level/level-js/blob/master/UPGRADING.md#new-database-prefix](https://github.com/Level/level-js/blob/99831913e905d19e5f6dee56d512b7264fbed7bd/UPGRADING.md#new-database-prefix)
 
-## API Docs
+# Install
+
+```console
+$ npm i datastore-level
+```
+
+## Browser `<script>` tag
+
+Loading this module through a script tag will make it's exports available as `DatastoreLevel` in the global namespace.
+
+```html
+<script src="https://unpkg.com/datastore-level/dist/index.min.js"></script>
+```
+
+# API Docs
 
 - <https://ipfs.github.io/js-stores/modules/datastore_level.html>
 
-## License
+# License
 
 Licensed under either of
 
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+# Contribute
 
 Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-stores/issues).
 

@@ -1,3 +1,19 @@
+/**
+ * @packageDocumentation
+ *
+ * A Blockstore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
+ *
+ * N.b. this is here largely for the sake of completeness, in node you should probably use FSDatastore, in browsers you should probably use IDBDatastore.
+ *
+ * @example
+ *
+ * ```js
+ * import { LevelBlockstore } from 'blockstore-level'
+ *
+ * const store = new LevelBlockstore('path/to/store')
+ * ```
+ */
+
 import { BaseBlockstore, Errors } from 'blockstore-core'
 import { Level } from 'level'
 import { base32upper } from 'multiformats/bases/base32'
