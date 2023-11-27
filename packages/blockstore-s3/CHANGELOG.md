@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.8](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.7...blockstore-s3-v1.0.8) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [blockstore-s3-v1.0.7](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.6...blockstore-s3-v1.0.7) (2023-09-05)
 
 
