@@ -4,7 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
-import { base256emoji } from 'multiformats/bases/base256emoji'
+import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import { FsBlockstore } from '../src/index.js'
 import { FlatDirectory, NextToLast } from '../src/sharding.js'
@@ -84,7 +84,7 @@ describe('FsBlockstore', () => {
       .with.property('code', 'ERR_NOT_FOUND')
   })
 
-  describe('interface-datastore (flat directory)', () => {
+  describe('interface-blockstore (flat directory)', () => {
     interfaceBlockstoreTests({
       setup: async () => {
         const store = new FsBlockstore(path.join(os.tmpdir(), `test-${Math.random()}`), {
@@ -103,7 +103,7 @@ describe('FsBlockstore', () => {
     })
   })
 
-  describe('interface-datastore (default sharding)', () => {
+  describe('interface-blockstore (default sharding)', () => {
     interfaceBlockstoreTests({
       setup: async () => {
         const store = new FsBlockstore(path.join(os.tmpdir(), `test-${Math.random()}`))
@@ -120,12 +120,12 @@ describe('FsBlockstore', () => {
     })
   })
 
-  describe('interface-datastore (custom encoding)', () => {
+  describe('interface-blockstore (custom encoding)', () => {
     interfaceBlockstoreTests({
       setup: async () => {
         const store = new FsBlockstore(path.join(os.tmpdir(), `test-${Math.random()}`), {
           shardingStrategy: new NextToLast({
-            base: base256emoji
+            base: base32
           })
         })
 
