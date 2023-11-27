@@ -1,3 +1,15 @@
+## [blockstore-core-v4.3.5](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.4...blockstore-core-v4.3.5) (2023-11-27)
+
+
+### Documentation
+
+* update datastore core readme and package config ([#245](https://github.com/ipfs/js-stores/issues/245)) ([c08d29a](https://github.com/ipfs/js-stores/commit/c08d29ab18ddea26a1d9dd73d673847469d28a13))
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [blockstore-core-v4.3.4](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.3...blockstore-core-v4.3.4) (2023-09-05)
 
 
