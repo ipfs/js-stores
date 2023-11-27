@@ -1,3 +1,10 @@
+## [interface-blockstore-v5.2.7](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.6...interface-blockstore-v5.2.7) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [interface-blockstore-v5.2.6](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.5...interface-blockstore-v5.2.6) (2023-09-05)
 
 
