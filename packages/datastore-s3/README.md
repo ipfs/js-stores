@@ -25,7 +25,7 @@ const s3 = new S3({
   }
 })
 
-const store = new DatastoreS3(
+const store = new S3Datastore(
   s3,
   'my-bucket',
   { path: '.ipfs/datastore', createIfMissing: false }

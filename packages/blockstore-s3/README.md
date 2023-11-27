@@ -28,7 +28,7 @@ const s3 = new S3({
 const store = new S3Blockstore(
   s3,
   'my-bucket',
-  { path: '.ipfs/blockstore', createIfMissing: false }
+  { createIfMissing: false }
 )
 ```
 
