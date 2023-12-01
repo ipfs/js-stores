@@ -1,3 +1,10 @@
+## [datastore-core-v9.2.5](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.4...datastore-core-v9.2.5) (2023-12-01)
+
+
+### Dependencies
+
+* bump @libp2p/logger from 3.1.0 to 4.0.1 ([#280](https://github.com/ipfs/js-stores/issues/280)) ([ab4731f](https://github.com/ipfs/js-stores/commit/ab4731f49a1a6f9163fb9c246121b3392503ba8b))
+
 ## [datastore-core-v9.2.4](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.3...datastore-core-v9.2.4) (2023-11-27)
 
 
