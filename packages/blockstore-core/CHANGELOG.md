@@ -1,3 +1,10 @@
+## [blockstore-core-v4.3.6](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.5...blockstore-core-v4.3.6) (2023-12-01)
+
+
+### Dependencies
+
+* bump @libp2p/logger from 3.1.0 to 4.0.1 ([#280](https://github.com/ipfs/js-stores/issues/280)) ([ab4731f](https://github.com/ipfs/js-stores/commit/ab4731f49a1a6f9163fb9c246121b3392503ba8b))
+
 ## [blockstore-core-v4.3.5](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.4...blockstore-core-v4.3.5) (2023-11-27)
 
 
