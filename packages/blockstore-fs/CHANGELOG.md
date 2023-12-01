@@ -1,3 +1,10 @@
+## [blockstore-fs-v1.1.8](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.7...blockstore-fs-v1.1.8) (2023-12-01)
+
+
+### Bug Fixes
+
+* cleanup references to datastore in blockstores ([#274](https://github.com/ipfs/js-stores/issues/274)) ([f550624](https://github.com/ipfs/js-stores/commit/f5506243b2cb1e6462457241a1614bd5f0755c12))
+
 ## [blockstore-fs-v1.1.7](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.6...blockstore-fs-v1.1.7) (2023-11-27)
 
 
