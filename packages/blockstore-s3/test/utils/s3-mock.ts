@@ -26,7 +26,7 @@ export const s3Reject = <T> (err: T): any => {
 }
 
 /**
- * Mocks out the s3 calls made by datastore-s3
+ * Mocks out the s3 calls made by blockstore-s3
  */
 export function s3Mock (s3: S3): S3 {
   const mocks: any = {}

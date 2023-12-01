@@ -7,7 +7,7 @@ import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
 import { LevelBlockstore } from '../src/index.js'
 
-describe('LevelDatastore', () => {
+describe('LevelBlockstore', () => {
   describe('interface-blockstore (leveldown)', () => {
     interfaceBlockstoreTests({
       async setup () {

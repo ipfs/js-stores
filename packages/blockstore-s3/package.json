@@ -12,7 +12,7 @@
     "url": "https://github.com/ipfs/js-stores/issues"
   },
   "keywords": [
-    "datastore",
+    "blockstore",
     "interface",
     "ipfs",
     "key-value",

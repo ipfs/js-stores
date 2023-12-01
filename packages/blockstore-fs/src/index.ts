@@ -257,7 +257,7 @@ export class FsBlockstore implements Blockstore {
 
         yield pair
       } catch (err: any) {
-        // if keys are removed from the datastore while the query is
+        // if keys are removed from the blockstore while the query is
         // running, we may encounter missing files.
         if (err.code !== 'ENOENT') {
           throw err

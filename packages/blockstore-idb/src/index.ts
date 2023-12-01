@@ -25,7 +25,7 @@ import type { Pair } from 'interface-blockstore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
 
-export interface IDBDatastoreInit {
+export interface IDBBlockstoreInit {
   /**
    * A prefix to use for all database keys (default: '')
    */
@@ -49,7 +49,7 @@ export class IDBBlockstore extends BaseBlockstore {
   private db?: IDBPDatabase
   private readonly base: MultibaseCodec<string>
 
-  constructor (location: string, init: IDBDatastoreInit = {}) {
+  constructor (location: string, init: IDBBlockstoreInit = {}) {
     super()
 
     this.location = `${init.prefix ?? ''}${location}`
