@@ -1,3 +1,10 @@
+## [blockstore-core-v4.3.7](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.6...blockstore-core-v4.3.7) (2023-12-01)
+
+
+### Bug Fixes
+
+* cleanup references to datastore in blockstores ([#274](https://github.com/ipfs/js-stores/issues/274)) ([f550624](https://github.com/ipfs/js-stores/commit/f5506243b2cb1e6462457241a1614bd5f0755c12))
+
 ## [blockstore-core-v4.3.6](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.5...blockstore-core-v4.3.6) (2023-12-01)
 
 
