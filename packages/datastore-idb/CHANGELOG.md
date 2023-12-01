@@ -1,3 +1,10 @@
+## [datastore-idb-v2.1.6](https://github.com/ipfs/js-stores/compare/datastore-idb-v2.1.5...datastore-idb-v2.1.6) (2023-12-01)
+
+
+### Bug Fixes
+
+* cleanup references to datastore in blockstores ([#274](https://github.com/ipfs/js-stores/issues/274)) ([f550624](https://github.com/ipfs/js-stores/commit/f5506243b2cb1e6462457241a1614bd5f0755c12))
+
 ## [datastore-idb-v2.1.5](https://github.com/ipfs/js-stores/compare/datastore-idb-v2.1.4...datastore-idb-v2.1.5) (2023-11-27)
 
 
