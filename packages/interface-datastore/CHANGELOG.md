@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.8](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.7...interface-datastore-v8.2.8) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
 ## [interface-datastore-v8.2.7](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.6...interface-datastore-v8.2.7) (2023-11-27)
 
 
