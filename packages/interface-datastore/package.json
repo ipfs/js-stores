@@ -159,7 +159,7 @@
   "dependencies": {
     "interface-store": "^5.0.0",
     "nanoid": "^5.0.3",
-    "uint8arrays": "^4.0.2"
+    "uint8arrays": "^5.0.0"
   },
   "devDependencies": {
     "aegir": "^41.1.9"

@@ -184,7 +184,7 @@
     "it-merge": "^3.0.1",
     "it-pushable": "^3.0.0",
     "multiformats": "^12.0.1",
-    "uint8arrays": "^4.0.2"
+    "uint8arrays": "^5.0.0"
   },
   "devDependencies": {
     "aegir": "^41.1.9",
