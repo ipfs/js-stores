@@ -1,3 +1,10 @@
+## [datastore-s3-v11.1.9](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.8...datastore-s3-v11.1.9) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
 ## [datastore-s3-v11.1.8](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.7...datastore-s3-v11.1.8) (2023-12-01)
 
 
