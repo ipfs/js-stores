@@ -1,3 +1,10 @@
+## [datastore-core-v9.2.6](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.5...datastore-core-v9.2.6) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
 ## [datastore-core-v9.2.5](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.4...datastore-core-v9.2.5) (2023-12-01)
 
 
