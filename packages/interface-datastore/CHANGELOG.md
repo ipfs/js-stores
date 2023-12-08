@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.9](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.8...interface-datastore-v8.2.9) (2023-12-08)
+
+
+### Bug Fixes
+
+* remove nanoid ([#283](https://github.com/ipfs/js-stores/issues/283)) ([da03ee2](https://github.com/ipfs/js-stores/commit/da03ee29970fdc860eead076ccedb5eea8ff4266))
+
 ## [interface-datastore-v8.2.8](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.7...interface-datastore-v8.2.8) (2023-12-08)
 
 
