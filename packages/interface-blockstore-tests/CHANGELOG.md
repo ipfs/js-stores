@@ -1,3 +1,10 @@
+## [interface-blockstore-tests-v6.1.7](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.6...interface-blockstore-tests-v6.1.7) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
 ## [interface-blockstore-tests-v6.1.6](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.5...interface-blockstore-tests-v6.1.6) (2023-11-27)
 
 
