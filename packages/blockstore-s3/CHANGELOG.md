@@ -1,3 +1,10 @@
+## [blockstore-s3-v1.0.12](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.11...blockstore-s3-v1.0.12) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
 ## [blockstore-s3-v1.0.11](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.10...blockstore-s3-v1.0.11) (2023-12-01)
 
 
