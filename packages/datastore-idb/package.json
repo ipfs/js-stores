@@ -1,6 +1,6 @@
 {
   "name": "datastore-idb",
-  "version": "2.1.4",
+  "version": "2.1.6",
   "description": "Datastore implementation with IndexedDB backend.",
   "author": "Hugo Dias <hugomrdias@gmail.com>",
   "license": "Apache-2.0 OR MIT",
@@ -37,11 +37,11 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
-      "sourceType": "module",
       "project": [
         "tsconfig.json",
         "benchmarks/datastore-level/tsconfig.json"
-      ]
+      ],
+      "sourceType": "module"
     }
   },
   "release": {
@@ -145,7 +145,7 @@
     "it-sort": "^3.0.1"
   },
   "devDependencies": {
-    "aegir": "^40.0.8",
+    "aegir": "^41.1.9",
     "datastore-core": "^9.0.0",
     "interface-datastore-tests": "^5.0.0"
   }

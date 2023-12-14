@@ -1,3 +1,38 @@
+## [blockstore-s3-v1.0.12](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.11...blockstore-s3-v1.0.12) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
+## [blockstore-s3-v1.0.11](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.10...blockstore-s3-v1.0.11) (2023-12-01)
+
+
+### Bug Fixes
+
+* cleanup references to datastore in blockstores ([#274](https://github.com/ipfs/js-stores/issues/274)) ([f550624](https://github.com/ipfs/js-stores/commit/f5506243b2cb1e6462457241a1614bd5f0755c12))
+
+## [blockstore-s3-v1.0.10](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.9...blockstore-s3-v1.0.10) (2023-11-27)
+
+
+### Bug Fixes
+
+* incorrect export path ([#273](https://github.com/ipfs/js-stores/issues/273)) ([e840ed4](https://github.com/ipfs/js-stores/commit/e840ed4f0e601062c7cb727bd71390381644caa6))
+
+## [blockstore-s3-v1.0.9](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.8...blockstore-s3-v1.0.9) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump sinon from 15.2.0 to 17.0.1 ([#265](https://github.com/ipfs/js-stores/issues/265)) ([316d3c5](https://github.com/ipfs/js-stores/commit/316d3c54c3a113a8deebc8e53480ac38d40f3a41))
+
+## [blockstore-s3-v1.0.8](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.7...blockstore-s3-v1.0.8) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [blockstore-s3-v1.0.7](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.6...blockstore-s3-v1.0.7) (2023-09-05)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "datastore-s3",
-  "version": "11.1.4",
+  "version": "11.1.9",
   "description": "IPFS datastore implementation backed by s3",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/datastore-s3#readme",
@@ -29,12 +29,13 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./src/index.js"
+      "import": "./dist/src/index.js"
     }
   },
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -144,13 +145,13 @@
     "interface-store": "^5.0.0",
     "it-filter": "^3.0.0",
     "it-to-buffer": "^4.0.1",
-    "uint8arrays": "^4.0.2"
+    "uint8arrays": "^5.0.0"
   },
   "devDependencies": {
-    "@types/sinon": "^10.0.15",
-    "aegir": "^40.0.8",
+    "@types/sinon": "^17.0.2",
+    "aegir": "^41.1.9",
     "interface-datastore-tests": "^5.0.0",
     "p-defer": "^4.0.0",
-    "sinon": "^15.0.2"
+    "sinon": "^17.0.1"
   }
 }

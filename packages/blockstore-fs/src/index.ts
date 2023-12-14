@@ -1,3 +1,17 @@
+/**
+ * @packageDocumentation
+ *
+ * A Blockstore implementation that stores blocks in the local filesystem.
+ *
+ * @example
+ *
+ * ```js
+ * import { FsBlockstore } from 'blockstore-fs'
+ *
+ * const store = new FsBlockstore('path/to/store')
+ * ```
+ */
+
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { promisify } from 'node:util'
@@ -243,7 +257,7 @@ export class FsBlockstore implements Blockstore {
 
         yield pair
       } catch (err: any) {
-        // if keys are removed from the datastore while the query is
+        // if keys are removed from the blockstore while the query is
         // running, we may encounter missing files.
         if (err.code !== 'ENOENT') {
           throw err

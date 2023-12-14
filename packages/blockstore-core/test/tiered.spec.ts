@@ -54,7 +54,7 @@ describe('Tiered', () => {
     })
   })
 
-  describe('inteface-datastore-single', () => {
+  describe('inteface-blockstore-single', () => {
     interfaceBlockstoreTests({
       setup () {
         return new TieredBlockstore([

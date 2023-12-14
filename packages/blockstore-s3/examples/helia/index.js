@@ -2,7 +2,7 @@ import { createHelia } from 'helia'
 import { unixfs } from '@helia/unixfs'
 import toBuffer from 'it-to-buffer'
 import { S3 } from '@aws-sdk/client-s3'
-import { DatastoreS3 } from 'datastore-s3'
+import { BlockstoreS3 } from 'blockstore-s3'
 
 async function main () {
   // Configure S3 as normal
@@ -14,12 +14,12 @@ async function main () {
     }
   })
 
-  const datastore = new DatastoreS3(s3, 'my-bucket')
+  const blockstore = new BlockstoreS3(s3, 'my-bucket')
 
   // Create a new Helia node with our S3 backed Repo
   console.log('Start Helia')
   const node = await createHelia({
-    datastore
+    blockstore
   })
 
   // Test out the repo by sending and fetching some data

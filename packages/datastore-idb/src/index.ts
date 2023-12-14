@@ -1,3 +1,17 @@
+/**
+ * @packageDocumentation
+ *
+ * A Datastore implementation for browsers that stores data in [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+ *
+ * @example
+ *
+ * ```js
+ * import { IDBDatastore } from 'datastore-idb'
+ *
+ * const store = new IDBDatastore('path/to/store')
+ * ```
+ */
+
 import { Errors, BaseDatastore } from 'datastore-core'
 import { openDB, deleteDB, type IDBPDatabase } from 'idb'
 import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
@@ -82,7 +96,7 @@ export class IDBDatastore extends BaseDatastore {
 
   async has (key: Key): Promise<boolean> {
     if (this.db == null) {
-      throw new Error('Blockstore needs to be opened.')
+      throw new Error('Datastore needs to be opened.')
     }
 
     try {

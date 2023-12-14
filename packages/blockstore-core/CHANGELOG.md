@@ -1,3 +1,36 @@
+## [blockstore-core-v4.3.8](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.7...blockstore-core-v4.3.8) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
+## [blockstore-core-v4.3.7](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.6...blockstore-core-v4.3.7) (2023-12-01)
+
+
+### Bug Fixes
+
+* cleanup references to datastore in blockstores ([#274](https://github.com/ipfs/js-stores/issues/274)) ([f550624](https://github.com/ipfs/js-stores/commit/f5506243b2cb1e6462457241a1614bd5f0755c12))
+
+## [blockstore-core-v4.3.6](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.5...blockstore-core-v4.3.6) (2023-12-01)
+
+
+### Dependencies
+
+* bump @libp2p/logger from 3.1.0 to 4.0.1 ([#280](https://github.com/ipfs/js-stores/issues/280)) ([ab4731f](https://github.com/ipfs/js-stores/commit/ab4731f49a1a6f9163fb9c246121b3392503ba8b))
+
+## [blockstore-core-v4.3.5](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.4...blockstore-core-v4.3.5) (2023-11-27)
+
+
+### Documentation
+
+* update datastore core readme and package config ([#245](https://github.com/ipfs/js-stores/issues/245)) ([c08d29a](https://github.com/ipfs/js-stores/commit/c08d29ab18ddea26a1d9dd73d673847469d28a13))
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [blockstore-core-v4.3.4](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.3...blockstore-core-v4.3.4) (2023-09-05)
 
 

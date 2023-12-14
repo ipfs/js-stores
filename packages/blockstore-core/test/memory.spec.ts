@@ -4,7 +4,7 @@ import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import { MemoryBlockstore } from '../src/memory.js'
 
 describe('memory', () => {
-  describe('interface-datastore', () => {
+  describe('interface-blockstore', () => {
     interfaceBlockstoreTests({
       setup () {
         return new MemoryBlockstore()

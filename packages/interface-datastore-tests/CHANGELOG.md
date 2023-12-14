@@ -1,3 +1,17 @@
+## [interface-datastore-tests-v5.1.6](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.5...interface-datastore-tests-v5.1.6) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
+## [interface-datastore-tests-v5.1.5](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.4...interface-datastore-tests-v5.1.5) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [interface-datastore-tests-v5.1.4](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.3...interface-datastore-tests-v5.1.4) (2023-09-05)
 
 

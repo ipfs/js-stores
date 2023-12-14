@@ -1,7 +1,7 @@
 Use with Helia
 ======
 
-This example uses a Datastore S3 instance to serve as the entire backend for Helia.
+This example uses a Blockstore S3 instance to serve as the entire backend for Helia.
 
 ## Running
 The S3 parameters must be updated with an existing Bucket and credentials with access to it:
@@ -15,7 +15,7 @@ const s3 = new S3({
   }
 })
 
-const datastore = new DatastoreS3(s3, 'my-bucket')
+const blockstore = new BlockstoreS3(s3, 'my-bucket')
 ```
 
 Once the S3 instance has its needed data, you can run the example:

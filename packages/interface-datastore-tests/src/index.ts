@@ -1,5 +1,29 @@
 /* eslint-env mocha */
 
+/**
+ * @packageDocumentation
+ *
+ * A test suite that ensures a given implementation implements the Datastore interface properly.
+ *
+ * @example
+ *
+ * ```js
+ * const MyDatastore from './path/to/my-datastore')
+ * const suite from 'interface-datastore-tests')
+ *
+ * describe('MyDatastore', () => {
+ *   describe('interface-datastore compliance tests', () => {
+ *     suite({
+ *       setup () {
+ *         return new MyDatastore()
+ *       },
+ *       teardown () {}
+ *     })
+ *   })
+ * })
+ * ```
+ */
+
 import { expect } from 'aegir/chai'
 import { type Datastore, Key, type KeyQueryFilter, type KeyQueryOrder, type Pair, type QueryFilter, type QueryOrder } from 'interface-datastore'
 import { randomBytes } from 'iso-random-stream'
@@ -9,8 +33,8 @@ import length from 'it-length'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 export interface InterfacDatastoreTest<D extends Datastore = Datastore> {
-  setup: () => D | Promise<D>
-  teardown: (store: D) => void | Promise<void>
+  setup(): D | Promise<D>
+  teardown(store: D): void | Promise<void>
 }
 
 export function interfaceDatastoreTests <D extends Datastore = Datastore> (test: InterfacDatastoreTest<D>): void {

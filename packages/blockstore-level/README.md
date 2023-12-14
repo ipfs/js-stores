@@ -1,5 +1,3 @@
-# blockstore-level <!-- omit in toc -->
-
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
@@ -7,21 +5,27 @@
 
 > Blockstore implementation with level(up|down) backend
 
-## Table of contents <!-- omit in toc -->
+# About
 
-- [Install](#install)
-  - [Browser `<script>` tag](#browser-script-tag)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribute](#contribute)
+A Blockstore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
 
-## Install
+N.b. this is here largely for the sake of completeness, in node you should probably use FSDatastore, in browsers you should probably use IDBDatastore.
+
+## Example
+
+```js
+import { LevelBlockstore } from 'blockstore-level'
+
+const store = new LevelBlockstore('path/to/store')
+```
+
+# Install
 
 ```console
 $ npm i blockstore-level
 ```
 
-### Browser `<script>` tag
+## Browser `<script>` tag
 
 Loading this module through a script tag will make it's exports available as `BlockstoreLevel` in the global namespace.
 
@@ -29,18 +33,18 @@ Loading this module through a script tag will make it's exports available as `Bl
 <script src="https://unpkg.com/blockstore-level/dist/index.min.js"></script>
 ```
 
-## API Docs
+# API Docs
 
 - <https://ipfs.github.io/js-stores/modules/blockstore_level.html>
 
-## License
+# License
 
 Licensed under either of
 
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+# Contribute
 
 Contributions welcome! Please check out [the issues](https://github.com/ipfs/js-stores/issues).
 

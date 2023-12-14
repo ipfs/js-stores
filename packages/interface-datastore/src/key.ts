@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { type SupportedEncodings, toString as uint8ArrayToString } from 'uint8arrays/to-string'
 
@@ -103,11 +102,11 @@ export class Key {
    * @example
    * ```js
    * Key.random()
-   * // => Key('/f98719ea086343f7b71f32ea9d9d521d')
+   * // => Key('/344502982398')
    * ```
    */
   static random (): Key {
-    return new Key(nanoid().replace(/-/g, ''))
+    return new Key(Math.random().toString().substring(2))
   }
 
   /**

@@ -1,3 +1,38 @@
+## [datastore-s3-v11.1.9](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.8...datastore-s3-v11.1.9) (2023-12-08)
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#282](https://github.com/ipfs/js-stores/issues/282)) ([2cbfd52](https://github.com/ipfs/js-stores/commit/2cbfd52257e9358786962d94e144df9583a45c30))
+
+## [datastore-s3-v11.1.8](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.7...datastore-s3-v11.1.8) (2023-12-01)
+
+
+### Bug Fixes
+
+* cleanup references to datastore in blockstores ([#274](https://github.com/ipfs/js-stores/issues/274)) ([f550624](https://github.com/ipfs/js-stores/commit/f5506243b2cb1e6462457241a1614bd5f0755c12))
+
+## [datastore-s3-v11.1.7](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.6...datastore-s3-v11.1.7) (2023-11-27)
+
+
+### Bug Fixes
+
+* incorrect export path ([#273](https://github.com/ipfs/js-stores/issues/273)) ([e840ed4](https://github.com/ipfs/js-stores/commit/e840ed4f0e601062c7cb727bd71390381644caa6))
+
+## [datastore-s3-v11.1.6](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.5...datastore-s3-v11.1.6) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump sinon from 15.2.0 to 17.0.1 ([#265](https://github.com/ipfs/js-stores/issues/265)) ([316d3c5](https://github.com/ipfs/js-stores/commit/316d3c54c3a113a8deebc8e53480ac38d40f3a41))
+
+## [datastore-s3-v11.1.5](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.4...datastore-s3-v11.1.5) (2023-11-27)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.1.9 ([#268](https://github.com/ipfs/js-stores/issues/268)) ([0aa0944](https://github.com/ipfs/js-stores/commit/0aa0944d42798d1f6fd589e8a58de7d791760644))
+
 ## [datastore-s3-v11.1.4](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.3...datastore-s3-v11.1.4) (2023-09-05)
 
 

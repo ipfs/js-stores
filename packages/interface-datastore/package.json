@@ -1,6 +1,6 @@
 {
   "name": "interface-datastore",
-  "version": "8.2.5",
+  "version": "8.2.9",
   "description": "datastore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-datastore#readme",
@@ -54,6 +54,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -157,10 +158,9 @@
   },
   "dependencies": {
     "interface-store": "^5.0.0",
-    "nanoid": "^4.0.0",
-    "uint8arrays": "^4.0.2"
+    "uint8arrays": "^5.0.0"
   },
   "devDependencies": {
-    "aegir": "^40.0.8"
+    "aegir": "^41.1.9"
   }
 }
