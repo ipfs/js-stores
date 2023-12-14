@@ -12,8 +12,8 @@ A test suite that ensures a given implementation implements the Blockstore inter
 ## Example
 
 ```js
-import MyBlockstore from './path/to/my-blockstore'
-import { interfaceBlockstoreTests as suite } from 'interface-blockstore-tests'
+const MyBlockstore from './path/to/my-blockstore')
+const suite from 'interface-blockstore-tests')
 
 describe('MyBlockstore', () => {
   describe('interface-blockstore compliance tests', () => {

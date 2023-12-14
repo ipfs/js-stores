@@ -12,8 +12,8 @@ A test suite that ensures a given implementation implements the Datastore interf
 ## Example
 
 ```js
-import MyDatastore from './path/to/my-datastore'
-import { interfaceDatastoreTests as suite } from 'interface-datastore-tests'
+const MyDatastore from './path/to/my-datastore')
+const suite from 'interface-datastore-tests')
 
 describe('MyDatastore', () => {
   describe('interface-datastore compliance tests', () => {
