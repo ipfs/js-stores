@@ -24,7 +24,6 @@ $ npm i interface-blockstore-tests
 ## Usage
 
 ```js
-const MyBlockstore from './path/to/my-blockstore')
 import MyBlockstore from './path/to/my-blockstore'
 import { interfaceBlockstoreTests as suite } from 'interface-blockstore-tests'
 
