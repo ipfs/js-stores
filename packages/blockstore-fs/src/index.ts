@@ -14,12 +14,10 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { promisify } from 'node:util'
+import { Writer as StenoWriter } from '@sgtpooki/steno-patched'
 import {
   Errors
 } from 'blockstore-core'
-// @ts-expect-error no types
-import fwa from 'fast-write-atomic'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
@@ -28,20 +26,19 @@ import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
-const writeAtomic = promisify(fwa)
-
 /**
  * Write a file atomically
  */
-async function writeFile (file: string, contents: Uint8Array): Promise<void> {
+async function writeFile (writer: StenoWriter, file: string, contents: Uint8Array): Promise<void> {
   try {
-    await writeAtomic(file, contents)
+    await writer.write(contents)
   } catch (err: any) {
     if (err.code === 'EPERM' && err.syscall === 'rename') {
-      // fast-write-atomic writes a file to a temp location before renaming it.
+      // steno writes a file to a temp location before renaming it.
       // On Windows, if the final file already exists this error is thrown.
       // No such error is thrown on Linux/Mac
       // Make sure we can read & write to this file
+      // 2023-12-14: Is this still needed with steno?
       await fs.access(file, fs.constants.F_OK | fs.constants.W_OK)
 
       // The file was created by another context - this means there were
@@ -106,6 +103,7 @@ export class FsBlockstore implements Blockstore {
   private readonly getManyConcurrency: number
   private readonly deleteManyConcurrency: number
   private readonly shardingStrategy: ShardingStrategy
+  private readonly writers = new Map<string, StenoWriter>()
 
   constructor (location: string, init: FsBlockstoreInit = {}) {
     this.path = path.resolve(location)
@@ -151,8 +149,16 @@ export class FsBlockstore implements Blockstore {
           recursive: true
         })
       }
+      const filePath = path.join(this.path, dir, file)
 
-      await writeFile(path.join(this.path, dir, file), val)
+      let writer = this.writers.get(filePath)
+      if (writer == null) {
+        writer = new StenoWriter(filePath)
+        this.writers.set(filePath, writer)
+      }
+
+      await writeFile(writer, filePath, val)
+      this.writers.delete(filePath)
 
       return key
     } catch (err: any) {
