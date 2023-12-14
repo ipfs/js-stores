@@ -136,8 +136,8 @@
     "dep-check": "aegir dep-check"
   },
   "dependencies": {
+    "@sgtpooki/steno-patched": "^3.1.1",
     "datastore-core": "^9.0.0",
-    "fast-write-atomic": "^0.2.0",
     "interface-datastore": "^8.0.0",
     "interface-store": "^5.0.0",
     "it-glob": "^2.0.1",
