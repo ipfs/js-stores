@@ -183,7 +183,7 @@
     "it-filter": "^3.0.0",
     "it-merge": "^3.0.1",
     "it-pushable": "^3.0.0",
-    "multiformats": "^12.0.1",
+    "multiformats": "^13.0.0",
     "uint8arrays": "^5.0.0"
   },
   "devDependencies": {
