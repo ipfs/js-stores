@@ -1,3 +1,10 @@
+## [blockstore-core-v4.3.9](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.8...blockstore-core-v4.3.9) (2023-12-28)
+
+
+### Dependencies
+
+* bump multiformats from 12.1.3 to 13.0.0 ([#286](https://github.com/ipfs/js-stores/issues/286)) ([c8ccd1d](https://github.com/ipfs/js-stores/commit/c8ccd1de91883d1a1cbd394c21a51b021d52baa3))
+
 ## [blockstore-core-v4.3.8](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.7...blockstore-core-v4.3.8) (2023-12-08)
 
 
