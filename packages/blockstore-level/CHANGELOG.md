@@ -1,3 +1,10 @@
+## [blockstore-level-v1.1.7](https://github.com/ipfs/js-stores/compare/blockstore-level-v1.1.6...blockstore-level-v1.1.7) (2023-12-28)
+
+
+### Dependencies
+
+* bump multiformats from 12.1.3 to 13.0.0 ([#286](https://github.com/ipfs/js-stores/issues/286)) ([c8ccd1d](https://github.com/ipfs/js-stores/commit/c8ccd1de91883d1a1cbd394c21a51b021d52baa3))
+
 ## [blockstore-level-v1.1.6](https://github.com/ipfs/js-stores/compare/blockstore-level-v1.1.5...blockstore-level-v1.1.6) (2023-12-01)
 
 
