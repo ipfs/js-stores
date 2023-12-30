@@ -1,3 +1,21 @@
+## [datastore-idb-v2.1.7](https://github.com/ipfs/js-stores/compare/datastore-idb-v2.1.6...datastore-idb-v2.1.7) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
+
+### Trivial Changes
+
+* update sibling dependencies ([a4fb1c5](https://github.com/ipfs/js-stores/commit/a4fb1c5f97650d6ee80084e8c59c7a081f9a09e0))
+
+
+### Dependencies
+
+* bump idb from 7.1.1 to 8.0.0 ([#281](https://github.com/ipfs/js-stores/issues/281)) ([4d0bdbc](https://github.com/ipfs/js-stores/commit/4d0bdbc600b226c489259e5100af5c8c7031fb79))
+
 ## [datastore-idb-v2.1.7](https://github.com/ipfs/js-stores/compare/datastore-idb-v2.1.6...datastore-idb-v2.1.7) (2023-12-28)
 
 
