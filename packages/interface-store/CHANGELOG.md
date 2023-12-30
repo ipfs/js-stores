@@ -1,3 +1,10 @@
+## [interface-store-v5.1.6](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.5...interface-store-v5.1.6) (2023-12-30)
+
+
+### Bug Fixes
+
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [interface-store-v5.1.5](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.4...interface-store-v5.1.5) (2023-11-27)
 
 
