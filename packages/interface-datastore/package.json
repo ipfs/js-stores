@@ -1,6 +1,6 @@
 {
   "name": "interface-datastore",
-  "version": "8.2.9",
+  "version": "8.2.10",
   "description": "datastore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-datastore#readme",

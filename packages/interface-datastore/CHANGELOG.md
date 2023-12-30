@@ -1,3 +1,10 @@
+## [interface-datastore-v8.2.10](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.9...interface-datastore-v8.2.10) (2023-12-30)
+
+
+### Bug Fixes
+
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [interface-datastore-v8.2.9](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.8...interface-datastore-v8.2.9) (2023-12-08)
 
 
