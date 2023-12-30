@@ -1,3 +1,10 @@
+## [interface-store-v5.1.7](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.6...interface-store-v5.1.7) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+
 ## [interface-store-v5.1.6](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.5...interface-store-v5.1.6) (2023-12-30)
 
 
