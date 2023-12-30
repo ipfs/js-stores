@@ -1,3 +1,11 @@
+## [datastore-s3-v11.1.10](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.9...datastore-s3-v11.1.10) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [datastore-s3-v11.1.9](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.8...datastore-s3-v11.1.9) (2023-12-08)
 
 
