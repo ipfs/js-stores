@@ -1,6 +1,6 @@
 {
   "name": "blockstore-s3",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "IPFS blockstore implementation backed by s3",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/blockstore-s3#readme",

@@ -1,3 +1,11 @@
+## [blockstore-s3-v1.0.14](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.13...blockstore-s3-v1.0.14) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [blockstore-s3-v1.0.13](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.12...blockstore-s3-v1.0.13) (2023-12-28)
 
 
