@@ -1,3 +1,11 @@
+## [datastore-level-v10.1.6](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.5...datastore-level-v10.1.6) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [datastore-level-v10.1.5](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.4...datastore-level-v10.1.5) (2023-11-27)
 
 
