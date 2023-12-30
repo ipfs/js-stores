@@ -1,3 +1,11 @@
+## [interface-blockstore-tests-v6.1.9](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.8...interface-blockstore-tests-v6.1.9) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [interface-blockstore-tests-v6.1.8](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.7...interface-blockstore-tests-v6.1.8) (2023-12-28)
 
 
