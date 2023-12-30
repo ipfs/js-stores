@@ -1,3 +1,10 @@
+## [interface-blockstore-v5.2.9](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.8...interface-blockstore-v5.2.9) (2023-12-30)
+
+
+### Bug Fixes
+
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [interface-blockstore-v5.2.8](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.7...interface-blockstore-v5.2.8) (2023-12-28)
 
 
