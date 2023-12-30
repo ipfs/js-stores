@@ -1,3 +1,16 @@
+## [blockstore-fs-v1.1.9](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.8...blockstore-fs-v1.1.9) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
+
+### Dependencies
+
+* bump multiformats from 12.1.3 to 13.0.0 ([#286](https://github.com/ipfs/js-stores/issues/286)) ([c8ccd1d](https://github.com/ipfs/js-stores/commit/c8ccd1de91883d1a1cbd394c21a51b021d52baa3))
+
 ## [blockstore-fs-v1.1.8](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.7...blockstore-fs-v1.1.8) (2023-12-01)
 
 
