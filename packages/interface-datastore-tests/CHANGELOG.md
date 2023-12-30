@@ -1,3 +1,11 @@
+## [interface-datastore-tests-v5.1.7](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.6...interface-datastore-tests-v5.1.7) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [interface-datastore-tests-v5.1.6](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-v5.1.5...interface-datastore-tests-v5.1.6) (2023-12-08)
 
 
