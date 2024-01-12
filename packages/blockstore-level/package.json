@@ -148,7 +148,7 @@
     "multiformats": "^13.0.0"
   },
   "devDependencies": {
-    "aegir": "^41.1.9",
+    "aegir": "^42.1.1",
     "interface-blockstore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.4",
     "memory-level": "^1.0.0"

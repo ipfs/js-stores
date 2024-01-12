@@ -149,7 +149,7 @@
   },
   "devDependencies": {
     "@types/sinon": "^17.0.2",
-    "aegir": "^41.1.9",
+    "aegir": "^42.1.1",
     "interface-blockstore-tests": "^6.0.0",
     "p-defer": "^4.0.0",
     "sinon": "^17.0.1"
