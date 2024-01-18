@@ -146,7 +146,7 @@
   },
   "devDependencies": {
     "@types/mkdirp": "^2.0.0",
-    "aegir": "^41.1.9",
+    "aegir": "^42.2.2",
     "interface-datastore-tests": "^5.0.0",
     "ipfs-utils": "^9.0.4"
   }
