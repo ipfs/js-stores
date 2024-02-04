@@ -14,12 +14,10 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { promisify } from 'util'
+import { Writer as StenoWriter } from '@sgtpooki/steno-patched'
 import {
   BaseDatastore, Errors
 } from 'datastore-core'
-// @ts-expect-error no types
-import fwa from 'fast-write-atomic'
 import {
   Key, type KeyQuery, type Pair, type Query
 } from 'interface-datastore'
@@ -28,21 +26,20 @@ import map from 'it-map'
 import parallel from 'it-parallel-batch'
 import type { AwaitIterable } from 'interface-store'
 
-const writeAtomic = promisify(fwa)
-
 /**
  * Write a file atomically
  */
-async function writeFile (path: string, contents: Uint8Array): Promise<void> {
+async function writeFile (writer: StenoWriter, file: string, contents: Uint8Array): Promise<void> {
   try {
-    await writeAtomic(path, contents)
+    await writer.write(contents)
   } catch (err: any) {
     if (err.code === 'EPERM' && err.syscall === 'rename') {
-      // fast-write-atomic writes a file to a temp location before renaming it.
+      // steno writes a file to a temp location before renaming it.
       // On Windows, if the final file already exists this error is thrown.
       // No such error is thrown on Linux/Mac
       // Make sure we can read & write to this file
-      await fs.access(path, fs.constants.F_OK | fs.constants.W_OK)
+      // 2023-12-14: Is this still needed with steno?
+      await fs.access(file, fs.constants.F_OK | fs.constants.W_OK)
 
       // The file was created by another context - this means there were
       // attempts to write the same block by two different function calls
@@ -76,6 +73,7 @@ export class FsDatastore extends BaseDatastore {
   private readonly deleteManyConcurrency: number
   private readonly getManyConcurrency: number
   private readonly putManyConcurrency: number
+  private readonly writers = new Map<string, StenoWriter>()
 
   constructor (location: string, init: FsDatastoreInit = {}) {
     super()
@@ -156,7 +154,15 @@ export class FsDatastore extends BaseDatastore {
       await fs.mkdir(parts.dir, {
         recursive: true
       })
-      await writeFile(parts.file, val)
+      const filePath = parts.file
+      let writer = this.writers.get(filePath)
+      if (writer == null) {
+        writer = new StenoWriter(filePath)
+        this.writers.set(filePath, writer)
+      }
+
+      await writeFile(writer, filePath, val)
+      this.writers.delete(filePath)
 
       return key
     } catch (err: any) {
