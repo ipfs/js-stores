@@ -145,7 +145,7 @@
     "it-sort": "^3.0.1"
   },
   "devDependencies": {
-    "aegir": "^41.1.9",
+    "aegir": "^42.2.3",
     "datastore-core": "^9.0.0",
     "interface-datastore-tests": "^5.0.0"
   }
