@@ -1,9 +1,72 @@
+# datastore-core
+
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/js-stores.svg?style=flat-square)](https://codecov.io/gh/ipfs/js-stores)
 [![CI](https://img.shields.io/github/actions/workflow/status/ipfs/js-stores/js-test-and-release.yml?branch=main\&style=flat-square)](https://github.com/ipfs/js-stores/actions/workflows/js-test-and-release.yml?query=branch%3Amain)
 
 > Wrapper implementation for interface-datastore
+
+# About
+
+Various Datastore implementations are available.
+
+## Implementations
+
+- Mount: [`src/mount`](src/mount.ts)
+- Keytransform: [`src/keytransform`](src/keytransform.ts)
+- Sharding: [`src/sharding`](src/sharding.ts)
+- Tiered: [`src/tiered`](src/tirered.ts)
+- Namespace: [`src/namespace`](src/namespace.ts)
+- BlackHole: [`src/black-hole`](src/black-hole.ts)
+
+## Example - BaseDatastore
+
+An base store is made available to make implementing your own datastore easier:
+
+```javascript
+import { BaseDatastore } from 'datastore-core'
+
+class MyDatastore extends BaseDatastore {
+  constructor () {
+    super()
+  }
+
+  async put (key, val) {
+    // your implementation here
+  }
+
+  async get (key) {
+    // your implementation here
+  }
+
+  // etc...
+}
+```
+
+See the [MemoryDatastore](./src/memory.js) for an example of how it is used.
+
+## Example - Wrapping Stores
+
+```js
+import { Key } from 'interface-datastore'
+import {
+  MemoryStore,
+  MountStore
+} from 'datastore-core'
+
+const store = new MountStore({prefix: new Key('/a'), datastore: new MemoryStore()})
+```
+
+## Example - BlackHoleDatastore
+
+A datastore that does not store any data.
+
+```js
+import { BlackHoleDatastore } from 'datastore-core/black-hole'
+
+const store = new BlackHoleDatastore()
+```
 
 # Install
 
