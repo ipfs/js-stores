@@ -4,13 +4,17 @@
   "description": "Datastore implementation with level(up|down) backend",
   "author": "Friedel Ziegelmayer<dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/datastore-level#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/datastore-level#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "datastore",
@@ -144,16 +148,16 @@
   "dependencies": {
     "datastore-core": "^9.0.0",
     "interface-datastore": "^8.0.0",
-    "it-filter": "^3.0.0",
-    "it-map": "^3.0.1",
-    "it-sort": "^3.0.1",
-    "it-take": "^3.0.1",
-    "level": "^8.0.0"
+    "it-filter": "^3.0.4",
+    "it-map": "^3.0.5",
+    "it-sort": "^3.0.4",
+    "it-take": "^3.0.4",
+    "level": "^8.0.1"
   },
   "devDependencies": {
-    "aegir": "^41.1.9",
+    "aegir": "^42.2.3",
     "interface-datastore-tests": "^5.0.0",
-    "ipfs-utils": "^9.0.4",
+    "ipfs-utils": "^9.0.14",
     "memory-level": "^1.0.0"
   }
 }

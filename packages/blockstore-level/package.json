@@ -3,13 +3,17 @@
   "version": "1.1.7",
   "description": "Blockstore implementation with level(up|down) backend",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/blockstore-level#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-level#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "blockstore",
@@ -144,13 +148,13 @@
     "blockstore-core": "^4.0.0",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^5.0.0",
-    "level": "^8.0.0",
-    "multiformats": "^13.0.0"
+    "level": "^8.0.1",
+    "multiformats": "^13.0.1"
   },
   "devDependencies": {
-    "aegir": "^41.1.9",
+    "aegir": "^42.2.3",
     "interface-blockstore-tests": "^6.0.0",
-    "ipfs-utils": "^9.0.4",
+    "ipfs-utils": "^9.0.14",
     "memory-level": "^1.0.0"
   }
 }
