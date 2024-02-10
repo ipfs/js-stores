@@ -72,6 +72,21 @@ const store = new TieredBlockstore([
 ])
 ```
 
+## Example - IdentityBlockstore
+
+An identity blockstore is one that deals exclusively in Identity CIDs - this is a special CID with the codec [0x00](https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2) where the multihash digest is the data that makes up the block.
+
+```TypeScript
+import { IdentityBlockstore } from 'blockstore-core/identity'
+import { CID } from 'multiformats/cid'
+
+const blockstore = new IdentityBlockstore()
+
+blockstore.has(CID.parse('QmFoo')) // false
+
+blockstore.has(CID.parse('bafkqac3imvwgy3zao5xxe3de')) // true
+```
+
 # Install
 
 ```console
