@@ -3,13 +3,17 @@
   "version": "1.1.9",
   "description": "Blockstore implementation with file system backend",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/blockstore-fs#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-fs#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "datastore",
@@ -159,16 +163,16 @@
   },
   "dependencies": {
     "blockstore-core": "^4.0.0",
-    "fast-write-atomic": "^0.2.0",
+    "fast-write-atomic": "^0.2.1",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^5.0.0",
-    "it-glob": "^2.0.1",
-    "it-map": "^3.0.1",
-    "it-parallel-batch": "^3.0.0",
-    "multiformats": "^13.0.0"
+    "it-glob": "^2.0.6",
+    "it-map": "^3.0.5",
+    "it-parallel-batch": "^3.0.4",
+    "multiformats": "^13.0.1"
   },
   "devDependencies": {
-    "aegir": "^41.1.9",
+    "aegir": "^42.2.3",
     "interface-blockstore-tests": "^6.0.0"
   }
 }

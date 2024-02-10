@@ -3,13 +3,17 @@
   "version": "8.2.10",
   "description": "datastore interface",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-datastore#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/interface-datastore#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "datastore",
@@ -158,9 +162,9 @@
   },
   "dependencies": {
     "interface-store": "^5.0.0",
-    "uint8arrays": "^5.0.0"
+    "uint8arrays": "^5.0.2"
   },
   "devDependencies": {
-    "aegir": "^41.1.9"
+    "aegir": "^42.2.3"
   }
 }

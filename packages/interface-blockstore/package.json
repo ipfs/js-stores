@@ -3,13 +3,17 @@
   "version": "5.2.9",
   "description": "An interface for storing and retrieving blocks",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-blockstore#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/interface-blockstore#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "type": "module",
   "types": "./dist/src/index.d.ts",
@@ -125,9 +129,9 @@
   },
   "dependencies": {
     "interface-store": "^5.0.0",
-    "multiformats": "^13.0.0"
+    "multiformats": "^13.0.1"
   },
   "devDependencies": {
-    "aegir": "^41.1.9"
+    "aegir": "^42.2.3"
   }
 }

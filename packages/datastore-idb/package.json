@@ -4,13 +4,17 @@
   "description": "Datastore implementation with IndexedDB backend.",
   "author": "Hugo Dias <hugomrdias@gmail.com>",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/datastore-idb#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/datastore-idb#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "browser",
@@ -139,14 +143,14 @@
     "dep-check": "aegir dep-check"
   },
   "dependencies": {
+    "datastore-core": "^9.0.0",
     "idb": "^8.0.0",
     "interface-datastore": "^8.0.0",
-    "it-filter": "^3.0.0",
-    "it-sort": "^3.0.1"
+    "it-filter": "^3.0.4",
+    "it-sort": "^3.0.4"
   },
   "devDependencies": {
-    "aegir": "^41.1.9",
-    "datastore-core": "^9.0.0",
+    "aegir": "^42.2.3",
     "interface-datastore-tests": "^5.0.0"
   }
 }
