@@ -31,8 +31,8 @@ export class BaseBlockstore implements Blockstore {
     }
   }
 
-  async delete (key: CID, options?: AbortOptions): Promise<void> {
-    await Promise.reject(new Error('.delete is not implemented'))
+  delete (key: CID, options?: AbortOptions): Await<void> {
+    return Promise.reject(new Error('.delete is not implemented'))
   }
 
   async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AwaitIterable<CID> {
