@@ -5,6 +5,18 @@
 
 > Blockstore implementation with file system backend
 
+# About
+
+A Blockstore implementation that stores blocks in the local filesystem.
+
+## Example
+
+```js
+import { FsBlockstore } from 'blockstore-fs'
+
+const store = new FsBlockstore('path/to/store')
+```
+
 # Install
 
 ```console

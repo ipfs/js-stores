@@ -4,13 +4,17 @@
   "description": "Datastore implementation with file system backend",
   "author": "Friedel Ziegelmayer<dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/datastore-fs#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/datastore-fs#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "datastore",
@@ -137,17 +141,17 @@
   },
   "dependencies": {
     "datastore-core": "^9.0.0",
-    "fast-write-atomic": "^0.2.0",
+    "fast-write-atomic": "^0.2.1",
     "interface-datastore": "^8.0.0",
     "interface-store": "^5.0.0",
-    "it-glob": "^2.0.1",
-    "it-map": "^3.0.1",
-    "it-parallel-batch": "^3.0.0"
+    "it-glob": "^2.0.6",
+    "it-map": "^3.0.5",
+    "it-parallel-batch": "^3.0.4"
   },
   "devDependencies": {
     "@types/mkdirp": "^2.0.0",
     "aegir": "^42.2.3",
     "interface-datastore-tests": "^5.0.0",
-    "ipfs-utils": "^9.0.4"
+    "ipfs-utils": "^9.0.14"
   }
 }
