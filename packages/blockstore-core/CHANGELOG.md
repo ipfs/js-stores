@@ -1,3 +1,10 @@
+## blockstore-core [4.4.0](https://github.com/ipfs/js-stores/compare/blockstore-core-4.3.11...blockstore-core-4.4.0) (2024-02-12)
+
+
+### Features
+
+* add identity blockstore ([#298](https://github.com/ipfs/js-stores/issues/298)) ([b8dce49](https://github.com/ipfs/js-stores/commit/b8dce49fc005a76b86bca751b7d703d321cd12d6))
+
 ## blockstore-core [4.3.11](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.10...blockstore-core-4.3.11) (2024-02-12)
 
 
