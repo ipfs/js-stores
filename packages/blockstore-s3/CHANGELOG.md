@@ -1,3 +1,19 @@
+## blockstore-s3 [1.0.15](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.14...blockstore-s3-1.0.15) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **blockstore-core:** upgraded to 4.3.11
+* **interface-blockstore:** upgraded to 5.2.10
+* **interface-store:** upgraded to 5.1.8
+* **interface-blockstore-tests:** upgraded to 6.1.10
+
 ## [blockstore-s3-v1.0.14](https://github.com/ipfs/js-stores/compare/blockstore-s3-v1.0.13...blockstore-s3-v1.0.14) (2023-12-30)
 
 

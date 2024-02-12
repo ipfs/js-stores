@@ -1,3 +1,18 @@
+## datastore-core [9.2.8](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.7...datastore-core-9.2.8) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **interface-datastore:** upgraded to 8.2.11
+* **interface-store:** upgraded to 5.1.8
+* **interface-datastore-tests:** upgraded to 5.1.8
+
 ## [datastore-core-v9.2.7](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.6...datastore-core-v9.2.7) (2023-12-30)
 
 
