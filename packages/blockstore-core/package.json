@@ -63,6 +63,10 @@
       "types": "./dist/src/errors.d.ts",
       "import": "./dist/src/errors.js"
     },
+    "./identity": {
+      "types": "./dist/src/identity.d.ts",
+      "import": "./dist/src/identity.js"
+    },
     "./memory": {
       "types": "./dist/src/memory.d.ts",
       "import": "./dist/src/memory.js"
