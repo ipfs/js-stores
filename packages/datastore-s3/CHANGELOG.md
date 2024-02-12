@@ -1,3 +1,19 @@
+## datastore-s3 [11.1.11](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.10...datastore-s3-11.1.11) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **datastore-core:** upgraded to 9.2.8
+* **interface-datastore:** upgraded to 8.2.11
+* **interface-store:** upgraded to 5.1.8
+* **interface-datastore-tests:** upgraded to 5.1.8
+
 ## [datastore-s3-v11.1.10](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.9...datastore-s3-v11.1.10) (2023-12-30)
 
 

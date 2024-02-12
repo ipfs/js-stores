@@ -1,6 +1,6 @@
 {
   "name": "datastore-s3",
-  "version": "11.1.10",
+  "version": "11.1.11",
   "description": "IPFS datastore implementation backed by s3",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/datastore-s3#readme",
