@@ -1,3 +1,19 @@
+## blockstore-level [1.1.8](https://github.com/ipfs/js-stores/compare/blockstore-level-v1.1.7...blockstore-level-1.1.8) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **blockstore-core:** upgraded to 4.3.11
+* **interface-blockstore:** upgraded to 5.2.10
+* **interface-store:** upgraded to 5.1.8
+* **interface-blockstore-tests:** upgraded to 6.1.10
+
 ## [blockstore-level-v1.1.7](https://github.com/ipfs/js-stores/compare/blockstore-level-v1.1.6...blockstore-level-v1.1.7) (2023-12-30)
 
 
