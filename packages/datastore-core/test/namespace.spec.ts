@@ -13,18 +13,19 @@ describe('NamespaceDatastore', () => {
     'abc',
     ''
   ]
+
+  const keys = [
+    'foo',
+    'foo/bar',
+    'foo/bar/baz',
+    'foo/barb',
+    'foo/bar/bazb',
+    'foo/bar/baz/barb'
+  ].map((s) => new Key(s))
+
   prefixes.forEach((prefix) => it(`basic '${prefix}'`, async () => {
     const mStore = new MemoryDatastore()
     const store = new NamespaceDatastore(mStore, new Key(prefix))
-
-    const keys = [
-      'foo',
-      'foo/bar',
-      'foo/bar/baz',
-      'foo/barb',
-      'foo/bar/bazb',
-      'foo/bar/baz/barb'
-    ].map((s) => new Key(s))
 
     await Promise.all(keys.map(async key => { await store.put(key, uint8ArrayFromString(key.toString())) }))
     const nResults = Promise.all(keys.map(async (key) => store.get(key)))
@@ -44,6 +45,41 @@ describe('NamespaceDatastore', () => {
 
     expect(results[0]).to.eql(results[1])
   }))
+
+  const setupStores = async (keys: Key[]): Promise<NamespaceDatastore[]> => {
+    const prefixes = ['abc', '123', 'sub/prefix']
+    const mStore = new MemoryDatastore()
+
+    return Promise.all(prefixes.map(async prefix => {
+      const store = new NamespaceDatastore(mStore, new Key(prefix))
+
+      await Promise.all(keys.map(async key => { await store.put(key, uint8ArrayFromString(key.toString())) }))
+
+      return store
+    }))
+  }
+
+  it('queries keys under each prefix', async () => {
+    const stores = await setupStores(keys)
+
+    for (const store of stores) {
+      const nRes = await all(store.queryKeys({}))
+
+      expect(nRes).deep.equal(keys)
+    }
+  })
+
+  it('queries values under each prefix', async () => {
+    const stores = await setupStores(keys)
+
+    for (const store of stores) {
+      const nRes = await all(store.query({}))
+      const values = keys.map(key => uint8ArrayFromString(key.toString()))
+
+      expect(nRes.map(p => p.key)).deep.equal(keys)
+      expect(nRes.map(p => p.value)).deep.equal(values)
+    }
+  })
 
   prefixes.forEach((prefix) => {
     describe(`interface-datastore: '${prefix}'`, () => {
