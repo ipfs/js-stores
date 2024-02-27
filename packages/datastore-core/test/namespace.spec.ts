@@ -59,6 +59,23 @@ describe('NamespaceDatastore', () => {
     }))
   }
 
+  const setupNestedStores = async (keys: Key[]): Promise<NamespaceDatastore[]> => {
+    const prefixes = ['abc', '123', 'sub/prefix']
+    const mStore = new MemoryDatastore()
+
+    return (await Promise.all(prefixes.map(async prefix => {
+      const store = new NamespaceDatastore(mStore, new Key(prefix))
+
+      return Promise.all(prefixes.map(async prefix => {
+        const child = new NamespaceDatastore(store, new Key(prefix))
+
+        await Promise.all(keys.map(async key => { await child.put(key, uint8ArrayFromString(key.toString())) }))
+
+        return child
+      }))
+    }))).reduce((a, c) => [...a, ...c], [])
+  }
+
   it('queries keys under each prefix', async () => {
     const stores = await setupStores(keys)
 
@@ -71,6 +88,28 @@ describe('NamespaceDatastore', () => {
 
   it('queries values under each prefix', async () => {
     const stores = await setupStores(keys)
+
+    for (const store of stores) {
+      const nRes = await all(store.query({}))
+      const values = keys.map(key => uint8ArrayFromString(key.toString()))
+
+      expect(nRes.map(p => p.key)).deep.equal(keys)
+      expect(nRes.map(p => p.value)).deep.equal(values)
+    }
+  })
+
+  it('queries keys under each prefix in nested stores', async () => {
+    const stores = await setupNestedStores(keys)
+
+    for (const store of stores) {
+      const nRes = await all(store.queryKeys({}))
+
+      expect(nRes).deep.equal(keys)
+    }
+  })
+
+  it('queries values under each prefix in nested stores', async () => {
+    const stores = await setupNestedStores(keys)
 
     for (const store of stores) {
       const nRes = await all(store.query({}))
