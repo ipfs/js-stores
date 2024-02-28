@@ -11,7 +11,22 @@
 <blockquote>
 <p>IPFS datastore implementation backed by s3</p>
 </blockquote>
-<a id="md:about" class="tsd-anchor"></a><h1><a href="#md:about">About</a></h1><p>A Datastore implementation that stores data on Amazon S3.</p>
+<a id="md:about" class="tsd-anchor"></a><h1><a href="#md:about">About</a></h1><!--
+
+!IMPORTANT!
+
+Everything in this README between "# About" and "# Install" is automatically
+generated and will be overwritten the next time the doc generator is run.
+
+To make changes to this section, please update the  section
+of src/index.js or src/index.ts
+
+To experiment with formatting, please run "npm run docs" from the root of this
+repo and examine the changes made.
+
+-->
+
+<p>A Datastore implementation that stores data on Amazon S3.</p>
 <a id="md:example---quickstart" class="tsd-anchor"></a><h2><a href="#md:example---quickstart">Example - Quickstart</a></h2><p>If the flag <code>createIfMissing</code> is not set or is false, then the bucket must be created prior to using datastore-s3. Please see the AWS docs for information on how to configure the S3 instance. A bucket name is required to be set at the s3 instance level, see the below example.</p>
 <pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">S3</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@aws-sdk/client-s3&#39;</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">S3Datastore</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;datastore-s3&#39;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-8">s3</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">S3</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">region:</span><span class="hl-1"> </span><span class="hl-3">&#39;region&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">credentials:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">accessKeyId:</span><span class="hl-1"> </span><span class="hl-3">&#39;myaccesskey&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">secretAccessKey:</span><span class="hl-1"> </span><span class="hl-3">&#39;mysecretkey&#39;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-8">store</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">S3Datastore</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-2">s3</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">&#39;my-bucket&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  { </span><span class="hl-2">path:</span><span class="hl-1"> </span><span class="hl-3">&#39;.ipfs/datastore&#39;</span><span class="hl-1">, </span><span class="hl-2">createIfMissing:</span><span class="hl-1"> </span><span class="hl-4">false</span><span class="hl-1"> }</span><br/><span class="hl-1">)</span>
 </code><button>Copy</button></pre>
