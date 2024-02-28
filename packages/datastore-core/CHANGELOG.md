@@ -1,3 +1,10 @@
+## datastore-core [9.2.9](https://github.com/ipfs/js-stores/compare/datastore-core-9.2.8...datastore-core-9.2.9) (2024-02-28)
+
+
+### Bug Fixes
+
+* stop namespaced datastore throwing when queried ([#296](https://github.com/ipfs/js-stores/issues/296)) ([9163490](https://github.com/ipfs/js-stores/commit/916349054a3f83a7c9c4bb692edebcce409c7fee)), closes [#236](https://github.com/ipfs/js-stores/issues/236) [#236](https://github.com/ipfs/js-stores/issues/236)
+
 ## datastore-core [9.2.8](https://github.com/ipfs/js-stores/compare/datastore-core-v9.2.7...datastore-core-9.2.8) (2024-02-12)
 
 
