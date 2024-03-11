@@ -121,9 +121,21 @@ export class TieredLimitDatastore<T extends BaseDatastore, T2 extends BaseDatast
     return key
   }
 
+  /**
+   * If the key is in the primary store, remove it and add it to the back of the eviction order
+   */
+  private refreshKeyEvictionOrder (key: Key): void {
+    const index = this.evictionOrder.indexOf(key)
+    if (index !== -1) {
+      this.evictionOrder.splice(index, 1) // Remove from eviction order
+      this.evictionOrder.push(key) // Add to end of eviction order
+    }
+  }
+
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     if (await this.primaryStore.has(key)) {
       log.trace('Getting %s from primary store', key.toString())
+      this.refreshKeyEvictionOrder(key)
       return this.primaryStore.get(key, options)
     }
 
