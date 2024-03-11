@@ -160,13 +160,35 @@ export class TieredLimitDatastore<T extends BaseDatastore, T2 extends BaseDatast
 
   async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitIterable<Key> {
     // TODO: How to handle stores that don't implement _allKeys? Do we want to?
-    yield * this.primaryStore._allKeys(q, options)
-    yield * this.backingStore._allKeys(q, options)
+    const seenKeys = new Set<Key>()
+
+    for await (const key of this.primaryStore._allKeys(q, options)) {
+      seenKeys.add(key)
+      yield key
+    }
+
+    // yield keys from the backing store, excluding duplicates
+    for await (const key of this.backingStore._allKeys(q, options)) {
+      if (!seenKeys.has(key)) {
+        yield key
+      }
+    }
   }
 
   async * _all (q: Query, options?: AbortOptions): AwaitIterable<Pair> {
     // TODO: How to handle stores that don't implement _all? Do we want to?
-    yield * this.primaryStore._all(q, options)
-    yield * this.backingStore._all(q, options)
+    const seenKeys = new Set<Key>()
+
+    for await (const pair of this.primaryStore._all(q, options)) {
+      seenKeys.add(pair.key)
+      yield pair
+    }
+
+    // yield pairs from the backing store, excluding duplicates
+    for await (const pair of this.backingStore._all(q, options)) {
+      if (!seenKeys.has(pair.key)) {
+        yield pair
+      }
+    }
   }
 }
