@@ -7,13 +7,16 @@ import * as raw from 'multiformats/codecs/raw'
 import { identity } from 'multiformats/hashes/identity'
 import { sha256 } from 'multiformats/hashes/sha2'
 import { IdentityBlockstore } from '../src/identity.js'
+import { MemoryBlockstore } from '../src/memory.js'
 import type { Blockstore } from 'interface-blockstore'
 
 describe('identity', () => {
   let blockstore: Blockstore
+  let child: Blockstore
 
   beforeEach(() => {
     blockstore = new IdentityBlockstore()
+    child = new MemoryBlockstore()
   })
 
   it('has an identity CID', () => {
@@ -21,6 +24,18 @@ describe('identity', () => {
     const multihash = identity.digest(block)
     const cid = CID.createV1(identity.code, multihash)
 
+    expect(blockstore.has(cid)).to.be.true()
+    expect(blockstore.get(cid)).to.equalBytes(block)
+  })
+
+  it('retrieves CIDs from child', async () => {
+    const block = Uint8Array.from([0, 1, 2, 3, 4])
+    const multihash = await sha256.digest(block)
+    const cid = CID.createV1(raw.code, multihash)
+
+    await child.put(cid, block)
+
+    blockstore = new IdentityBlockstore(child)
     expect(blockstore.has(cid)).to.be.true()
     expect(blockstore.get(cid)).to.equalBytes(block)
   })

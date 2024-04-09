@@ -1,15 +1,31 @@
 import { BaseBlockstore } from './base.js'
-import * as Errors from './errors.js'
-import type { Pair } from 'interface-blockstore'
-import type { Await, AwaitIterable } from 'interface-store'
+import { Errors } from './index.js'
+import type { Blockstore, Pair } from 'interface-blockstore'
+import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 // https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2
 const IDENTITY_CODEC = 0x00
 
 export class IdentityBlockstore extends BaseBlockstore {
-  put (key: CID): CID {
-    return key
+  private readonly child?: Blockstore
+
+  constructor (child?: Blockstore) {
+    super()
+
+    this.child = child
+  }
+
+  put (key: CID, block: Uint8Array): Await<CID> {
+    if (key.code === IDENTITY_CODEC) {
+      return key
+    }
+
+    if (this.child == null) {
+      return key
+    }
+
+    return this.child.put(key, block)
   }
 
   get (key: CID): Await<Uint8Array> {
@@ -17,18 +33,38 @@ export class IdentityBlockstore extends BaseBlockstore {
       return key.multihash.digest
     }
 
-    throw Errors.notFoundError()
+    if (this.child == null) {
+      throw Errors.notFoundError()
+    }
+
+    return this.child.get(key)
   }
 
-  has (key: CID): boolean {
-    return key.code === IDENTITY_CODEC
+  has (key: CID): Await<boolean> {
+    if (key.code === IDENTITY_CODEC) {
+      return true
+    }
+
+    if (this.child == null) {
+      return false
+    }
+
+    return this.child.has(key)
   }
 
-  delete (): void {
+  delete (key: CID): Await<void> {
+    if (key.code === IDENTITY_CODEC) {
+      return
+    }
 
+    if (this.child != null) {
+      return this.child.delete(key)
+    }
   }
 
-  * getAll (): AwaitIterable<Pair> {
-
+  * getAll (options?: AbortOptions): AwaitIterable<Pair> {
+    if (this.child != null) {
+      yield * this.child.getAll(options)
+    }
   }
 }
