@@ -1,3 +1,10 @@
+## datastore-level [10.1.8](https://github.com/ipfs/js-stores/compare/datastore-level-10.1.7...datastore-level-10.1.8) (2024-04-09)
+
+
+### Bug Fixes
+
+* throw read error on read error ([#304](https://github.com/ipfs/js-stores/issues/304)) ([f14c824](https://github.com/ipfs/js-stores/commit/f14c8249dfd7bbd1385bbf3513b2b3d5e0e6860c)), closes [#299](https://github.com/ipfs/js-stores/issues/299)
+
 ## datastore-level [10.1.7](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.6...datastore-level-10.1.7) (2024-02-12)
 
 
