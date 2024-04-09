@@ -17,7 +17,7 @@ export class IdentityBlockstore extends BaseBlockstore {
   }
 
   put (key: CID, block: Uint8Array): Await<CID> {
-    if (key.code === IDENTITY_CODEC) {
+    if (key.multihash.code === IDENTITY_CODEC) {
       return key
     }
 
@@ -29,7 +29,7 @@ export class IdentityBlockstore extends BaseBlockstore {
   }
 
   get (key: CID): Await<Uint8Array> {
-    if (key.code === IDENTITY_CODEC) {
+    if (key.multihash.code === IDENTITY_CODEC) {
       return key.multihash.digest
     }
 
@@ -41,7 +41,7 @@ export class IdentityBlockstore extends BaseBlockstore {
   }
 
   has (key: CID): Await<boolean> {
-    if (key.code === IDENTITY_CODEC) {
+    if (key.multihash.code === IDENTITY_CODEC) {
       return true
     }
 
@@ -62,9 +62,11 @@ export class IdentityBlockstore extends BaseBlockstore {
     }
   }
 
-  * getAll (options?: AbortOptions): AwaitIterable<Pair> {
+  getAll (options?: AbortOptions): AwaitIterable<Pair> {
     if (this.child != null) {
-      yield * this.child.getAll(options)
+      return this.child.getAll(options)
     }
+
+    return []
   }
 }
