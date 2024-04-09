@@ -110,6 +110,7 @@
   "devDependencies": {
     "aegir": "^42.2.3",
     "interface-blockstore-tests": "^6.0.0",
+    "it-all": "^3.0.4",
     "uint8arrays": "^5.0.2"
   }
 }
