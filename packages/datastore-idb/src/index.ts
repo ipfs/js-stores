@@ -114,7 +114,7 @@ export class IDBDatastore extends BaseDatastore {
     try {
       await this.db.delete(this.location, key.toString())
     } catch (err: any) {
-      throw Errors.dbWriteFailedError(err)
+      throw Errors.dbDeleteFailedError(err)
     }
   }
 
