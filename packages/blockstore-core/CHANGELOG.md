@@ -1,3 +1,10 @@
+## blockstore-core [4.4.1](https://github.com/ipfs/js-stores/compare/blockstore-core-4.4.0...blockstore-core-4.4.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* identity blockstore should wrap child ([#303](https://github.com/ipfs/js-stores/issues/303)) ([3d84dd0](https://github.com/ipfs/js-stores/commit/3d84dd0ab164fb5749c34487a217c763d1d09ccb))
+
 ## blockstore-core [4.4.0](https://github.com/ipfs/js-stores/compare/blockstore-core-4.3.11...blockstore-core-4.4.0) (2024-02-12)
 
 
