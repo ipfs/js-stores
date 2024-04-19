@@ -8,6 +8,7 @@ import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import { FsBlockstore } from '../src/index.js'
 import { FlatDirectory, NextToLast } from '../src/sharding.js'
+import { spawn, Thread, Worker } from "threads"
 
 const utf8Encoder = new TextEncoder()
 
@@ -157,5 +158,34 @@ describe('FsBlockstore', () => {
     const res = await fs.get(key)
 
     expect(res).to.deep.equal(value)
+  })
+
+  it('can survive concurrent writes with worker threads', async () => {
+    const dir = path.join(os.tmpdir(), `test-${Math.random()}`)
+    const key = CID.parse('QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
+
+    const workers = await Promise.all(Array.from({ length: 10 }, async () => {
+      const worker = await spawn(new Worker('./fixtures/writer-worker.js'))
+      await worker.isReady(dir)
+      return worker
+    }))
+
+    const value = utf8Encoder.encode('Hello world')
+    await Promise.all(workers.map(async (worker) => {
+      return Promise.all(Array.from({ length: 100 }, async () => {
+        try {
+          await worker.put(key.toString(), value)
+        } catch (e) {
+          console.error(e)
+        }
+      }))
+    }))
+
+    const fs = new FsBlockstore(dir)
+    await fs.open()
+    const res = await fs.get(key)
+
+    expect(res).to.deep.equal(value)
+    await Promise.all(workers.map(async (worker) => Thread.terminate(worker)))
   })
 })
