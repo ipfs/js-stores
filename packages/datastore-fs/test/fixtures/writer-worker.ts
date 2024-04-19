@@ -12,7 +12,7 @@ expose({
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Error opening blockstore', err)
-      return false
+      throw err
     }
   },
   async put (keyString, value) {
@@ -22,6 +22,7 @@ expose({
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Error putting block', err)
+      throw err
     }
   }
 })
