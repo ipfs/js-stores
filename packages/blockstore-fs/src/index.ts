@@ -20,7 +20,7 @@ import {
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
-import { Writer as StenoWriter } from 'steno'
+import { Writer } from 'steno'
 import { NextToLast, type ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AwaitIterable } from 'interface-store'
@@ -29,8 +29,9 @@ import type { CID } from 'multiformats/cid'
 /**
  * Write a file atomically
  */
-async function writeFile (writer: StenoWriter, file: string, contents: Uint8Array): Promise<void> {
+async function writeFile (file: string, contents: Uint8Array): Promise<void> {
   try {
+    const writer = new Writer(file)
     await writer.write(contents)
   } catch (err: any) {
     if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
@@ -101,7 +102,6 @@ export class FsBlockstore implements Blockstore {
   private readonly getManyConcurrency: number
   private readonly deleteManyConcurrency: number
   private readonly shardingStrategy: ShardingStrategy
-  private readonly writers = new Map<string, StenoWriter>()
 
   constructor (location: string, init: FsBlockstoreInit = {}) {
     this.path = path.resolve(location)
@@ -147,16 +147,8 @@ export class FsBlockstore implements Blockstore {
           recursive: true
         })
       }
-      const filePath = path.join(this.path, dir, file)
 
-      let writer = this.writers.get(filePath)
-      if (writer == null) {
-        writer = new StenoWriter(filePath)
-        this.writers.set(filePath, writer)
-      }
-
-      await writeFile(writer, filePath, val)
-      this.writers.delete(filePath)
+      await writeFile(path.join(this.path, dir, file), val)
 
       return key
     } catch (err: any) {
