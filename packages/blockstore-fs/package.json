@@ -76,14 +76,14 @@
     "dep-check": "aegir dep-check"
   },
   "dependencies": {
-    "@sgtpooki/steno-patched": "^3.1.1",
     "blockstore-core": "^4.0.0",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^5.0.0",
     "it-glob": "^2.0.6",
     "it-map": "^3.0.5",
     "it-parallel-batch": "^3.0.4",
-    "multiformats": "^13.0.1"
+    "multiformats": "^13.0.1",
+    "steno": "^4.0.2"
   },
   "devDependencies": {
     "aegir": "^42.2.3",

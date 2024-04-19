@@ -55,13 +55,13 @@
     "dep-check": "aegir dep-check"
   },
   "dependencies": {
-    "@sgtpooki/steno-patched": "^3.1.1",
     "datastore-core": "^9.0.0",
     "interface-datastore": "^8.0.0",
     "interface-store": "^5.0.0",
     "it-glob": "^2.0.6",
     "it-map": "^3.0.5",
-    "it-parallel-batch": "^3.0.4"
+    "it-parallel-batch": "^3.0.4",
+    "steno": "^4.0.2"
   },
   "devDependencies": {
     "@types/mkdirp": "^2.0.0",

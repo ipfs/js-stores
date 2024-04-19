@@ -14,7 +14,6 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { Writer as StenoWriter } from '@sgtpooki/steno-patched'
 import {
   BaseDatastore, Errors
 } from 'datastore-core'
@@ -24,6 +23,7 @@ import {
 import glob from 'it-glob'
 import map from 'it-map'
 import parallel from 'it-parallel-batch'
+import { Writer as StenoWriter } from 'steno'
 import type { AwaitIterable } from 'interface-store'
 
 /**

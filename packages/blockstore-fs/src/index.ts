@@ -14,13 +14,13 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { Writer as StenoWriter } from '@sgtpooki/steno-patched'
 import {
   Errors
 } from 'blockstore-core'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
+import { Writer as StenoWriter } from 'steno'
 import { NextToLast, type ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AwaitIterable } from 'interface-store'
