@@ -1,11 +1,11 @@
-import { CID } from 'multiformats/cid'
+import { Key } from 'interface-datastore'
 import { expose } from 'threads/worker'
-import { FsBlockstore } from '../../src/index.js'
+import { FsDatastore } from '../../src/index.js'
 
-let fs: FsBlockstore
+let fs: FsDatastore
 expose({
   async isReady (path) {
-    fs = new FsBlockstore(path)
+    fs = new FsDatastore(path)
     try {
       await fs.open()
       return true
@@ -15,8 +15,8 @@ expose({
       return false
     }
   },
-  async put (cidString, value) {
-    const key = CID.parse(cidString)
+  async put (keyString, value) {
+    const key = new Key(keyString)
     try {
       return await fs.put(key, value)
     } catch (err) {

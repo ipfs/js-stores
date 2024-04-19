@@ -37,7 +37,7 @@ async function writeFile (path: string, contents: Uint8Array): Promise<void> {
   try {
     await writeAtomic(path, contents)
   } catch (err: any) {
-    if (err.code === 'EPERM' && err.syscall === 'rename') {
+    if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
       // fast-write-atomic writes a file to a temp location before renaming it.
       // On Windows, if the final file already exists this error is thrown.
       // No such error is thrown on Linux/Mac
