@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "aegir": "^42.2.3",
-    "interface-blockstore-tests": "^6.0.0"
+    "interface-blockstore-tests": "^6.0.0",
+    "threads": "^1.7.0"
   }
 }

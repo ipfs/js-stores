@@ -67,6 +67,7 @@
     "@types/mkdirp": "^2.0.0",
     "aegir": "^42.2.3",
     "interface-datastore-tests": "^5.0.0",
-    "ipfs-utils": "^9.0.14"
+    "ipfs-utils": "^9.0.14",
+    "threads": "^1.7.0"
   }
 }
