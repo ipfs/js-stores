@@ -38,7 +38,6 @@ async function writeFile (writer: StenoWriter, file: string, contents: Uint8Arra
       // On Windows, if the final file already exists this error is thrown.
       // No such error is thrown on Linux/Mac
       // Make sure we can read & write to this file
-      // 2023-12-14: Is this still needed with steno?
       await fs.access(file, fs.constants.F_OK | fs.constants.W_OK)
 
       // The file was created by another context - this means there were
