@@ -12,8 +12,93 @@
     "url": "https://github.com/ipfs/js-stores/issues"
   },
   "private": true,
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "releaseRules": [
+            {
+              "breaking": true,
+              "release": "major"
+            },
+            {
+              "revert": true,
+              "release": "patch"
+            },
+            {
+              "type": "feat",
+              "release": "minor"
+            },
+            {
+              "type": "fix",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "release": "patch"
+            },
+            {
+              "type": "test",
+              "release": "patch"
+            },
+            {
+              "type": "deps",
+              "release": "patch"
+            },
+            {
+              "scope": "no-release",
+              "release": false
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "chore",
+                "section": "Trivial Changes"
+              },
+              {
+                "type": "docs",
+                "section": "Documentation"
+              },
+              {
+                "type": "deps",
+                "section": "Dependencies"
+              },
+              {
+                "type": "test",
+                "section": "Tests"
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
   "scripts": {
-    "reset": "aegir run clean && aegir clean ./node_modules ./package-lock.json packages/*/node_modules packages/*/package-lock.json packages/*/dist",
+    "reset": "aegir run clean && aegir clean **/node_modules **/package-lock.json",
     "test": "aegir run test",
     "test:node": "aegir run test:node",
     "test:chrome": "aegir run test:chrome",
@@ -23,15 +108,18 @@
     "test:electron-main": "aegir run test:electron-main",
     "test:electron-renderer": "aegir run test:electron-renderer",
     "clean": "aegir run clean",
+    "generate": "aegir run generate",
     "build": "aegir run build",
     "lint": "aegir run lint",
-    "docs": "NODE_OPTIONS=--max_old_space_size=8192 aegir docs",
-    "docs:no-publish": "NODE_OPTIONS=--max_old_space_size=8192 aegir docs --publish false",
     "dep-check": "aegir run dep-check",
-    "release": "npm run docs:no-publish && aegir run release && npm run docs"
+    "release": "run-s build docs:no-publish npm:release docs",
+    "npm:release": "aegir release",
+    "docs": "aegir docs",
+    "docs:no-publish": "aegir docs --publish false"
   },
   "devDependencies": {
-    "aegir": "^41.1.9"
+    "aegir": "^42.2.3",
+    "npm-run-all": "^4.1.5"
   },
   "workspaces": [
     "packages/*"

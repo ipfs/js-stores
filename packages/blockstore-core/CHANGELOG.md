@@ -1,3 +1,47 @@
+## blockstore-core [4.4.1](https://github.com/ipfs/js-stores/compare/blockstore-core-4.4.0...blockstore-core-4.4.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* identity blockstore should wrap child ([#303](https://github.com/ipfs/js-stores/issues/303)) ([3d84dd0](https://github.com/ipfs/js-stores/commit/3d84dd0ab164fb5749c34487a217c763d1d09ccb))
+
+## blockstore-core [4.4.0](https://github.com/ipfs/js-stores/compare/blockstore-core-4.3.11...blockstore-core-4.4.0) (2024-02-12)
+
+
+### Features
+
+* add identity blockstore ([#298](https://github.com/ipfs/js-stores/issues/298)) ([b8dce49](https://github.com/ipfs/js-stores/commit/b8dce49fc005a76b86bca751b7d703d321cd12d6))
+
+## blockstore-core [4.3.11](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.10...blockstore-core-4.3.11) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **interface-blockstore:** upgraded to 5.2.10
+* **interface-store:** upgraded to 5.1.8
+* **interface-blockstore-tests:** upgraded to 6.1.10
+
+## [blockstore-core-v4.3.10](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.9...blockstore-core-v4.3.10) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
+## [blockstore-core-v4.3.9](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.8...blockstore-core-v4.3.9) (2023-12-28)
+
+
+### Dependencies
+
+* bump multiformats from 12.1.3 to 13.0.0 ([#286](https://github.com/ipfs/js-stores/issues/286)) ([c8ccd1d](https://github.com/ipfs/js-stores/commit/c8ccd1de91883d1a1cbd394c21a51b021d52baa3))
+
 ## [blockstore-core-v4.3.8](https://github.com/ipfs/js-stores/compare/blockstore-core-v4.3.7...blockstore-core-v4.3.8) (2023-12-08)
 
 

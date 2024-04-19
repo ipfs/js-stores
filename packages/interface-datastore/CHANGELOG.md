@@ -1,3 +1,36 @@
+## interface-datastore [8.2.11](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.10...interface-datastore-8.2.11) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **interface-store:** upgraded to 5.1.8
+
+## [interface-datastore-v8.2.10](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.9...interface-datastore-v8.2.10) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
+
+### Trivial Changes
+
+* **release:** 8.2.10 [skip ci] ([a8c793e](https://github.com/ipfs/js-stores/commit/a8c793ed72f3e1442f6ead18361f428f6b698bf8))
+
+## [interface-datastore-v8.2.10](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.9...interface-datastore-v8.2.10) (2023-12-30)
+
+
+### Bug Fixes
+
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [interface-datastore-v8.2.9](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.8...interface-datastore-v8.2.9) (2023-12-08)
 
 

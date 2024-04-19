@@ -1,15 +1,19 @@
 {
   "name": "interface-blockstore-tests",
-  "version": "6.1.7",
+  "version": "6.1.10",
   "description": "Compliance tests for the blockstore interface",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/master/packages/interface-blockstore-tests#readme",
+  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/interface-blockstore-tests#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs/js-stores.git"
   },
   "bugs": {
     "url": "https://github.com/ipfs/js-stores/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "blockstore",
@@ -38,91 +42,6 @@
       "sourceType": "module"
     }
   },
-  "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "preset": "conventionalcommits",
-          "releaseRules": [
-            {
-              "breaking": true,
-              "release": "major"
-            },
-            {
-              "revert": true,
-              "release": "patch"
-            },
-            {
-              "type": "feat",
-              "release": "minor"
-            },
-            {
-              "type": "fix",
-              "release": "patch"
-            },
-            {
-              "type": "docs",
-              "release": "patch"
-            },
-            {
-              "type": "test",
-              "release": "patch"
-            },
-            {
-              "type": "deps",
-              "release": "patch"
-            },
-            {
-              "scope": "no-release",
-              "release": false
-            }
-          ]
-        }
-      ],
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "preset": "conventionalcommits",
-          "presetConfig": {
-            "types": [
-              {
-                "type": "feat",
-                "section": "Features"
-              },
-              {
-                "type": "fix",
-                "section": "Bug Fixes"
-              },
-              {
-                "type": "chore",
-                "section": "Trivial Changes"
-              },
-              {
-                "type": "docs",
-                "section": "Documentation"
-              },
-              {
-                "type": "deps",
-                "section": "Dependencies"
-              },
-              {
-                "type": "test",
-                "section": "Tests"
-              }
-            ]
-          }
-        }
-      ],
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      "@semantic-release/git"
-    ]
-  },
   "scripts": {
     "build": "aegir build",
     "lint": "aegir lint",
@@ -132,12 +51,12 @@
   },
   "dependencies": {
     "interface-blockstore": "^5.0.0",
-    "it-all": "^3.0.1",
-    "it-drain": "^3.0.1",
-    "multiformats": "^12.0.1",
-    "uint8arrays": "^5.0.0"
+    "it-all": "^3.0.4",
+    "it-drain": "^3.0.5",
+    "multiformats": "^13.0.1",
+    "uint8arrays": "^5.0.2"
   },
   "devDependencies": {
-    "aegir": "^41.1.9"
+    "aegir": "^42.2.3"
   }
 }

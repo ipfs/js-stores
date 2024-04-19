@@ -118,7 +118,7 @@ export class LevelDatastore extends BaseDatastore {
         throw Errors.notFoundError(err)
       }
 
-      throw Errors.dbWriteFailedError(err)
+      throw Errors.dbReadFailedError(err)
     }
     return data
   }

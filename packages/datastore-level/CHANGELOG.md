@@ -1,3 +1,33 @@
+## datastore-level [10.1.8](https://github.com/ipfs/js-stores/compare/datastore-level-10.1.7...datastore-level-10.1.8) (2024-04-09)
+
+
+### Bug Fixes
+
+* throw read error on read error ([#304](https://github.com/ipfs/js-stores/issues/304)) ([f14c824](https://github.com/ipfs/js-stores/commit/f14c8249dfd7bbd1385bbf3513b2b3d5e0e6860c)), closes [#299](https://github.com/ipfs/js-stores/issues/299)
+
+## datastore-level [10.1.7](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.6...datastore-level-10.1.7) (2024-02-12)
+
+
+### Bug Fixes
+
+* bump aegir to 42.2.3, update project config and fix deps ([#297](https://github.com/ipfs/js-stores/issues/297)) ([d521ef2](https://github.com/ipfs/js-stores/commit/d521ef251815527baee0a70705f775c0e47481ad))
+
+
+
+### Dependencies
+
+* **datastore-core:** upgraded to 9.2.8
+* **interface-datastore:** upgraded to 8.2.11
+* **interface-datastore-tests:** upgraded to 5.1.8
+
+## [datastore-level-v10.1.6](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.5...datastore-level-v10.1.6) (2023-12-30)
+
+
+### Bug Fixes
+
+* publish with limited concurrency ([85bcc4a](https://github.com/ipfs/js-stores/commit/85bcc4acc09d76d7938c55163c81d9b948c53803))
+* readme update ([3bcfb6d](https://github.com/ipfs/js-stores/commit/3bcfb6d311d32a00f24c64cb55c3ba90ca495dba))
+
 ## [datastore-level-v10.1.5](https://github.com/ipfs/js-stores/compare/datastore-level-v10.1.4...datastore-level-v10.1.5) (2023-11-27)
 
 
