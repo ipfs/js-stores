@@ -70,6 +70,6 @@
     "aegir": "^42.2.3",
     "interface-blockstore-tests": "^6.0.0",
     "p-defer": "^4.0.0",
-    "sinon": "^17.0.1"
+    "sinon": "^18.0.0"
   }
 }
