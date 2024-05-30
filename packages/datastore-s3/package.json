@@ -68,7 +68,7 @@
   },
   "devDependencies": {
     "@types/sinon": "^17.0.3",
-    "aegir": "^42.2.3",
+    "aegir": "^43.0.0",
     "interface-datastore-tests": "^5.0.0",
     "p-defer": "^4.0.0",
     "sinon": "^17.0.1"
