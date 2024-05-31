@@ -80,6 +80,6 @@
     "uint8arrays": "^5.0.2"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^43.0.1"
   }
 }
