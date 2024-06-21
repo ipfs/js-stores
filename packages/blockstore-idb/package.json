@@ -63,7 +63,7 @@
     "multiformats": "^13.0.1"
   },
   "devDependencies": {
-    "aegir": "^42.2.3",
+    "aegir": "^44.0.0",
     "interface-blockstore-tests": "^6.0.0"
   }
 }
