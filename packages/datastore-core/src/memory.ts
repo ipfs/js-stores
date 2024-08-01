@@ -1,6 +1,6 @@
 import { Key } from 'interface-datastore/key'
+import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.js'
-import * as Errors from './errors.js'
 import type { Pair } from 'interface-datastore'
 import type { Await, AwaitIterable } from 'interface-store'
 
@@ -23,7 +23,7 @@ export class MemoryDatastore extends BaseDatastore {
     const result = this.data.get(key.toString())
 
     if (result == null) {
-      throw Errors.notFoundError()
+      throw new NotFoundError()
     }
 
     return result

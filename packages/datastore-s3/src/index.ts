@@ -40,12 +40,13 @@ import {
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
 import { BaseDatastore } from 'datastore-core/base'
-import * as Errors from 'datastore-core/errors'
-import { Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { Key } from 'interface-datastore'
+import { DeleteFailedError, GetFailedError, HasFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import toBuffer from 'it-to-buffer'
 import { fromString as unint8arrayFromString } from 'uint8arrays'
 import type { S3 } from '@aws-sdk/client-s3'
+import type { KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions } from 'interface-store'
 
 export interface S3DatastoreInit {
@@ -117,7 +118,7 @@ export class S3Datastore extends BaseDatastore {
 
       return key
     } catch (err: any) {
-      throw Errors.dbWriteFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -159,9 +160,10 @@ export class S3Datastore extends BaseDatastore {
       return await toBuffer(data.Body)
     } catch (err: any) {
       if (err.statusCode === 404) {
-        throw Errors.notFoundError(err)
+        throw new NotFoundError(String(err))
       }
-      throw err
+
+      throw new GetFailedError(String(err))
     }
   }
 
@@ -191,7 +193,7 @@ export class S3Datastore extends BaseDatastore {
         return false
       }
 
-      throw err
+      throw new HasFailedError(String(err))
     }
   }
 
@@ -209,7 +211,7 @@ export class S3Datastore extends BaseDatastore {
         }
       )
     } catch (err: any) {
-      throw Errors.dbDeleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 
@@ -253,7 +255,7 @@ export class S3Datastore extends BaseDatastore {
         yield * this._listKeys(params)
       }
     } catch (err: any) {
-      throw new Error(err.code)
+      throw new GetFailedError(String(err))
     }
   }
 
@@ -268,7 +270,7 @@ export class S3Datastore extends BaseDatastore {
         yield res
       } catch (err: any) {
         // key was deleted while we are iterating over the results
-        if (err.statusCode !== 404) {
+        if (err.name !== 'NotFoundError') {
           throw err
         }
       }
@@ -316,7 +318,7 @@ export class S3Datastore extends BaseDatastore {
           return
         }
 
-        throw Errors.dbOpenFailedError(err)
+        throw new OpenFailedError(String(err))
       }
     }
   }

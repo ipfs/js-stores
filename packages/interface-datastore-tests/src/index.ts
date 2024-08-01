@@ -124,7 +124,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       try {
         await store.get(k)
       } catch (err) {
-        expect(err).to.have.property('code', 'ERR_NOT_FOUND')
+        expect(err).to.have.property('name', 'NotFoundError')
         return
       }
 
@@ -158,7 +158,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       try {
         await drain(store.getMany([k]))
       } catch (err) {
-        expect(err).to.have.property('code', 'ERR_NOT_FOUND')
+        expect(err).to.have.property('name', 'NotFoundError')
         return
       }
 
@@ -476,7 +476,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       }
     }))
 
-    it('allows mutating the datastore during a query', async () => {
+    it('allows mutating the datastore during a key query', async () => {
       const hello3 = { key: new Key('/z/4hello3'), value: uint8ArrayFromString('4') }
       let firstIteration = true
 

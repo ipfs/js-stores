@@ -1,8 +1,8 @@
 import { logger } from '@libp2p/logger'
+import { PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
 import drain from 'it-drain'
 import { pushable } from 'it-pushable'
 import { BaseDatastore } from './base.js'
-import * as Errors from './errors.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 
@@ -29,7 +29,7 @@ export class TieredDatastore extends BaseDatastore {
       await Promise.all(this.stores.map(async store => { await store.put(key, value, options) }))
       return key
     } catch (err: any) {
-      throw Errors.dbWriteFailedError(err)
+      throw new PutFailedError(err.message)
     }
   }
 
@@ -42,7 +42,7 @@ export class TieredDatastore extends BaseDatastore {
         log.error(err)
       }
     }
-    throw Errors.notFoundError()
+    throw new NotFoundError()
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
@@ -59,7 +59,7 @@ export class TieredDatastore extends BaseDatastore {
     try {
       await Promise.all(this.stores.map(async store => { await store.delete(key, options) }))
     } catch (err: any) {
-      throw Errors.dbDeleteFailedError(err)
+      throw new DeleteFailedError(err.message)
     }
   }
 

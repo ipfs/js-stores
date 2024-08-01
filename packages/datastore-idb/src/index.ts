@@ -12,7 +12,8 @@
  * ```
  */
 
-import { Errors, BaseDatastore } from 'datastore-core'
+import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
+import { BaseDatastore } from 'datastore-core'
 import { openDB, deleteDB, type IDBPDatabase } from 'idb'
 import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
 import filter from 'it-filter'
@@ -52,7 +53,7 @@ export class IDBDatastore extends BaseDatastore {
         }
       })
     } catch (err: any) {
-      throw Errors.dbOpenFailedError(err)
+      throw new OpenFailedError(String(err))
     }
   }
 
@@ -70,7 +71,7 @@ export class IDBDatastore extends BaseDatastore {
 
       return key
     } catch (err: any) {
-      throw Errors.dbWriteFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -84,11 +85,11 @@ export class IDBDatastore extends BaseDatastore {
     try {
       val = await this.db.get(this.location, key.toString())
     } catch (err: any) {
-      throw Errors.dbReadFailedError(err)
+      throw new GetFailedError(String(err))
     }
 
     if (val === undefined) {
-      throw Errors.notFoundError()
+      throw new NotFoundError()
     }
 
     return val
@@ -102,7 +103,7 @@ export class IDBDatastore extends BaseDatastore {
     try {
       return Boolean(await this.db.getKey(this.location, key.toString()))
     } catch (err: any) {
-      throw Errors.dbReadFailedError(err)
+      throw new GetFailedError(String(err))
     }
   }
 
@@ -114,7 +115,7 @@ export class IDBDatastore extends BaseDatastore {
     try {
       await this.db.delete(this.location, key.toString())
     } catch (err: any) {
-      throw Errors.dbDeleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 
@@ -222,7 +223,7 @@ export class IDBDatastore extends BaseDatastore {
       try {
         value = await this.get(k)
       } catch (err: any) {
-        if (err.code !== 'ERR_NOT_FOUND') {
+        if (err.name !== 'NotFoundError') {
           throw err
         }
         continue

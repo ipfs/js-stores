@@ -1,10 +1,10 @@
 import { logger } from '@libp2p/logger'
+import { DeleteFailedError, NotFoundError, PutFailedError } from 'interface-store'
 import drain from 'it-drain'
 import filter from 'it-filter'
 import merge from 'it-merge'
 import { pushable } from 'it-pushable'
 import { BaseBlockstore } from './base.js'
-import * as Errors from './errors.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
@@ -31,7 +31,7 @@ export class TieredBlockstore extends BaseBlockstore {
       await Promise.all(this.stores.map(async store => { await store.put(key, value, options) }))
       return key
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -44,7 +44,7 @@ export class TieredBlockstore extends BaseBlockstore {
         log.error(err)
       }
     }
-    throw Errors.notFoundError()
+    throw new NotFoundError()
   }
 
   async has (key: CID, options?: AbortOptions): Promise<boolean> {
@@ -61,7 +61,7 @@ export class TieredBlockstore extends BaseBlockstore {
     try {
       await Promise.all(this.stores.map(async store => { await store.delete(key, options) }))
     } catch (err: any) {
-      throw Errors.deleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 

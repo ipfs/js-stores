@@ -14,7 +14,8 @@
  * ```
  */
 
-import { BaseBlockstore, Errors } from 'blockstore-core'
+import { BaseBlockstore } from 'blockstore-core'
+import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import { Level } from 'level'
 import { base32upper } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
@@ -73,7 +74,7 @@ export class LevelBlockstore extends BaseBlockstore {
     try {
       await this.db.open(this.opts)
     } catch (err: any) {
-      throw Errors.openFailedError(err)
+      throw new OpenFailedError(String(err))
     }
   }
 
@@ -83,7 +84,7 @@ export class LevelBlockstore extends BaseBlockstore {
 
       return key
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -93,10 +94,10 @@ export class LevelBlockstore extends BaseBlockstore {
       data = await this.db.get(this.#encode(key))
     } catch (err: any) {
       if (err.notFound != null) {
-        throw Errors.notFoundError(err)
+        throw new NotFoundError(String(err))
       }
 
-      throw Errors.getFailedError(err)
+      throw new GetFailedError(String(err))
     }
     return data
   }
@@ -118,7 +119,7 @@ export class LevelBlockstore extends BaseBlockstore {
     try {
       await this.db.del(this.#encode(key))
     } catch (err: any) {
-      throw Errors.deleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 

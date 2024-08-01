@@ -32,7 +32,7 @@ describe('ShardingDatastore', () => {
     const store = new ShardingDatastore(ms)
     return expect(store.open())
       .to.eventually.be.rejected()
-      .with.property('code', 'ERR_DB_OPEN_FAILED')
+      .with.property('name', 'OpenFailedError')
   })
 
   it('open - existing', () => {
