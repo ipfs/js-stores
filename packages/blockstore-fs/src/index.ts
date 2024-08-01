@@ -17,13 +17,13 @@ import path from 'node:path'
 import { promisify } from 'node:util'
 // @ts-expect-error no types
 import fwa from 'fast-write-atomic'
+import { OpenFailedError, type AwaitIterable, PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
 import { NextToLast } from './sharding.js'
 import type { ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import { OpenFailedError, type AwaitIterable, PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 const writeAtomic = promisify(fwa)

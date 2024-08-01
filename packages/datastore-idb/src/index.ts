@@ -12,10 +12,10 @@
  * ```
  */
 
-import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import { BaseDatastore } from 'datastore-core'
 import { openDB, deleteDB, type IDBPDatabase } from 'idb'
 import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import sort from 'it-sort'
 
