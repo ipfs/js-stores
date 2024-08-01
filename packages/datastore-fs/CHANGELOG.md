@@ -1,3 +1,10 @@
+## datastore-fs [9.1.9](https://github.com/ipfs/js-stores/compare/datastore-fs-9.1.8...datastore-fs-9.1.9) (2024-08-01)
+
+
+### Dependencies
+
+* bump it-glob from 2.0.7 to 3.0.1 ([#306](https://github.com/ipfs/js-stores/issues/306)) ([8f6313f](https://github.com/ipfs/js-stores/commit/8f6313f8a22cb537aeeac2a048aad644d3c9a7d2))
+
 ## datastore-fs [9.1.8](https://github.com/ipfs/js-stores/compare/datastore-fs-v9.1.7...datastore-fs-9.1.8) (2024-02-12)
 
 
