@@ -1,3 +1,10 @@
+## blockstore-fs [1.1.11](https://github.com/ipfs/js-stores/compare/blockstore-fs-1.1.10...blockstore-fs-1.1.11) (2024-08-01)
+
+
+### Dependencies
+
+* bump it-glob from 2.0.7 to 3.0.1 ([#306](https://github.com/ipfs/js-stores/issues/306)) ([8f6313f](https://github.com/ipfs/js-stores/commit/8f6313f8a22cb537aeeac2a048aad644d3c9a7d2))
+
 ## blockstore-fs [1.1.10](https://github.com/ipfs/js-stores/compare/blockstore-fs-v1.1.9...blockstore-fs-1.1.10) (2024-02-12)
 
 
