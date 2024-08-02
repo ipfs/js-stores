@@ -9,6 +9,21 @@
 
 # About
 
+<!--
+
+!IMPORTANT!
+
+Everything in this README between "# About" and "# Install" is automatically
+generated and will be overwritten the next time the doc generator is run.
+
+To make changes to this section, please update the @packageDocumentation section
+of src/index.js or src/index.ts
+
+To experiment with formatting, please run "npm run docs" from the root of this
+repo and examine the changes made.
+
+-->
+
 A Datastore is a key/value database that lets store/retrieve binary blobs using namespaced Keys.
 
 It is used by IPFS to store/retrieve arbitrary metadata needed to run the node - DHT provider records, signed peer records, etc.

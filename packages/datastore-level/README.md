@@ -9,6 +9,21 @@
 
 # About
 
+<!--
+
+!IMPORTANT!
+
+Everything in this README between "# About" and "# Install" is automatically
+generated and will be overwritten the next time the doc generator is run.
+
+To make changes to this section, please update the @packageDocumentation section
+of src/index.js or src/index.ts
+
+To experiment with formatting, please run "npm run docs" from the root of this
+repo and examine the changes made.
+
+-->
+
 A Datastore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
 
 This module is targetted at Node.js. It is possible to use it in a browser but you should probably use IDBDatastore instead.
