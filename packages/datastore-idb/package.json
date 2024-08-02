@@ -65,7 +65,7 @@
     "it-sort": "^3.0.4"
   },
   "devDependencies": {
-    "aegir": "^42.2.3",
+    "aegir": "^44.1.0",
     "interface-datastore-tests": "^5.0.0"
   }
 }
