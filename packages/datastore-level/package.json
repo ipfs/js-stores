@@ -50,7 +50,6 @@
     "clean": "aegir clean",
     "lint": "aegir lint",
     "build": "aegir build",
-    "release": "aegir release",
     "test": "aegir test",
     "test:node": "aegir test -t node --cov",
     "test:chrome": "aegir test -t browser --cov",
@@ -58,16 +57,17 @@
     "test:firefox": "aegir test -t browser -- --browser firefox",
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "dependencies": {
     "datastore-core": "^9.0.0",
     "interface-datastore": "^8.0.0",
-    "interface-store": "^5.1.8",
-    "it-filter": "^3.0.4",
-    "it-map": "^3.0.5",
-    "it-sort": "^3.0.4",
-    "it-take": "^3.0.4",
+    "interface-store": "^5.0.0",
+    "it-filter": "^3.1.1",
+    "it-map": "^3.1.1",
+    "it-sort": "^3.0.6",
+    "it-take": "^3.0.6",
     "level": "^8.0.1"
   },
   "devDependencies": {

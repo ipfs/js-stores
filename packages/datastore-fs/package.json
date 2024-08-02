@@ -48,11 +48,11 @@
     "clean": "aegir clean",
     "lint": "aegir lint",
     "build": "aegir build --bundle false",
-    "release": "aegir release",
     "test": "aegir test -t node -t electron-main",
     "test:node": "aegir test -t node",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "dependencies": {
     "datastore-core": "^9.0.0",
@@ -60,8 +60,8 @@
     "interface-datastore": "^8.0.0",
     "interface-store": "^5.0.0",
     "it-glob": "^3.0.1",
-    "it-map": "^3.0.5",
-    "it-parallel-batch": "^3.0.4"
+    "it-map": "^3.1.1",
+    "it-parallel-batch": "^3.0.6"
   },
   "devDependencies": {
     "@types/mkdirp": "^2.0.0",

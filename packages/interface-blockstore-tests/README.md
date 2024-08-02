@@ -43,8 +43,8 @@ $ npm i interface-blockstore-tests
 
 Licensed under either of
 
-- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
-- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+- Apache 2.0, ([LICENSE-APACHE](https://github.com/ipfs/js-stores/blob/main/packages/interface-blockstore-tests/LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](https://github.com/ipfs/js-stores/blob/main/packages/interface-blockstore-tests/LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
 # Contribute
 

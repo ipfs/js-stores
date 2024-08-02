@@ -16,6 +16,9 @@
     },
     {
       "path": "../interface-datastore-tests"
+    },
+    {
+      "path": "../interface-store"
     }
   ]
 }
