@@ -1,6 +1,6 @@
 {
   "name": "blockstore-idb",
-  "version": "1.1.8",
+  "version": "2.0.0",
   "description": "Blockstore implementation with IndexedDB backend",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-idb#readme",
@@ -56,14 +56,14 @@
     "dep-check": "aegir dep-check"
   },
   "dependencies": {
-    "blockstore-core": "^4.0.0",
+    "blockstore-core": "5.0.0",
     "idb": "^8.0.0",
     "interface-blockstore": "^5.0.0",
-    "interface-store": "^5.0.0",
+    "interface-store": "6.0.0",
     "multiformats": "^13.0.1"
   },
   "devDependencies": {
     "aegir": "^42.2.3",
-    "interface-blockstore-tests": "^6.0.0"
+    "interface-blockstore-tests": "7.0.0"
   }
 }
