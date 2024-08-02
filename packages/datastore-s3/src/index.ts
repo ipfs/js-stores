@@ -233,7 +233,7 @@ export class S3Datastore extends BaseDatastore {
         return
       }
 
-      if (data == null || data.Contents == null) {
+      if (data?.Contents == null) {
         throw new Error('Not found')
       }
 

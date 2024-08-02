@@ -17,11 +17,11 @@ export class S3Error extends Error {
   }
 }
 
-export const s3Resolve = (res?: any): any => {
+export function s3Resolve (res?: any): any {
   return Promise.resolve(res)
 }
 
-export const s3Reject = <T> (err: T): any => {
+export function s3Reject (err: Error): any {
   return Promise.reject(err)
 }
 
