@@ -1,6 +1,6 @@
 {
   "name": "blockstore-fs",
-  "version": "1.1.11",
+  "version": "2.0.0",
   "description": "Blockstore implementation with file system backend",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-fs#readme",
@@ -78,7 +78,7 @@
   "dependencies": {
     "fast-write-atomic": "^0.2.1",
     "interface-blockstore": "^5.0.0",
-    "interface-store": "^5.0.0",
+    "interface-store": "6.0.0",
     "it-glob": "^3.0.1",
     "it-map": "^3.0.5",
     "it-parallel-batch": "^3.0.4",
@@ -86,6 +86,6 @@
   },
   "devDependencies": {
     "aegir": "^42.2.3",
-    "interface-blockstore-tests": "^6.0.0"
+    "interface-blockstore-tests": "7.0.0"
   }
 }

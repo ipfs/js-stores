@@ -1,3 +1,22 @@
+## blockstore-fs [2.0.0](https://github.com/ipfs/js-stores/compare/blockstore-fs-1.1.11...blockstore-fs-2.0.0) (2024-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* To detect the type of error thrown, use `.name` instead of `.code`
+
+### Features
+
+* use `.name` property for errors instead of `.code` ([#315](https://github.com/ipfs/js-stores/issues/315)) ([dacd6ce](https://github.com/ipfs/js-stores/commit/dacd6ce6f325262f1bc1451f20789e9e7cd9b9fd))
+
+
+
+### Dependencies
+
+* **interface-blockstore:** upgraded to 5.3.0
+* **interface-store:** upgraded to 6.0.0
+* **interface-blockstore-tests:** upgraded to 7.0.0
+
 ## blockstore-fs [1.1.11](https://github.com/ipfs/js-stores/compare/blockstore-fs-1.1.10...blockstore-fs-1.1.11) (2024-08-01)
 
 
