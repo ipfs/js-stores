@@ -15,17 +15,15 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { promisify } from 'node:util'
-import {
-  Errors
-} from 'blockstore-core'
 // @ts-expect-error no types
 import fwa from 'fast-write-atomic'
+import { OpenFailedError, type AwaitIterable, PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
-import { NextToLast, type ShardingStrategy } from './sharding.js'
+import { NextToLast } from './sharding.js'
+import type { ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 const writeAtomic = promisify(fwa)
@@ -122,7 +120,7 @@ export class FsBlockstore implements Blockstore {
       await fs.access(this.path, fs.constants.F_OK | fs.constants.W_OK)
 
       if (this.errorIfExists) {
-        throw Errors.openFailedError(new Error(`Blockstore directory: ${this.path} already exists`))
+        throw new OpenFailedError(`Blockstore directory: ${this.path} already exists`)
       }
     } catch (err: any) {
       if (err.code === 'ENOENT') {
@@ -130,7 +128,7 @@ export class FsBlockstore implements Blockstore {
           await fs.mkdir(this.path, { recursive: true })
           return
         } else {
-          throw Errors.openFailedError(new Error(`Blockstore directory: ${this.path} does not exist`))
+          throw new OpenFailedError(`Blockstore directory: ${this.path} does not exist`)
         }
       }
 
@@ -156,7 +154,7 @@ export class FsBlockstore implements Blockstore {
 
       return key
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -179,7 +177,7 @@ export class FsBlockstore implements Blockstore {
     try {
       return await fs.readFile(path.join(this.path, dir, file))
     } catch (err: any) {
-      throw Errors.notFoundError(err)
+      throw new NotFoundError(String(err))
     }
   }
 
@@ -207,7 +205,7 @@ export class FsBlockstore implements Blockstore {
         return
       }
 
-      throw Errors.deleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 

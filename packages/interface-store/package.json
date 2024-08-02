@@ -15,7 +15,7 @@
     "access": "public",
     "provenance": true
   },
-  "main": "src/index.js",
+  "type": "module",
   "types": "dist/src/index.d.ts",
   "typesVersions": {
     "*": {
@@ -35,6 +35,12 @@
     "src",
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {

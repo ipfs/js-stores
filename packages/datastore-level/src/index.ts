@@ -44,8 +44,9 @@
  * More information: [https://github.com/Level/level-js/blob/master/UPGRADING.md#new-database-prefix](https://github.com/Level/level-js/blob/99831913e905d19e5f6dee56d512b7264fbed7bd/UPGRADING.md#new-database-prefix)
  */
 
-import { BaseDatastore, Errors } from 'datastore-core'
+import { BaseDatastore } from 'datastore-core'
 import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import map from 'it-map'
 import sort from 'it-sort'
@@ -95,7 +96,7 @@ export class LevelDatastore extends BaseDatastore {
     try {
       await this.db.open(this.opts)
     } catch (err: any) {
-      throw Errors.dbOpenFailedError(err)
+      throw new OpenFailedError(String(err))
     }
   }
 
@@ -105,7 +106,7 @@ export class LevelDatastore extends BaseDatastore {
 
       return key
     } catch (err: any) {
-      throw Errors.dbWriteFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -115,10 +116,10 @@ export class LevelDatastore extends BaseDatastore {
       data = await this.db.get(key.toString())
     } catch (err: any) {
       if (err.notFound != null) {
-        throw Errors.notFoundError(err)
+        throw new NotFoundError(String(err))
       }
 
-      throw Errors.dbReadFailedError(err)
+      throw new GetFailedError(String(err))
     }
     return data
   }
@@ -140,7 +141,7 @@ export class LevelDatastore extends BaseDatastore {
     try {
       await this.db.del(key.toString())
     } catch (err: any) {
-      throw Errors.dbDeleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 

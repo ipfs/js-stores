@@ -1,9 +1,9 @@
+import { NotFoundError } from 'interface-store'
 import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
 import { BaseBlockstore } from './base.js'
-import * as Errors from './errors.js'
 import type { Pair } from 'interface-blockstore'
 import type { Await, AwaitIterable } from 'interface-store'
 
@@ -26,7 +26,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     const buf = this.data.get(base32.encode(key.multihash.bytes))
 
     if (buf == null) {
-      throw Errors.notFoundError()
+      throw new NotFoundError()
     }
 
     return buf

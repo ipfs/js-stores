@@ -153,7 +153,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       try {
         await store.get(cid)
       } catch (err) {
-        expect(err).to.have.property('code', 'ERR_NOT_FOUND')
+        expect(err).to.have.property('name', 'NotFoundError')
         return
       }
 
@@ -194,7 +194,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       try {
         await drain(store.getMany([cid]))
       } catch (err) {
-        expect(err).to.have.property('code', 'ERR_NOT_FOUND')
+        expect(err).to.have.property('name', 'NotFoundError')
         return
       }
 

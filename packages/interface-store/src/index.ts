@@ -133,3 +133,5 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
     options?: AbortOptions & DeleteManyOptionsExtension
   ): AwaitIterable<Key>
 }
+
+export * from './errors.js'

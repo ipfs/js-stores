@@ -12,15 +12,14 @@
  * ```
  */
 
-import {
-  BaseBlockstore,
-  Errors
-} from 'blockstore-core'
-import { openDB, type IDBPDatabase, deleteDB } from 'idb'
+import { BaseBlockstore } from 'blockstore-core'
+import { openDB, deleteDB } from 'idb'
+import { OpenFailedError, PutFailedError, NotFoundError } from 'interface-store'
 import { base32upper } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
+import type { IDBPDatabase } from 'idb'
 import type { Pair } from 'interface-blockstore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
@@ -77,7 +76,7 @@ export class IDBBlockstore extends BaseBlockstore {
         }
       })
     } catch (err: any) {
-      throw Errors.openFailedError(err)
+      throw new OpenFailedError(String(err))
     }
   }
 
@@ -95,7 +94,7 @@ export class IDBBlockstore extends BaseBlockstore {
 
       return key
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -109,11 +108,11 @@ export class IDBBlockstore extends BaseBlockstore {
     try {
       val = await this.db.get(this.location, this.#encode(key))
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
 
     if (val === undefined) {
-      throw Errors.notFoundError()
+      throw new NotFoundError()
     }
 
     return val
@@ -127,7 +126,7 @@ export class IDBBlockstore extends BaseBlockstore {
     try {
       await this.db.delete(this.location, this.#encode(key))
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -139,7 +138,7 @@ export class IDBBlockstore extends BaseBlockstore {
     try {
       return Boolean(await this.db.getKey(this.location, this.#encode(key)))
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
