@@ -76,10 +76,10 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "interface-store": "6.0.0",
-    "uint8arrays": "^5.0.2"
+    "interface-store": "^6.0.0",
+    "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^44.1.0"
   }
 }

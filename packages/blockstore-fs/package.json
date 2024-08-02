@@ -73,19 +73,20 @@
     "test": "aegir test -t node -t electron-main",
     "test:node": "aegir test -t node",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "dependencies": {
     "fast-write-atomic": "^0.2.1",
     "interface-blockstore": "^5.0.0",
-    "interface-store": "6.0.0",
+    "interface-store": "^6.0.0",
     "it-glob": "^3.0.1",
-    "it-map": "^3.0.5",
-    "it-parallel-batch": "^3.0.4",
-    "multiformats": "^13.0.1"
+    "it-map": "^3.1.1",
+    "it-parallel-batch": "^3.0.6",
+    "multiformats": "^13.2.2"
   },
   "devDependencies": {
-    "aegir": "^42.2.3",
-    "interface-blockstore-tests": "7.0.0"
+    "aegir": "^44.1.0",
+    "interface-blockstore-tests": "^7.0.0"
   }
 }

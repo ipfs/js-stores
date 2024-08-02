@@ -53,17 +53,18 @@
     "test:chrome-webworker": "aegir test -t webworker",
     "test:firefox": "aegir test -t browser -- --browser firefox",
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "dependencies": {
-    "blockstore-core": "5.0.0",
+    "blockstore-core": "^5.0.0",
     "idb": "^8.0.0",
     "interface-blockstore": "^5.0.0",
-    "interface-store": "6.0.0",
-    "multiformats": "^13.0.1"
+    "interface-store": "^6.0.0",
+    "multiformats": "^13.2.2"
   },
   "devDependencies": {
-    "aegir": "^42.2.3",
-    "interface-blockstore-tests": "7.0.0"
+    "aegir": "^44.1.0",
+    "interface-blockstore-tests": "^7.0.0"
   }
 }

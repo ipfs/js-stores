@@ -220,7 +220,7 @@ export class S3Blockstore extends BaseBlockstore {
           return
         }
 
-        if (data == null || data.Contents == null) {
+        if (data?.Contents == null) {
           throw new Error('Not found')
         }
 

@@ -43,10 +43,10 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "interface-store": "6.0.0",
-    "multiformats": "^13.0.1"
+    "interface-store": "^6.0.0",
+    "multiformats": "^13.2.2"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^44.1.0"
   }
 }

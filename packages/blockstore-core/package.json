@@ -94,22 +94,23 @@
     "test:firefox": "aegir test -t browser -- --browser firefox",
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/logger": "^4.0.6",
+    "@libp2p/logger": "^4.0.19",
     "interface-blockstore": "^5.0.0",
-    "interface-store": "6.0.0",
-    "it-drain": "^3.0.5",
-    "it-filter": "^3.0.4",
-    "it-merge": "^3.0.3",
+    "interface-store": "^6.0.0",
+    "it-drain": "^3.0.7",
+    "it-filter": "^3.1.1",
+    "it-merge": "^3.0.5",
     "it-pushable": "^3.2.3",
-    "multiformats": "^13.0.1"
+    "multiformats": "^13.2.2"
   },
   "devDependencies": {
-    "aegir": "^42.2.3",
-    "interface-blockstore-tests": "7.0.0",
-    "it-all": "^3.0.4",
-    "uint8arrays": "^5.0.2"
+    "aegir": "^44.1.0",
+    "interface-blockstore-tests": "^7.0.0",
+    "it-all": "^3.0.6",
+    "uint8arrays": "^5.1.0"
   }
 }

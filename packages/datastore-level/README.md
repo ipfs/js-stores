@@ -9,6 +9,21 @@
 
 # About
 
+<!--
+
+!IMPORTANT!
+
+Everything in this README between "# About" and "# Install" is automatically
+generated and will be overwritten the next time the doc generator is run.
+
+To make changes to this section, please update the @packageDocumentation section
+of src/index.js or src/index.ts
+
+To experiment with formatting, please run "npm run docs" from the root of this
+repo and examine the changes made.
+
+-->
+
 A Datastore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
 
 This module is targetted at Node.js. It is possible to use it in a browser but you should probably use IDBDatastore instead.
@@ -59,7 +74,7 @@ $ npm i datastore-level
 
 ## Browser `<script>` tag
 
-Loading this module through a script tag will make it's exports available as `DatastoreLevel` in the global namespace.
+Loading this module through a script tag will make its exports available as `DatastoreLevel` in the global namespace.
 
 ```html
 <script src="https://unpkg.com/datastore-level/dist/index.min.js"></script>
@@ -73,8 +88,8 @@ Loading this module through a script tag will make it's exports available as `Da
 
 Licensed under either of
 
-- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
-- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+- Apache 2.0, ([LICENSE-APACHE](https://github.com/ipfs/js-stores/blob/main/packages/datastore-level/LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](https://github.com/ipfs/js-stores/blob/main/packages/datastore-level/LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
 # Contribute
 

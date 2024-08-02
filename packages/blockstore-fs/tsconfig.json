@@ -9,9 +9,6 @@
   ],
   "references": [
     {
-      "path": "../blockstore-core"
-    },
-    {
       "path": "../interface-blockstore"
     },
     {

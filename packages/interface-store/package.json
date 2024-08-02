@@ -51,10 +51,10 @@
     "build": "aegir build",
     "lint": "aegir lint",
     "clean": "aegir clean",
-    "release": "aegir release",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^44.1.0"
   }
 }
