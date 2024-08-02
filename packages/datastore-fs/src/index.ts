@@ -15,17 +15,15 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { promisify } from 'util'
-import {
-  BaseDatastore, Errors
-} from 'datastore-core'
+import { BaseDatastore } from 'datastore-core'
 // @ts-expect-error no types
 import fwa from 'fast-write-atomic'
-import {
-  Key, type KeyQuery, type Pair, type Query
-} from 'interface-datastore'
+import { Key } from 'interface-datastore'
+import { OpenFailedError, NotFoundError, PutFailedError, DeleteFailedError } from 'interface-store'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallel from 'it-parallel-batch'
+import type { KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AwaitIterable } from 'interface-store'
 
 const writeAtomic = promisify(fwa)
@@ -94,7 +92,7 @@ export class FsDatastore extends BaseDatastore {
       await fs.access(this.path, fs.constants.F_OK | fs.constants.W_OK)
 
       if (this.errorIfExists) {
-        throw Errors.dbOpenFailedError(new Error(`Datastore directory: ${this.path} already exists`))
+        throw new OpenFailedError(`Datastore directory: ${this.path} already exists`)
       }
     } catch (err: any) {
       if (err.code === 'ENOENT') {
@@ -102,7 +100,7 @@ export class FsDatastore extends BaseDatastore {
           await fs.mkdir(this.path, { recursive: true })
           return
         } else {
-          throw Errors.notFoundError(new Error(`Datastore directory: ${this.path} does not exist`))
+          throw new NotFoundError(`Datastore directory: ${this.path} does not exist`)
         }
       }
 
@@ -160,7 +158,7 @@ export class FsDatastore extends BaseDatastore {
 
       return key
     } catch (err: any) {
-      throw Errors.dbWriteFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -186,7 +184,7 @@ export class FsDatastore extends BaseDatastore {
     try {
       data = await fs.readFile(parts.file)
     } catch (err: any) {
-      throw Errors.notFoundError(err)
+      throw new NotFoundError(String(err))
     }
     return data
   }
@@ -244,7 +242,7 @@ export class FsDatastore extends BaseDatastore {
         return
       }
 
-      throw Errors.dbDeleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 

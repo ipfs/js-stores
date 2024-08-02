@@ -61,7 +61,6 @@
  * ```
  */
 
-import * as Errors from './errors.js'
 import * as shard from './shard.js'
 import type { Key } from 'interface-datastore'
 
@@ -73,7 +72,6 @@ export { MountDatastore } from './mount.js'
 export { TieredDatastore } from './tiered.js'
 export { NamespaceDatastore } from './namespace.js'
 
-export { Errors }
 export { shard }
 
 export interface Shard {

@@ -1,12 +1,13 @@
-import { type Batch, Key, type KeyQuery, type KeyQueryFilter, type Pair, type Query, type QueryFilter, type Datastore } from 'interface-datastore'
+import { Key } from 'interface-datastore'
+import { OpenFailedError } from 'interface-store'
 import { BaseDatastore } from './base.js'
-import * as Errors from './errors.js'
 import { KeyTransformDatastore } from './keytransform.js'
 import {
   readShardFun,
   SHARDING_FN
 } from './shard.js'
 import type { Shard } from './index.js'
+import type { Batch, KeyQuery, KeyQueryFilter, Pair, Query, QueryFilter, Datastore } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
 
 const shardKey = new Key(SHARDING_FN)
@@ -58,7 +59,7 @@ export class ShardingDatastore extends BaseDatastore {
 
     if (!hasShard) {
       if (shard == null) {
-        throw Errors.dbOpenFailedError(Error('Shard is required when datastore doesn\'t have a shard key already.'))
+        throw new OpenFailedError('Shard is required when datastore doesn\'t have a shard key already')
       }
 
       await store.put(shardKey, new TextEncoder().encode(shard.toString() + '\n'))

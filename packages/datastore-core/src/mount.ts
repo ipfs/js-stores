@@ -1,9 +1,9 @@
+import { DeleteFailedError, NotFoundError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import merge from 'it-merge'
 import sort from 'it-sort'
 import take from 'it-take'
 import { BaseDatastore } from './base.js'
-import * as Errors from './errors.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions } from 'interface-store'
 
@@ -37,7 +37,7 @@ export class MountDatastore extends BaseDatastore {
   async put (key: Key, value: Uint8Array, options?: AbortOptions): Promise<Key> {
     const match = this._lookup(key)
     if (match == null) {
-      throw Errors.dbWriteFailedError(new Error('No datastore mounted for this key'))
+      throw new PutFailedError('No datastore mounted for this key')
     }
 
     await match.datastore.put(key, value, options)
@@ -52,7 +52,7 @@ export class MountDatastore extends BaseDatastore {
   async get (key: Key, options: AbortOptions = {}): Promise<Uint8Array> {
     const match = this._lookup(key)
     if (match == null) {
-      throw Errors.notFoundError(new Error('No datastore mounted for this key'))
+      throw new NotFoundError('No datastore mounted for this key')
     }
     return match.datastore.get(key, options)
   }
@@ -68,7 +68,7 @@ export class MountDatastore extends BaseDatastore {
   async delete (key: Key, options?: AbortOptions): Promise<void> {
     const match = this._lookup(key)
     if (match == null) {
-      throw Errors.dbDeleteFailedError(new Error('No datastore mounted for this key'))
+      throw new DeleteFailedError('No datastore mounted for this key')
     }
 
     await match.datastore.delete(key, options)

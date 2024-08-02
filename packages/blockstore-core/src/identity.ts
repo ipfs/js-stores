@@ -1,5 +1,5 @@
+import { NotFoundError } from 'interface-store'
 import { BaseBlockstore } from './base.js'
-import { Errors } from './index.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
@@ -34,7 +34,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     }
 
     if (this.child == null) {
-      throw Errors.notFoundError()
+      throw new NotFoundError()
     }
 
     return this.child.get(key)
