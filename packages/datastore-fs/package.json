@@ -1,6 +1,6 @@
 {
   "name": "datastore-fs",
-  "version": "9.1.9",
+  "version": "10.0.0",
   "description": "Datastore implementation with file system backend",
   "author": "Friedel Ziegelmayer<dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
@@ -55,18 +55,17 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "datastore-core": "^9.0.0",
+    "datastore-core": "^10.0.0",
     "fast-write-atomic": "^0.2.1",
     "interface-datastore": "^8.0.0",
-    "interface-store": "^5.0.0",
+    "interface-store": "^6.0.0",
     "it-glob": "^3.0.1",
     "it-map": "^3.1.1",
     "it-parallel-batch": "^3.0.6"
   },
   "devDependencies": {
-    "@types/mkdirp": "^2.0.0",
     "aegir": "^44.1.0",
-    "interface-datastore-tests": "^5.0.0",
+    "interface-datastore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.14"
   }
 }

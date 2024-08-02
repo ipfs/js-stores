@@ -61,9 +61,9 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "datastore-core": "^9.0.0",
+    "datastore-core": "^10.0.0",
     "interface-datastore": "^8.0.0",
-    "interface-store": "^5.0.0",
+    "interface-store": "^6.0.0",
     "it-filter": "^3.1.1",
     "it-map": "^3.1.1",
     "it-sort": "^3.0.6",
@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "aegir": "^44.1.0",
-    "interface-datastore-tests": "^5.0.0",
+    "interface-datastore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.14",
     "memory-level": "^1.0.0"
   }

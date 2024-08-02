@@ -1,3 +1,14 @@
+## interface-store [6.0.0](https://github.com/ipfs/js-stores/compare/interface-store-5.1.8...interface-store-6.0.0) (2024-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* To detect the type of error thrown, use `.name` instead of `.code`
+
+### Features
+
+* use `.name` property for errors instead of `.code` ([#315](https://github.com/ipfs/js-stores/issues/315)) ([dacd6ce](https://github.com/ipfs/js-stores/commit/dacd6ce6f325262f1bc1451f20789e9e7cd9b9fd))
+
 ## interface-store [5.1.8](https://github.com/ipfs/js-stores/compare/interface-store-v5.1.7...interface-store-5.1.8) (2024-02-12)
 
 
