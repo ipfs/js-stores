@@ -35,9 +35,8 @@ async function writeFile (file: string, contents: Uint8Array): Promise<void> {
     await writer.write(contents)
   } catch (err: any) {
     if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
-      // fast-write-atomic writes a file to a temp location before renaming it.
-      // On Windows, if the final file already exists this error is thrown.
-      // No such error is thrown on Linux/Mac
+      // steno writes a file to a temp location before renaming it.
+      // If the final file already exists this error is thrown.
       // Make sure we can read & write to this file
       await fs.access(file, fs.constants.F_OK | fs.constants.W_OK)
 
