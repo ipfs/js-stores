@@ -14,13 +14,13 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { Writer } from 'steno'
 import { BaseDatastore } from 'datastore-core'
 import { Key } from 'interface-datastore'
 import { OpenFailedError, NotFoundError, PutFailedError, DeleteFailedError } from 'interface-store'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallel from 'it-parallel-batch'
+import { Writer } from 'steno'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AwaitIterable } from 'interface-store'
 
