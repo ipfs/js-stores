@@ -6,6 +6,7 @@ import { ShardingDatastore, shard } from 'datastore-core'
 import { Key } from 'interface-datastore'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
+import { spawn, Thread, Worker } from 'threads'
 import { FsDatastore } from '../src/index.js'
 
 const utf8Encoder = new TextEncoder()
@@ -169,5 +170,36 @@ describe('FsDatastore', () => {
     const res = await fstore.get(key)
 
     expect(res).to.deep.equal(value)
+  })
+
+  /**
+   * This test spawns 10 workers that concurrently write to the same blockstore.
+   * it's different from the previous test because it uses workers to write to the blockstore
+   * which means that the writes are happening in parallel in different threads.
+   */
+  it('can survive concurrent worker writes', async () => {
+    const dir = tempdir()
+    const key = new Key('CIQGFTQ7FSI2COUXWWLOQ45VUM2GUZCGAXLWCTOKKPGTUWPXHBNIVOY')
+    const workers = await Promise.all(new Array(10).fill(0).map(async () => {
+      const worker = await spawn(new Worker('./fixtures/writer-worker.js'))
+      await worker.isReady(dir)
+      return worker
+    }))
+
+    try {
+      const value = utf8Encoder.encode('Hello world')
+      // 100 iterations of looping over all workers and putting the same key value pair
+      await Promise.all(new Array(100).fill(0).map(async () => {
+        return Promise.all(workers.map(async (worker) => worker.put(key.toString(), value)))
+      }))
+
+      const fs = new FsDatastore(dir)
+      await fs.open()
+      const res = await fs.get(key)
+
+      expect(res).to.deep.equal(value)
+    } finally {
+      await Promise.all(workers.map(async (worker) => Thread.terminate(worker)))
+    }
   })
 })

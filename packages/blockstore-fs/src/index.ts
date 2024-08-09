@@ -14,31 +14,27 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { promisify } from 'node:util'
-// @ts-expect-error no types
-import fwa from 'fast-write-atomic'
 import { OpenFailedError, type AwaitIterable, PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
+import { Writer } from 'steno'
 import { NextToLast } from './sharding.js'
 import type { ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { CID } from 'multiformats/cid'
-
-const writeAtomic = promisify(fwa)
 
 /**
  * Write a file atomically
  */
 async function writeFile (file: string, contents: Uint8Array): Promise<void> {
   try {
-    await writeAtomic(file, contents)
+    const writer = new Writer(file)
+    await writer.write(contents)
   } catch (err: any) {
-    if (err.code === 'EPERM' && err.syscall === 'rename') {
-      // fast-write-atomic writes a file to a temp location before renaming it.
-      // On Windows, if the final file already exists this error is thrown.
-      // No such error is thrown on Linux/Mac
+    if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
+      // steno writes a file to a temp location before renaming it.
+      // If the final file already exists this error is thrown.
       // Make sure we can read & write to this file
       await fs.access(file, fs.constants.F_OK | fs.constants.W_OK)
 
@@ -46,7 +42,6 @@ async function writeFile (file: string, contents: Uint8Array): Promise<void> {
       // attempts to write the same block by two different function calls
       return
     }
-
     throw err
   }
 }
