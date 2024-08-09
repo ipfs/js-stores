@@ -1,5 +1,5 @@
+import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.js'
-import * as Errors from './errors.js'
 import type { Pair } from 'interface-datastore'
 import type { Key } from 'interface-datastore/key'
 import type { Await, AwaitIterable } from 'interface-store'
@@ -10,7 +10,7 @@ export class BlackHoleDatastore extends BaseDatastore {
   }
 
   get (): Await<Uint8Array> {
-    throw Errors.notFoundError()
+    throw new NotFoundError()
   }
 
   has (key: Key): Await<boolean> {

@@ -1,6 +1,6 @@
 {
   "name": "blockstore-s3",
-  "version": "1.0.15",
+  "version": "2.0.0",
   "description": "IPFS blockstore implementation backed by s3",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-s3#readme",
@@ -54,22 +54,23 @@
     "test:firefox": "aegir test -t browser -- --browser firefox",
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
     "test:electron-main": "aegir test -t electron-main",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.511.0",
-    "blockstore-core": "^4.0.0",
+    "@aws-sdk/client-s3": "^3.622.0",
+    "blockstore-core": "^5.0.0",
     "interface-blockstore": "^5.0.0",
-    "interface-store": "^5.0.0",
-    "it-to-buffer": "^4.0.5",
-    "multiformats": "^13.0.1",
-    "uint8arrays": "^5.0.2"
+    "interface-store": "^6.0.0",
+    "it-to-buffer": "^4.0.7",
+    "multiformats": "^13.2.2",
+    "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
     "@types/sinon": "^17.0.3",
-    "aegir": "^42.2.3",
-    "interface-blockstore-tests": "^6.0.0",
-    "p-defer": "^4.0.0",
-    "sinon": "^17.0.1"
+    "aegir": "^44.1.0",
+    "interface-blockstore-tests": "^7.0.0",
+    "p-defer": "^4.0.1",
+    "sinon": "^18.0.0"
   }
 }

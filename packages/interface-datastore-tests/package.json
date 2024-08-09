@@ -1,6 +1,6 @@
 {
   "name": "interface-datastore-tests",
-  "version": "5.1.8",
+  "version": "6.0.0",
   "description": "Compliance tests for the datastore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/interface-datastore-tests#readme",
@@ -52,12 +52,12 @@
   "dependencies": {
     "interface-datastore": "^8.0.0",
     "iso-random-stream": "^2.0.2",
-    "it-all": "^3.0.4",
-    "it-drain": "^3.0.5",
-    "it-length": "^3.0.4",
-    "uint8arrays": "^5.0.2"
+    "it-all": "^3.0.6",
+    "it-drain": "^3.0.7",
+    "it-length": "^3.0.6",
+    "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^44.1.0"
   }
 }

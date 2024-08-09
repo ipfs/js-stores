@@ -1,3 +1,30 @@
+## datastore-s3 [12.0.0](https://github.com/ipfs/js-stores/compare/datastore-s3-11.1.12...datastore-s3-12.0.0) (2024-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* To detect the type of error thrown, use `.name` instead of `.code`
+
+### Features
+
+* use `.name` property for errors instead of `.code` ([#315](https://github.com/ipfs/js-stores/issues/315)) ([dacd6ce](https://github.com/ipfs/js-stores/commit/dacd6ce6f325262f1bc1451f20789e9e7cd9b9fd))
+
+
+
+### Dependencies
+
+* **datastore-core:** upgraded to 10.0.0
+* **interface-datastore:** upgraded to 8.3.0
+* **interface-store:** upgraded to 6.0.0
+* **interface-datastore-tests:** upgraded to 6.0.0
+
+## datastore-s3 [11.1.12](https://github.com/ipfs/js-stores/compare/datastore-s3-11.1.11...datastore-s3-11.1.12) (2024-08-01)
+
+
+### Dependencies
+
+* **dev:** bump sinon from 17.0.2 to 18.0.0 ([#308](https://github.com/ipfs/js-stores/issues/308)) ([0fbfe11](https://github.com/ipfs/js-stores/commit/0fbfe1112a102055d75f077ff799fbb1001e6aa7))
+
 ## datastore-s3 [11.1.11](https://github.com/ipfs/js-stores/compare/datastore-s3-v11.1.10...datastore-s3-11.1.11) (2024-02-12)
 
 

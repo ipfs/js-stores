@@ -9,6 +9,21 @@
 
 # About
 
+<!--
+
+!IMPORTANT!
+
+Everything in this README between "# About" and "# Install" is automatically
+generated and will be overwritten the next time the doc generator is run.
+
+To make changes to this section, please update the @packageDocumentation section
+of src/index.js or src/index.ts
+
+To experiment with formatting, please run "npm run docs" from the root of this
+repo and examine the changes made.
+
+-->
+
 A Blockstore is a key/value database that lets use CIDs to store/retrieve binary blobs.
 
 It is used by IPFS to store/retrieve the block that a given CID resolves to.
@@ -35,8 +50,8 @@ $ npm i interface-blockstore
 
 Licensed under either of
 
-- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
-- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+- Apache 2.0, ([LICENSE-APACHE](https://github.com/ipfs/js-stores/blob/main/packages/interface-blockstore/LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](https://github.com/ipfs/js-stores/blob/main/packages/interface-blockstore/LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
 # Contribute
 

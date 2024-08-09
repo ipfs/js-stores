@@ -1,5 +1,5 @@
+import { NotFoundError } from 'interface-store'
 import { BaseBlockstore } from './base.js'
-import * as Errors from './errors.js'
 import type { Pair } from 'interface-blockstore'
 import type { Await, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
@@ -10,7 +10,7 @@ export class BlackHoleBlockstore extends BaseBlockstore {
   }
 
   get (): Await<Uint8Array> {
-    throw Errors.notFoundError()
+    throw new NotFoundError()
   }
 
   has (): Await<boolean> {

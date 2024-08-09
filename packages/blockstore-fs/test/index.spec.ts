@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
@@ -45,7 +44,7 @@ describe('FsBlockstore', () => {
       const dir = path.join(os.tmpdir(), `test-${Math.random()}`)
       const store = new FsBlockstore(dir, { createIfMissing: false })
       await expect(store.open()).to.eventually.be.rejected
-        .with.property('code', 'ERR_OPEN_FAILED')
+        .with.property('name', 'OpenFailedError')
     })
 
     it('errorIfExists: true - folder exists', async () => {
@@ -55,7 +54,7 @@ describe('FsBlockstore', () => {
       })
       const store = new FsBlockstore(dir, { errorIfExists: true })
       await expect(store.open()).to.eventually.be.rejected
-        .with.property('code', 'ERR_OPEN_FAILED')
+        .with.property('name', 'OpenFailedError')
     })
   })
 
@@ -69,7 +68,7 @@ describe('FsBlockstore', () => {
     await fs.delete(key)
 
     await expect(fs.get(key)).to.eventually.be.rejected
-      .with.property('code', 'ERR_NOT_FOUND')
+      .with.property('name', 'NotFoundError')
   })
 
   it('deleting non-existent files', async () => {
@@ -82,7 +81,7 @@ describe('FsBlockstore', () => {
     await fs.delete(key)
 
     await expect(fs.get(key)).to.eventually.be.rejected
-      .with.property('code', 'ERR_NOT_FOUND')
+      .with.property('name', 'NotFoundError')
   })
 
   describe('interface-blockstore (flat directory)', () => {

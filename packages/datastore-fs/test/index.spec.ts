@@ -44,7 +44,7 @@ describe('FsDatastore', () => {
       const dir = tempdir()
       const store = new FsDatastore(dir, { createIfMissing: false })
       await expect(store.open()).to.eventually.be.rejected
-        .with.property('code', 'ERR_NOT_FOUND')
+        .with.property('name', 'NotFoundError')
     })
 
     it('errorIfExists: true - folder exists', async () => {
@@ -54,7 +54,7 @@ describe('FsDatastore', () => {
       })
       const store = new FsDatastore(dir, { errorIfExists: true })
       await expect(store.open()).to.eventually.be.rejected
-        .with.property('code', 'ERR_DB_OPEN_FAILED')
+        .with.property('name', 'OpenFailedError')
     })
   })
 
@@ -90,7 +90,7 @@ describe('FsDatastore', () => {
       await fs.get(key)
       throw new Error('Should have errored')
     } catch (err: any) {
-      expect(err.code).to.equal('ERR_NOT_FOUND')
+      expect(err).to.have.property('name', 'NotFoundError')
     }
   })
 
@@ -106,7 +106,7 @@ describe('FsDatastore', () => {
       await fs.get(key)
       throw new Error('Should have errored')
     } catch (err: any) {
-      expect(err.code).to.equal('ERR_NOT_FOUND')
+      expect(err).to.have.property('name', 'NotFoundError')
     }
   })
 

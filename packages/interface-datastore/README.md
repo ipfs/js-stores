@@ -9,6 +9,21 @@
 
 # About
 
+<!--
+
+!IMPORTANT!
+
+Everything in this README between "# About" and "# Install" is automatically
+generated and will be overwritten the next time the doc generator is run.
+
+To make changes to this section, please update the @packageDocumentation section
+of src/index.js or src/index.ts
+
+To experiment with formatting, please run "npm run docs" from the root of this
+repo and examine the changes made.
+
+-->
+
 A Datastore is a key/value database that lets store/retrieve binary blobs using namespaced Keys.
 
 It is used by IPFS to store/retrieve arbitrary metadata needed to run the node - DHT provider records, signed peer records, etc.
@@ -111,7 +126,7 @@ $ npm i interface-datastore
 
 ## Browser `<script>` tag
 
-Loading this module through a script tag will make it's exports available as `InterfaceDatastore` in the global namespace.
+Loading this module through a script tag will make its exports available as `InterfaceDatastore` in the global namespace.
 
 ```html
 <script src="https://unpkg.com/interface-datastore/dist/index.min.js"></script>
@@ -125,8 +140,8 @@ Loading this module through a script tag will make it's exports available as `In
 
 Licensed under either of
 
-- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
-- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+- Apache 2.0, ([LICENSE-APACHE](https://github.com/ipfs/js-stores/blob/main/packages/interface-datastore/LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](https://github.com/ipfs/js-stores/blob/main/packages/interface-datastore/LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
 # Contribute
 

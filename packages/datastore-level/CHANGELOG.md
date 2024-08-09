@@ -1,3 +1,23 @@
+## datastore-level [11.0.0](https://github.com/ipfs/js-stores/compare/datastore-level-10.1.8...datastore-level-11.0.0) (2024-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* To detect the type of error thrown, use `.name` instead of `.code`
+
+### Features
+
+* use `.name` property for errors instead of `.code` ([#315](https://github.com/ipfs/js-stores/issues/315)) ([dacd6ce](https://github.com/ipfs/js-stores/commit/dacd6ce6f325262f1bc1451f20789e9e7cd9b9fd))
+
+
+
+### Dependencies
+
+* **datastore-core:** upgraded to 10.0.0
+* **interface-datastore:** upgraded to 8.3.0
+* **interface-store:** upgraded to 6.0.0
+* **interface-datastore-tests:** upgraded to 6.0.0
+
 ## datastore-level [10.1.8](https://github.com/ipfs/js-stores/compare/datastore-level-10.1.7...datastore-level-10.1.8) (2024-04-09)
 
 

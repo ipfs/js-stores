@@ -1,3 +1,11 @@
+## interface-blockstore [5.3.0](https://github.com/ipfs/js-stores/compare/interface-blockstore-5.2.10...interface-blockstore-5.3.0) (2024-08-02)
+
+
+
+### Dependencies
+
+* **interface-store:** upgraded to 6.0.0
+
 ## interface-blockstore [5.2.10](https://github.com/ipfs/js-stores/compare/interface-blockstore-v5.2.9...interface-blockstore-5.2.10) (2024-02-12)
 
 

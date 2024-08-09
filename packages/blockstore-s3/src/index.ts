@@ -40,7 +40,7 @@ import {
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
 import { BaseBlockstore } from 'blockstore-core/base'
-import * as Errors from 'blockstore-core/errors'
+import { DeleteFailedError, GetFailedError, HasFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import toBuffer from 'it-to-buffer'
 import { fromString as unint8arrayFromString } from 'uint8arrays'
 import { NextToLast, type ShardingStrategy } from './sharding.js'
@@ -106,7 +106,7 @@ export class S3Blockstore extends BaseBlockstore {
 
       return key
     } catch (err: any) {
-      throw Errors.putFailedError(err)
+      throw new PutFailedError(String(err))
     }
   }
 
@@ -147,9 +147,10 @@ export class S3Blockstore extends BaseBlockstore {
       return await toBuffer(data.Body)
     } catch (err: any) {
       if (err.statusCode === 404) {
-        throw Errors.notFoundError(err)
+        throw new NotFoundError(String(err))
       }
-      throw err
+
+      throw new GetFailedError(String(err))
     }
   }
 
@@ -179,7 +180,7 @@ export class S3Blockstore extends BaseBlockstore {
         return false
       }
 
-      throw err
+      throw new HasFailedError(String(err))
     }
   }
 
@@ -197,7 +198,7 @@ export class S3Blockstore extends BaseBlockstore {
         }
       )
     } catch (err: any) {
-      throw Errors.deleteFailedError(err)
+      throw new DeleteFailedError(String(err))
     }
   }
 
@@ -219,7 +220,7 @@ export class S3Blockstore extends BaseBlockstore {
           return
         }
 
-        if (data == null || data.Contents == null) {
+        if (data?.Contents == null) {
           throw new Error('Not found')
         }
 
@@ -249,7 +250,7 @@ export class S3Blockstore extends BaseBlockstore {
         break
       }
     } catch (err: any) {
-      throw new Error(err.code)
+      throw new GetFailedError(String(err))
     }
   }
 
@@ -279,7 +280,7 @@ export class S3Blockstore extends BaseBlockstore {
           return
         }
 
-        throw Errors.openFailedError(err)
+        throw new OpenFailedError(String(err))
       }
     }
   }

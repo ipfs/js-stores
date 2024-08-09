@@ -1,3 +1,20 @@
+## interface-blockstore-tests [7.0.0](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-6.1.10...interface-blockstore-tests-7.0.0) (2024-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* To detect the type of error thrown, use `.name` instead of `.code`
+
+### Features
+
+* use `.name` property for errors instead of `.code` ([#315](https://github.com/ipfs/js-stores/issues/315)) ([dacd6ce](https://github.com/ipfs/js-stores/commit/dacd6ce6f325262f1bc1451f20789e9e7cd9b9fd))
+
+
+
+### Dependencies
+
+* **interface-blockstore:** upgraded to 5.3.0
+
 ## interface-blockstore-tests [6.1.10](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-v6.1.9...interface-blockstore-tests-6.1.10) (2024-02-12)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "interface-blockstore-tests",
-  "version": "6.1.10",
+  "version": "7.0.0",
   "description": "Compliance tests for the blockstore interface",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/interface-blockstore-tests#readme",
@@ -51,12 +51,12 @@
   },
   "dependencies": {
     "interface-blockstore": "^5.0.0",
-    "it-all": "^3.0.4",
-    "it-drain": "^3.0.5",
-    "multiformats": "^13.0.1",
-    "uint8arrays": "^5.0.2"
+    "it-all": "^3.0.6",
+    "it-drain": "^3.0.7",
+    "multiformats": "^13.2.2",
+    "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^44.1.0"
   }
 }

@@ -55,7 +55,7 @@ describe('S3Blockstore', () => {
       })
 
       await expect(store.put(cid, new TextEncoder().encode('test data'))).to.eventually.rejected
-        .with.property('code', 'ERR_PUT_FAILED')
+        .with.property('name', 'PutFailedError')
     })
   })
 
@@ -73,7 +73,7 @@ describe('S3Blockstore', () => {
       })
 
       await expect(store.get(cid)).to.eventually.rejected
-        .with.property('code', 'ERR_NOT_FOUND')
+        .with.property('name', 'NotFoundError')
     })
   })
 
@@ -91,7 +91,7 @@ describe('S3Blockstore', () => {
       })
 
       await expect(store.delete(cid)).to.eventually.rejected
-        .with.property('code', 'ERR_DELETE_FAILED')
+        .with.property('name', 'DeleteFailedError')
     })
   })
 
@@ -146,7 +146,7 @@ describe('S3Blockstore', () => {
       })
 
       await expect(store.open()).to.eventually.rejected
-        .with.property('code', 'ERR_OPEN_FAILED')
+        .with.property('name', 'OpenFailedError')
 
       const headObjectCommand = await bucketTested.promise
       expect(headObjectCommand).to.have.nested.property('input.Bucket', 'test')
@@ -165,7 +165,7 @@ describe('S3Blockstore', () => {
       })
 
       await expect(store.open()).to.eventually.rejected
-        .with.property('code', 'ERR_OPEN_FAILED')
+        .with.property('name', 'OpenFailedError')
     })
   })
 

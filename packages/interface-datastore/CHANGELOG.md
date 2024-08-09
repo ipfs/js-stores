@@ -1,3 +1,11 @@
+## interface-datastore [8.3.0](https://github.com/ipfs/js-stores/compare/interface-datastore-8.2.11...interface-datastore-8.3.0) (2024-08-02)
+
+
+
+### Dependencies
+
+* **interface-store:** upgraded to 6.0.0
+
 ## interface-datastore [8.2.11](https://github.com/ipfs/js-stores/compare/interface-datastore-v8.2.10...interface-datastore-8.2.11) (2024-02-12)
 
 
