@@ -114,7 +114,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/logger": "^4.0.19",
+    "@libp2p/logger": "^5.0.0",
     "interface-datastore": "^8.0.0",
     "interface-store": "^6.0.0",
     "it-drain": "^3.0.7",
