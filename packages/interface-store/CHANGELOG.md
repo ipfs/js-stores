@@ -1,3 +1,13 @@
+## [interface-store-v6.0.1](https://github.com/ipfs/js-stores/compare/interface-store-6.0.0...interface-store-6.0.1) (2024-09-13)
+
+### Bug Fixes
+
+* restore release config to package.json ([#321](https://github.com/ipfs/js-stores/issues/321)) ([4f14fb0](https://github.com/ipfs/js-stores/commit/4f14fb09d65a3460b548b59557af108412dc9156))
+
+### Dependencies
+
+* **dev:** bump aegir from 42.2.11 to 44.1.0 ([#316](https://github.com/ipfs/js-stores/issues/316)) ([581a467](https://github.com/ipfs/js-stores/commit/581a46720832916bea11efa2476eb85a00bae9d4))
+
 ## interface-store [6.0.0](https://github.com/ipfs/js-stores/compare/interface-store-5.1.8...interface-store-6.0.0) (2024-08-02)
 
 
