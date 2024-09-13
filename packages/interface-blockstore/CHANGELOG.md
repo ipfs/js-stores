@@ -1,3 +1,13 @@
+## [interface-blockstore-v5.3.1](https://github.com/ipfs/js-stores/compare/interface-blockstore-5.3.0...interface-blockstore-5.3.1) (2024-09-13)
+
+### Bug Fixes
+
+* restore release config to package.json ([#321](https://github.com/ipfs/js-stores/issues/321)) ([4f14fb0](https://github.com/ipfs/js-stores/commit/4f14fb09d65a3460b548b59557af108412dc9156))
+
+### Dependencies
+
+* **dev:** bump aegir from 42.2.11 to 44.1.0 ([#316](https://github.com/ipfs/js-stores/issues/316)) ([581a467](https://github.com/ipfs/js-stores/commit/581a46720832916bea11efa2476eb85a00bae9d4))
+
 ## interface-blockstore [5.3.0](https://github.com/ipfs/js-stores/compare/interface-blockstore-5.2.10...interface-blockstore-5.3.0) (2024-08-02)
 
 
