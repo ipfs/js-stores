@@ -1,3 +1,9 @@
+## [blockstore-s3-v2.0.2](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.1...blockstore-s3-2.0.2) (2024-09-13)
+
+### Dependencies
+
+* **dev:** bump sinon from 18.0.1 to 19.0.2 ([#322](https://github.com/ipfs/js-stores/issues/322)) ([8ea2df5](https://github.com/ipfs/js-stores/commit/8ea2df5c8f531b086b10130b8a3ce59a4d5bc2ba))
+
 ## [blockstore-s3-v2.0.1](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.0...blockstore-s3-2.0.1) (2024-09-13)
 
 ### Bug Fixes
