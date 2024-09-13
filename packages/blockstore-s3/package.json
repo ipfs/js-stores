@@ -71,6 +71,6 @@
     "aegir": "^44.1.0",
     "interface-blockstore-tests": "^7.0.0",
     "p-defer": "^4.0.1",
-    "sinon": "^18.0.0"
+    "sinon": "^19.0.0"
   }
 }
