@@ -1,6 +1,6 @@
 {
   "name": "blockstore-idb",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Blockstore implementation with IndexedDB backend",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-idb#readme",
