@@ -1,3 +1,9 @@
+## [blockstore-core-v5.0.2](https://github.com/ipfs/js-stores/compare/blockstore-core-5.0.1...blockstore-core-5.0.2) (2024-09-13)
+
+### Bug Fixes
+
+* restore release config to package.json ([#321](https://github.com/ipfs/js-stores/issues/321)) ([4f14fb0](https://github.com/ipfs/js-stores/commit/4f14fb09d65a3460b548b59557af108412dc9156))
+
 ## blockstore-core [5.0.0](https://github.com/ipfs/js-stores/compare/blockstore-core-4.4.1...blockstore-core-5.0.0) (2024-08-02)
 
 
