@@ -1,3 +1,9 @@
+## [interface-store-v6.0.2](https://github.com/ipfs/js-stores/compare/interface-store-6.0.1...interface-store-6.0.2) (2024-09-13)
+
+### Bug Fixes
+
+* restore code property ([#320](https://github.com/ipfs/js-stores/issues/320)) ([414d4d0](https://github.com/ipfs/js-stores/commit/414d4d0a37a15bac6735539c504a0ff9cfd7862c))
+
 ## [interface-store-v6.0.1](https://github.com/ipfs/js-stores/compare/interface-store-6.0.0...interface-store-6.0.1) (2024-09-13)
 
 ### Bug Fixes
