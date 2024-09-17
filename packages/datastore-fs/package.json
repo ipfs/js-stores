@@ -141,16 +141,17 @@
   },
   "dependencies": {
     "datastore-core": "^10.0.0",
-    "fast-write-atomic": "^0.2.1",
     "interface-datastore": "^8.0.0",
     "interface-store": "^6.0.0",
     "it-glob": "^3.0.1",
     "it-map": "^3.1.1",
-    "it-parallel-batch": "^3.0.6"
+    "it-parallel-batch": "^3.0.6",
+    "steno": "^4.0.2"
   },
   "devDependencies": {
     "aegir": "^44.1.1",
     "interface-datastore-tests": "^6.0.0",
-    "ipfs-utils": "^9.0.14"
+    "ipfs-utils": "^9.0.14",
+    "threads": "^1.7.0"
   }
 }
