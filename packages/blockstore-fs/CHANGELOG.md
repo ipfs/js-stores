@@ -1,3 +1,9 @@
+## [blockstore-fs-v2.0.2](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.1...blockstore-fs-2.0.2) (2024-09-17)
+
+### Tests
+
+* add separate-thread concurrency test ([#305](https://github.com/ipfs/js-stores/issues/305)) ([5e3114e](https://github.com/ipfs/js-stores/commit/5e3114e0160ba8366067359f724c6e49807dfb21)), closes [#285](https://github.com/ipfs/js-stores/issues/285) [#284](https://github.com/ipfs/js-stores/issues/284)
+
 ## [blockstore-fs-v2.0.1](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.0...blockstore-fs-2.0.1) (2024-09-13)
 
 ### Bug Fixes
