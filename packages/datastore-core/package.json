@@ -212,7 +212,7 @@
     "it-take": "^3.0.6"
   },
   "devDependencies": {
-    "aegir": "^44.1.1",
+    "aegir": "^45.0.1",
     "interface-datastore-tests": "^6.0.0",
     "it-all": "^3.0.6",
     "uint8arrays": "^5.1.0"
