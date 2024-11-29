@@ -193,7 +193,7 @@
     "multiformats": "^13.2.3"
   },
   "devDependencies": {
-    "aegir": "^44.1.1",
+    "aegir": "^45.0.7",
     "interface-blockstore-tests": "^7.0.0",
     "it-all": "^3.0.6",
     "uint8arrays": "^5.1.0"
