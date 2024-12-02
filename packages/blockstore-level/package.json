@@ -148,7 +148,7 @@
     "blockstore-core": "^5.0.0",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^6.0.0",
-    "level": "^8.0.1",
+    "level": "^9.0.0",
     "multiformats": "^13.2.3"
   },
   "devDependencies": {
