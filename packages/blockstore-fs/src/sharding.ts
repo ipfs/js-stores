@@ -45,7 +45,7 @@ export class NextToLast implements ShardingStrategy {
   }
 
   encode (cid: CID): { dir: string, file: string } {
-    const str = this.base.encoder.encode(cid.multihash.bytes)
+    const str = this.base.encoder.encode(cid.bytes)
     const prefix = str.substring(str.length - this.prefixLength)
 
     return {
@@ -97,7 +97,7 @@ export class FlatDirectory implements ShardingStrategy {
   }
 
   encode (cid: CID): { dir: string, file: string } {
-    const str = this.base.encoder.encode(cid.multihash.bytes)
+    const str = this.base.encoder.encode(cid.bytes)
 
     return {
       dir: '',
