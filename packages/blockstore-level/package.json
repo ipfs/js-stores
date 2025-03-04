@@ -155,6 +155,6 @@
     "aegir": "^44.1.1",
     "interface-blockstore-tests": "^7.0.0",
     "ipfs-utils": "^9.0.14",
-    "memory-level": "^1.0.0"
+    "memory-level": "^2.0.0"
   }
 }
