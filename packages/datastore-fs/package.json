@@ -149,7 +149,7 @@
     "steno": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^44.1.1",
+    "aegir": "^45.1.4",
     "interface-datastore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.14",
     "threads": "^1.7.0"
