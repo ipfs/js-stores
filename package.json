@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Blockstores and datastores used by IP-JS internals",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores#readme",
+  "homepage": "https://github.com/dao-xyz/js-stores#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipfs/js-stores.git"
+    "url": "git+https://github.com//dao-xyz/js-stores.git"
   },
   "bugs": {
-    "url": "https://github.com/ipfs/js-stores/issues"
+    "url": "https://github.com//dao-xyz/js-stores/issues"
   },
   "private": true,
   "scripts": {
