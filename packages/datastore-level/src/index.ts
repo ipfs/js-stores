@@ -44,6 +44,7 @@
  * More information: [https://github.com/Level/level-js/blob/master/UPGRADING.md#new-database-prefix](https://github.com/Level/level-js/blob/99831913e905d19e5f6dee56d512b7264fbed7bd/UPGRADING.md#new-database-prefix)
  */
 
+
 import { BaseDatastore } from 'datastore-core'
 import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
 import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
@@ -53,6 +54,20 @@ import sort from 'it-sort'
 import take from 'it-take'
 import { Level } from 'level'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
+
+type GetFn = (key: string)=> (Uint8Array | undefined | Promise<Uint8Array | undefined > )
+const getOrGetSync = (level: Level<string, Uint8Array>): GetFn=> {
+  const canGetSync = (level.supports as any)["getSync"] !== false;
+  if (!canGetSync) {
+    return ( key: string): Promise<Uint8Array | undefined> => {
+      return level.get(key) 
+    }
+  } else {
+    return ( key: string): Uint8Array | undefined => {
+      return level.getSync(key)
+    }
+  }
+} 
 
 interface BatchPut {
   type: 'put'
@@ -73,7 +88,7 @@ type BatchOp = BatchPut | BatchDel
 export class LevelDatastore extends BaseDatastore {
   public db: Level<string, Uint8Array>
   private readonly opts: OpenOptions
-
+  private readonly getFn: GetFn
   constructor (path: string | Level<string, Uint8Array>, opts: DatabaseOptions<string, Uint8Array> & OpenOptions = {}) {
     super()
 
@@ -90,6 +105,7 @@ export class LevelDatastore extends BaseDatastore {
       compression: false, // same default as go
       ...opts
     }
+    this.getFn = getOrGetSync(this.db)
   }
 
   async open (): Promise<void> {
@@ -110,31 +126,17 @@ export class LevelDatastore extends BaseDatastore {
     }
   }
 
-  async get (key: Key): Promise<Uint8Array> {
-    let data
-    try {
-      data = await this.db.get(key.toString())
-    } catch (err: any) {
-      if (err.notFound != null) {
-        throw new NotFoundError(String(err))
-      }
-
-      throw new GetFailedError(String(err))
+  async  get (key: Key): Promise<Uint8Array> {
+    let data = await this.getFn(key.toString())
+    if(data === undefined)
+    {
+      throw new NotFoundError("Data with key " + key.toString() + " not found")
     }
     return data
   }
 
   async has (key: Key): Promise<boolean> {
-    try {
-      await this.db.get(key.toString())
-    } catch (err: any) {
-      if (err.notFound != null) {
-        return false
-      }
-
-      throw err
-    }
-    return true
+    return (await  this.getFn(key.toString())) !== undefined;
   }
 
   async delete (key: Key): Promise<void> {

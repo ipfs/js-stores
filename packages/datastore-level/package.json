@@ -153,12 +153,12 @@
     "it-map": "^3.1.1",
     "it-sort": "^3.0.6",
     "it-take": "^3.0.6",
-    "level": "^8.0.1"
+    "level": "^10.0.0"
   },
   "devDependencies": {
     "aegir": "^44.1.1",
     "interface-datastore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.14",
-    "memory-level": "^1.0.0"
+    "memory-level": "^3.1.0"
   }
 }
