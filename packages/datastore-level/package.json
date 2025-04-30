@@ -2,15 +2,14 @@
   "name": "@dao-xyz/datastore-level",
   "version": "11.1.0",
   "description": "Datastore implementation with level(up|down) backend",
-  "author": "Friedel Ziegelmayer<dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/datastore-level#readme",
+  "homepage": "https://github.com/dao-xyz/js-stores/tree/main/packages/datastore-level#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipfs/js-stores.git"
+    "url": "git+https://github.com/dao-xyz/js-stores.git"
   },
   "bugs": {
-    "url": "https://github.com/ipfs/js-stores/issues"
+    "url": "https://github.com/dao-xyz/js-stores/issues"
   },
   "publishConfig": {
     "access": "public",
