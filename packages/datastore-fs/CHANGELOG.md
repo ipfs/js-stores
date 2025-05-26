@@ -1,3 +1,9 @@
+## [datastore-fs-v10.0.3](https://github.com/ipfs/js-stores/compare/datastore-fs-10.0.2...datastore-fs-10.0.3) (2025-05-26)
+
+### Dependencies
+
+* bump aegir from 44.1.4 to 47.0.16 ([#349](https://github.com/ipfs/js-stores/issues/349)) ([d33d15f](https://github.com/ipfs/js-stores/commit/d33d15f0638856530d0e1868c723e5567abf27e6))
+
 ## [datastore-fs-v10.0.2](https://github.com/ipfs/js-stores/compare/datastore-fs-10.0.1...datastore-fs-10.0.2) (2024-09-17)
 
 ### Tests
