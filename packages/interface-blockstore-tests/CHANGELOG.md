@@ -1,3 +1,9 @@
+## [interface-blockstore-tests-v7.0.2](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-7.0.1...interface-blockstore-tests-7.0.2) (2025-05-26)
+
+### Dependencies
+
+* bump aegir from 44.1.4 to 47.0.16 ([#349](https://github.com/ipfs/js-stores/issues/349)) ([d33d15f](https://github.com/ipfs/js-stores/commit/d33d15f0638856530d0e1868c723e5567abf27e6))
+
 ## [interface-blockstore-tests-v7.0.1](https://github.com/ipfs/js-stores/compare/interface-blockstore-tests-7.0.0...interface-blockstore-tests-7.0.1) (2024-09-13)
 
 ### Bug Fixes
