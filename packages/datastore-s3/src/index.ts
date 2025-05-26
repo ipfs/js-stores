@@ -106,6 +106,7 @@ export class S3Datastore extends BaseDatastore {
    */
   async put (key: Key, val: Uint8Array, options?: AbortOptions): Promise<Key> {
     try {
+      options?.signal?.throwIfAborted()
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.bucket,
@@ -127,6 +128,7 @@ export class S3Datastore extends BaseDatastore {
    */
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     try {
+      options?.signal?.throwIfAborted()
       const data = await this.s3.send(
         new GetObjectCommand({
           Bucket: this.bucket,
@@ -172,6 +174,7 @@ export class S3Datastore extends BaseDatastore {
    */
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
     try {
+      options?.signal?.throwIfAborted()
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
@@ -202,6 +205,7 @@ export class S3Datastore extends BaseDatastore {
    */
   async delete (key: Key, options?: AbortOptions): Promise<void> {
     try {
+      options?.signal?.throwIfAborted()
       await this.s3.send(
         new DeleteObjectCommand({
           Bucket: this.bucket,
@@ -220,6 +224,7 @@ export class S3Datastore extends BaseDatastore {
    */
   async * _listKeys (params: { Prefix?: string, StartAfter?: string }, options?: AbortOptions): AsyncIterable<Key> {
     try {
+      options?.signal?.throwIfAborted()
       const data = await this.s3.send(
         new ListObjectsV2Command({
           Bucket: this.bucket,

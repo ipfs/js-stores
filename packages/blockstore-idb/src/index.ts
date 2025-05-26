@@ -19,6 +19,7 @@ import { base32upper } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
+import { raceSignal } from 'race-signal'
 import type { IDBPDatabase } from 'idb'
 import type { Pair } from 'interface-blockstore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
@@ -84,21 +85,22 @@ export class IDBBlockstore extends BaseBlockstore {
     this.db?.close()
   }
 
-  async put (key: CID, val: Uint8Array): Promise<CID> {
+  async put (key: CID, val: Uint8Array, options?: AbortOptions): Promise<CID> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }
 
     try {
-      await this.db.put(this.location, val, this.#encode(key))
-
-      return key
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.put(this.location, val, this.#encode(key)), options?.signal)
     } catch (err: any) {
       throw new PutFailedError(String(err))
     }
+
+    return key
   }
 
-  async get (key: CID): Promise<Uint8Array> {
+  async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }
@@ -106,7 +108,8 @@ export class IDBBlockstore extends BaseBlockstore {
     let val: Uint8Array | undefined
 
     try {
-      val = await this.db.get(this.location, this.#encode(key))
+      options?.signal?.throwIfAborted()
+      val = await raceSignal(this.db.get(this.location, this.#encode(key)), options?.signal)
     } catch (err: any) {
       throw new PutFailedError(String(err))
     }
@@ -118,25 +121,29 @@ export class IDBBlockstore extends BaseBlockstore {
     return val
   }
 
-  async delete (key: CID): Promise<void> {
+  async delete (key: CID, options?: AbortOptions): Promise<void> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }
 
     try {
-      await this.db.delete(this.location, this.#encode(key))
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.delete(this.location, this.#encode(key)), options?.signal)
     } catch (err: any) {
       throw new PutFailedError(String(err))
     }
   }
 
-  async has (key: CID): Promise<boolean> {
+  async has (key: CID, options?: AbortOptions): Promise<boolean> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }
 
     try {
-      return Boolean(await this.db.getKey(this.location, this.#encode(key)))
+      options?.signal?.throwIfAborted()
+      const result = await raceSignal(this.db.getKey(this.location, this.#encode(key)), options?.signal)
+
+      return Boolean(result)
     } catch (err: any) {
       throw new PutFailedError(String(err))
     }
@@ -147,11 +154,16 @@ export class IDBBlockstore extends BaseBlockstore {
       throw new Error('Blockstore needs to be opened.')
     }
 
+    options?.signal?.throwIfAborted()
+
     for (const key of await this.db.getAllKeys(this.location)) {
+      options?.signal?.throwIfAborted()
       const cid = this.#decode(key.toString())
-      const block = await this.get(cid)
+      const block = await this.get(cid, options)
 
       yield { cid, block }
+
+      options?.signal?.throwIfAborted()
     }
   }
 

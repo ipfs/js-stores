@@ -187,16 +187,15 @@
     "@libp2p/logger": "^5.1.18",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^6.0.0",
-    "it-drain": "^3.0.9",
     "it-filter": "^3.1.3",
     "it-merge": "^3.0.11",
-    "it-pushable": "^3.2.3",
     "multiformats": "^13.3.6"
   },
   "devDependencies": {
     "aegir": "^47.0.16",
     "interface-blockstore-tests": "^7.0.0",
     "it-all": "^3.0.8",
+    "it-drain": "^3.0.9",
     "uint8arrays": "^5.1.0"
   }
 }

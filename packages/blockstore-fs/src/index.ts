@@ -18,26 +18,35 @@ import { OpenFailedError, PutFailedError, NotFoundError, DeleteFailedError } fro
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
+import { raceSignal } from 'race-signal'
 import { Writer } from 'steno'
 import { NextToLast } from './sharding.js'
 import type { ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 /**
  * Write a file atomically
  */
-async function writeFile (file: string, contents: Uint8Array): Promise<void> {
+async function writeFile (file: string, contents: Uint8Array, options?: AbortOptions): Promise<void> {
   try {
+    options?.signal?.throwIfAborted()
+    await raceSignal(fs.mkdir(path.dirname(file), {
+      recursive: true
+    }), options?.signal)
+
     const writer = new Writer(file)
+
+    options?.signal?.throwIfAborted()
     await writer.write(contents)
   } catch (err: any) {
     if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
       // steno writes a file to a temp location before renaming it.
       // If the final file already exists this error is thrown.
       // Make sure we can read & write to this file
-      await fs.access(file, fs.constants.F_OK | fs.constants.W_OK)
+      options?.signal?.throwIfAborted()
+      await raceSignal(fs.access(file, fs.constants.F_OK | fs.constants.W_OK), options?.signal)
 
       // The file was created by another context - this means there were
       // attempts to write the same block by two different function calls
@@ -136,17 +145,11 @@ export class FsBlockstore implements Blockstore {
     await Promise.resolve()
   }
 
-  async put (key: CID, val: Uint8Array): Promise<CID> {
+  async put (key: CID, val: Uint8Array, options?: AbortOptions): Promise<CID> {
     const { dir, file } = this.shardingStrategy.encode(key)
 
     try {
-      if (dir != null && dir !== '') {
-        await fs.mkdir(path.join(this.path, dir), {
-          recursive: true
-        })
-      }
-
-      await writeFile(path.join(this.path, dir, file), val)
+      await writeFile(path.join(this.path, dir, file), val, options)
 
       return key
     } catch (err: any) {
@@ -154,11 +157,11 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>): AsyncIterable<CID> {
+  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncIterable<CID> {
     yield * parallelBatch(
       map(source, ({ cid, block }) => {
         return async () => {
-          await this.put(cid, block)
+          await this.put(cid, block, options)
 
           return cid
         }
@@ -167,23 +170,24 @@ export class FsBlockstore implements Blockstore {
     )
   }
 
-  async get (key: CID): Promise<Uint8Array> {
+  async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
     const { dir, file } = this.shardingStrategy.encode(key)
 
     try {
-      return await fs.readFile(path.join(this.path, dir, file))
+      options?.signal?.throwIfAborted()
+      return await raceSignal(fs.readFile(path.join(this.path, dir, file)), options?.signal)
     } catch (err: any) {
       throw new NotFoundError(String(err))
     }
   }
 
-  async * getMany (source: AwaitIterable<CID>): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncIterable<Pair> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
           return {
             cid: key,
-            block: await this.get(key)
+            block: await this.get(key, options)
           }
         }
       }),
@@ -191,11 +195,12 @@ export class FsBlockstore implements Blockstore {
     )
   }
 
-  async delete (key: CID): Promise<void> {
+  async delete (key: CID, options?: AbortOptions): Promise<void> {
     const { dir, file } = this.shardingStrategy.encode(key)
 
     try {
-      await fs.unlink(path.join(this.path, dir, file))
+      options?.signal?.throwIfAborted()
+      await raceSignal(fs.unlink(path.join(this.path, dir, file)), options?.signal)
     } catch (err: any) {
       if (err.code === 'ENOENT') {
         return
@@ -205,11 +210,11 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * deleteMany (source: AwaitIterable<CID>): AsyncIterable<CID> {
+  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncIterable<CID> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
-          await this.delete(key)
+          await this.delete(key, options)
 
           return key
         }
@@ -218,21 +223,19 @@ export class FsBlockstore implements Blockstore {
     )
   }
 
-  /**
-   * Check for the existence of the given key
-   */
-  async has (key: CID): Promise<boolean> {
+  async has (key: CID, options?: AbortOptions): Promise<boolean> {
     const { dir, file } = this.shardingStrategy.encode(key)
 
     try {
-      await fs.access(path.join(this.path, dir, file))
+      options?.signal?.throwIfAborted()
+      await raceSignal(fs.access(path.join(this.path, dir, file)), options?.signal)
     } catch (err: any) {
       return false
     }
     return true
   }
 
-  async * getAll (): AsyncIterable<Pair> {
+  async * getAll (options?: AbortOptions): AsyncIterable<Pair> {
     const pattern = `**/*${this.shardingStrategy.extension}`
       .split(path.sep)
       .join('/')
@@ -242,7 +245,8 @@ export class FsBlockstore implements Blockstore {
 
     for await (const file of files) {
       try {
-        const buf = await fs.readFile(file)
+        options?.signal?.throwIfAborted()
+        const buf = await raceSignal(fs.readFile(file), options?.signal)
 
         const pair: Pair = {
           cid: this.shardingStrategy.decode(file),
@@ -250,6 +254,7 @@ export class FsBlockstore implements Blockstore {
         }
 
         yield pair
+        options?.signal?.throwIfAborted()
       } catch (err: any) {
         // if keys are removed from the blockstore while the query is
         // running, we may encounter missing files.

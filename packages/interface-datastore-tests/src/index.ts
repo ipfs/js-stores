@@ -61,6 +61,22 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await store.put(k, uint8ArrayFromString('one'))
     })
 
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return store.put(key, value, {
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
+
     it('parallel', async () => {
       const data: Pair[] = []
       for (let i = 0; i < 100; i++) {
@@ -101,6 +117,22 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       const res = await all(store.getMany(data.map(d => d.key)))
       expect(res).to.deep.equal(data)
     })
+
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.putMany([{ key, value }], {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
   })
 
   describe('get', () => {
@@ -117,6 +149,23 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await store.put(k, uint8ArrayFromString('hello'))
       const res = await store.get(k)
       expect(res).to.be.eql(uint8ArrayFromString('hello'))
+    })
+
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+      await store.put(key, value)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return store.get(key, {
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
 
     it('should throw error for missing key', async () => {
@@ -153,6 +202,23 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       expect(res[0].value).to.be.eql(uint8ArrayFromString('hello'))
     })
 
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+      await store.put(key, value)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.getMany([key], {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
+
     it('should throw error for missing key', async () => {
       const k = new Key('/does/not/exist')
 
@@ -183,6 +249,23 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await store.delete(k)
       const exists = await store.has(k)
       expect(exists).to.be.eql(false)
+    })
+
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+      await store.put(key, value)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return store.delete(key, {
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
 
     it('parallel', async () => {
@@ -235,6 +318,23 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       const res1 = await Promise.all(data.map(async d => store.has(d.key)))
       res1.forEach(res => expect(res).to.be.eql(false))
     })
+
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+      await store.put(key, value)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.deleteMany([key], {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
   })
 
   describe('batch', () => {
@@ -278,6 +378,31 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       expect(await length(store.query({ prefix: '/a' }))).to.equal(count)
       expect(await length(store.query({ prefix: '/z' }))).to.equal(count)
       expect(await length(store.query({ prefix: '/q' }))).to.equal(count)
+    })
+
+    it('supports abort signals', async () => {
+      const key = new Key('/z/one')
+      const value = uint8ArrayFromString('hello')
+      await store.put(key, value)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        const b = store.batch()
+        const count = 400
+        for (let i = 0; i < count; i++) {
+          b.put(new Key(`/a/hello${i}`), randomBytes(32))
+          b.put(new Key(`/q/hello${i}`), randomBytes(64))
+          b.put(new Key(`/z/hello${i}`), randomBytes(128))
+        }
+
+        await b.commit({
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
   })
 
@@ -396,6 +521,23 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       expect(results.length).to.be.greaterThan(0)
       await writePromise
     })
+
+    it('supports abort signals', async () => {
+      await store.put(new Key('/a/hello1'), randomBytes(32))
+      await store.put(new Key('/q/hello2'), randomBytes(64))
+      await store.put(new Key('/z/hello3'), randomBytes(128))
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        await all(store.query({}, {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
   })
 
   describe('queryKeys', () => {
@@ -507,6 +649,23 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       const results = await all(store.queryKeys({}))
       expect(results.length).to.be.greaterThan(0)
       await writePromise
+    })
+
+    it('supports abort signals', async () => {
+      await store.put(new Key('/a/hello1'), randomBytes(32))
+      await store.put(new Key('/q/hello2'), randomBytes(64))
+      await store.put(new Key('/z/hello3'), randomBytes(128))
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        await all(store.queryKeys({}, {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
   })
 }
