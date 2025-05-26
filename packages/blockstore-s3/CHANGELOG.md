@@ -1,3 +1,10 @@
+## [blockstore-s3-v2.0.3](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.2...blockstore-s3-2.0.3) (2025-05-26)
+
+### Dependencies
+
+* bump aegir from 44.1.4 to 47.0.16 ([#349](https://github.com/ipfs/js-stores/issues/349)) ([d33d15f](https://github.com/ipfs/js-stores/commit/d33d15f0638856530d0e1868c723e5567abf27e6))
+* **dev:** bump sinon from 19.0.5 to 20.0.0 ([#337](https://github.com/ipfs/js-stores/issues/337)) ([ec2a54a](https://github.com/ipfs/js-stores/commit/ec2a54a1ef2ecbee862d17710430a51b79063183))
+
 ## [blockstore-s3-v2.0.2](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.1...blockstore-s3-2.0.2) (2024-09-13)
 
 ### Dependencies
