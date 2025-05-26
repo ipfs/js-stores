@@ -25,12 +25,13 @@
  */
 
 import { expect } from 'aegir/chai'
-import { type Datastore, Key, type KeyQueryFilter, type KeyQueryOrder, type Pair, type QueryFilter, type QueryOrder } from 'interface-datastore'
+import { Key } from 'interface-datastore'
 import { randomBytes } from 'iso-random-stream'
 import all from 'it-all'
 import drain from 'it-drain'
 import length from 'it-length'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import type { Datastore, KeyQueryFilter, KeyQueryOrder, Pair, QueryFilter, QueryOrder } from 'interface-datastore'
 
 export interface InterfacDatastoreTest<D extends Datastore = Datastore> {
   setup(): D | Promise<D>

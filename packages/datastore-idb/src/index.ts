@@ -13,11 +13,13 @@
  */
 
 import { BaseDatastore } from 'datastore-core'
-import { openDB, deleteDB, type IDBPDatabase } from 'idb'
-import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { openDB, deleteDB } from 'idb'
+import { Key } from 'interface-datastore'
 import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import sort from 'it-sort'
+import type { IDBPDatabase } from 'idb'
+import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
 
 export interface IDBDatastoreInit {
   /**
@@ -203,7 +205,7 @@ export class IDBDatastore extends BaseDatastore {
     let index = -1
 
     for (const key of await this.db.getAllKeys(this.location)) {
-      if (q.prefix != null && !key.toString().startsWith(q.prefix)) { // eslint-disable-line @typescript-eslint/no-base-to-string
+      if (q.prefix != null && !key.toString().startsWith(q.prefix)) {
         continue
       }
 
@@ -217,7 +219,7 @@ export class IDBDatastore extends BaseDatastore {
         continue
       }
 
-      const k = new Key(key.toString()) // eslint-disable-line @typescript-eslint/no-base-to-string
+      const k = new Key(key.toString())
       let value: Uint8Array | undefined
 
       try {

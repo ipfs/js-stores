@@ -16,7 +16,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     this.data = new Map()
   }
 
-  put (key: CID, val: Uint8Array): Await<CID> { // eslint-disable-line require-await
+  put (key: CID, val: Uint8Array): Await<CID> {
     this.data.set(base32.encode(key.multihash.bytes), val)
 
     return key

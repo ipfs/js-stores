@@ -1,4 +1,9 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "name": "IPFS Stores"
+  "name": "stores",
+  "readme": "./README.md",
+  "headings": {
+    "readme": false,
+    "document": false
+  }
 }

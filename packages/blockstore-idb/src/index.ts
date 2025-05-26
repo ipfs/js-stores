@@ -148,7 +148,7 @@ export class IDBBlockstore extends BaseBlockstore {
     }
 
     for (const key of await this.db.getAllKeys(this.location)) {
-      const cid = this.#decode(key.toString()) // eslint-disable-line @typescript-eslint/no-base-to-string
+      const cid = this.#decode(key.toString())
       const block = await this.get(cid)
 
       yield { cid, block }

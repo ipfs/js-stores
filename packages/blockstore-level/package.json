@@ -38,13 +38,6 @@
       "import": "./dist/src/index.js"
     }
   },
-  "eslintConfig": {
-    "extends": "ipfs",
-    "parserOptions": {
-      "project": true,
-      "sourceType": "module"
-    }
-  },
   "release": {
     "branches": [
       "main"
@@ -127,7 +120,15 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/github",
-      "@semantic-release/git"
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ]
     ]
   },
   "scripts": {
@@ -149,10 +150,10 @@
     "interface-blockstore": "^5.0.0",
     "interface-store": "^6.0.0",
     "level": "^8.0.1",
-    "multiformats": "^13.2.3"
+    "multiformats": "^13.3.6"
   },
   "devDependencies": {
-    "aegir": "^44.1.1",
+    "aegir": "^47.0.16",
     "interface-blockstore-tests": "^7.0.0",
     "ipfs-utils": "^9.0.14",
     "memory-level": "^1.0.0"

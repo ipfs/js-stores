@@ -13,7 +13,7 @@ export class MemoryDatastore extends BaseDatastore {
     this.data = new Map()
   }
 
-  put (key: Key, val: Uint8Array): Await<Key> { // eslint-disable-line require-await
+  put (key: Key, val: Uint8Array): Await<Key> {
     this.data.set(key.toString(), val)
 
     return key
@@ -29,11 +29,11 @@ export class MemoryDatastore extends BaseDatastore {
     return result
   }
 
-  has (key: Key): Await<boolean> { // eslint-disable-line require-await
+  has (key: Key): Await<boolean> {
     return this.data.has(key.toString())
   }
 
-  delete (key: Key): Await<void> { // eslint-disable-line require-await
+  delete (key: Key): Await<void> {
     this.data.delete(key.toString())
   }
 

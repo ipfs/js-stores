@@ -1,6 +1,7 @@
-import { Key, type Datastore, type Query, type Pair, type KeyQuery } from 'interface-datastore'
+import { Key } from 'interface-datastore'
 import map from 'it-map'
 import { KeyTransformDatastore } from './keytransform.js'
+import type { Datastore, Query, Pair, KeyQuery } from 'interface-datastore'
 import type { AbortOptions } from 'interface-store'
 
 /**

@@ -14,7 +14,7 @@
 
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { OpenFailedError, type AwaitIterable, PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
+import { OpenFailedError, PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
 import glob from 'it-glob'
 import map from 'it-map'
 import parallelBatch from 'it-parallel-batch'
@@ -22,6 +22,7 @@ import { Writer } from 'steno'
 import { NextToLast } from './sharding.js'
 import type { ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
+import type { AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 /**

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import { type CreateBucketCommand, type PutObjectCommand, type HeadObjectCommand, S3, type GetObjectCommand } from '@aws-sdk/client-s3'
+import { S3 } from '@aws-sdk/client-s3'
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
@@ -8,6 +8,7 @@ import defer from 'p-defer'
 import sinon from 'sinon'
 import { S3Datastore } from '../src/index.js'
 import { s3Resolve, s3Reject, S3Error, s3Mock } from './utils/s3-mock.js'
+import type { CreateBucketCommand, PutObjectCommand, HeadObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3'
 
 describe('S3Datastore', () => {
   describe('construction', () => {
