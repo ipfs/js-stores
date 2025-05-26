@@ -66,7 +66,7 @@ describe('IndexedDB Datastore', function () {
     it('should not explode under unreasonable load', function (done) {
       this.timeout(10000)
 
-      const updater = setInterval(async () => { // eslint-disable-line @typescript-eslint/no-misused-promises
+      const updater = setInterval(async () => {
         try {
           const key = new Key(`/a-${Date.now()}`)
 
@@ -81,7 +81,7 @@ describe('IndexedDB Datastore', function () {
         }
       }, 0)
 
-      const mutatorQuery = setInterval(async () => { // eslint-disable-line @typescript-eslint/no-misused-promises
+      const mutatorQuery = setInterval(async () => {
         try {
           for await (const { key } of store.query({})) {
             await store.get(key)
@@ -100,7 +100,7 @@ describe('IndexedDB Datastore', function () {
         }
       }, 0)
 
-      const readOnlyQuery = setInterval(async () => { // eslint-disable-line @typescript-eslint/no-misused-promises
+      const readOnlyQuery = setInterval(async () => {
         try {
           for await (const { key } of store.query({})) {
             await store.has(key)

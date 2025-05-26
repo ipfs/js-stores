@@ -117,14 +117,14 @@ export class MountDatastore extends BaseDatastore {
     })
 
     let it = merge(...qs)
-    if (q.filters != null) q.filters.forEach(f => { it = filter(it, f) })
-    if (q.orders != null) q.orders.forEach(o => { it = sort(it, o) })
+    if (q.filters != null) { q.filters.forEach(f => { it = filter(it, f) }) }
+    if (q.orders != null) { q.orders.forEach(o => { it = sort(it, o) }) }
     if (q.offset != null) {
       let i = 0
       const offset = q.offset
       it = filter(it, () => i++ >= offset)
     }
-    if (q.limit != null) it = take(it, q.limit)
+    if (q.limit != null) { it = take(it, q.limit) }
 
     return it
   }
@@ -139,14 +139,14 @@ export class MountDatastore extends BaseDatastore {
 
     /** @type AsyncIterable<Key> */
     let it = merge(...qs)
-    if (q.filters != null) q.filters.forEach(f => { it = filter(it, f) })
-    if (q.orders != null) q.orders.forEach(o => { it = sort(it, o) })
+    if (q.filters != null) { q.filters.forEach(f => { it = filter(it, f) }) }
+    if (q.orders != null) { q.orders.forEach(o => { it = sort(it, o) }) }
     if (q.offset != null) {
       let i = 0
       const offset = q.offset
       it = filter(it, () => i++ >= offset)
     }
-    if (q.limit != null) it = take(it, q.limit)
+    if (q.limit != null) { it = take(it, q.limit) }
 
     return it
   }

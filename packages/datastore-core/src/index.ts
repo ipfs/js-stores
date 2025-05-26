@@ -5,12 +5,12 @@
  *
  * ## Implementations
  *
- * - Mount: [`src/mount`](src/mount.ts)
- * - Keytransform: [`src/keytransform`](src/keytransform.ts)
- * - Sharding: [`src/sharding`](src/sharding.ts)
- * - Tiered: [`src/tiered`](src/tirered.ts)
- * - Namespace: [`src/namespace`](src/namespace.ts)
- * - BlackHole: [`src/black-hole`](src/black-hole.ts)
+ * - Mount: [`src/mount`](./src/mount.ts)
+ * - Keytransform: [`src/keytransform`](./src/keytransform.ts)
+ * - Sharding: [`src/sharding`](./src/sharding.ts)
+ * - Tiered: [`src/tiered`](./src/tirered.ts)
+ * - Namespace: [`src/namespace`](./src/namespace.ts)
+ * - BlackHole: [`src/black-hole`](./src/black-hole.ts)
  *
  * @example BaseDatastore
  *

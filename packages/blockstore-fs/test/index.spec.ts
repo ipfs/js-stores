@@ -5,6 +5,7 @@ import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
+// @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { spawn, Thread, Worker } from 'threads'
 import { FsBlockstore } from '../src/index.js'
 import { FlatDirectory, NextToLast } from '../src/sharding.js'
@@ -177,7 +178,7 @@ describe('FsBlockstore', () => {
       const value = utf8Encoder.encode('Hello world')
       // 100 iterations of looping over all workers and putting the same key value pair
       await Promise.all(new Array(100).fill(0).map(async () => {
-        return Promise.all(workers.map(async (worker) => worker.put(key.toString(), value)))
+        return Promise.all(workers.map(async (worker: any) => worker.put(key.toString(), value)))
       }))
 
       const fs = new FsBlockstore(dir)
@@ -186,7 +187,7 @@ describe('FsBlockstore', () => {
 
       expect(res).to.deep.equal(value)
     } finally {
-      await Promise.all(workers.map(async (worker) => Thread.terminate(worker)))
+      await Promise.all(workers.map(async (worker: any) => Thread.terminate(worker)))
     }
   })
 })

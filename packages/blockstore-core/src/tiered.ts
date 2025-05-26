@@ -39,7 +39,7 @@ export class TieredBlockstore extends BaseBlockstore {
     for (const store of this.stores) {
       try {
         const res = await store.get(key, options)
-        if (res != null) return res
+        if (res != null) { return res }
       } catch (err) {
         log.error(err)
       }
@@ -127,7 +127,7 @@ export class TieredBlockstore extends BaseBlockstore {
     }
   }
 
-  async * getAll (options?: AbortOptions): AwaitIterable<Pair> { // eslint-disable-line require-yield
+  async * getAll (options?: AbortOptions): AwaitIterable<Pair> {
     // deduplicate yielded pairs
     const seen = new Set<string>()
 

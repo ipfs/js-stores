@@ -37,7 +37,7 @@ export class TieredDatastore extends BaseDatastore {
     for (const store of this.stores) {
       try {
         const res = await store.get(key, options)
-        if (res != null) return res
+        if (res != null) { return res }
       } catch (err) {
         log.error(err)
       }

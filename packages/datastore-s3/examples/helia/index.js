@@ -1,8 +1,10 @@
-import { createHelia } from 'helia'
-import { unixfs } from '@helia/unixfs'
-import toBuffer from 'it-to-buffer'
+/* eslint-disable no-console */
+
 import { S3 } from '@aws-sdk/client-s3'
+import { unixfs } from '@helia/unixfs'
 import { DatastoreS3 } from 'datastore-s3'
+import { createHelia } from 'helia'
+import toBuffer from 'it-to-buffer'
 
 async function main () {
   // Configure S3 as normal
@@ -18,7 +20,7 @@ async function main () {
 
   // Create a new Helia node with our S3 backed Repo
   console.log('Start Helia')
-  const node = await createHelia({
+  const helia = await createHelia({
     datastore
   })
 
@@ -45,7 +47,7 @@ async function main () {
   // After everything is done, shut the node down
   // We don't need to worry about catching errors here
   console.log('\n\nStopping the node')
-  await node.stop()
+  await helia.stop()
 }
 
 main()

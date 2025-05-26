@@ -1,5 +1,6 @@
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { type SupportedEncodings, toString as uint8ArrayToString } from 'uint8arrays/to-string'
+import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
+import type { SupportedEncodings } from 'uint8arrays/to-string'
 
 const pathSepS = '/'
 const pathSepB = new TextEncoder().encode(pathSepS)
@@ -53,7 +54,7 @@ export class Key {
   /**
    * Convert to the string representation
    *
-   * @param {import('uint8arrays/to-string').SupportedEncodings} [encoding='utf8'] - The encoding to use.
+   * @param {import('uint8arrays/to-string').SupportedEncodings} [encoding] - The encoding to use.
    * @returns {string}
    */
   toString (encoding: SupportedEncodings = 'utf8'): string {
@@ -201,7 +202,8 @@ export class Key {
     return this.list()
   }
 
-  /** Returns the "base" namespace of this key.
+  /**
+   * Returns the "base" namespace of this key.
    *
    * @returns {string}
    *

@@ -45,13 +45,14 @@
  */
 
 import { BaseDatastore } from 'datastore-core'
-import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { Key } from 'interface-datastore'
 import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import map from 'it-map'
 import sort from 'it-sort'
 import take from 'it-take'
 import { Level } from 'level'
+import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
 interface BatchPut {
