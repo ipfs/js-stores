@@ -1,6 +1,6 @@
 {
   "name": "datastore-core",
-  "version": "10.0.3",
+  "version": "10.0.4",
   "description": "Wrapper implementation for interface-datastore",
   "author": "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
