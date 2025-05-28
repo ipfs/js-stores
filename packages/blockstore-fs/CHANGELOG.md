@@ -1,3 +1,9 @@
+## [blockstore-fs-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.3...blockstore-fs-2.0.4) (2025-05-28)
+
+### Bug Fixes
+
+* improve abort signal support ([#350](https://github.com/ipfs/js-stores/issues/350)) ([e17d770](https://github.com/ipfs/js-stores/commit/e17d770cc2fcee77cb0152a855abf162e5a91a99))
+
 ## [blockstore-fs-v2.0.3](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.2...blockstore-fs-2.0.3) (2025-05-26)
 
 ### Dependencies
