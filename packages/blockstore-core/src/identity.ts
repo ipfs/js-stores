@@ -16,49 +16,56 @@ export class IdentityBlockstore extends BaseBlockstore {
     this.child = child
   }
 
-  put (key: CID, block: Uint8Array): Await<CID> {
+  put (key: CID, block: Uint8Array, options?: AbortOptions): Await<CID> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      options?.signal?.throwIfAborted()
       return key
     }
 
     if (this.child == null) {
+      options?.signal?.throwIfAborted()
       return key
     }
 
-    return this.child.put(key, block)
+    return this.child.put(key, block, options)
   }
 
-  get (key: CID): Await<Uint8Array> {
+  get (key: CID, options?: AbortOptions): Await<Uint8Array> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      options?.signal?.throwIfAborted()
       return key.multihash.digest
     }
 
     if (this.child == null) {
+      options?.signal?.throwIfAborted()
       throw new NotFoundError()
     }
 
-    return this.child.get(key)
+    return this.child.get(key, options)
   }
 
-  has (key: CID): Await<boolean> {
+  has (key: CID, options?: AbortOptions): Await<boolean> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      options?.signal?.throwIfAborted()
       return true
     }
 
     if (this.child == null) {
+      options?.signal?.throwIfAborted()
       return false
     }
 
-    return this.child.has(key)
+    return this.child.has(key, options)
   }
 
-  delete (key: CID): Await<void> {
+  delete (key: CID, options?: AbortOptions): Await<void> {
     if (key.code === IDENTITY_CODEC) {
+      options?.signal?.throwIfAborted()
       return
     }
 
     if (this.child != null) {
-      return this.child.delete(key)
+      return this.child.delete(key, options)
     }
   }
 
@@ -67,6 +74,7 @@ export class IdentityBlockstore extends BaseBlockstore {
       return this.child.getAll(options)
     }
 
+    options?.signal?.throwIfAborted()
     return []
   }
 }

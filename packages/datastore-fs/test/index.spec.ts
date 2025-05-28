@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+import { setMaxListeners } from 'node:events'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { expect } from 'aegir/chai'
@@ -182,7 +183,9 @@ describe('FsDatastore', () => {
     const dir = tempdir()
     const key = new Key('CIQGFTQ7FSI2COUXWWLOQ45VUM2GUZCGAXLWCTOKKPGTUWPXHBNIVOY')
     const workers = await Promise.all(new Array(10).fill(0).map(async () => {
-      const worker = await spawn(new Worker('./fixtures/writer-worker.js'))
+      const w = new Worker('./fixtures/writer-worker.js')
+      setMaxListeners(Infinity, w)
+      const worker = await spawn(w)
       await worker.isReady(dir)
       return worker
     }))

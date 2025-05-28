@@ -1,3 +1,4 @@
+import { setMaxListeners } from 'node:events'
 import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
@@ -98,7 +99,10 @@ describe('FsBlockstore', () => {
       teardown: async (store) => {
         await store.close()
         await fs.rm(store.path, {
-          recursive: true
+          recursive: true,
+          force: true,
+          maxRetries: 5,
+          retryDelay: 1_000
         })
       }
     })
@@ -115,7 +119,10 @@ describe('FsBlockstore', () => {
       teardown: async (store) => {
         await store.close()
         await fs.rm(store.path, {
-          recursive: true
+          recursive: true,
+          force: true,
+          maxRetries: 5,
+          retryDelay: 1_000
         })
       }
     })
@@ -137,7 +144,10 @@ describe('FsBlockstore', () => {
       teardown: async (store) => {
         await store.close()
         await fs.rm(store.path, {
-          recursive: true
+          recursive: true,
+          force: true,
+          maxRetries: 5,
+          retryDelay: 1_000
         })
       }
     })
@@ -169,7 +179,9 @@ describe('FsBlockstore', () => {
     const dir = path.join(os.tmpdir(), `test-${Math.random()}`)
     const key = CID.parse('QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
     const workers = await Promise.all(new Array(10).fill(0).map(async () => {
-      const worker = await spawn(new Worker('./fixtures/writer-worker.js'))
+      const w = new Worker('./fixtures/writer-worker.js')
+      setMaxListeners(Infinity, w)
+      const worker = await spawn(w)
       await worker.isReady(dir)
       return worker
     }))
