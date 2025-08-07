@@ -243,7 +243,7 @@ export class FsDatastore extends BaseDatastore {
     // strip leading slashes
     prefix = prefix.replace(/^\/+/, '')
 
-    const pattern = `${prefix}/*${this.extension}`
+    const pattern = `${prefix}/**/*${this.extension}`
       .split(path.sep)
       .join('/')
     const files = glob(this.path, pattern, {
@@ -278,7 +278,7 @@ export class FsDatastore extends BaseDatastore {
     // strip leading slashes
     prefix = prefix.replace(/^\/+/, '')
 
-    const pattern = `${prefix}/*${this.extension}`
+    const pattern = `${prefix}/**/*${this.extension}`
       .split(path.sep)
       .join('/')
     const files = glob(this.path, pattern, {
