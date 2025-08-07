@@ -1,6 +1,8 @@
 /**
  * @packageDocumentation
  *
+ * ⚠️ This package is deprecated. Instead, use `datastore-level` in node.js, and `datastore-idb` in browsers.
+ *
  * A Datastore implementation with a file system backend.
  *
  * @example
