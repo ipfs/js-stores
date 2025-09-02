@@ -411,6 +411,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
     const hello = { key: new Key('/q/1hello'), value: uint8ArrayFromString('1') }
     const world = { key: new Key('/z/2world'), value: uint8ArrayFromString('2') }
     const hello2 = { key: new Key('/z/3hello2'), value: uint8ArrayFromString('3') }
+    const many = { key: new Key('/dht/provider/third/bafyyyyy'), value: uint8ArrayFromString('4') }
 
     const filter1: QueryFilter = entry => !entry.key.toString().endsWith('hello')
     const filter2: QueryFilter = entry => entry.key.toString().endsWith('hello2')
@@ -432,14 +433,15 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
     }
 
     const tests: Array<[string, any, any[] | number]> = [
-      ['empty', {}, [hello, world, hello2]],
+      ['empty', {}, [hello, world, hello2, many]],
       ['prefix', { prefix: '/z' }, [world, hello2]],
-      ['1 filter', { filters: [filter1] }, [world, hello2]],
+      ['prefix-three-slashes', { prefix: '/dht/provider' }, [many]],
+      ['1 filter', { filters: [filter1] }, [world, hello2, many]],
       ['2 filters', { filters: [filter1, filter2] }, [hello2]],
       ['limit', { limit: 1 }, 1],
-      ['offset', { offset: 1 }, 2],
-      ['1 order (1)', { orders: [order1] }, [hello, world, hello2]],
-      ['1 order (reverse 1)', { orders: [order2] }, [hello2, world, hello]]
+      ['offset', { offset: 1 }, 3],
+      ['1 order (1)', { orders: [order1] }, [hello, world, hello2, many]],
+      ['1 order (reverse 1)', { orders: [order2] }, [many, hello2, world, hello]]
     ]
 
     before(async () => {
@@ -450,6 +452,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       b.put(hello.key, hello.value)
       b.put(world.key, world.value)
       b.put(hello2.key, hello2.value)
+      b.put(many.key, many.value)
 
       await b.commit()
     })
@@ -511,7 +514,8 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       expect(results.map(result => result.key)).to.have.deep.members([
         hello.key,
         world.key,
-        hello3.key
+        hello3.key,
+        many.key
       ])
     })
 
