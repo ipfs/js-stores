@@ -1,3 +1,13 @@
+## [blockstore-level-v2.0.5](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.4...blockstore-level-2.0.5) (2025-09-02)
+
+### Bug Fixes
+
+* readme typos ([e6b5653](https://github.com/ipfs/js-stores/commit/e6b56533b68e6ed9b90ca3e3f35af8577041a9a2))
+
+### Dependencies
+
+* bump race-signal from 1.1.3 to 2.0.0 ([#355](https://github.com/ipfs/js-stores/issues/355)) ([518fee8](https://github.com/ipfs/js-stores/commit/518fee89d3430534c0ec39551e920447fd558581))
+
 ## [blockstore-level-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.3...blockstore-level-2.0.4) (2025-09-02)
 
 ### Bug Fixes
