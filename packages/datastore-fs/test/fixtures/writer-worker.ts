@@ -1,10 +1,11 @@
 import { Key } from 'interface-datastore'
+// @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { expose } from 'threads/worker'
 import { FsDatastore } from '../../src/index.js'
 
 let fs: FsDatastore
 expose({
-  async isReady (path) {
+  async isReady (path: string) {
     fs = new FsDatastore(path)
     try {
       await fs.open()
@@ -15,7 +16,7 @@ expose({
       throw err
     }
   },
-  async put (keyString, value) {
+  async put (keyString: string, value: Uint8Array) {
     const key = new Key(keyString)
     try {
       return await fs.put(key, value)

@@ -1,7 +1,5 @@
 import { logger } from '@libp2p/logger'
-import { PutFailedError, NotFoundError, DeleteFailedError } from 'interface-store'
-import drain from 'it-drain'
-import { pushable } from 'it-pushable'
+import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
@@ -25,24 +23,32 @@ export class TieredDatastore extends BaseDatastore {
   }
 
   async put (key: Key, value: Uint8Array, options?: AbortOptions): Promise<Key> {
-    try {
-      await Promise.all(this.stores.map(async store => { await store.put(key, value, options) }))
-      return key
-    } catch (err: any) {
-      throw new PutFailedError(err.message)
-    }
+    await Promise.all(
+      this.stores.map(async store => {
+        await store.put(key, value, options)
+      })
+    )
+
+    return key
   }
 
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
+    let error: Error | undefined
+
     for (const store of this.stores) {
       try {
         const res = await store.get(key, options)
-        if (res != null) return res
-      } catch (err) {
+
+        if (res != null) {
+          return res
+        }
+      } catch (err: any) {
+        error = err
         log.error(err)
       }
     }
-    throw new NotFoundError()
+
+    throw error ?? new NotFoundError()
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
@@ -56,72 +62,24 @@ export class TieredDatastore extends BaseDatastore {
   }
 
   async delete (key: Key, options?: AbortOptions): Promise<void> {
-    try {
-      await Promise.all(this.stores.map(async store => { await store.delete(key, options) }))
-    } catch (err: any) {
-      throw new DeleteFailedError(err.message)
-    }
+    await Promise.all(
+      this.stores.map(async store => {
+        await store.delete(key, options)
+      })
+    )
   }
 
   async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AsyncIterable<Key> {
-    let error: Error | undefined
-    const pushables = this.stores.map(store => {
-      const source = pushable<Pair>({
-        objectMode: true
-      })
-
-      drain(store.putMany(source, options))
-        .catch(err => {
-          // store threw while putting, make sure we bubble the error up
-          error = err
-        })
-
-      return source
-    })
-
-    try {
-      for await (const pair of source) {
-        if (error != null) {
-          throw error
-        }
-
-        pushables.forEach(p => p.push(pair))
-
-        yield pair.key
-      }
-    } finally {
-      pushables.forEach(p => p.end())
+    for await (const pair of source) {
+      await this.put(pair.key, pair.value, options)
+      yield pair.key
     }
   }
 
   async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AsyncIterable<Key> {
-    let error: Error | undefined
-    const pushables = this.stores.map(store => {
-      const source = pushable<Key>({
-        objectMode: true
-      })
-
-      drain(store.deleteMany(source, options))
-        .catch(err => {
-          // store threw while deleting, make sure we bubble the error up
-          error = err
-        })
-
-      return source
-    })
-
-    try {
-      for await (const key of source) {
-        if (error != null) {
-          throw error
-        }
-
-        pushables.forEach(p => p.push(key))
-
-        yield key
-      }
-    } finally {
-      pushables.forEach(p => p.end())
+    for await (const key of source) {
+      await this.delete(key, options)
+      yield key
     }
   }
 

@@ -13,11 +13,15 @@
  */
 
 import { BaseDatastore } from 'datastore-core'
-import { openDB, deleteDB, type IDBPDatabase } from 'idb'
-import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { openDB, deleteDB } from 'idb'
+import { Key } from 'interface-datastore'
 import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import sort from 'it-sort'
+import { raceSignal } from 'race-signal'
+import type { IDBPDatabase } from 'idb'
+import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
+import type { AbortOptions } from 'interface-store'
 
 export interface IDBDatastoreInit {
   /**
@@ -61,21 +65,22 @@ export class IDBDatastore extends BaseDatastore {
     this.db?.close()
   }
 
-  async put (key: Key, val: Uint8Array): Promise<Key> {
+  async put (key: Key, val: Uint8Array, options?: AbortOptions): Promise<Key> {
     if (this.db == null) {
       throw new Error('Datastore needs to be opened.')
     }
 
     try {
-      await this.db.put(this.location, val, key.toString())
-
-      return key
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.put(this.location, val, key.toString()), options?.signal)
     } catch (err: any) {
       throw new PutFailedError(String(err))
     }
+
+    return key
   }
 
-  async get (key: Key): Promise<Uint8Array> {
+  async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     if (this.db == null) {
       throw new Error('Datastore needs to be opened.')
     }
@@ -83,7 +88,8 @@ export class IDBDatastore extends BaseDatastore {
     let val: Uint8Array | undefined
 
     try {
-      val = await this.db.get(this.location, key.toString())
+      options?.signal?.throwIfAborted()
+      val = await raceSignal(this.db.get(this.location, key.toString()), options?.signal)
     } catch (err: any) {
       throw new GetFailedError(String(err))
     }
@@ -95,25 +101,28 @@ export class IDBDatastore extends BaseDatastore {
     return val
   }
 
-  async has (key: Key): Promise<boolean> {
+  async has (key: Key, options?: AbortOptions): Promise<boolean> {
     if (this.db == null) {
       throw new Error('Datastore needs to be opened.')
     }
 
     try {
-      return Boolean(await this.db.getKey(this.location, key.toString()))
+      options?.signal?.throwIfAborted()
+      const result = await raceSignal(this.db.getKey(this.location, key.toString()))
+      return Boolean(result)
     } catch (err: any) {
       throw new GetFailedError(String(err))
     }
   }
 
-  async delete (key: Key): Promise<void> {
+  async delete (key: Key, options?: AbortOptions): Promise<void> {
     if (this.db == null) {
       throw new Error('Datastore needs to be opened.')
     }
 
     try {
-      await this.db.delete(this.location, key.toString())
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.delete(this.location, key.toString()), options?.signal)
     } catch (err: any) {
       throw new DeleteFailedError(String(err))
     }
@@ -130,10 +139,12 @@ export class IDBDatastore extends BaseDatastore {
       delete (key) {
         dels.push(key)
       },
-      commit: async () => {
+      commit: async (options?: AbortOptions) => {
         if (this.db == null) {
           throw new Error('Datastore needs to be opened.')
         }
+
+        options?.signal?.throwIfAborted()
 
         const tx = this.db.transaction(this.location, 'readwrite')
 
@@ -156,7 +167,8 @@ export class IDBDatastore extends BaseDatastore {
               await tx.done
             })
 
-          await Promise.all(ops.map(async op => { await op() }))
+          options?.signal?.throwIfAborted()
+          await raceSignal(Promise.all(ops.map(async op => { await op() })), options?.signal)
         } catch {
           tx.abort()
         }
@@ -164,10 +176,10 @@ export class IDBDatastore extends BaseDatastore {
     }
   }
 
-  async * query (q: Query): AsyncIterable<Pair> {
+  async * query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
     let it = this.#queryIt(q, (key, value) => {
       return { key, value }
-    })
+    }, options)
 
     if (Array.isArray(q.filters)) {
       it = q.filters.reduce((it, f) => filter(it, f), it)
@@ -180,8 +192,8 @@ export class IDBDatastore extends BaseDatastore {
     yield * it
   }
 
-  async * queryKeys (q: KeyQuery): AsyncIterable<Key> {
-    let it = this.#queryIt(q, (key) => key)
+  async * queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+    let it = this.#queryIt(q, (key) => key, options)
 
     if (Array.isArray(q.filters)) {
       it = q.filters.reduce((it, f) => filter(it, f), it)
@@ -194,7 +206,7 @@ export class IDBDatastore extends BaseDatastore {
     yield * it
   }
 
-  async * #queryIt <T> (q: { prefix?: string, offset?: number, limit?: number }, transform: (key: Key, value: Uint8Array) => T): AsyncIterable<T> {
+  async * #queryIt <T> (q: { prefix?: string, offset?: number, limit?: number }, transform: (key: Key, value: Uint8Array) => T, options?: AbortOptions): AsyncIterable<T> {
     if (this.db == null) {
       throw new Error('Datastore needs to be opened.')
     }
@@ -202,8 +214,11 @@ export class IDBDatastore extends BaseDatastore {
     let yielded = 0
     let index = -1
 
+    options?.signal?.throwIfAborted()
+
     for (const key of await this.db.getAllKeys(this.location)) {
-      if (q.prefix != null && !key.toString().startsWith(q.prefix)) { // eslint-disable-line @typescript-eslint/no-base-to-string
+      options?.signal?.throwIfAborted()
+      if (q.prefix != null && !key.toString().startsWith(q.prefix)) {
         continue
       }
 
@@ -217,11 +232,11 @@ export class IDBDatastore extends BaseDatastore {
         continue
       }
 
-      const k = new Key(key.toString()) // eslint-disable-line @typescript-eslint/no-base-to-string
+      const k = new Key(key.toString())
       let value: Uint8Array | undefined
 
       try {
-        value = await this.get(k)
+        value = await this.get(k, options)
       } catch (err: any) {
         if (err.name !== 'NotFoundError') {
           throw err
@@ -234,6 +249,8 @@ export class IDBDatastore extends BaseDatastore {
       }
 
       yield transform(k, value)
+
+      options?.signal?.throwIfAborted()
 
       yielded++
     }

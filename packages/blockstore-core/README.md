@@ -28,10 +28,10 @@ Various Blockstore implementations are available.
 
 ## Implementations
 
-- Base: [`src/base`](src/base.ts)
-- Memory: [`src/memory`](src/memory.ts)
-- BlackHole: ['src/black-hole](src/black-hole.ts)
-- Tiered: ['src/tiered](src/tiered.ts)
+- Base: [`src/base`](./src/base.ts)
+- Memory: [`src/memory`](./src/memory.ts)
+- BlackHole: ['src/black-hole](./src/black-hole.ts)
+- Tiered: ['src/tiered](./src/tiered.ts)
 
 ## Example - BaseBlockstore
 

@@ -45,13 +45,16 @@
  */
 
 import { BaseDatastore } from 'datastore-core'
-import { type Batch, Key, type KeyQuery, type Pair, type Query } from 'interface-datastore'
+import { Key } from 'interface-datastore'
 import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import map from 'it-map'
 import sort from 'it-sort'
 import take from 'it-take'
 import { Level } from 'level'
+import { raceSignal } from 'race-signal'
+import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
+import type { AbortOptions } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
 interface BatchPut {
@@ -100,9 +103,10 @@ export class LevelDatastore extends BaseDatastore {
     }
   }
 
-  async put (key: Key, value: Uint8Array): Promise<Key> {
+  async put (key: Key, value: Uint8Array, options?: AbortOptions): Promise<Key> {
     try {
-      await this.db.put(key.toString(), value)
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.put(key.toString(), value), options?.signal)
 
       return key
     } catch (err: any) {
@@ -110,10 +114,11 @@ export class LevelDatastore extends BaseDatastore {
     }
   }
 
-  async get (key: Key): Promise<Uint8Array> {
+  async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     let data
     try {
-      data = await this.db.get(key.toString())
+      options?.signal?.throwIfAborted()
+      data = await raceSignal(this.db.get(key.toString()), options?.signal)
     } catch (err: any) {
       if (err.notFound != null) {
         throw new NotFoundError(String(err))
@@ -124,9 +129,10 @@ export class LevelDatastore extends BaseDatastore {
     return data
   }
 
-  async has (key: Key): Promise<boolean> {
+  async has (key: Key, options?: AbortOptions): Promise<boolean> {
     try {
-      await this.db.get(key.toString())
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.get(key.toString()), options?.signal)
     } catch (err: any) {
       if (err.notFound != null) {
         return false
@@ -137,9 +143,10 @@ export class LevelDatastore extends BaseDatastore {
     return true
   }
 
-  async delete (key: Key): Promise<void> {
+  async delete (key: Key, options?: AbortOptions): Promise<void> {
     try {
-      await this.db.del(key.toString())
+      options?.signal?.throwIfAborted()
+      await raceSignal(this.db.del(key.toString()), options?.signal)
     } catch (err: any) {
       throw new DeleteFailedError(String(err))
     }
@@ -166,20 +173,24 @@ export class LevelDatastore extends BaseDatastore {
           key: key.toString()
         })
       },
-      commit: async () => {
+      commit: async (options?: AbortOptions) => {
         if (this.db.batch == null) {
           throw new Error('Batch operations unsupported by underlying Level')
         }
 
-        await this.db.batch(ops)
+        options?.signal?.throwIfAborted()
+        await raceSignal(this.db.batch(ops), options?.signal)
       }
     }
   }
 
-  query (q: Query): AsyncIterable<Pair> {
-    let it = this._query({
+  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+    let it = map(this._query({
       values: true,
       prefix: q.prefix
+    }), (res) => {
+      options?.signal?.throwIfAborted()
+      return res
     })
 
     if (Array.isArray(q.filters)) {
@@ -203,11 +214,14 @@ export class LevelDatastore extends BaseDatastore {
     return it
   }
 
-  queryKeys (q: KeyQuery): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
     let it = map(this._query({
       values: false,
       prefix: q.prefix
-    }), ({ key }) => key)
+    }), ({ key }) => {
+      options?.signal?.throwIfAborted()
+      return key
+    })
 
     if (Array.isArray(q.filters)) {
       it = q.filters.reduce((it, f) => filter(it, f), it)

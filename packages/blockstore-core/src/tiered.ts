@@ -1,9 +1,7 @@
 import { logger } from '@libp2p/logger'
-import { DeleteFailedError, NotFoundError, PutFailedError } from 'interface-store'
-import drain from 'it-drain'
+import { NotFoundError } from 'interface-store'
 import filter from 'it-filter'
 import merge from 'it-merge'
-import { pushable } from 'it-pushable'
 import { BaseBlockstore } from './base.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
 import type { AbortOptions, AwaitIterable } from 'interface-store'
@@ -27,24 +25,32 @@ export class TieredBlockstore extends BaseBlockstore {
   }
 
   async put (key: CID, value: Uint8Array, options?: AbortOptions): Promise<CID> {
-    try {
-      await Promise.all(this.stores.map(async store => { await store.put(key, value, options) }))
-      return key
-    } catch (err: any) {
-      throw new PutFailedError(String(err))
-    }
+    await Promise.all(
+      this.stores.map(async store => {
+        await store.put(key, value, options)
+      })
+    )
+
+    return key
   }
 
   async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
+    let error: Error | undefined
+
     for (const store of this.stores) {
       try {
         const res = await store.get(key, options)
-        if (res != null) return res
-      } catch (err) {
+
+        if (res != null) {
+          return res
+        }
+      } catch (err: any) {
+        error = err
         log.error(err)
       }
     }
-    throw new NotFoundError()
+
+    throw error ?? new NotFoundError()
   }
 
   async has (key: CID, options?: AbortOptions): Promise<boolean> {
@@ -58,76 +64,28 @@ export class TieredBlockstore extends BaseBlockstore {
   }
 
   async delete (key: CID, options?: AbortOptions): Promise<void> {
-    try {
-      await Promise.all(this.stores.map(async store => { await store.delete(key, options) }))
-    } catch (err: any) {
-      throw new DeleteFailedError(String(err))
-    }
+    await Promise.all(
+      this.stores.map(async store => {
+        await store.delete(key, options)
+      })
+    )
   }
 
   async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AsyncIterable<CID> {
-    let error: Error | undefined
-    const pushables = this.stores.map(store => {
-      const source = pushable<Pair>({
-        objectMode: true
-      })
-
-      drain(store.putMany(source, options))
-        .catch(err => {
-          // store threw while putting, make sure we bubble the error up
-          error = err
-        })
-
-      return source
-    })
-
-    try {
-      for await (const pair of source) {
-        if (error != null) {
-          throw error
-        }
-
-        pushables.forEach(p => p.push(pair))
-
-        yield pair.cid
-      }
-    } finally {
-      pushables.forEach(p => p.end())
+    for await (const pair of source) {
+      await this.put(pair.cid, pair.block, options)
+      yield pair.cid
     }
   }
 
   async * deleteMany (source: AwaitIterable<CID>, options: AbortOptions = {}): AsyncIterable<CID> {
-    let error: Error | undefined
-    const pushables = this.stores.map(store => {
-      const source = pushable<CID>({
-        objectMode: true
-      })
-
-      drain(store.deleteMany(source, options))
-        .catch(err => {
-          // store threw while deleting, make sure we bubble the error up
-          error = err
-        })
-
-      return source
-    })
-
-    try {
-      for await (const key of source) {
-        if (error != null) {
-          throw error
-        }
-
-        pushables.forEach(p => p.push(key))
-
-        yield key
-      }
-    } finally {
-      pushables.forEach(p => p.end())
+    for await (const cid of source) {
+      await this.delete(cid, options)
+      yield cid
     }
   }
 
-  async * getAll (options?: AbortOptions): AwaitIterable<Pair> { // eslint-disable-line require-yield
+  async * getAll (options?: AbortOptions): AwaitIterable<Pair> {
     // deduplicate yielded pairs
     const seen = new Set<string>()
 

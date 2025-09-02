@@ -85,6 +85,21 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       await store.put(cid, block)
     })
 
+    it('supports abort signals', async () => {
+      const { cid, block } = await getKeyValuePair()
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return store.put(cid, block, {
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
+
     it('parallel', async () => {
       const data = await getKeyValuePairs(100)
 
@@ -121,6 +136,21 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       const res = await all(store.getMany(data.map(d => d.cid)))
       expect(res).to.deep.equal(data)
     })
+
+    it('supports abort signals', async () => {
+      const { cid, block } = await getKeyValuePair()
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.putMany([{ cid, block }], {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
   })
 
   describe('get', () => {
@@ -143,6 +173,21 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       const res = await store.get(cid)
       expect(res).to.equalBytes(block)
+    })
+
+    it('supports abort signals', async () => {
+      const { cid } = await getKeyValuePair()
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return store.get(cid, {
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
 
     it('should throw error for missing key', async () => {
@@ -184,6 +229,23 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       expect(res).to.have.lengthOf(1)
       expect(res[0].cid).to.deep.equal(cid)
       expect(res[0].block).to.equalBytes(block)
+    })
+
+    it('supports abort signals', async () => {
+      const { cid, block } = await getKeyValuePair()
+
+      await store.put(cid, block)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.getMany([cid], {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
 
     it('should throw error for missing key', async () => {
@@ -237,6 +299,23 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
         expect(retrievedPair.block).to.equalBytes(block)
       }
     })
+
+    it('supports abort signals', async () => {
+      const { cid, block } = await getKeyValuePair()
+
+      await store.put(cid, block)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.getAll({
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
+    })
   })
 
   describe('delete', () => {
@@ -260,6 +339,23 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       await store.delete(cid)
       const exists = await store.has(cid)
       expect(exists).to.be.eql(false)
+    })
+
+    it('supports abort signals', async () => {
+      const { cid, block } = await getKeyValuePair()
+
+      await store.put(cid, block)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return store.delete(cid, {
+          signal: controller.signal
+        })
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
 
     it('parallel', async () => {
@@ -307,6 +403,23 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
       res1.forEach(res => expect(res).to.be.eql(false))
+    })
+
+    it('supports abort signals', async () => {
+      const { cid, block } = await getKeyValuePair()
+
+      await store.put(cid, block)
+
+      const controller = new AbortController()
+      controller.abort()
+
+      await expect((async () => {
+        return all(store.deleteMany([cid], {
+          signal: controller.signal
+        }))
+      })()).to.eventually.be.rejected
+        .with.property('message')
+        .that.include('abort')
     })
   })
 }

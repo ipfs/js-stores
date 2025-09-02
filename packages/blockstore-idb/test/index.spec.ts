@@ -31,7 +31,7 @@ describe('IndexedDB Blockstore', function () {
     it('should not explode under unreasonable load', function (done) {
       this.timeout(10000)
 
-      const updater = setInterval(async () => { // eslint-disable-line @typescript-eslint/no-misused-promises
+      const updater = setInterval(async () => {
         try {
           const key = CID.parse('QmaQwYWpchozXhFv8nvxprECWBSCEppN9dfd2VQiJfRo3F')
 
@@ -46,7 +46,7 @@ describe('IndexedDB Blockstore', function () {
         }
       }, 0)
 
-      const mutatorQuery = setInterval(async () => { // eslint-disable-line @typescript-eslint/no-misused-promises
+      const mutatorQuery = setInterval(async () => {
         try {
           for await (const { cid } of store.getAll()) {
             await store.get(cid)
@@ -65,7 +65,7 @@ describe('IndexedDB Blockstore', function () {
         }
       }, 0)
 
-      const readOnlyQuery = setInterval(async () => { // eslint-disable-line @typescript-eslint/no-misused-promises
+      const readOnlyQuery = setInterval(async () => {
         try {
           for await (const { cid } of store.getAll()) {
             await store.has(cid)

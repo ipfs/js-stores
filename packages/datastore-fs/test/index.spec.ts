@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+import { setMaxListeners } from 'node:events'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { expect } from 'aegir/chai'
@@ -6,6 +7,7 @@ import { ShardingDatastore, shard } from 'datastore-core'
 import { Key } from 'interface-datastore'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
+// @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { spawn, Thread, Worker } from 'threads'
 import { FsDatastore } from '../src/index.js'
 
@@ -181,7 +183,9 @@ describe('FsDatastore', () => {
     const dir = tempdir()
     const key = new Key('CIQGFTQ7FSI2COUXWWLOQ45VUM2GUZCGAXLWCTOKKPGTUWPXHBNIVOY')
     const workers = await Promise.all(new Array(10).fill(0).map(async () => {
-      const worker = await spawn(new Worker('./fixtures/writer-worker.js'))
+      const w = new Worker('./fixtures/writer-worker.js')
+      setMaxListeners(Infinity, w)
+      const worker = await spawn(w)
       await worker.isReady(dir)
       return worker
     }))
@@ -190,7 +194,7 @@ describe('FsDatastore', () => {
       const value = utf8Encoder.encode('Hello world')
       // 100 iterations of looping over all workers and putting the same key value pair
       await Promise.all(new Array(100).fill(0).map(async () => {
-        return Promise.all(workers.map(async (worker) => worker.put(key.toString(), value)))
+        return Promise.all(workers.map(async (worker: any) => worker.put(key.toString(), value)))
       }))
 
       const fs = new FsDatastore(dir)
@@ -199,7 +203,7 @@ describe('FsDatastore', () => {
 
       expect(res).to.deep.equal(value)
     } finally {
-      await Promise.all(workers.map(async (worker) => Thread.terminate(worker)))
+      await Promise.all(workers.map(async (worker: any) => Thread.terminate(worker)))
     }
   })
 })

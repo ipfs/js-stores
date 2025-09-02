@@ -1,6 +1,8 @@
 /**
  * @packageDocumentation
  *
+ * ⚠️ This package is deprecated. Instead, use `datastore-level` in node.js, and `datastore-idb` in browsers.
+ *
  * A Datastore implementation with a file system backend.
  *
  * @example
@@ -20,23 +22,31 @@ import { OpenFailedError, NotFoundError, PutFailedError, DeleteFailedError } fro
 import glob from 'it-glob'
 import map from 'it-map'
 import parallel from 'it-parallel-batch'
+import { raceSignal } from 'race-signal'
 import { Writer } from 'steno'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitIterable } from 'interface-store'
 
 /**
  * Write a file atomically
  */
-async function writeFile (path: string, contents: Uint8Array): Promise<void> {
+async function writeFile (file: string, contents: Uint8Array, options?: AbortOptions): Promise<void> {
   try {
-    const writer = new Writer(path)
-    await writer.write(contents)
+    options?.signal?.throwIfAborted()
+    await raceSignal(fs.mkdir(path.dirname(file), {
+      recursive: true
+    }), options?.signal)
+
+    const writer = new Writer(file)
+    options?.signal?.throwIfAborted()
+    await raceSignal(writer.write(contents), options?.signal)
   } catch (err: any) {
     if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
       // steno writes a file to a temp location before renaming it.
       // If the final file already exists this error is thrown.
       // Make sure we can read & write to this file
-      await fs.access(path, fs.constants.F_OK | fs.constants.W_OK)
+      options?.signal?.throwIfAborted()
+      await raceSignal(fs.access(file, fs.constants.F_OK | fs.constants.W_OK), options?.signal)
 
       // The file was created by another context - this means there were
       // attempts to write the same block by two different function calls
@@ -140,17 +150,11 @@ export class FsDatastore extends BaseDatastore {
     return new Key(keyname)
   }
 
-  /**
-   * Store the given value under the key
-   */
-  async put (key: Key, val: Uint8Array): Promise<Key> {
+  async put (key: Key, val: Uint8Array, options?: AbortOptions): Promise<Key> {
     const parts = this._encode(key)
 
     try {
-      await fs.mkdir(parts.dir, {
-        recursive: true
-      })
-      await writeFile(parts.file, val)
+      await writeFile(parts.file, val, options)
 
       return key
     } catch (err: any) {
@@ -158,11 +162,11 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>): AsyncIterable<Key> {
+  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncIterable<Key> {
     yield * parallel(
       map(source, ({ key, value }) => {
         return async () => {
-          await this.put(key, value)
+          await this.put(key, value, options)
 
           return key
         }
@@ -171,27 +175,23 @@ export class FsDatastore extends BaseDatastore {
     )
   }
 
-  /**
-   * Read from the file system
-   */
-  async get (key: Key): Promise<Uint8Array> {
+  async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     const parts = this._encode(key)
-    let data
     try {
-      data = await fs.readFile(parts.file)
+      options?.signal?.throwIfAborted()
+      return await raceSignal(fs.readFile(parts.file), options?.signal)
     } catch (err: any) {
       throw new NotFoundError(String(err))
     }
-    return data
   }
 
-  async * getMany (source: AwaitIterable<Key>): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<Key>, options?: AbortOptions): AsyncIterable<Pair> {
     yield * parallel(
       map(source, key => {
         return async () => {
           return {
             key,
-            value: await this.get(key)
+            value: await this.get(key, options)
           }
         }
       }),
@@ -199,11 +199,11 @@ export class FsDatastore extends BaseDatastore {
     )
   }
 
-  async * deleteMany (source: AwaitIterable<Key>): AsyncIterable<Key> {
+  async * deleteMany (source: AwaitIterable<Key>, options?: AbortOptions): AsyncIterable<Key> {
     yield * parallel(
       map(source, key => {
         return async () => {
-          await this.delete(key)
+          await this.delete(key, options)
 
           return key
         }
@@ -212,27 +212,24 @@ export class FsDatastore extends BaseDatastore {
     )
   }
 
-  /**
-   * Check for the existence of the given key
-   */
-  async has (key: Key): Promise<boolean> {
+  async has (key: Key, options?: AbortOptions): Promise<boolean> {
     const parts = this._encode(key)
 
     try {
-      await fs.access(parts.file)
+      options?.signal?.throwIfAborted()
+      await raceSignal(fs.access(parts.file), options?.signal)
     } catch (err: any) {
       return false
     }
+
     return true
   }
 
-  /**
-   * Delete the record under the given key
-   */
-  async delete (key: Key): Promise<void> {
+  async delete (key: Key, options?: AbortOptions): Promise<void> {
     const parts = this._encode(key)
     try {
-      await fs.unlink(parts.file)
+      options?.signal?.throwIfAborted()
+      await raceSignal(fs.unlink(parts.file), options?.signal)
     } catch (err: any) {
       if (err.code === 'ENOENT') {
         return
@@ -242,7 +239,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * _all (q: Query): AsyncIterable<Pair> {
+  async * _all (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
     let prefix = q.prefix ?? '**'
 
     // strip leading slashes
@@ -257,7 +254,8 @@ export class FsDatastore extends BaseDatastore {
 
     for await (const file of files) {
       try {
-        const buf = await fs.readFile(file)
+        options?.signal?.throwIfAborted()
+        const buf = await raceSignal(fs.readFile(file), options?.signal)
 
         const pair: Pair = {
           key: this._decode(file),
@@ -265,6 +263,7 @@ export class FsDatastore extends BaseDatastore {
         }
 
         yield pair
+        options?.signal?.throwIfAborted()
       } catch (err: any) {
         // if keys are removed from the datastore while the query is
         // running, we may encounter missing files.
@@ -275,7 +274,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * _allKeys (q: KeyQuery): AsyncIterable<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
     let prefix = q.prefix ?? '**'
 
     // strip leading slashes
@@ -288,6 +287,9 @@ export class FsDatastore extends BaseDatastore {
       absolute: true
     })
 
-    yield * map(files, f => this._decode(f))
+    yield * map(files, f => {
+      options?.signal?.throwIfAborted()
+      return this._decode(f)
+    })
   }
 }

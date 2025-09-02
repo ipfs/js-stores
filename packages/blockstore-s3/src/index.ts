@@ -43,7 +43,8 @@ import { BaseBlockstore } from 'blockstore-core/base'
 import { DeleteFailedError, GetFailedError, HasFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import toBuffer from 'it-to-buffer'
 import { fromString as unint8arrayFromString } from 'uint8arrays'
-import { NextToLast, type ShardingStrategy } from './sharding.js'
+import { NextToLast } from './sharding.js'
+import type { ShardingStrategy } from './sharding.js'
 import type { S3 } from '@aws-sdk/client-s3'
 import type { Pair } from 'interface-blockstore'
 import type { AbortOptions } from 'interface-store'
@@ -94,6 +95,7 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async put (key: CID, val: Uint8Array, options?: AbortOptions): Promise<CID> {
     try {
+      options?.signal?.throwIfAborted()
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.bucket,
@@ -115,6 +117,7 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
     try {
+      options?.signal?.throwIfAborted()
       const data = await this.s3.send(
         new GetObjectCommand({
           Bucket: this.bucket,
@@ -143,7 +146,6 @@ export class S3Blockstore extends BaseBlockstore {
         return new Uint8Array(buf, 0, buf.byteLength)
       }
 
-      // @ts-expect-error s3 types define their own Blob as an empty interface
       return await toBuffer(data.Body)
     } catch (err: any) {
       if (err.statusCode === 404) {
@@ -159,6 +161,7 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async has (key: CID, options?: AbortOptions): Promise<boolean> {
     try {
+      options?.signal?.throwIfAborted()
       await this.s3.send(
         new HeadObjectCommand({
           Bucket: this.bucket,
@@ -189,6 +192,7 @@ export class S3Blockstore extends BaseBlockstore {
    */
   async delete (key: CID, options?: AbortOptions): Promise<void> {
     try {
+      options?.signal?.throwIfAborted()
       await this.s3.send(
         new DeleteObjectCommand({
           Bucket: this.bucket,
@@ -207,6 +211,8 @@ export class S3Blockstore extends BaseBlockstore {
 
     try {
       while (true) {
+        options?.signal?.throwIfAborted()
+
         const data = await this.s3.send(
           new ListObjectsV2Command({
             Bucket: this.bucket,

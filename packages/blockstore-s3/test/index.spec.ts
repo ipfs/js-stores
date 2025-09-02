@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import { type CreateBucketCommand, type HeadObjectCommand, S3 } from '@aws-sdk/client-s3'
+import { S3 } from '@aws-sdk/client-s3'
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import { CID } from 'multiformats/cid'
@@ -8,6 +8,7 @@ import defer from 'p-defer'
 import sinon from 'sinon'
 import { S3Blockstore } from '../src/index.js'
 import { s3Resolve, s3Reject, S3Error, s3Mock } from './utils/s3-mock.js'
+import type { CreateBucketCommand, HeadObjectCommand } from '@aws-sdk/client-s3'
 
 const cid = CID.parse('QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
 
