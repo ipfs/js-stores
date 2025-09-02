@@ -1,3 +1,9 @@
+## [datastore-level-v11.0.4](https://github.com/ipfs/js-stores/compare/datastore-level-11.0.3...datastore-level-11.0.4) (2025-09-02)
+
+### Dependencies
+
+* bump race-signal from 1.1.3 to 2.0.0 ([#355](https://github.com/ipfs/js-stores/issues/355)) ([518fee8](https://github.com/ipfs/js-stores/commit/518fee89d3430534c0ec39551e920447fd558581))
+
 ## [datastore-level-v11.0.3](https://github.com/ipfs/js-stores/compare/datastore-level-11.0.2...datastore-level-11.0.3) (2025-05-28)
 
 ### Bug Fixes
