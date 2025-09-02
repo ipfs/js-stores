@@ -2,7 +2,7 @@
 
 ## ⚠️ Deprecation Warning
 
-**This package is deprecated. Instead, use `blockstore-fs` in node.js, and `blockstore-idb` in browsers.**
+**This package is deprecated. Instead, use `blockstore-fs` in Node.js, and `blockstore-idb` in browsers.**
 
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
@@ -28,7 +28,7 @@ repo and examine the changes made.
 
 -->
 
-⚠️ This package is deprecated. Instead, use `blockstore-fs` in node.js, and `blockstore-idb` in browsers.
+⚠️ This package is deprecated. Instead, use `blockstore-fs` in Node.js, and `blockstore-idb` in browsers.
 
 A Blockstore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
 

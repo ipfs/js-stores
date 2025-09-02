@@ -2,7 +2,7 @@
 
 ## ⚠️ Deprecation Warning
 
-**This package is deprecated. Instead, use `datastore-level` in node.js, and `datastore-idb` in browsers.**
+**This package is deprecated. Instead, use `datastore-level` in Node.js, and `datastore-idb` in browsers.**
 
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
@@ -28,7 +28,7 @@ repo and examine the changes made.
 
 -->
 
-⚠️ This package is deprecated. Instead, use `datastore-level` in node.js, and `datastore-idb` in browsers.
+⚠️ This package is deprecated. Instead, use `datastore-level` in Node.js, and `datastore-idb` in browsers.
 
 A Datastore implementation with a file system backend.
 

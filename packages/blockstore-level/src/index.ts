@@ -1,7 +1,7 @@
 /**
  * @packageDocumentation
  *
- * ⚠️ This package is deprecated. Instead, use `blockstore-fs` in node.js, and `blockstore-idb` in browsers.
+ * ⚠️ This package is deprecated. Instead, use `blockstore-fs` in Node.js, and `blockstore-idb` in browsers.
  *
  * A Blockstore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
  *
