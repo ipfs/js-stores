@@ -1,3 +1,9 @@
+## [blockstore-s3-v2.0.5](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.4...blockstore-s3-2.0.5) (2025-09-02)
+
+### Bug Fixes
+
+* deprecate blockstore-level and datastore-fs ([#353](https://github.com/ipfs/js-stores/issues/353)) ([ebc7912](https://github.com/ipfs/js-stores/commit/ebc7912696d5bd9dc991ece5f0c0d4acfb1f9400))
+
 ## [blockstore-s3-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.3...blockstore-s3-2.0.4) (2025-05-28)
 
 ### Bug Fixes

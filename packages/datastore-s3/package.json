@@ -1,6 +1,6 @@
 {
   "name": "datastore-s3",
-  "version": "12.0.4",
+  "version": "12.0.5",
   "description": "IPFS datastore implementation backed by s3",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/datastore-s3#readme",
@@ -157,6 +157,6 @@
     "aegir": "^47.0.16",
     "interface-datastore-tests": "^6.0.0",
     "p-defer": "^4.0.1",
-    "sinon": "^20.0.0"
+    "sinon": "^21.0.0"
   }
 }

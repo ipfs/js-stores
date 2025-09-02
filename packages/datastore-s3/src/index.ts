@@ -158,7 +158,6 @@ export class S3Datastore extends BaseDatastore {
         return new Uint8Array(buf, 0, buf.byteLength)
       }
 
-      // @ts-expect-error s3 types define their own Blob as an empty interface
       return await toBuffer(data.Body)
     } catch (err: any) {
       if (err.statusCode === 404) {

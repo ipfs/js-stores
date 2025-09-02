@@ -1,3 +1,9 @@
+## [blockstore-level-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.3...blockstore-level-2.0.4) (2025-09-02)
+
+### Bug Fixes
+
+* deprecate blockstore-level and datastore-fs ([#353](https://github.com/ipfs/js-stores/issues/353)) ([ebc7912](https://github.com/ipfs/js-stores/commit/ebc7912696d5bd9dc991ece5f0c0d4acfb1f9400))
+
 ## [blockstore-level-v2.0.3](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.2...blockstore-level-2.0.3) (2025-05-28)
 
 ### Bug Fixes
