@@ -1,3 +1,9 @@
+## [blockstore-fs-v2.0.5](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.4...blockstore-fs-2.0.5) (2025-09-02)
+
+### Dependencies
+
+* bump race-signal from 1.1.3 to 2.0.0 ([#355](https://github.com/ipfs/js-stores/issues/355)) ([518fee8](https://github.com/ipfs/js-stores/commit/518fee89d3430534c0ec39551e920447fd558581))
+
 ## [blockstore-fs-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.3...blockstore-fs-2.0.4) (2025-05-28)
 
 ### Bug Fixes
