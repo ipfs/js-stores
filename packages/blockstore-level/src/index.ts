@@ -1,9 +1,9 @@
 /**
  * @packageDocumentation
  *
- * A Blockstore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
+ * ⚠️ This package is deprecated. Instead, use `blockstore-fs` in node.js, and `blockstore-idb` in browsers.
  *
- * N.b. this is here largely for the sake of completeness, in node you should probably use FSDatastore, in browsers you should probably use IDBDatastore.
+ * A Blockstore implementation that uses a flavour of [Level](https://leveljs.org/) as a backend.
  *
  * @example
  *
