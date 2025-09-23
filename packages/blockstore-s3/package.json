@@ -148,7 +148,6 @@
     "blockstore-core": "^5.0.0",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^6.0.0",
-    "it-to-buffer": "^4.0.9",
     "multiformats": "^13.3.6",
     "uint8arrays": "^5.1.0"
   },
@@ -156,6 +155,7 @@
     "@types/sinon": "^17.0.4",
     "aegir": "^47.0.16",
     "interface-blockstore-tests": "^7.0.0",
+    "it-drain": "^3.0.10",
     "p-defer": "^4.0.1",
     "sinon": "^21.0.0"
   }
