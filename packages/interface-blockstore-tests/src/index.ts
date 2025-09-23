@@ -111,7 +111,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     })
 
     it('parallel', async () => {
-      const data = await getKeyValuePairs(1)
+      const data = await getKeyValuePairs(100)
 
       await Promise.all(data.map(async d => {
         await store.put(d.cid, toGenerator(d.block))

@@ -16,6 +16,7 @@ import { BaseBlockstore } from 'blockstore-core'
 import { openDB, deleteDB } from 'idb'
 import { OpenFailedError, PutFailedError, NotFoundError } from 'interface-store'
 import all from 'it-all'
+import toBuffer from 'it-to-buffer'
 import { base32upper } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
@@ -91,12 +92,12 @@ export class IDBBlockstore extends BaseBlockstore {
       throw new Error('Blockstore needs to be opened.')
     }
 
-    let buf: Uint8Array[]
+    let buf: Uint8Array
 
     if (val instanceof Uint8Array) {
-      buf = [val]
+      buf = val
     } else {
-      buf = await all(val)
+      buf = toBuffer(await all(val))
     }
 
     try {
