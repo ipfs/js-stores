@@ -153,10 +153,12 @@
   },
   "devDependencies": {
     "@types/sinon": "^17.0.4",
+    "@types/xmldom": "^0.1.34",
     "aegir": "^47.0.16",
     "interface-blockstore-tests": "^7.0.0",
     "it-drain": "^3.0.10",
     "p-defer": "^4.0.1",
-    "sinon": "^21.0.0"
+    "sinon": "^21.0.0",
+    "xmldom": "^0.6.0"
   }
 }
