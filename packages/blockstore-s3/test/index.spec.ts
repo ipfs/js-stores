@@ -3,6 +3,7 @@
 import { S3 } from '@aws-sdk/client-s3'
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
+import drain from 'it-drain'
 import { CID } from 'multiformats/cid'
 import defer from 'p-defer'
 import sinon from 'sinon'
@@ -73,7 +74,7 @@ describe('S3Blockstore', () => {
         return s3Reject(new S3Error('UnknownCommand'))
       })
 
-      await expect(store.get(cid)).to.eventually.rejected
+      await expect(drain(store.get(cid))).to.eventually.be.rejected
         .with.property('name', 'NotFoundError')
     })
   })

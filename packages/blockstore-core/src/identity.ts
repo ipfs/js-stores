@@ -1,7 +1,7 @@
 import { NotFoundError } from 'interface-store'
 import { BaseBlockstore } from './base.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
+import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 // https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2
@@ -16,7 +16,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     this.child = child
   }
 
-  put (key: CID, block: Uint8Array, options?: AbortOptions): Await<CID> {
+  put (key: CID, block: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Await<CID> {
     if (key.multihash.code === IDENTITY_CODEC) {
       options?.signal?.throwIfAborted()
       return key
@@ -30,10 +30,11 @@ export class IdentityBlockstore extends BaseBlockstore {
     return this.child.put(key, block, options)
   }
 
-  get (key: CID, options?: AbortOptions): Await<Uint8Array> {
+  * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     if (key.multihash.code === IDENTITY_CODEC) {
       options?.signal?.throwIfAborted()
-      return key.multihash.digest
+      yield key.multihash.digest
+      return
     }
 
     if (this.child == null) {
@@ -41,7 +42,7 @@ export class IdentityBlockstore extends BaseBlockstore {
       throw new NotFoundError()
     }
 
-    return this.child.get(key, options)
+    yield * this.child.get(key, options)
   }
 
   has (key: CID, options?: AbortOptions): Await<boolean> {
@@ -69,12 +70,11 @@ export class IdentityBlockstore extends BaseBlockstore {
     }
   }
 
-  getAll (options?: AbortOptions): AwaitIterable<Pair> {
+  * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
     if (this.child != null) {
-      return this.child.getAll(options)
+      yield * this.child.getAll(options)
     }
 
     options?.signal?.throwIfAborted()
-    return []
   }
 }
