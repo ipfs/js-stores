@@ -41,13 +41,12 @@ import {
 } from '@aws-sdk/client-s3'
 import { BaseBlockstore } from 'blockstore-core/base'
 import { DeleteFailedError, GetFailedError, HasFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
-import toBuffer from 'it-to-buffer'
-import { fromString as unint8arrayFromString } from 'uint8arrays'
+import { fromString as uint8arrayFromString } from 'uint8arrays'
 import { NextToLast } from './sharding.js'
 import type { ShardingStrategy } from './sharding.js'
 import type { S3 } from '@aws-sdk/client-s3'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export type { ShardingStrategy }
@@ -115,7 +114,7 @@ export class S3Blockstore extends BaseBlockstore {
   /**
    * Read from s3
    */
-  async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     try {
       options?.signal?.throwIfAborted()
       const data = await this.s3.send(
@@ -133,20 +132,26 @@ export class S3Blockstore extends BaseBlockstore {
 
       // If a body was returned, ensure it's a Uint8Array
       if (data.Body instanceof Uint8Array) {
-        return data.Body
+        yield data.Body
+        return
       }
 
       if (typeof data.Body === 'string') {
-        return unint8arrayFromString(data.Body)
+        yield uint8arrayFromString(data.Body)
+        return
       }
 
       if (data.Body instanceof Blob) {
-        const buf = await data.Body.arrayBuffer()
-
-        return new Uint8Array(buf, 0, buf.byteLength)
+        yield * data.Body.stream()
+        return
       }
 
-      return await toBuffer(data.Body)
+      if (data.Body[Symbol.asyncIterator] != null) {
+        yield * data.Body
+        return
+      }
+
+      throw new Error(`Unknown body type ${data.Body} (typeof ${typeof data.Body})`)
     } catch (err: any) {
       if (err.statusCode === 404) {
         throw new NotFoundError(String(err))
@@ -206,7 +211,7 @@ export class S3Blockstore extends BaseBlockstore {
     }
   }
 
-  async * getAll (options?: AbortOptions): AsyncIterable<Pair> {
+  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
     const params: Record<string, any> = {}
 
     try {
@@ -240,7 +245,7 @@ export class S3Blockstore extends BaseBlockstore {
 
           yield {
             cid,
-            block: await this.get(cid, options)
+            bytes: this.get(cid, options)
           }
         }
 

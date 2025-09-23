@@ -1,5 +1,5 @@
-import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
+import type { Blockstore, InputPair, Pair } from 'interface-blockstore'
+import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export class BaseBlockstore implements Blockstore {
@@ -7,26 +7,26 @@ export class BaseBlockstore implements Blockstore {
     return Promise.reject(new Error('.has is not implemented'))
   }
 
-  put (key: CID, val: Uint8Array, options?: AbortOptions): Await<CID> {
+  put (key: CID, val: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Await<CID> {
     return Promise.reject(new Error('.put is not implemented'))
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AwaitIterable<CID> {
-    for await (const { cid, block } of source) {
-      await this.put(cid, block, options)
+  async * putMany (source: AwaitIterable<InputPair>, options?: AbortOptions): AwaitGenerator<CID> {
+    for await (const { cid, bytes } of source) {
+      await this.put(cid, bytes, options)
       yield cid
     }
   }
 
-  get (key: CID, options?: AbortOptions): Await<Uint8Array> {
-    return Promise.reject(new Error('.get is not implemented'))
+  get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+    throw new Error('.get is not implemented')
   }
 
-  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AwaitIterable<Pair> {
+  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AwaitGenerator<Pair> {
     for await (const key of source) {
       yield {
         cid: key,
-        block: await this.get(key, options)
+        bytes: this.get(key, options)
       }
     }
   }
@@ -35,7 +35,7 @@ export class BaseBlockstore implements Blockstore {
     return Promise.reject(new Error('.delete is not implemented'))
   }
 
-  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AwaitIterable<CID> {
+  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AwaitGenerator<CID> {
     for await (const key of source) {
       await this.delete(key, options)
       yield key
@@ -45,7 +45,7 @@ export class BaseBlockstore implements Blockstore {
   /**
    * Extending classes should override `query` or implement this method
    */
-  async * getAll (options?: AbortOptions): AwaitIterable<Pair> { // eslint-disable-line require-yield
+  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> { // eslint-disable-line require-yield
     throw new Error('.getAll is not implemented')
   }
 }

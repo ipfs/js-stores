@@ -27,14 +27,24 @@
 import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
+import map from 'it-map'
 import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import { sha256 } from 'multiformats/hashes/sha2'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import type { Blockstore, Pair } from 'interface-blockstore'
+import type { Blockstore } from 'interface-blockstore'
 
-async function getKeyValuePair (data?: string): Promise<Pair> {
+interface Data {
+  cid: CID
+  block: Uint8Array
+}
+
+async function * toGenerator <T> (buf: T): AsyncGenerator<T> {
+  yield buf
+}
+
+async function getKeyValuePair (data?: string): Promise<Data> {
   const block = uint8ArrayFromString(data ?? `data-${Math.random()}`)
   const multihash = await sha256.digest(block)
   const cid = CID.createV1(raw.code, multihash)
@@ -42,7 +52,7 @@ async function getKeyValuePair (data?: string): Promise<Pair> {
   return { cid, block }
 }
 
-async function getKeyValuePairs (count: number): Promise<Pair[]> {
+async function getKeyValuePairs (count: number): Promise<Data[]> {
   return Promise.all(
     new Array(count).fill(0).map(async (_, i) => getKeyValuePair())
   )
@@ -82,7 +92,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     it('simple', async () => {
       const { cid, block } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(cid, toGenerator(block))
     })
 
     it('supports abort signals', async () => {
@@ -92,7 +102,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       controller.abort()
 
       await expect((async () => {
-        return store.put(cid, block, {
+        return store.put(cid, toGenerator(block), {
           signal: controller.signal
         })
       })()).to.eventually.be.rejected
@@ -103,9 +113,15 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     it('parallel', async () => {
       const data = await getKeyValuePairs(100)
 
-      await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
+      await Promise.all(data.map(async d => {
+        await store.put(d.cid, toGenerator(d.block))
+      }))
 
-      const res = await all(store.getMany(data.map(d => d.cid)))
+      const res = await all(map(store.getMany(data.map(d => d.cid)), async ({ cid, bytes }) => ({
+        cid,
+        block: (await all(bytes))[0]
+      })))
+
       expect(res).to.deep.equal(data)
     })
   })
@@ -126,14 +142,20 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
 
       let index = 0
 
-      for await (const cid of store.putMany(data)) {
+      for await (const cid of store.putMany(data.map(({ cid, block }) => ({
+        cid,
+        bytes: toGenerator(block)
+      })))) {
         expect(data[index].cid).to.deep.equal(cid)
         index++
       }
 
       expect(index).to.equal(data.length)
 
-      const res = await all(store.getMany(data.map(d => d.cid)))
+      const res = await all(map(store.getMany(data.map(d => d.cid)), async ({ cid, bytes }) => ({
+        cid,
+        block: (await all(bytes))[0]
+      })))
       expect(res).to.deep.equal(data)
     })
 
@@ -143,11 +165,9 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       const controller = new AbortController()
       controller.abort()
 
-      await expect((async () => {
-        return all(store.putMany([{ cid, block }], {
-          signal: controller.signal
-        }))
-      })()).to.eventually.be.rejected
+      await expect(all(store.putMany([{ cid, bytes: toGenerator(block) }], {
+        signal: controller.signal
+      }))).to.eventually.be.rejected
         .with.property('message')
         .that.include('abort')
     })
@@ -169,10 +189,10 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
         cid, block
       } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(cid, toGenerator(block))
 
-      const res = await store.get(cid)
-      expect(res).to.equalBytes(block)
+      const res = await all(store.get(cid))
+      expect(res).to.deep.equal([block])
     })
 
     it('supports abort signals', async () => {
@@ -181,11 +201,11 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       const controller = new AbortController()
       controller.abort()
 
-      await expect((async () => {
-        return store.get(cid, {
+      await expect(drain((async function * () {
+        yield * store.get(cid, {
           signal: controller.signal
         })
-      })()).to.eventually.be.rejected
+      })())).to.eventually.be.rejected
         .with.property('message')
         .that.include('abort')
     })
@@ -196,7 +216,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       } = await getKeyValuePair()
 
       try {
-        await store.get(cid)
+        await all(store.get(cid))
       } catch (err) {
         expect(err).to.have.property('name', 'NotFoundError')
         return
@@ -222,28 +242,29 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
         cid, block
       } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(cid, toGenerator(block))
       const source = [cid]
 
       const res = await all(store.getMany(source))
       expect(res).to.have.lengthOf(1)
       expect(res[0].cid).to.deep.equal(cid)
-      expect(res[0].block).to.equalBytes(block)
+      expect(await all(res[0].bytes)).to.deep.equal([block])
     })
 
     it('supports abort signals', async () => {
       const { cid, block } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(cid, toGenerator(block))
 
       const controller = new AbortController()
       controller.abort()
 
-      await expect((async () => {
-        return all(store.getMany([cid], {
-          signal: controller.signal
-        }))
-      })()).to.eventually.be.rejected
+      await expect(drain(map(store.getMany([cid], {
+        signal: controller.signal
+      }), async ({ cid, bytes }) => ({
+        cid,
+        bytes: await all(bytes)
+      })))).to.eventually.be.rejected
         .with.property('message')
         .that.include('abort')
     })
@@ -253,14 +274,11 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
         cid
       } = await getKeyValuePair()
 
-      try {
-        await drain(store.getMany([cid]))
-      } catch (err) {
-        expect(err).to.have.property('name', 'NotFoundError')
-        return
-      }
-
-      throw new Error('expected error to be thrown')
+      await expect(drain(map(store.getMany([cid]), async ({ cid, bytes }) => ({
+        cid,
+        bytes: await all(bytes)
+      })))).to.eventually.be.rejected
+        .with.property('name', 'NotFoundError')
     })
   })
 
@@ -278,7 +296,10 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     it('returns all blocks', async () => {
       const data = await getKeyValuePairs(100)
 
-      await drain(store.putMany(data))
+      await drain(store.putMany(data.map(({ cid, block }) => ({
+        cid,
+        bytes: toGenerator(block)
+      }))))
 
       const allBlocks = await all(store.getAll())
 
@@ -296,14 +317,14 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
           throw new Error('Could not find cid/block pair')
         }
 
-        expect(retrievedPair.block).to.equalBytes(block)
+        await expect(all(retrievedPair.bytes)).to.eventually.deep.equal([block])
       }
     })
 
     it('supports abort signals', async () => {
       const { cid, block } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(cid, toGenerator(block))
 
       const controller = new AbortController()
       controller.abort()
@@ -334,17 +355,17 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
         cid, block
       } = await getKeyValuePair()
 
-      await store.put(cid, block)
-      await store.get(cid)
+      await store.put(cid, toGenerator(block))
+      await drain(store.get(cid))
       await store.delete(cid)
       const exists = await store.has(cid)
-      expect(exists).to.be.eql(false)
+      expect(exists).to.be.false()
     })
 
     it('supports abort signals', async () => {
       const { cid, block } = await getKeyValuePair()
 
-      await store.put(cid, block)
+      await store.put(cid, toGenerator(block))
 
       const controller = new AbortController()
       controller.abort()
@@ -387,7 +408,10 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
     it('streaming', async () => {
       const data = await getKeyValuePairs(100)
 
-      await drain(store.putMany(data))
+      await drain(store.putMany(data.map(({ cid, block }) => ({
+        cid,
+        bytes: toGenerator(block)
+      }))))
 
       const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
       res0.forEach(res => expect(res).to.be.eql(true))

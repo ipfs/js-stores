@@ -172,6 +172,7 @@
   "devDependencies": {
     "aegir": "^47.0.16",
     "interface-blockstore-tests": "^7.0.0",
+    "it-all": "^3.0.9",
     "threads": "^1.7.0"
   }
 }

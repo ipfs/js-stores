@@ -4,6 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
+import all from 'it-all'
 import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 // @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
@@ -66,10 +67,12 @@ describe('FsBlockstore', () => {
     await fs.open()
 
     const key = CID.parse('QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
-    await fs.put(key, Uint8Array.from([0, 1, 2, 3]))
+    await fs.put(key, (async function * () {
+      yield Uint8Array.from([0, 1, 2, 3])
+    })())
     await fs.delete(key)
 
-    await expect(fs.get(key)).to.eventually.be.rejected
+    await expect(all(fs.get(key))).to.eventually.be.rejected
       .with.property('name', 'NotFoundError')
   })
 
@@ -82,7 +85,7 @@ describe('FsBlockstore', () => {
 
     await fs.delete(key)
 
-    await expect(fs.get(key)).to.eventually.be.rejected
+    await expect(all(fs.get(key))).to.eventually.be.rejected
       .with.property('name', 'NotFoundError')
   })
 
@@ -162,12 +165,16 @@ describe('FsBlockstore', () => {
     const value = utf8Encoder.encode('Hello world')
 
     await Promise.all(
-      new Array(100).fill(0).map(async () => { await fs.put(key, value) })
+      new Array(100).fill(0).map(async () => {
+        await fs.put(key, (async function * () {
+          yield value
+        })())
+      })
     )
 
-    const res = await fs.get(key)
+    const res = await all(fs.get(key))
 
-    expect(res).to.deep.equal(value)
+    expect(res).to.deep.equal([value])
   })
 
   /**
@@ -195,9 +202,9 @@ describe('FsBlockstore', () => {
 
       const fs = new FsBlockstore(dir)
       await fs.open()
-      const res = await fs.get(key)
+      const res = await all(fs.get(key))
 
-      expect(res).to.deep.equal(value)
+      expect(res).to.deep.equal([value])
     } finally {
       await Promise.all(workers.map(async (worker: any) => Thread.terminate(worker)))
     }

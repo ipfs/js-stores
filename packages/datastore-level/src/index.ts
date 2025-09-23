@@ -54,7 +54,7 @@ import take from 'it-take'
 import { Level } from 'level'
 import { raceSignal } from 'race-signal'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
 interface BatchPut {
@@ -184,7 +184,7 @@ export class LevelDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     let it = map(this._query({
       values: true,
       prefix: q.prefix
@@ -214,7 +214,7 @@ export class LevelDatastore extends BaseDatastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     let it = map(this._query({
       values: false,
       prefix: q.prefix

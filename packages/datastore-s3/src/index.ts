@@ -44,10 +44,10 @@ import { Key } from 'interface-datastore'
 import { DeleteFailedError, GetFailedError, HasFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
 import filter from 'it-filter'
 import toBuffer from 'it-to-buffer'
-import { fromString as unint8arrayFromString } from 'uint8arrays'
+import { fromString as uint8arrayFromString } from 'uint8arrays'
 import type { S3 } from '@aws-sdk/client-s3'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 
 export interface S3DatastoreInit {
   /**
@@ -149,7 +149,7 @@ export class S3Datastore extends BaseDatastore {
       }
 
       if (typeof data.Body === 'string') {
-        return unint8arrayFromString(data.Body)
+        return uint8arrayFromString(data.Body)
       }
 
       if (data.Body instanceof Blob) {
@@ -263,7 +263,7 @@ export class S3Datastore extends BaseDatastore {
     }
   }
 
-  async * _all (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  async * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     for await (const key of this._allKeys({ prefix: q.prefix }, options)) {
       try {
         const res: Pair = {
@@ -281,7 +281,7 @@ export class S3Datastore extends BaseDatastore {
     }
   }
 
-  async * _allKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     const prefix = [this.path, q.prefix ?? ''].filter(Boolean).join('/').replace(/\/\/+/g, '/')
 
     // Get all the keys via list object, recursively as needed

@@ -3,6 +3,7 @@
 import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
+import toBuffer from 'it-to-buffer'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import { identity } from 'multiformats/hashes/identity'
@@ -20,13 +21,13 @@ describe('identity', () => {
     child = new MemoryBlockstore()
   })
 
-  it('has an identity CID', () => {
+  it('has an identity CID', async () => {
     const block = Uint8Array.from([0, 1, 2, 3, 4])
     const multihash = identity.digest(block)
     const cid = CID.createV1(identity.code, multihash)
 
     expect(blockstore.has(cid)).to.be.true()
-    expect(blockstore.get(cid)).to.equalBytes(block)
+    expect(toBuffer(await all(blockstore.get(cid)))).to.equalBytes(block)
   })
 
   it('does not have a non-identity CID', async () => {
@@ -70,7 +71,7 @@ describe('identity', () => {
 
     await blockstore.put(cid, block)
     expect(child.has(cid)).to.be.true()
-    expect(child.get(cid)).to.equalBytes(block)
+    expect(toBuffer(await all(child.get(cid)))).to.equalBytes(block)
   })
 
   it('gets CIDs from child', async () => {
@@ -82,7 +83,7 @@ describe('identity', () => {
 
     blockstore = new IdentityBlockstore(child)
     expect(blockstore.has(cid)).to.be.true()
-    expect(blockstore.get(cid)).to.equalBytes(block)
+    expect(toBuffer(await all(blockstore.get(cid)))).to.equalBytes(block)
   })
 
   it('has CIDs from child', async () => {

@@ -21,7 +21,7 @@ import sort from 'it-sort'
 import { raceSignal } from 'race-signal'
 import type { IDBPDatabase } from 'idb'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 
 export interface IDBDatastoreInit {
   /**
@@ -176,7 +176,7 @@ export class IDBDatastore extends BaseDatastore {
     }
   }
 
-  async * query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  async * query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     let it = this.#queryIt(q, (key, value) => {
       return { key, value }
     }, options)
@@ -192,7 +192,7 @@ export class IDBDatastore extends BaseDatastore {
     yield * it
   }
 
-  async * queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  async * queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     let it = this.#queryIt(q, (key) => key, options)
 
     if (Array.isArray(q.filters)) {

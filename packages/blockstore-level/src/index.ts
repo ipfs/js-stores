@@ -16,14 +16,17 @@
 
 import { BaseBlockstore } from 'blockstore-core'
 import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutFailedError } from 'interface-store'
+import all from 'it-all'
+import toBuffer from 'it-to-buffer'
 import { Level } from 'level'
 import { base32upper } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
 import { raceSignal } from 'race-signal'
+import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
 
@@ -79,10 +82,19 @@ export class LevelBlockstore extends BaseBlockstore {
     }
   }
 
-  async put (key: CID, value: Uint8Array, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, value: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     try {
       options?.signal?.throwIfAborted()
-      await raceSignal(this.db.put(this.#encode(key), value), options?.signal)
+
+      let buf: Uint8Array
+
+      if (value instanceof Uint8Array) {
+        buf = value
+      } else {
+        buf = toBuffer(await raceSignal(all(value), options?.signal))
+      }
+
+      await raceSignal(this.db.put(this.#encode(key), buf), options?.signal)
     } catch (err: any) {
       throw new PutFailedError(String(err))
     }
@@ -90,10 +102,12 @@ export class LevelBlockstore extends BaseBlockstore {
     return key
   }
 
-  async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     try {
       options?.signal?.throwIfAborted()
-      return await raceSignal(this.db.get(this.#encode(key)), options?.signal)
+      const buf = await raceSignal(this.db.get(this.#encode(key)), options?.signal)
+
+      yield buf
     } catch (err: any) {
       if (err.notFound != null) {
         throw new NotFoundError(String(err))
@@ -131,15 +145,15 @@ export class LevelBlockstore extends BaseBlockstore {
     await this.db.close()
   }
 
-  async * getAll (options?: AbortOptions | undefined): AwaitIterable<Pair> {
+  async * getAll (options?: AbortOptions | undefined): AwaitGenerator<Pair> {
     options?.signal?.throwIfAborted()
 
     for await (const { key, value } of this.#query({ values: true }, options)) {
-      yield { cid: this.#decode(key), block: value }
+      yield { cid: this.#decode(key), bytes: value }
     }
   }
 
-  async * #query (opts: { values: boolean, prefix?: string }, options?: AbortOptions): AsyncIterable<{ key: string, value: Uint8Array }> {
+  async * #query (opts: { values: boolean, prefix?: string }, options?: AbortOptions): AwaitGenerator<{ key: string, value: AwaitGenerator<Uint8Array> }> {
     options?.signal?.throwIfAborted()
 
     const iteratorOpts: IteratorOptions<string, Uint8Array> = {
@@ -162,8 +176,14 @@ export class LevelBlockstore extends BaseBlockstore {
     try {
       for await (const [key, value] of li) {
         options?.signal?.throwIfAborted()
-        // @ts-expect-error key is a buffer because keyEncoding is "buffer"
-        yield { key: new TextDecoder().decode(key), value }
+
+        yield {
+          // @ts-expect-error key is buffer even though types say string
+          key: uint8ArrayToString(key),
+          value: (async function * () {
+            yield value
+          })()
+        }
         options?.signal?.throwIfAborted()
       }
     } finally {

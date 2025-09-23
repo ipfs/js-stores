@@ -154,9 +154,11 @@
   },
   "devDependencies": {
     "@types/sinon": "^17.0.4",
+    "@types/xmldom": "^0.1.34",
     "aegir": "^47.0.16",
     "interface-datastore-tests": "^6.0.0",
     "p-defer": "^4.0.1",
-    "sinon": "^21.0.0"
+    "sinon": "^21.0.0",
+    "xmldom": "^0.6.0"
   }
 }

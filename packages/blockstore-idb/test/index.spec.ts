@@ -2,10 +2,12 @@
 
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
+import all from 'it-all'
+import drain from 'it-drain'
 import { CID } from 'multiformats/cid'
 import { IDBBlockstore } from '../src/index.js'
 
-describe('IndexedDB Blockstore', function () {
+describe('IndexedDB Blockstore', () => {
   describe('interface-blockstore (idb)', () => {
     interfaceBlockstoreTests({
       async setup () {
@@ -37,7 +39,7 @@ describe('IndexedDB Blockstore', function () {
 
           await store.put(key, Uint8Array.from([0, 1, 2, 3]))
           await store.has(key)
-          await store.get(key)
+          await drain(store.get(key))
         } catch (err) {
           clearInterval(updater)
           clearInterval(mutatorQuery)
@@ -49,13 +51,13 @@ describe('IndexedDB Blockstore', function () {
       const mutatorQuery = setInterval(async () => {
         try {
           for await (const { cid } of store.getAll()) {
-            await store.get(cid)
+            await drain(store.get(cid))
 
             const otherKey = CID.parse('QmaQwYWpchozXhFv8nvxprECWBSCEppN9dfd2VQiJfRo3F')
             const otherValue = Uint8Array.from([0, 1, 2, 3])
             await store.put(otherKey, otherValue)
-            const res = await store.get(otherKey)
-            expect(res).to.deep.equal(otherValue)
+            const res = await all(store.get(otherKey))
+            expect(res).to.deep.equal([otherValue])
           }
         } catch (err) {
           clearInterval(updater)

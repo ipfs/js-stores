@@ -25,7 +25,7 @@ import parallel from 'it-parallel-batch'
 import { raceSignal } from 'race-signal'
 import { Writer } from 'steno'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 /**
  * Write a file atomically
@@ -162,7 +162,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncIterable<Key> {
+  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AwaitGenerator<Key> {
     yield * parallel(
       map(source, ({ key, value }) => {
         return async () => {
@@ -185,7 +185,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * getMany (source: AwaitIterable<Key>, options?: AbortOptions): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<Key>, options?: AbortOptions): AwaitGenerator<Pair> {
     yield * parallel(
       map(source, key => {
         return async () => {
@@ -199,7 +199,7 @@ export class FsDatastore extends BaseDatastore {
     )
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options?: AbortOptions): AsyncIterable<Key> {
+  async * deleteMany (source: AwaitIterable<Key>, options?: AbortOptions): AwaitGenerator<Key> {
     yield * parallel(
       map(source, key => {
         return async () => {
@@ -239,7 +239,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * _all (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  async * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     let prefix = q.prefix ?? '**'
 
     // strip leading slashes
@@ -274,7 +274,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * _allKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     let prefix = q.prefix ?? '**'
 
     // strip leading slashes

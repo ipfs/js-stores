@@ -5,7 +5,7 @@ import sort from 'it-sort'
 import take from 'it-take'
 import { BaseDatastore } from './base.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 
 /**
  * A datastore that can combine multiple stores inside various
@@ -108,7 +108,7 @@ export class MountDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     const qs = this.mounts.map(m => {
       return m.datastore.query({
         prefix: q.prefix,
@@ -129,7 +129,7 @@ export class MountDatastore extends BaseDatastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     const qs = this.mounts.map(m => {
       return m.datastore.queryKeys({
         prefix: q.prefix,
@@ -137,7 +137,6 @@ export class MountDatastore extends BaseDatastore {
       }, options)
     })
 
-    /** @type AsyncIterable<Key> */
     let it = merge(...qs)
     if (q.filters != null) { q.filters.forEach(f => { it = filter(it, f) }) }
     if (q.orders != null) { q.orders.forEach(o => { it = sort(it, o) }) }
