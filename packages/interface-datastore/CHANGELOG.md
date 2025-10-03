@@ -1,3 +1,13 @@
+## [interface-datastore-v9.0.0](https://github.com/ipfs/js-stores/compare/interface-datastore-8.3.2...interface-datastore-9.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
 ## [interface-datastore-v8.3.2](https://github.com/ipfs/js-stores/compare/interface-datastore-8.3.1...interface-datastore-8.3.2) (2025-05-26)
 
 ### Dependencies
