@@ -1,3 +1,9 @@
+## [interface-datastore-tests-v6.0.5](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.4...interface-datastore-tests-6.0.5) (2025-10-03)
+
+### Dependencies
+
+* bump level from 8.0.1 to 10.0.0 ([#356](https://github.com/ipfs/js-stores/issues/356)) ([c0ec61f](https://github.com/ipfs/js-stores/commit/c0ec61fe965e3bad9d607a0bd3a3c750f00f41d0))
+
 ## [interface-datastore-tests-v6.0.4](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.3...interface-datastore-tests-6.0.4) (2025-10-03)
 
 ### Bug Fixes
