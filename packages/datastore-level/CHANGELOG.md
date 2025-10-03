@@ -1,3 +1,9 @@
+## [datastore-level-v12.0.1](https://github.com/ipfs/js-stores/compare/datastore-level-12.0.0...datastore-level-12.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
 ## [datastore-level-v12.0.0](https://github.com/ipfs/js-stores/compare/datastore-level-11.0.4...datastore-level-12.0.0) (2025-10-03)
 
 ### ⚠ BREAKING CHANGES
