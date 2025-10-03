@@ -1,3 +1,9 @@
+## [blockstore-core-v6.0.2](https://github.com/ipfs/js-stores/compare/blockstore-core-6.0.1...blockstore-core-6.0.2) (2025-10-03)
+
+### Dependencies
+
+* bump level from 8.0.1 to 10.0.0 ([#356](https://github.com/ipfs/js-stores/issues/356)) ([c0ec61f](https://github.com/ipfs/js-stores/commit/c0ec61fe965e3bad9d607a0bd3a3c750f00f41d0))
+
 ## [blockstore-core-v6.0.1](https://github.com/ipfs/js-stores/compare/blockstore-core-6.0.0...blockstore-core-6.0.1) (2025-10-03)
 
 ### Bug Fixes
