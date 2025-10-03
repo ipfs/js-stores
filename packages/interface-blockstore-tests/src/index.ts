@@ -385,12 +385,12 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       await Promise.all(data.map(async d => { await store.put(d.cid, d.block) }))
 
       const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
-      res0.forEach(res => expect(res).to.be.eql(true))
+      res0.forEach(res => expect(res).to.be.true())
 
       await Promise.all(data.map(async d => { await store.delete(d.cid) }))
 
       const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
-      res1.forEach(res => expect(res).to.be.eql(false))
+      res1.forEach(res => expect(res).to.be.false())
     })
   })
 
@@ -414,7 +414,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       }))))
 
       const res0 = await Promise.all(data.map(async d => store.has(d.cid)))
-      res0.forEach(res => expect(res).to.be.eql(true))
+      res0.forEach(res => expect(res).to.be.true())
 
       let index = 0
 
@@ -426,7 +426,7 @@ export function interfaceBlockstoreTests <B extends Blockstore = Blockstore> (te
       expect(index).to.equal(data.length)
 
       const res1 = await Promise.all(data.map(async d => store.has(d.cid)))
-      res1.forEach(res => expect(res).to.be.eql(false))
+      res1.forEach(res => expect(res).to.be.false())
     })
 
     it('supports abort signals', async () => {

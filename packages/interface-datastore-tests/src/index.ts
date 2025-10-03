@@ -248,7 +248,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await store.get(k)
       await store.delete(k)
       const exists = await store.has(k)
-      expect(exists).to.be.eql(false)
+      expect(exists).to.be.false()
     })
 
     it('supports abort signals', async () => {
@@ -277,12 +277,12 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await Promise.all(data.map(async d => { await store.put(d[0], d[1]) }))
 
       const res0 = await Promise.all(data.map(async d => store.has(d[0])))
-      res0.forEach(res => expect(res).to.be.eql(true))
+      res0.forEach(res => expect(res).to.be.true())
 
       await Promise.all(data.map(async d => { await store.delete(d[0]) }))
 
       const res1 = await Promise.all(data.map(async d => store.has(d[0])))
-      res1.forEach(res => expect(res).to.be.eql(false))
+      res1.forEach(res => expect(res).to.be.false())
     })
   })
 
@@ -304,7 +304,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       await drain(store.putMany(data))
 
       const res0 = await Promise.all(data.map(async d => store.has(d.key)))
-      res0.forEach(res => expect(res).to.be.eql(true))
+      res0.forEach(res => expect(res).to.be.true())
 
       let index = 0
 
@@ -316,7 +316,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
       expect(index).to.equal(data.length)
 
       const res1 = await Promise.all(data.map(async d => store.has(d.key)))
-      res1.forEach(res => expect(res).to.be.eql(false))
+      res1.forEach(res => expect(res).to.be.false())
     })
 
     it('supports abort signals', async () => {
@@ -474,7 +474,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
           const exp = expected.sort(s)
 
           res.forEach((r, i) => {
-            expect(r.key.toString()).to.be.eql(exp[i].key.toString())
+            expect(r.key.toString()).to.equal(exp[i].key.toString())
 
             if (r.value == null) {
               expect(exp[i].value).to.not.exist()
@@ -609,7 +609,7 @@ export function interfaceDatastoreTests <D extends Datastore = Datastore> (test:
           const exp = expected.sort(s)
 
           res.forEach((r, i) => {
-            expect(r.toString()).to.be.eql(exp[i].toString())
+            expect(r.toString()).to.equal(exp[i].toString())
           })
         } else {
           expect(res).to.be.eql(expected)

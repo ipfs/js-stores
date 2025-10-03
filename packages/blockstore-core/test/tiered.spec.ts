@@ -40,7 +40,7 @@ describe('Tiered', () => {
     })
 
     it('has - key not found', async () => {
-      expect(await store.has(CID.parse('QmTp9VkYvnHyrqKQuFPiuZkiX9gPcqj6x5LJ1rmWuSySnA'))).to.equal(false)
+      expect(await store.has(CID.parse('QmTp9VkYvnHyrqKQuFPiuZkiX9gPcqj6x5LJ1rmWuSySnA'))).to.be.false()
     })
 
     it('has and delete', async () => {

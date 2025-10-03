@@ -107,29 +107,21 @@ export class LevelBlockstore extends BaseBlockstore {
       options?.signal?.throwIfAborted()
       const buf = await raceSignal(this.db.get(this.#encode(key)), options?.signal)
 
-      yield buf
-    } catch (err: any) {
-      if (err.notFound != null) {
-        throw new NotFoundError(String(err))
+      if (buf == null) {
+        throw new NotFoundError()
       }
 
+      yield buf
+    } catch (err: any) {
       throw new GetFailedError(String(err))
     }
   }
 
   async has (key: CID, options?: AbortOptions): Promise<boolean> {
-    try {
-      options?.signal?.throwIfAborted()
-      await raceSignal(this.db.get(this.#encode(key)), options?.signal)
-    } catch (err: any) {
-      if (err.notFound != null) {
-        return false
-      }
+    options?.signal?.throwIfAborted()
+    const buf = await raceSignal(this.db.get(this.#encode(key)), options?.signal)
 
-      throw err
-    }
-
-    return true
+    return buf != null
   }
 
   async delete (key: CID, options?: AbortOptions): Promise<void> {
