@@ -10,6 +10,11 @@
 export type AwaitIterable<T> = Iterable<T> | AsyncIterable<T>
 
 /**
+ * A generator or async generator of values
+ */
+export type AwaitGenerator<T, TReturn = any, TNext = any> = Generator<T, TReturn, TNext> | AsyncGenerator<T, TReturn, TNext>
+
+/**
  * A value or a promise of a value
  */
 export type Await<T> = Promise<T> | T
@@ -21,10 +26,11 @@ export interface AbortOptions {
   signal?: AbortSignal
 }
 
-export interface Store<Key, Value, Pair, HasOptionsExtension = {},
-  PutOptionsExtension = {}, PutManyOptionsExtension = {},
-  GetOptionsExtension = {}, GetManyOptionsExtension = {},
-  DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> {
+export interface Store<Key, Input, Output, InputPair, OutputPair,
+  HasOptionsExtension = {}, PutOptionsExtension = {},
+  PutManyOptionsExtension = {}, GetOptionsExtension = {},
+  GetManyOptionsExtension = {}, DeleteOptionsExtension = {},
+  DeleteManyOptionsExtension = {}> {
   /**
    * Check for the existence of a value for the passed key
    *
@@ -50,7 +56,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * await store.put([{ key: new Key('awesome'), value: new Uint8Array([0, 1, 2, 3]) }])
    * ```
    */
-  put(key: Key, val: Value, options?: AbortOptions & PutOptionsExtension): Await<Key>
+  put(key: Key, val: Input, options?: AbortOptions & PutOptionsExtension): Await<Key>
 
   /**
    * Store the given key/value pairs
@@ -65,7 +71,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * ```
    */
   putMany(
-    source: AwaitIterable<Pair>,
+    source: AwaitIterable<InputPair>,
     options?: AbortOptions & PutManyOptionsExtension
   ): AwaitIterable<Key>
 
@@ -79,7 +85,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
    * // => got content: datastore
    * ```
    */
-  get(key: Key, options?: AbortOptions & GetOptionsExtension): Await<Value>
+  get(key: Key, options?: AbortOptions & GetOptionsExtension): Output
 
   /**
    * Retrieve values for the passed keys
@@ -95,7 +101,7 @@ export interface Store<Key, Value, Pair, HasOptionsExtension = {},
   getMany(
     source: AwaitIterable<Key>,
     options?: AbortOptions & GetManyOptionsExtension
-  ): AwaitIterable<Pair>
+  ): AwaitIterable<OutputPair>
 
   /**
    * Remove the record for the passed key

@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 
+import './utils/domparser-polyfill.js'
 import { S3 } from '@aws-sdk/client-s3'
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore'

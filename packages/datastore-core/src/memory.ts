@@ -2,7 +2,7 @@ import { Key } from 'interface-datastore/key'
 import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.js'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
+import type { AbortOptions, Await, AwaitGenerator } from 'interface-store'
 
 export class MemoryDatastore extends BaseDatastore {
   private readonly data: Map<string, Uint8Array>
@@ -43,7 +43,7 @@ export class MemoryDatastore extends BaseDatastore {
     this.data.delete(key.toString())
   }
 
-  * _all (q: Query, options?: AbortOptions): AwaitIterable<Pair> {
+  * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     options?.signal?.throwIfAborted()
     for (const [key, value] of this.data.entries()) {
       yield { key: new Key(key), value }
@@ -51,7 +51,7 @@ export class MemoryDatastore extends BaseDatastore {
     }
   }
 
-  * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitIterable<Key> {
+  * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     options?.signal?.throwIfAborted()
     for (const key of this.data.keys()) {
       yield new Key(key)
