@@ -136,7 +136,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "interface-blockstore": "^5.0.0",
+    "interface-blockstore": "^6.0.0",
     "it-all": "^3.0.8",
     "it-drain": "^3.0.9",
     "it-map": "^3.1.4",
