@@ -1,6 +1,6 @@
 {
   "name": "blockstore-level",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Blockstore implementation with level(up|down) backend",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/js-stores/tree/main/packages/blockstore-level#readme",
