@@ -1,3 +1,13 @@
+## [interface-store-v7.0.0](https://github.com/ipfs/js-stores/compare/interface-store-6.0.3...interface-store-7.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
 ## [interface-store-v6.0.3](https://github.com/ipfs/js-stores/compare/interface-store-6.0.2...interface-store-6.0.3) (2025-05-26)
 
 ### Dependencies

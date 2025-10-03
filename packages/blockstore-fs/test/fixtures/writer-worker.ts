@@ -19,7 +19,9 @@ expose({
   async put (cidString: string, value: Uint8Array) {
     const key = CID.parse(cidString)
     try {
-      return await fs.put(key, value)
+      return await fs.put(key, (async function * () {
+        yield value
+      })())
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Error putting block', err)

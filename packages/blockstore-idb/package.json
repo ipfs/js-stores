@@ -147,11 +147,14 @@
     "idb": "^8.0.3",
     "interface-blockstore": "^5.0.0",
     "interface-store": "^6.0.0",
+    "it-all": "^3.0.9",
+    "it-to-buffer": "^4.0.10",
     "multiformats": "^13.3.6",
     "race-signal": "^2.0.0"
   },
   "devDependencies": {
     "aegir": "^47.0.16",
-    "interface-blockstore-tests": "^7.0.0"
+    "interface-blockstore-tests": "^7.0.0",
+    "it-drain": "^3.0.10"
   }
 }

@@ -2,7 +2,7 @@ import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.js'
 import type { Pair, Query, KeyQuery } from 'interface-datastore'
 import type { Key } from 'interface-datastore/key'
-import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
+import type { AbortOptions, Await, AwaitGenerator } from 'interface-store'
 
 export class BlackHoleDatastore extends BaseDatastore {
   put (key: Key, value: Uint8Array, options?: AbortOptions): Await<Key> {
@@ -25,12 +25,12 @@ export class BlackHoleDatastore extends BaseDatastore {
   }
 
   // eslint-disable-next-line require-yield
-  * _all (q: Query, options?: AbortOptions): AwaitIterable<Pair> {
+  * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     options?.signal?.throwIfAborted()
   }
 
   // eslint-disable-next-line require-yield
-  * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitIterable<Key> {
+  * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     options?.signal?.throwIfAborted()
   }
 }
