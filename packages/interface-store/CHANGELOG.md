@@ -1,3 +1,9 @@
+## [interface-store-v7.0.1](https://github.com/ipfs/js-stores/compare/interface-store-7.0.0...interface-store-7.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* accept iterables, return generators ([a685552](https://github.com/ipfs/js-stores/commit/a685552f330c5871e60dcee2632c393900cf36f5))
+
 ## [interface-store-v7.0.0](https://github.com/ipfs/js-stores/compare/interface-store-6.0.3...interface-store-7.0.0) (2025-10-03)
 
 ### ⚠ BREAKING CHANGES
