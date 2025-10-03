@@ -1,6 +1,6 @@
 {
   "name": "blockstore-core",
-  "version": "5.0.4",
+  "version": "6.0.0",
   "description": "Contains various implementations of the API contract described in interface-blockstore",
   "author": "Alex Potsides <alex.potsides@protocol.ai>",
   "license": "Apache-2.0 OR MIT",
@@ -185,8 +185,8 @@
   },
   "dependencies": {
     "@libp2p/logger": "^6.0.0",
-    "interface-blockstore": "^5.0.0",
-    "interface-store": "^6.0.0",
+    "interface-blockstore": "^6.0.0",
+    "interface-store": "^7.0.0",
     "it-all": "^3.0.9",
     "it-filter": "^3.1.3",
     "it-merge": "^3.0.11",
@@ -194,7 +194,7 @@
   },
   "devDependencies": {
     "aegir": "^47.0.16",
-    "interface-blockstore-tests": "^7.0.0",
+    "interface-blockstore-tests": "^8.0.0",
     "it-drain": "^3.0.9",
     "it-to-buffer": "^4.0.10",
     "uint8arrays": "^5.1.0"

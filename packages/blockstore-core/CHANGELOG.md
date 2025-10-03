@@ -1,3 +1,17 @@
+## [blockstore-core-v6.0.0](https://github.com/ipfs/js-stores/compare/blockstore-core-5.0.4...blockstore-core-6.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
+### Dependencies
+
+* bump @libp2p/logger ([#359](https://github.com/ipfs/js-stores/issues/359)) ([edb5a1f](https://github.com/ipfs/js-stores/commit/edb5a1f8b575a27ad28bc2e1c4e4d52e1f114ebc))
+
 ## [blockstore-core-v5.0.4](https://github.com/ipfs/js-stores/compare/blockstore-core-5.0.3...blockstore-core-5.0.4) (2025-05-28)
 
 ### Bug Fixes

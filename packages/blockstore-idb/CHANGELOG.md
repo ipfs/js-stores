@@ -1,3 +1,13 @@
+## [blockstore-idb-v3.0.0](https://github.com/ipfs/js-stores/compare/blockstore-idb-2.0.4...blockstore-idb-3.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
 ## [blockstore-idb-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-idb-2.0.3...blockstore-idb-2.0.4) (2025-09-02)
 
 ### Dependencies
