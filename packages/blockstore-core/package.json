@@ -1,6 +1,6 @@
 {
   "name": "blockstore-core",
-  "version": "5.0.4",
+  "version": "6.0.0",
   "description": "Contains various implementations of the API contract described in interface-blockstore",
   "author": "Alex Potsides <alex.potsides@protocol.ai>",
   "license": "Apache-2.0 OR MIT",
