@@ -116,31 +116,26 @@ export class LevelDatastore extends BaseDatastore {
 
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     let data
+
     try {
       options?.signal?.throwIfAborted()
       data = await raceSignal(this.db.get(key.toString()), options?.signal)
     } catch (err: any) {
-      if (err.notFound != null) {
-        throw new NotFoundError(String(err))
-      }
-
       throw new GetFailedError(String(err))
     }
+
+    if (data == null) {
+      throw new NotFoundError()
+    }
+
     return data
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
-    try {
-      options?.signal?.throwIfAborted()
-      await raceSignal(this.db.get(key.toString()), options?.signal)
-    } catch (err: any) {
-      if (err.notFound != null) {
-        return false
-      }
+    options?.signal?.throwIfAborted()
+    const data = await raceSignal(this.db.get(key.toString()), options?.signal)
 
-      throw err
-    }
-    return true
+    return data != null
   }
 
   async delete (key: Key, options?: AbortOptions): Promise<void> {
