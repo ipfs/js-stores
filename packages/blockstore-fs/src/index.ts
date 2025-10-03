@@ -159,7 +159,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncIterable<CID> {
+  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncGenerator<CID> {
     yield * parallelBatch(
       map(source, ({ cid, bytes }) => {
         return async () => {
@@ -191,7 +191,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<Pair> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
@@ -220,7 +220,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncIterable<CID> {
+  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<CID> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {

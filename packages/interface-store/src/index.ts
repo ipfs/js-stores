@@ -73,7 +73,7 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
   putMany(
     source: AwaitIterable<InputPair>,
     options?: AbortOptions & PutManyOptionsExtension
-  ): AwaitIterable<Key>
+  ): AwaitGenerator<Key>
 
   /**
    * Retrieve the value stored under the given key
@@ -101,7 +101,7 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
   getMany(
     source: AwaitIterable<Key>,
     options?: AbortOptions & GetManyOptionsExtension
-  ): AwaitIterable<OutputPair>
+  ): AwaitGenerator<OutputPair>
 
   /**
    * Remove the record for the passed key
@@ -131,7 +131,7 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
   deleteMany(
     source: AwaitIterable<Key>,
     options?: AbortOptions & DeleteManyOptionsExtension
-  ): AwaitIterable<Key>
+  ): AwaitGenerator<Key>
 }
 
 export * from './errors.js'
