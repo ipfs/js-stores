@@ -1,6 +1,6 @@
 {
   "name": "datastore-level",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "description": "Datastore implementation with level(up|down) backend",
   "author": "Friedel Ziegelmayer<dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",

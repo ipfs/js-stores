@@ -1,3 +1,9 @@
+## [datastore-s3-v13.0.1](https://github.com/ipfs/js-stores/compare/datastore-s3-13.0.0...datastore-s3-13.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
 ## [datastore-s3-v13.0.0](https://github.com/ipfs/js-stores/compare/datastore-s3-12.0.5...datastore-s3-13.0.0) (2025-10-03)
 
 ### ⚠ BREAKING CHANGES
