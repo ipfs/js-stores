@@ -1,3 +1,17 @@
+## [blockstore-s3-v3.0.0](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.5...blockstore-s3-3.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
+### Trivial Changes
+
+* bump sinon from 20.0.0 to 21.0.0 ([#351](https://github.com/ipfs/js-stores/issues/351)) ([f24dd4f](https://github.com/ipfs/js-stores/commit/f24dd4f9b6eb681b1f9652409a558a8bcc50f4a4))
+
 ## [blockstore-s3-v2.0.5](https://github.com/ipfs/js-stores/compare/blockstore-s3-2.0.4...blockstore-s3-2.0.5) (2025-09-02)
 
 ### Bug Fixes

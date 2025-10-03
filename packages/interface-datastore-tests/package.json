@@ -136,7 +136,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "interface-datastore": "^8.0.0",
+    "interface-datastore": "^9.0.0",
     "iso-random-stream": "^2.0.2",
     "it-all": "^3.0.8",
     "it-drain": "^3.0.9",
