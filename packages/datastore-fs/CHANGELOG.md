@@ -1,3 +1,9 @@
+## [datastore-fs-v11.0.1](https://github.com/ipfs/js-stores/compare/datastore-fs-11.0.0...datastore-fs-11.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
 ## [datastore-fs-v11.0.0](https://github.com/ipfs/js-stores/compare/datastore-fs-10.0.6...datastore-fs-11.0.0) (2025-10-03)
 
 ### ⚠ BREAKING CHANGES
