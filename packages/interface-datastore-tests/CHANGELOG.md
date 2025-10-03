@@ -1,3 +1,9 @@
+## [interface-datastore-tests-v6.0.4](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.3...interface-datastore-tests-6.0.4) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
 ## [interface-datastore-tests-v6.0.3](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.2...interface-datastore-tests-6.0.3) (2025-05-28)
 
 ### Bug Fixes
