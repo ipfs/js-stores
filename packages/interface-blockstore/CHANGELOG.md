@@ -1,3 +1,9 @@
+## [interface-blockstore-v6.0.1](https://github.com/ipfs/js-stores/compare/interface-blockstore-6.0.0...interface-blockstore-6.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
 ## [interface-blockstore-v6.0.0](https://github.com/ipfs/js-stores/compare/interface-blockstore-5.3.2...interface-blockstore-6.0.0) (2025-10-03)
 
 ### ⚠ BREAKING CHANGES
