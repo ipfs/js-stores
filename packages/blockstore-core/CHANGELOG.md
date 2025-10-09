@@ -1,3 +1,9 @@
+## [blockstore-core-v6.1.0](https://github.com/ipfs/js-stores/compare/blockstore-core-6.0.2...blockstore-core-6.1.0) (2025-10-09)
+
+### Features
+
+* enforce max digest length ([#360](https://github.com/ipfs/js-stores/issues/360)) ([c5b039a](https://github.com/ipfs/js-stores/commit/c5b039ae248cce82bf02fbf0383da8e65e140786))
+
 ## [blockstore-core-v6.0.2](https://github.com/ipfs/js-stores/compare/blockstore-core-6.0.1...blockstore-core-6.0.2) (2025-10-03)
 
 ### Dependencies
