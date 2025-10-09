@@ -142,12 +142,12 @@ describe('identity', () => {
     expect(blockstore.has(CID.createV1(raw.code, identity.digest(ok)))).to.be.ok()
 
     expect(() => all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.throw()
-      .with.property('name', 'IdentityDigestTooLongError')
+      .with.property('name', 'IdentityHashDigestTooLongError')
 
     expect(() => blockstore.put(CID.createV1(raw.code, identity.digest(tooLong)), buf)).to.throw()
-      .with.property('name', 'IdentityDigestTooLongError')
+      .with.property('name', 'IdentityHashDigestTooLongError')
 
     expect(() => blockstore.has(CID.createV1(raw.code, identity.digest(tooLong)))).to.throw()
-      .with.property('name', 'IdentityDigestTooLongError')
+      .with.property('name', 'IdentityHashDigestTooLongError')
   })
 })
