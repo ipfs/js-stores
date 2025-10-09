@@ -1,3 +1,9 @@
+## [blockstore-core-v6.1.1](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.0...blockstore-core-6.1.1) (2025-10-09)
+
+### Bug Fixes
+
+* update error name ([304ec71](https://github.com/ipfs/js-stores/commit/304ec7142b16ad0cd70537d48eb69294faacffe5))
+
 ## [blockstore-core-v6.1.0](https://github.com/ipfs/js-stores/compare/blockstore-core-6.0.2...blockstore-core-6.1.0) (2025-10-09)
 
 ### Features
