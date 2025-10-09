@@ -7,17 +7,32 @@ import type { CID } from 'multiformats/cid'
 // https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2
 const IDENTITY_CODEC = 0x00
 
+class IdentityDigestTooLongError extends Error {
+  static name = 'IdentityDigestTooLongError'
+  name = 'IdentityDigestTooLongError'
+}
+
+export interface IdentityBlockstoreInit {
+  maxDigestLength?: number
+}
+
 export class IdentityBlockstore extends BaseBlockstore {
   private readonly child?: Blockstore
+  private readonly maxDigestLength?: number
 
-  constructor (child?: Blockstore) {
+  constructor (child?: Blockstore, init?: IdentityBlockstoreInit) {
     super()
 
     this.child = child
+    this.maxDigestLength = init?.maxDigestLength
   }
 
   put (key: CID, block: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Await<CID> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       return key
     }
@@ -32,6 +47,10 @@ export class IdentityBlockstore extends BaseBlockstore {
 
   * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       yield key.multihash.digest
       return
@@ -47,6 +66,10 @@ export class IdentityBlockstore extends BaseBlockstore {
 
   has (key: CID, options?: AbortOptions): Await<boolean> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       return true
     }
@@ -61,6 +84,10 @@ export class IdentityBlockstore extends BaseBlockstore {
 
   delete (key: CID, options?: AbortOptions): Await<void> {
     if (key.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       return
     }

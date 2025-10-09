@@ -127,4 +127,27 @@ describe('identity', () => {
     expect(result).to.have.lengthOf(1)
     expect(result[0].cid.toString()).to.equal(cid.toString())
   })
+
+  it('should enforce a maximum digest size', async () => {
+    blockstore = new IdentityBlockstore(child, {
+      maxDigestLength: 5
+    })
+
+    const tooLong = Uint8Array.from([0, 1, 2, 3, 4, 5])
+    const ok = Uint8Array.from([0, 1, 2, 3, 4])
+    const buf = Uint8Array.from([])
+
+    expect(blockstore.get(CID.createV1(raw.code, identity.digest(ok)))).to.be.ok()
+    expect(blockstore.put(CID.createV1(raw.code, identity.digest(ok)), buf)).to.be.ok()
+    expect(blockstore.has(CID.createV1(raw.code, identity.digest(ok)))).to.be.ok()
+
+    expect(() => all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.throw()
+      .with.property('name', 'IdentityDigestTooLongError')
+
+    expect(() => blockstore.put(CID.createV1(raw.code, identity.digest(tooLong)), buf)).to.throw()
+      .with.property('name', 'IdentityDigestTooLongError')
+
+    expect(() => blockstore.has(CID.createV1(raw.code, identity.digest(tooLong)))).to.throw()
+      .with.property('name', 'IdentityDigestTooLongError')
+  })
 })
