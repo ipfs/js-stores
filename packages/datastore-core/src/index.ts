@@ -71,6 +71,7 @@ export { ShardingDatastore } from './sharding.js'
 export { MountDatastore } from './mount.js'
 export { TieredDatastore } from './tiered.js'
 export { NamespaceDatastore } from './namespace.js'
+export { TieredLimitDatastore } from './tiered-limit.js'
 
 export { shard }
 
