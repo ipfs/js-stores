@@ -45,7 +45,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     return this.child.put(key, block, options)
   }
 
-  * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     if (key.multihash.code === IDENTITY_CODEC) {
       if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
         throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
@@ -97,7 +97,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     }
   }
 
-  * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
     if (this.child != null) {
       yield * this.child.getAll(options)
     }

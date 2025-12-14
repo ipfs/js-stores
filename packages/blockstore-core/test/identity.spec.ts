@@ -141,7 +141,7 @@ describe('identity', () => {
     expect(blockstore.put(CID.createV1(raw.code, identity.digest(ok)), buf)).to.be.ok()
     expect(blockstore.has(CID.createV1(raw.code, identity.digest(ok)))).to.be.ok()
 
-    expect(() => all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.throw()
+    await expect(all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.eventually.be.rejected()
       .with.property('name', 'IdentityHashDigestTooLongError')
 
     expect(() => blockstore.put(CID.createV1(raw.code, identity.digest(tooLong)), buf)).to.throw()
@@ -150,4 +150,24 @@ describe('identity', () => {
     expect(() => blockstore.has(CID.createV1(raw.code, identity.digest(tooLong)))).to.throw()
       .with.property('name', 'IdentityHashDigestTooLongError')
   })
+
+  it('should work with async generator blockstores (fixes yield* delegation bug)', async () => {
+    // This test specifically verifies that IdentityBlockstore.get() works correctly
+    // when delegating to child blockstores that return async generators.
+    // Previously, IdentityBlockstore.get() was a sync generator (* get) which
+    // cannot delegate to async generators using yield*. The fix changes it to
+    // async * get, allowing proper delegation.
+    const block = Uint8Array.from([0, 1, 2, 3, 4]);
+    const multihash = await sha256.digest(block);
+    const cid = CID.createV1(raw.code, multihash);
+
+    blockstore = new IdentityBlockstore(child);
+
+    // Put block in child
+    await child.put(cid, block);
+
+    // Get block through IdentityBlockstore - this should work with async generator delegation
+    const result = await toBuffer(blockstore.get(cid));
+    expect(result).to.equalBytes(block);
+  });
 })

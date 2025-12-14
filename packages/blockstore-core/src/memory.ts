@@ -51,7 +51,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     return key
   }
 
-  * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     options?.signal?.throwIfAborted()
     const buf = this.data.get(base32.encode(key.multihash.bytes))
 
@@ -72,10 +72,10 @@ export class MemoryBlockstore extends BaseBlockstore {
     this.data.delete(base32.encode(key.multihash.bytes))
   }
 
-  * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
     options?.signal?.throwIfAborted()
 
-    for (const [key, value] of this.data.entries()) {
+    for await (const [key, value] of this.data.entries()) {
       yield {
         cid: CID.createV1(raw.code, Digest.decode(base32.decode(key))),
         bytes: (async function * () {
