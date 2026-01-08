@@ -11,6 +11,7 @@ import { sha256 } from 'multiformats/hashes/sha2'
 import { IdentityBlockstore } from '../src/identity.js'
 import { MemoryBlockstore } from '../src/memory.js'
 import type { Blockstore } from 'interface-blockstore'
+import type { AbortOptions } from 'interface-store'
 
 describe('identity', () => {
   let blockstore: Blockstore
@@ -86,6 +87,20 @@ describe('identity', () => {
     expect(toBuffer(await all(blockstore.get(cid)))).to.equalBytes(block)
   })
 
+  it('gets CIDs from child (async)', async () => {
+    const block = Uint8Array.from([0, 1, 2, 3, 4])
+    const multihash = await sha256.digest(block)
+    const cid = CID.createV1(raw.code, multihash)
+
+    await child.put(cid, block)
+
+    const { get } = child
+    child.get = async function * (key: CID, options: AbortOptions) { yield * get.bind(child)(key, options) }
+    blockstore = new IdentityBlockstore(child)
+    expect(blockstore.has(cid)).to.be.true()
+    expect(toBuffer(await all(blockstore.get(cid)))).to.equalBytes(block)
+  })
+
   it('has CIDs from child', async () => {
     const block = Uint8Array.from([0, 1, 2, 3, 4])
     const multihash = await sha256.digest(block)
@@ -128,6 +143,24 @@ describe('identity', () => {
     expect(result[0].cid.toString()).to.equal(cid.toString())
   })
 
+  it('gets all pairs from child (async)', async () => {
+    const block = Uint8Array.from([0, 1, 2, 3, 4])
+    const multihash = await sha256.digest(block)
+    const cid = CID.createV1(raw.code, multihash)
+
+    await child.put(cid, block)
+
+    const { getAll } = child
+    child.getAll = async function * (options?: AbortOptions) { yield * getAll.bind(child)(options) }
+    blockstore = new IdentityBlockstore(child)
+    expect(blockstore.has(cid)).to.be.true()
+
+    const result = await all(blockstore.getAll())
+
+    expect(result).to.have.lengthOf(1)
+    expect(result[0].cid.toString()).to.equal(cid.toString())
+  })
+
   it('should enforce a maximum digest size', async () => {
     blockstore = new IdentityBlockstore(child, {
       maxDigestLength: 5
@@ -141,7 +174,7 @@ describe('identity', () => {
     expect(blockstore.put(CID.createV1(raw.code, identity.digest(ok)), buf)).to.be.ok()
     expect(blockstore.has(CID.createV1(raw.code, identity.digest(ok)))).to.be.ok()
 
-    expect(() => all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.throw()
+    await expect(all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.eventually.be.rejected()
       .with.property('name', 'IdentityHashDigestTooLongError')
 
     expect(() => blockstore.put(CID.createV1(raw.code, identity.digest(tooLong)), buf)).to.throw()
