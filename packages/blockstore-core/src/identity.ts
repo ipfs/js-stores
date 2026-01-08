@@ -1,7 +1,7 @@
 import { NotFoundError } from 'interface-store'
 import { BaseBlockstore } from './base.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 // https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2
