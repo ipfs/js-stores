@@ -174,7 +174,7 @@ describe('identity', () => {
     expect(blockstore.put(CID.createV1(raw.code, identity.digest(ok)), buf)).to.be.ok()
     expect(blockstore.has(CID.createV1(raw.code, identity.digest(ok)))).to.be.ok()
 
-    expect(() => all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.throw()
+    await expect(all(blockstore.get(CID.createV1(raw.code, identity.digest(tooLong))))).to.eventually.be.rejected()
       .with.property('name', 'IdentityHashDigestTooLongError')
 
     expect(() => blockstore.put(CID.createV1(raw.code, identity.digest(tooLong)), buf)).to.throw()
