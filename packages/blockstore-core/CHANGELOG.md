@@ -1,3 +1,9 @@
+## [blockstore-core-v6.1.2](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.1...blockstore-core-6.1.2) (2026-01-08)
+
+### Bug Fixes
+
+* identity supports async get and getAll ([#365](https://github.com/ipfs/js-stores/issues/365)) ([a1b95fc](https://github.com/ipfs/js-stores/commit/a1b95fc173c066d69bf0f1145d7b458941065be6))
+
 ## [blockstore-core-v6.1.1](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.0...blockstore-core-6.1.1) (2025-10-09)
 
 ### Bug Fixes
