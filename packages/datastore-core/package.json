@@ -90,6 +90,10 @@
     "./tiered": {
       "types": "./dist/src/tiered.d.ts",
       "import": "./dist/src/tiered.js"
+    },
+    "./tiered-limit": {
+      "types": "./dist/src/tiered-limit.d.ts",
+      "import": "./dist/src/tiered-limit.js"
     }
   },
   "release": {
