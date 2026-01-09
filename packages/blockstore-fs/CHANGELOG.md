@@ -1,3 +1,31 @@
+## [blockstore-fs-v3.0.2](https://github.com/ipfs/js-stores/compare/blockstore-fs-3.0.1...blockstore-fs-3.0.2) (2025-10-03)
+
+### Bug Fixes
+
+* accept iterables, return generators ([a685552](https://github.com/ipfs/js-stores/commit/a685552f330c5871e60dcee2632c393900cf36f5))
+
+## [blockstore-fs-v3.0.1](https://github.com/ipfs/js-stores/compare/blockstore-fs-3.0.0...blockstore-fs-3.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
+## [blockstore-fs-v3.0.0](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.5...blockstore-fs-3.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
+## [blockstore-fs-v2.0.5](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.4...blockstore-fs-2.0.5) (2025-09-02)
+
+### Dependencies
+
+* bump race-signal from 1.1.3 to 2.0.0 ([#355](https://github.com/ipfs/js-stores/issues/355)) ([518fee8](https://github.com/ipfs/js-stores/commit/518fee89d3430534c0ec39551e920447fd558581))
+
 ## [blockstore-fs-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-fs-2.0.3...blockstore-fs-2.0.4) (2025-05-28)
 
 ### Bug Fixes

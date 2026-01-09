@@ -39,11 +39,11 @@ describe('Tiered', () => {
       const val = await store.get(k)
       expect(val).to.be.eql(v)
       const exists = await store.has(k)
-      expect(exists).to.be.eql(true)
+      expect(exists).to.be.true()
     })
 
     it('has - key not found', async () => {
-      expect(await store.has(new Key('hello1'))).to.be.eql(false)
+      expect(await store.has(new Key('hello1'))).to.be.false()
     })
 
     it('has and delete', async () => {

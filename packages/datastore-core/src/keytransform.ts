@@ -3,7 +3,7 @@ import { pipe } from 'it-pipe'
 import { BaseDatastore } from './base.js'
 import type { KeyTransform } from './index.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 /**
  * A datastore shim, that wraps around a given datastore, changing
@@ -39,7 +39,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     await this.child.delete(this.transform.convert(key), options)
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AsyncIterable<Key> {
+  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
     const transform = this.transform
     const child = this.child
 
@@ -60,7 +60,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     )
   }
 
-  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Pair> {
     const transform = this.transform
     const child = this.child
 
@@ -81,7 +81,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     )
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AsyncIterable<Key> {
+  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
     const transform = this.transform
     const child = this.child
 
@@ -114,7 +114,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     const query: Query = {
       ...q
     }
@@ -148,7 +148,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     })
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     const query = {
       ...q
     }

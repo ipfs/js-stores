@@ -99,9 +99,9 @@
 import { Key } from './key.js'
 import type {
   Await,
-  AwaitIterable,
   Store,
-  AbortOptions
+  AbortOptions,
+  AwaitGenerator
 } from 'interface-store'
 
 export interface Pair {
@@ -121,7 +121,7 @@ GetOptionsExtension = {}, GetManyOptionsExtension = {},
 DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {},
 QueryOptionsExtension = {}, QueryKeysOptionsExtension = {},
 BatchOptionsExtension = {}
-> extends Store<Key, Uint8Array, Pair, HasOptionsExtension,
+> extends Store<Key, Uint8Array, Await<Uint8Array>, Pair, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
   DeleteOptionsExtension, DeleteManyOptionsExtension> {
@@ -155,7 +155,7 @@ BatchOptionsExtension = {}
    * console.log('ALL THE VALUES', list)
    * ```
    */
-  query(query: Query, options?: AbortOptions & QueryOptionsExtension): AwaitIterable<Pair>
+  query(query: Query, options?: AbortOptions & QueryOptionsExtension): AwaitGenerator<Pair>
 
   /**
    * Query the datastore.
@@ -170,7 +170,7 @@ BatchOptionsExtension = {}
    * console.log('ALL THE KEYS', key)
    * ```
    */
-  queryKeys(query: KeyQuery, options?: AbortOptions & QueryKeysOptionsExtension): AwaitIterable<Key>
+  queryKeys(query: KeyQuery, options?: AbortOptions & QueryKeysOptionsExtension): AwaitGenerator<Key>
 }
 
 export interface QueryFilter { (item: Pair): boolean }

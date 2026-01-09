@@ -119,7 +119,7 @@ describe('FsDatastore', () => {
     await ShardingDatastore.create(fstore, new shard.NextToLast(2))
 
     const file = await fs.readFile(path.join(dir, shard.SHARDING_FN + '.data'))
-    expect(file.toString()).to.be.eql('/repo/flatfs/shard/v1/next-to-last/2\n')
+    expect(file.toString()).to.equal('/repo/flatfs/shard/v1/next-to-last/2\n')
 
     await fs.rm(dir, {
       recursive: true

@@ -16,6 +16,7 @@
 
 import type {
   AbortOptions,
+  AwaitGenerator,
   AwaitIterable,
   Store
 } from 'interface-store'
@@ -23,13 +24,18 @@ import type { CID } from 'multiformats/cid'
 
 export interface Pair {
   cid: CID
-  block: Uint8Array
+  bytes: AwaitGenerator<Uint8Array>
+}
+
+export interface InputPair {
+  cid: CID
+  bytes: Uint8Array | AwaitIterable<Uint8Array>
 }
 
 export interface Blockstore <HasOptionsExtension = {},
 PutOptionsExtension = {}, PutManyOptionsExtension = {},
 GetOptionsExtension = {}, GetManyOptionsExtension = {}, GetAllOptionsExtension = {},
-DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array, Pair, HasOptionsExtension,
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array | AwaitIterable<Uint8Array>, AwaitGenerator<Uint8Array>, InputPair, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
   DeleteOptionsExtension, DeleteManyOptionsExtension> {
@@ -38,11 +44,11 @@ DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID,
    *
    * @example
    * ```js
-   * for await (const { multihash, block } of store.getAll()) {
-   *   console.log('got:', multihash, block)
-   *   // => got MultihashDigest('Qmfoo') Uint8Array[...]
+   * for await (const { multihash, bytes } of store.getAll()) {
+   *   console.log('got:', multihash, bytes)
+   *   // => got MultihashDigest('Qmfoo') [Uint8Array[...]...]
    * }
    * ```
    */
-  getAll(options?: AbortOptions & GetAllOptionsExtension): AwaitIterable<Pair>
+  getAll(options?: AbortOptions & GetAllOptionsExtension): AwaitGenerator<Pair>
 }

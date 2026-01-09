@@ -23,13 +23,14 @@ import { Writer } from 'steno'
 import { NextToLast } from './sharding.js'
 import type { ShardingStrategy } from './sharding.js'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
+import type { FileHandle } from 'node:fs/promises'
 
 /**
  * Write a file atomically
  */
-async function writeFile (file: string, contents: Uint8Array, options?: AbortOptions): Promise<void> {
+async function writeFile (file: string, contents: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<void> {
   try {
     options?.signal?.throwIfAborted()
     await raceSignal(fs.mkdir(path.dirname(file), {
@@ -39,6 +40,7 @@ async function writeFile (file: string, contents: Uint8Array, options?: AbortOpt
     const writer = new Writer(file)
 
     options?.signal?.throwIfAborted()
+
     await writer.write(contents)
   } catch (err: any) {
     if (err.syscall === 'rename' && ['ENOENT', 'EPERM'].includes(err.code)) {
@@ -145,7 +147,7 @@ export class FsBlockstore implements Blockstore {
     await Promise.resolve()
   }
 
-  async put (key: CID, val: Uint8Array, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, val: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     const { dir, file } = this.shardingStrategy.encode(key)
 
     try {
@@ -157,11 +159,11 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncIterable<CID> {
+  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncGenerator<CID> {
     yield * parallelBatch(
-      map(source, ({ cid, block }) => {
+      map(source, ({ cid, bytes }) => {
         return async () => {
-          await this.put(cid, block, options)
+          await this.put(cid, bytes, options)
 
           return cid
         }
@@ -170,24 +172,32 @@ export class FsBlockstore implements Blockstore {
     )
   }
 
-  async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AsyncGenerator<Uint8Array> {
     const { dir, file } = this.shardingStrategy.encode(key)
+    let handle: fs.FileHandle | undefined
 
     try {
       options?.signal?.throwIfAborted()
-      return await raceSignal(fs.readFile(path.join(this.path, dir, file)), options?.signal)
+
+      handle = await raceSignal(fs.open(path.join(this.path, dir, file)), options?.signal)
+
+      yield * handle.createReadStream()
     } catch (err: any) {
+      if (handle != null) {
+        await raceSignal(handle.close(), options?.signal)
+      }
+
       throw new NotFoundError(String(err))
     }
   }
 
-  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<Pair> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
           return {
             cid: key,
-            block: await this.get(key, options)
+            bytes: this.get(key, options)
           }
         }
       }),
@@ -210,7 +220,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncIterable<CID> {
+  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<CID> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
@@ -235,7 +245,7 @@ export class FsBlockstore implements Blockstore {
     return true
   }
 
-  async * getAll (options?: AbortOptions): AsyncIterable<Pair> {
+  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
     const pattern = `**/*${this.shardingStrategy.extension}`
       .split(path.sep)
       .join('/')
@@ -246,11 +256,21 @@ export class FsBlockstore implements Blockstore {
     for await (const file of files) {
       try {
         options?.signal?.throwIfAborted()
-        const buf = await raceSignal(fs.readFile(file), options?.signal)
-
         const pair: Pair = {
           cid: this.shardingStrategy.decode(file),
-          block: buf
+          bytes: (async function * () {
+            let handle: FileHandle | undefined
+
+            try {
+              handle = await raceSignal(fs.open(file), options?.signal)
+
+              yield * handle.createReadStream()
+            } finally {
+              if (handle != null) {
+                await raceSignal(handle.close(), options?.signal)
+              }
+            }
+          })()
         }
 
         yield pair

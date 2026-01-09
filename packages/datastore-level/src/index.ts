@@ -54,7 +54,7 @@ import take from 'it-take'
 import { Level } from 'level'
 import { raceSignal } from 'race-signal'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
 interface BatchPut {
@@ -116,31 +116,26 @@ export class LevelDatastore extends BaseDatastore {
 
   async get (key: Key, options?: AbortOptions): Promise<Uint8Array> {
     let data
+
     try {
       options?.signal?.throwIfAborted()
       data = await raceSignal(this.db.get(key.toString()), options?.signal)
     } catch (err: any) {
-      if (err.notFound != null) {
-        throw new NotFoundError(String(err))
-      }
-
       throw new GetFailedError(String(err))
     }
+
+    if (data == null) {
+      throw new NotFoundError()
+    }
+
     return data
   }
 
   async has (key: Key, options?: AbortOptions): Promise<boolean> {
-    try {
-      options?.signal?.throwIfAborted()
-      await raceSignal(this.db.get(key.toString()), options?.signal)
-    } catch (err: any) {
-      if (err.notFound != null) {
-        return false
-      }
+    options?.signal?.throwIfAborted()
+    const data = await raceSignal(this.db.get(key.toString()), options?.signal)
 
-      throw err
-    }
-    return true
+    return data != null
   }
 
   async delete (key: Key, options?: AbortOptions): Promise<void> {
@@ -184,7 +179,7 @@ export class LevelDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     let it = map(this._query({
       values: true,
       prefix: q.prefix
@@ -214,7 +209,7 @@ export class LevelDatastore extends BaseDatastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     let it = map(this._query({
       values: false,
       prefix: q.prefix

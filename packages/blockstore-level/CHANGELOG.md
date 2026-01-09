@@ -1,3 +1,41 @@
+## [blockstore-level-v3.0.2](https://github.com/ipfs/js-stores/compare/blockstore-level-3.0.1...blockstore-level-3.0.2) (2025-10-03)
+
+### Dependencies
+
+* bump level from 8.0.1 to 10.0.0 ([#356](https://github.com/ipfs/js-stores/issues/356)) ([c0ec61f](https://github.com/ipfs/js-stores/commit/c0ec61fe965e3bad9d607a0bd3a3c750f00f41d0))
+
+## [blockstore-level-v3.0.1](https://github.com/ipfs/js-stores/compare/blockstore-level-3.0.0...blockstore-level-3.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
+## [blockstore-level-v3.0.0](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.5...blockstore-level-3.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
+## [blockstore-level-v2.0.5](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.4...blockstore-level-2.0.5) (2025-09-02)
+
+### Bug Fixes
+
+* readme typos ([e6b5653](https://github.com/ipfs/js-stores/commit/e6b56533b68e6ed9b90ca3e3f35af8577041a9a2))
+
+### Dependencies
+
+* bump race-signal from 1.1.3 to 2.0.0 ([#355](https://github.com/ipfs/js-stores/issues/355)) ([518fee8](https://github.com/ipfs/js-stores/commit/518fee89d3430534c0ec39551e920447fd558581))
+
+## [blockstore-level-v2.0.4](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.3...blockstore-level-2.0.4) (2025-09-02)
+
+### Bug Fixes
+
+* deprecate blockstore-level and datastore-fs ([#353](https://github.com/ipfs/js-stores/issues/353)) ([ebc7912](https://github.com/ipfs/js-stores/commit/ebc7912696d5bd9dc991ece5f0c0d4acfb1f9400))
+
 ## [blockstore-level-v2.0.3](https://github.com/ipfs/js-stores/compare/blockstore-level-2.0.2...blockstore-level-2.0.3) (2025-05-28)
 
 ### Bug Fixes

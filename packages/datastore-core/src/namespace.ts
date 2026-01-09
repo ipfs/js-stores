@@ -2,7 +2,7 @@ import { Key } from 'interface-datastore'
 import map from 'it-map'
 import { KeyTransformDatastore } from './keytransform.js'
 import type { Datastore, Query, Pair, KeyQuery } from 'interface-datastore'
-import type { AbortOptions } from 'interface-store'
+import type { AbortOptions, AwaitGenerator } from 'interface-store'
 
 /**
  * Wraps a given datastore into a keytransform which
@@ -38,7 +38,7 @@ export class NamespaceDatastore extends KeyTransformDatastore {
     this.iKey = prefix
   }
 
-  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     const query: Query = {
       ...q
     }
@@ -74,7 +74,7 @@ export class NamespaceDatastore extends KeyTransformDatastore {
     })
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     const query = {
       ...q
     }

@@ -1,3 +1,25 @@
+## [datastore-idb-v4.0.1](https://github.com/ipfs/js-stores/compare/datastore-idb-4.0.0...datastore-idb-4.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
+## [datastore-idb-v4.0.0](https://github.com/ipfs/js-stores/compare/datastore-idb-3.0.4...datastore-idb-4.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
+## [datastore-idb-v3.0.4](https://github.com/ipfs/js-stores/compare/datastore-idb-3.0.3...datastore-idb-3.0.4) (2025-09-02)
+
+### Dependencies
+
+* bump race-signal from 1.1.3 to 2.0.0 ([#355](https://github.com/ipfs/js-stores/issues/355)) ([518fee8](https://github.com/ipfs/js-stores/commit/518fee89d3430534c0ec39551e920447fd558581))
+
 ## [datastore-idb-v3.0.3](https://github.com/ipfs/js-stores/compare/datastore-idb-3.0.2...datastore-idb-3.0.3) (2025-05-28)
 
 ### Bug Fixes

@@ -3,7 +3,7 @@ import filter from 'it-filter'
 import sort from 'it-sort'
 import take from 'it-take'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
+import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 export class BaseDatastore implements Datastore {
   put (key: Key, val: Uint8Array, options?: AbortOptions): Await<Key> {
@@ -22,14 +22,14 @@ export class BaseDatastore implements Datastore {
     return Promise.reject(new Error('.delete is not implemented'))
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitIterable<Key> {
+  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
     for await (const { key, value } of source) {
       await this.put(key, value, options)
       yield key
     }
   }
 
-  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitIterable<Pair> {
+  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Pair> {
     for await (const key of source) {
       yield {
         key,
@@ -38,7 +38,7 @@ export class BaseDatastore implements Datastore {
     }
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitIterable<Key> {
+  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
     for await (const key of source) {
       await this.delete(key, options)
       yield key
@@ -70,7 +70,7 @@ export class BaseDatastore implements Datastore {
    * Extending classes should override `query` or implement this method
    */
   // eslint-disable-next-line require-yield
-  async * _all (q: Query, options?: AbortOptions): AwaitIterable<Pair> {
+  async * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     throw new Error('._all is not implemented')
   }
 
@@ -78,11 +78,11 @@ export class BaseDatastore implements Datastore {
    * Extending classes should override `queryKeys` or implement this method
    */
   // eslint-disable-next-line require-yield
-  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitIterable<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     throw new Error('._allKeys is not implemented')
   }
 
-  query (q: Query, options?: AbortOptions): AwaitIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     let it = this._all(q, options)
 
     if (q.prefix != null) {
@@ -111,7 +111,7 @@ export class BaseDatastore implements Datastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     let it = this._allKeys(q, options)
 
     if (q.prefix != null) {

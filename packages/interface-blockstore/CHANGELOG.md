@@ -1,3 +1,19 @@
+## [interface-blockstore-v6.0.1](https://github.com/ipfs/js-stores/compare/interface-blockstore-6.0.0...interface-blockstore-6.0.1) (2025-10-03)
+
+### Bug Fixes
+
+* update sibling deps ([3f73b3d](https://github.com/ipfs/js-stores/commit/3f73b3d53ea2d86d0f5c3f06785c0bfc30e8b5e9))
+
+## [interface-blockstore-v6.0.0](https://github.com/ipfs/js-stores/compare/interface-blockstore-5.3.2...interface-blockstore-6.0.0) (2025-10-03)
+
+### ⚠ BREAKING CHANGES
+
+* blockstore.get and similar now return streams of bytes
+
+### Features
+
+* streaming blockstores ([#358](https://github.com/ipfs/js-stores/issues/358)) ([4dbb136](https://github.com/ipfs/js-stores/commit/4dbb1362d20fc87fcdd261568dca297972f9bc08))
+
 ## [interface-blockstore-v5.3.2](https://github.com/ipfs/js-stores/compare/interface-blockstore-5.3.1...interface-blockstore-5.3.2) (2025-05-26)
 
 ### Dependencies

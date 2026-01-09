@@ -3,8 +3,8 @@ import { NotFoundError } from 'interface-store'
 import filter from 'it-filter'
 import merge from 'it-merge'
 import { BaseBlockstore } from './base.js'
-import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { Blockstore, InputPair, Pair } from 'interface-blockstore'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 const log = logger('blockstore:core:tiered')
@@ -24,7 +24,7 @@ export class TieredBlockstore extends BaseBlockstore {
     this.stores = stores.slice()
   }
 
-  async put (key: CID, value: Uint8Array, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, value: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     await Promise.all(
       this.stores.map(async store => {
         await store.put(key, value, options)
@@ -34,16 +34,13 @@ export class TieredBlockstore extends BaseBlockstore {
     return key
   }
 
-  async get (key: CID, options?: AbortOptions): Promise<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
     let error: Error | undefined
 
     for (const store of this.stores) {
       try {
-        const res = await store.get(key, options)
-
-        if (res != null) {
-          return res
-        }
+        yield * store.get(key, options)
+        return
       } catch (err: any) {
         error = err
         log.error(err)
@@ -71,21 +68,21 @@ export class TieredBlockstore extends BaseBlockstore {
     )
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AsyncIterable<CID> {
+  async * putMany (source: AwaitIterable<InputPair>, options: AbortOptions = {}): AwaitGenerator<CID> {
     for await (const pair of source) {
-      await this.put(pair.cid, pair.block, options)
+      await this.put(pair.cid, pair.bytes, options)
       yield pair.cid
     }
   }
 
-  async * deleteMany (source: AwaitIterable<CID>, options: AbortOptions = {}): AsyncIterable<CID> {
+  async * deleteMany (source: AwaitIterable<CID>, options: AbortOptions = {}): AwaitGenerator<CID> {
     for await (const cid of source) {
       await this.delete(cid, options)
       yield cid
     }
   }
 
-  async * getAll (options?: AbortOptions): AwaitIterable<Pair> {
+  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
     // deduplicate yielded pairs
     const seen = new Set<string>()
 

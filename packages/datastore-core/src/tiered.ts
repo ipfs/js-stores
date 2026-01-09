@@ -2,7 +2,7 @@ import { logger } from '@libp2p/logger'
 import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.js'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 const log = logger('datastore:core:tiered')
 
@@ -69,14 +69,14 @@ export class TieredDatastore extends BaseDatastore {
     )
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AsyncIterable<Key> {
+  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
     for await (const pair of source) {
       await this.put(pair.key, pair.value, options)
       yield pair.key
     }
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AsyncIterable<Key> {
+  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
     for await (const key of source) {
       await this.delete(key, options)
       yield key
@@ -101,11 +101,11 @@ export class TieredDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AwaitIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     return this.stores[this.stores.length - 1].query(q, options)
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     return this.stores[this.stores.length - 1].queryKeys(q, options)
   }
 }

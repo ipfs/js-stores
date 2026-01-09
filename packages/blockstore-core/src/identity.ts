@@ -7,17 +7,32 @@ import type { CID } from 'multiformats/cid'
 // https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2
 const IDENTITY_CODEC = 0x00
 
+class IdentityHashDigestTooLongError extends Error {
+  static name = 'IdentityHashDigestTooLongError'
+  name = 'IdentityHashDigestTooLongError'
+}
+
+export interface IdentityBlockstoreInit {
+  maxDigestLength?: number
+}
+
 export class IdentityBlockstore extends BaseBlockstore {
   private readonly child?: Blockstore
+  private readonly maxDigestLength?: number
 
-  constructor (child?: Blockstore) {
+  constructor (child?: Blockstore, init?: IdentityBlockstoreInit) {
     super()
 
     this.child = child
+    this.maxDigestLength = init?.maxDigestLength
   }
 
-  put (key: CID, block: Uint8Array, options?: AbortOptions): Await<CID> {
+  put (key: CID, block: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Await<CID> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       return key
     }
@@ -30,10 +45,15 @@ export class IdentityBlockstore extends BaseBlockstore {
     return this.child.put(key, block, options)
   }
 
-  get (key: CID, options?: AbortOptions): Await<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): AsyncGenerator<Uint8Array> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
-      return key.multihash.digest
+      yield key.multihash.digest
+      return
     }
 
     if (this.child == null) {
@@ -41,11 +61,15 @@ export class IdentityBlockstore extends BaseBlockstore {
       throw new NotFoundError()
     }
 
-    return this.child.get(key, options)
+    yield * this.child.get(key, options)
   }
 
   has (key: CID, options?: AbortOptions): Await<boolean> {
     if (key.multihash.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       return true
     }
@@ -60,6 +84,10 @@ export class IdentityBlockstore extends BaseBlockstore {
 
   delete (key: CID, options?: AbortOptions): Await<void> {
     if (key.code === IDENTITY_CODEC) {
+      if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
+        throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
+      }
+
       options?.signal?.throwIfAborted()
       return
     }
@@ -69,12 +97,11 @@ export class IdentityBlockstore extends BaseBlockstore {
     }
   }
 
-  getAll (options?: AbortOptions): AwaitIterable<Pair> {
+  async * getAll (options?: AbortOptions): AsyncGenerator<Pair> {
     if (this.child != null) {
-      return this.child.getAll(options)
+      yield * this.child.getAll(options)
     }
 
     options?.signal?.throwIfAborted()
-    return []
   }
 }

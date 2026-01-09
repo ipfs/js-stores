@@ -1,6 +1,6 @@
 {
   "name": "datastore-core",
-  "version": "10.0.4",
+  "version": "11.0.2",
   "description": "Wrapper implementation for interface-datastore",
   "author": "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
   "license": "Apache-2.0 OR MIT",
@@ -200,9 +200,9 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/logger": "^5.1.18",
-    "interface-datastore": "^8.0.0",
-    "interface-store": "^6.0.0",
+    "@libp2p/logger": "^6.0.0",
+    "interface-datastore": "^9.0.0",
+    "interface-store": "^7.0.0",
     "it-drain": "^3.0.9",
     "it-filter": "^3.1.3",
     "it-map": "^3.1.3",

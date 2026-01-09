@@ -71,8 +71,8 @@ describe('Key', () => {
     const k1 = new Key('/A/B/C')
     const k2 = new Key('/A/B/C/D')
 
-    expect(k1.toString()).to.be.eql('/A/B/C')
-    expect(k2.toString()).to.be.eql('/A/B/C/D')
+    expect(k1.toString()).to.equal('/A/B/C')
+    expect(k2.toString()).to.equal('/A/B/C/D')
 
     const checks = [
       k1.isAncestorOf(k2),

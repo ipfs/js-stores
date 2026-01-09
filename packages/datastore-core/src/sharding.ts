@@ -8,7 +8,7 @@ import {
 } from './shard.js'
 import type { Shard } from './index.js'
 import type { Batch, KeyQuery, KeyQueryFilter, Pair, Query, QueryFilter, Datastore } from 'interface-datastore'
-import type { AbortOptions, AwaitIterable } from 'interface-store'
+import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 const shardKey = new Key(SHARDING_FN)
 
@@ -99,15 +99,15 @@ export class ShardingDatastore extends BaseDatastore {
     await this.child.delete(key, options)
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AsyncIterable<Key> {
+  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
     yield * this.child.putMany(source, options)
   }
 
-  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AsyncIterable<Pair> {
+  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Pair> {
     yield * this.child.getMany(source, options)
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AsyncIterable<Key> {
+  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
     yield * this.child.deleteMany(source, options)
   }
 
@@ -115,7 +115,7 @@ export class ShardingDatastore extends BaseDatastore {
     return this.child.batch()
   }
 
-  query (q: Query, options?: AbortOptions): AsyncIterable<Pair> {
+  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
     const omitShard: QueryFilter = ({ key }) => key.toString() !== shardKey.toString()
 
     const tq: Query = {
@@ -128,7 +128,7 @@ export class ShardingDatastore extends BaseDatastore {
     return this.child.query(tq, options)
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AsyncIterable<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
     const omitShard: KeyQueryFilter = (key) => key.toString() !== shardKey.toString()
 
     const tq: KeyQuery = {
