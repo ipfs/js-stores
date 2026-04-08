@@ -34,7 +34,7 @@ $ npm i interface-store
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/interface_store.html>
+- <https://ipfs.github.io/js-stores/modules/interface-store.html>
 
 # License
 
