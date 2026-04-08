@@ -44,7 +44,7 @@ $ npm i interface-blockstore
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/interface_blockstore.html>
+- <https://ipfs.github.io/js-stores/modules/interface-blockstore.html>
 
 # License
 
