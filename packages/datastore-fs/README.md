@@ -1,8 +1,8 @@
-# datastore-fs
-
 ## ⚠️ Deprecation Warning
 
 **This package is deprecated. Instead, use `datastore-level` in Node.js, and `datastore-idb` in browsers.**
+
+# datastore-fs
 
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
@@ -28,8 +28,6 @@ repo and examine the changes made.
 
 -->
 
-⚠️ This package is deprecated. Instead, use `datastore-level` in Node.js, and `datastore-idb` in browsers.
-
 A Datastore implementation with a file system backend.
 
 ## Example
@@ -48,7 +46,7 @@ $ npm i datastore-fs
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/datastore_fs.html>
+- <https://ipfs.github.io/js-stores/modules/datastore-fs.html>
 
 # License
 

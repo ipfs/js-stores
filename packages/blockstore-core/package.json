@@ -49,31 +49,33 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js"
+      "import": "./dist/src/index.js",
+      "module-sync": "./dist/src/index.js"
     },
     "./base": {
       "types": "./dist/src/base.d.ts",
-      "import": "./dist/src/base.js"
+      "import": "./dist/src/base.js",
+      "module-sync": "./dist/src/base.js"
     },
     "./black-hole": {
       "types": "./dist/src/black-hole.d.ts",
-      "import": "./dist/src/black-hole.js"
-    },
-    "./errors": {
-      "types": "./dist/src/errors.d.ts",
-      "import": "./dist/src/errors.js"
+      "import": "./dist/src/black-hole.js",
+      "module-sync": "./dist/src/black-hole.js"
     },
     "./identity": {
       "types": "./dist/src/identity.d.ts",
-      "import": "./dist/src/identity.js"
+      "import": "./dist/src/identity.js",
+      "module-sync": "./dist/src/identity.js"
     },
     "./memory": {
       "types": "./dist/src/memory.d.ts",
-      "import": "./dist/src/memory.js"
+      "import": "./dist/src/memory.js",
+      "module-sync": "./dist/src/memory.js"
     },
     "./tiered": {
       "types": "./dist/src/tiered.d.ts",
-      "import": "./dist/src/tiered.js"
+      "import": "./dist/src/tiered.js",
+      "module-sync": "./dist/src/tiered.js"
     }
   },
   "release": {
@@ -184,18 +186,18 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/logger": "^6.0.0",
+    "@libp2p/logger": "^6.2.4",
     "interface-blockstore": "^6.0.0",
     "interface-store": "^7.0.0",
     "it-all": "^3.0.9",
-    "it-filter": "^3.1.3",
-    "it-merge": "^3.0.11",
-    "multiformats": "^13.3.6"
+    "it-filter": "^3.1.4",
+    "it-merge": "^3.0.12",
+    "multiformats": "^13.4.2"
   },
   "devDependencies": {
-    "aegir": "^47.0.16",
+    "aegir": "^47.1.0",
     "interface-blockstore-tests": "^8.0.0",
-    "it-drain": "^3.0.9",
+    "it-drain": "^3.0.10",
     "it-to-buffer": "^4.0.10",
     "uint8arrays": "^5.1.0"
   }

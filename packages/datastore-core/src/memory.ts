@@ -1,6 +1,6 @@
 import { Key } from 'interface-datastore/key'
 import { NotFoundError } from 'interface-store'
-import { BaseDatastore } from './base.js'
+import { BaseDatastore } from './base.ts'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, Await, AwaitGenerator } from 'interface-store'
 

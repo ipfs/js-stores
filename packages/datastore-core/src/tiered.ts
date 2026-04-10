@@ -1,6 +1,6 @@
 import { logger } from '@libp2p/logger'
 import { NotFoundError } from 'interface-store'
-import { BaseDatastore } from './base.js'
+import { BaseDatastore } from './base.ts'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 

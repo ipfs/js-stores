@@ -42,7 +42,7 @@ $ npm i blockstore-fs
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/blockstore_fs.html>
+- <https://ipfs.github.io/js-stores/modules/blockstore-fs.html>
 
 # License
 

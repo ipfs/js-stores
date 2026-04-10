@@ -26,19 +26,14 @@ repo and examine the changes made.
 
 Various Blockstore implementations are available.
 
-## Implementations
-
-- Base: [`src/base`](./src/base.ts)
-- Memory: [`src/memory`](./src/memory.ts)
-- BlackHole: ['src/black-hole](./src/black-hole.ts)
-- Tiered: ['src/tiered](./src/tiered.ts)
-
-## Example - BaseBlockstore
+## BaseBlockstore
 
 Provides a complete implementation of the Blockstore interface.  You must implement `.get`, `.put`, etc.
 
+## Example
+
 ```js
-import { BaseBlockstore } from 'blockstore-core/base'
+import { BaseBlockstore } from 'blockstore-core'
 
 class MyCustomBlockstore extends BaseBlockstore {
   put (key, val, options) {
@@ -53,34 +48,40 @@ class MyCustomBlockstore extends BaseBlockstore {
 }
 ```
 
-## Example - MemoryBlockstore
+## MemoryBlockstore
 
 A simple Blockstore that stores blocks in memory.
 
+## Example
+
 ```js
-import { MemoryBlockstore } from 'blockstore-core/memory'
+import { MemoryBlockstore } from 'blockstore-core'
 
 const store = new MemoryBlockstore()
 ```
 
-## Example - BlackHoleBlockstore
+## BlackHoleBlockstore
 
 A Blockstore that does not store any blocks.
 
+## Example
+
 ```js
-import { BlackHoleBlockstore } from 'blockstore-core/black-hole'
+import { BlackHoleBlockstore } from 'blockstore-core'
 
 const store = new BlackHoleBlockstore()
 ```
 
-## Example - TieredBlockstore
+## TieredBlockstore
 
 A tiered blockstore wraps one or more blockstores and will query each in parallel to retrieve a block - the operation will succeed if any wrapped store has the block.
 
 Writes are invoked on all wrapped blockstores.
 
+## Example
+
 ```js
-import { TieredBlockstore } from 'blockstore-core/tiered'
+import { TieredBlockstore } from 'blockstore-core'
 
 const store = new TieredBlockstore([
   store1,
@@ -89,12 +90,14 @@ const store = new TieredBlockstore([
 ])
 ```
 
-## Example - IdentityBlockstore
+## IdentityBlockstore
 
 An identity blockstore is one that deals exclusively in Identity CIDs - this is a special CID with the codec [0x00](https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2) where the multihash digest is the data that makes up the block.
 
+## Example
+
 ```TypeScript
-import { IdentityBlockstore } from 'blockstore-core/identity'
+import { IdentityBlockstore } from 'blockstore-core'
 import { CID } from 'multiformats/cid'
 
 const blockstore = new IdentityBlockstore()
@@ -120,7 +123,7 @@ Loading this module through a script tag will make its exports available as `Blo
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/blockstore_core.html>
+- <https://ipfs.github.io/js-stores/modules/blockstore-core.html>
 
 # License
 

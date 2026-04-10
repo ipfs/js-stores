@@ -8,7 +8,7 @@ import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import defer from 'p-defer'
 import sinon from 'sinon'
 import { S3Datastore } from '../src/index.js'
-import { s3Resolve, s3Reject, S3Error, s3Mock } from './utils/s3-mock.js'
+import { s3Resolve, s3Reject, S3Error, s3Mock } from './utils/s3-mock.ts'
 import type { CreateBucketCommand, PutObjectCommand, HeadObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3'
 
 describe('S3Datastore', () => {

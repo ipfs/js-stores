@@ -52,7 +52,7 @@ $ npm i interface-datastore-tests
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/interface_datastore_tests.html>
+- <https://ipfs.github.io/js-stores/modules/interface-datastore-tests.html>
 
 # License
 

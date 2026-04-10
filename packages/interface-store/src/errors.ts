@@ -1,7 +1,15 @@
 export class OpenFailedError extends Error {
   static name = 'OpenFailedError'
-  static code = 'ERR_OPEN_FAILED'
   name = OpenFailedError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_OPEN_FAILED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = OpenFailedError.code
 
   constructor (message = 'Open failed') {
@@ -11,8 +19,16 @@ export class OpenFailedError extends Error {
 
 export class CloseFailedError extends Error {
   static name = 'CloseFailedError'
-  static code = 'ERR_CLOSE_FAILED'
   name = CloseFailedError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_CLOSE_FAILED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = CloseFailedError.code
 
   constructor (message = 'Close failed') {
@@ -22,8 +38,16 @@ export class CloseFailedError extends Error {
 
 export class PutFailedError extends Error {
   static name = 'PutFailedError'
-  static code = 'ERR_PUT_FAILED'
   name = PutFailedError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_PUT_FAILED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = PutFailedError.code
 
   constructor (message = 'Put failed') {
@@ -33,8 +57,16 @@ export class PutFailedError extends Error {
 
 export class GetFailedError extends Error {
   static name = 'GetFailedError'
-  static code = 'ERR_GET_FAILED'
   name = GetFailedError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_GET_FAILED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = GetFailedError.code
 
   constructor (message = 'Get failed') {
@@ -44,8 +76,16 @@ export class GetFailedError extends Error {
 
 export class DeleteFailedError extends Error {
   static name = 'DeleteFailedError'
-  static code = 'ERR_DELETE_FAILED'
   name = DeleteFailedError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_DELETE_FAILED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = DeleteFailedError.code
 
   constructor (message = 'Delete failed') {
@@ -55,8 +95,16 @@ export class DeleteFailedError extends Error {
 
 export class HasFailedError extends Error {
   static name = 'HasFailedError'
-  static code = 'ERR_HAS_FAILED'
   name = HasFailedError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_HAS_FAILED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = HasFailedError.code
 
   constructor (message = 'Has failed') {
@@ -66,8 +114,16 @@ export class HasFailedError extends Error {
 
 export class NotFoundError extends Error {
   static name = 'NotFoundError'
-  static code = 'ERR_NOT_FOUND'
   name = NotFoundError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_NOT_FOUND'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = NotFoundError.code
 
   constructor (message = 'Not Found') {
@@ -75,10 +131,21 @@ export class NotFoundError extends Error {
   }
 }
 
+/**
+ * @deprecated import from 'abort-error' module instead - this will be removed in a future release
+ */
 export class AbortError extends Error {
   static name = 'AbortError'
-  static code = 'ERR_ABORTED'
   name = AbortError.name
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
+  static code = 'ERR_ABORTED'
+
+  /**
+   * @deprecated use `.name` instead - this will be removed in a future release
+   */
   code = AbortError.code
 
   constructor (message = 'Aborted') {

@@ -20,7 +20,9 @@ export type AwaitGenerator<T, TReturn = any, TNext = any> = Generator<T, TReturn
 export type Await<T> = Promise<T> | T
 
 /**
- * Options for async operations.
+ * Options for async operations
+ *
+ * @deprecated import from 'abort-error' module instead - this will be removed in a future release
  */
 export interface AbortOptions {
   signal?: AbortSignal

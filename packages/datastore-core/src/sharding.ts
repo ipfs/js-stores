@@ -1,12 +1,12 @@
 import { Key } from 'interface-datastore'
 import { OpenFailedError } from 'interface-store'
-import { BaseDatastore } from './base.js'
-import { KeyTransformDatastore } from './keytransform.js'
+import { BaseDatastore } from './base.ts'
+import { KeyTransformDatastore } from './keytransform.ts'
 import {
   readShardFun,
   SHARDING_FN
-} from './shard.js'
-import type { Shard } from './index.js'
+} from './shard.ts'
+import type { Shard } from './index.ts'
 import type { Batch, KeyQuery, KeyQueryFilter, Pair, Query, QueryFilter, Datastore } from 'interface-datastore'
 import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 

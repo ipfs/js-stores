@@ -134,7 +134,7 @@ Loading this module through a script tag will make its exports available as `Int
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/interface_datastore.html>
+- <https://ipfs.github.io/js-stores/modules/interface-datastore.html>
 
 # License
 
