@@ -31,7 +31,7 @@
  *
  * @example Using with Helia
  *
- * See [examples/helia](https://github.com/ipfs/js-stores/tree/1c51514c4af49b022740354c6e0d3d2555d6406d/packages/blockstore-s3/examples/helia)
+ * See [examples/helia](https://github.com/ipfs/js-stores/tree/main/packages/blockstore-s3/examples/helia)
  * for a full example of how to use Helia with an S3 backed blockstore.
  */
 

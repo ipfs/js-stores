@@ -52,7 +52,7 @@ class MyDatastore extends BaseDatastore {
 }
 ```
 
-See the [MemoryDatastore](./src/memory.js) for an example of how it is used.
+See the [MemoryDatastore](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/memory.ts) for an example of how it is used.
 
 ## Wrapping Stores
 
@@ -75,7 +75,7 @@ const store = new MountStore({prefix: new Key('/a'), datastore: new MemoryStore(
 A datastore that does not store any data.
 
 ```js
-import { BlackHoleDatastore } from 'datastore-core/black-hole'
+import { BlackHoleDatastore } from 'datastore-core'
 
 const store = new BlackHoleDatastore()
 ```
