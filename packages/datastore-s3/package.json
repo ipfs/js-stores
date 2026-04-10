@@ -33,7 +33,8 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js"
+      "import": "./dist/src/index.js",
+      "module-sync": "./src/index.js"
     }
   },
   "release": {
@@ -144,21 +145,21 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.817.0",
+    "@aws-sdk/client-s3": "^3.1028.0",
     "datastore-core": "^11.0.0",
     "interface-datastore": "^9.0.0",
     "interface-store": "^7.0.0",
-    "it-filter": "^3.1.3",
-    "it-to-buffer": "^4.0.9",
+    "it-filter": "^3.1.4",
+    "it-to-buffer": "^4.0.10",
     "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "@types/sinon": "^21.0.0",
+    "@types/sinon": "^21.0.1",
     "@types/xmldom": "^0.1.34",
-    "aegir": "^47.0.16",
+    "aegir": "^47.1.0",
     "interface-datastore-tests": "^6.0.0",
     "p-defer": "^4.0.1",
-    "sinon": "^21.0.0",
+    "sinon": "^21.1.0",
     "xmldom": "^0.6.0"
   }
 }

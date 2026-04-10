@@ -4,7 +4,7 @@ import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
-import { BaseBlockstore } from './base.js'
+import { BaseBlockstore } from './base.ts'
 import type { Pair } from 'interface-blockstore'
 import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 

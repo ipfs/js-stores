@@ -1,5 +1,5 @@
 import { NotFoundError } from 'interface-store'
-import { BaseBlockstore } from './base.js'
+import { BaseBlockstore } from './base.ts'
 import type { Pair } from 'interface-blockstore'
 import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'

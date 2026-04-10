@@ -4,7 +4,6 @@
     "./src/index.ts",
     "./src/base.ts",
     "./src/black-hole.ts",
-    "./src/errors.ts",
     "./src/identity.ts",
     "./src/memory.ts",
     "./src/tiered.ts"

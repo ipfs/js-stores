@@ -73,7 +73,7 @@ Loading this module through a script tag will make its exports available as `Dat
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/datastore_s3.html>
+- <https://ipfs.github.io/js-stores/modules/datastore-s3.html>
 
 # License
 

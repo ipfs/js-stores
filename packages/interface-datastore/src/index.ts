@@ -96,7 +96,7 @@
  * - `new Key('/Comedy/MontyPython/Sketch:CheeseShop/Character:Mousebender')`
  */
 
-import { Key } from './key.js'
+import { Key } from './key.ts'
 import type {
   Await,
   Store,

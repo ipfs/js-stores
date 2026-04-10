@@ -50,7 +50,7 @@ Loading this module through a script tag will make its exports available as `Blo
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/blockstore_idb.html>
+- <https://ipfs.github.io/js-stores/modules/blockstore-idb.html>
 
 # License
 

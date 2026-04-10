@@ -34,7 +34,8 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js"
+      "import": "./dist/src/index.js",
+      "module-sync": "./src/index.js"
     }
   },
   "release": {
@@ -144,14 +145,14 @@
     "datastore-core": "^11.0.0",
     "interface-datastore": "^9.0.0",
     "interface-store": "^7.0.0",
-    "it-glob": "^3.0.3",
-    "it-map": "^3.1.3",
-    "it-parallel-batch": "^3.0.8",
+    "it-glob": "^3.0.4",
+    "it-map": "^3.1.4",
+    "it-parallel-batch": "^3.0.9",
     "race-signal": "^2.0.0",
     "steno": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^47.0.16",
+    "aegir": "^47.1.0",
     "interface-datastore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.14",
     "threads": "^1.7.0"
