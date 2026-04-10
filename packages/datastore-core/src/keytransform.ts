@@ -1,7 +1,7 @@
 import map from 'it-map'
 import { pipe } from 'it-pipe'
-import { BaseDatastore } from './base.js'
-import type { KeyTransform } from './index.js'
+import { BaseDatastore } from './base.ts'
+import type { KeyTransform } from './index.ts'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
 import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 

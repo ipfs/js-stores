@@ -48,11 +48,13 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js"
+      "import": "./dist/src/index.js",
+      "module-sync": "./src/index.js"
     },
     "./key": {
       "types": "./dist/src/key.d.ts",
-      "import": "./dist/src/key.js"
+      "import": "./dist/src/key.js",
+      "module-sync": "./dist/src/key.js"
     }
   },
   "release": {
@@ -166,6 +168,6 @@
     "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "aegir": "^47.0.16"
+    "aegir": "^47.1.0"
   }
 }

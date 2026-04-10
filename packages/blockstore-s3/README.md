@@ -28,7 +28,10 @@ A Blockstore implementation that stores blocks on Amazon S3.
 
 ## Example - Quickstart
 
-If the flag `createIfMissing` is not set or is false, then the bucket must be created prior to using blockstore-s3. Please see the AWS docs for information on how to configure the S3 instance. A bucket name is required to be set at the s3 instance level, see the below example.
+If the flag `createIfMissing` is not set or is false, then the bucket must be
+created prior to using blockstore-s3. Please see the AWS docs for information
+on how to configure the S3 instance. A bucket name is required to be set at
+the s3 instance level, see the below example.
 
 ```js
 import { S3 } from '@aws-sdk/client-s3'
@@ -54,7 +57,8 @@ const store = new S3Blockstore(
 ```ts
 Using with Helia
 
-See [examples/helia](./examples/helia) for a full example of how to use Helia with an S3 backed blockstore.
+See [examples/helia](https://github.com/ipfs/js-stores/tree/main/packages/blockstore-s3/examples/helia)
+for a full example of how to use Helia with an S3 backed blockstore.
 ```
 
 # Install
@@ -73,7 +77,7 @@ Loading this module through a script tag will make its exports available as `Blo
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/blockstore_s3.html>
+- <https://ipfs.github.io/js-stores/modules/blockstore-s3.html>
 
 # License
 

@@ -28,7 +28,7 @@
  *
  * @example Using with Helia
  *
- * See [examples/helia](./examples/helia) for a full example of how to use Helia with an S3 backed datastore.
+ * See [examples/helia](https://github.com/ipfs/js-stores/tree/main/packages/datastore-s3/examples/helia) for a full example of how to use Helia with an S3 backed datastore.
  */
 
 import {

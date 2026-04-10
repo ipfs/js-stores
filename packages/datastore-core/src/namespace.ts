@@ -1,6 +1,6 @@
 import { Key } from 'interface-datastore'
 import map from 'it-map'
-import { KeyTransformDatastore } from './keytransform.js'
+import { KeyTransformDatastore } from './keytransform.ts'
 import type { Datastore, Query, Pair, KeyQuery } from 'interface-datastore'
 import type { AbortOptions, AwaitGenerator } from 'interface-store'
 

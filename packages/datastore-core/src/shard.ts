@@ -1,5 +1,5 @@
 import { Key } from 'interface-datastore/key'
-import type { Shard } from './index.js'
+import type { Shard } from './index.ts'
 import type { Datastore } from 'interface-datastore'
 
 export const PREFIX = '/repo/flatfs/shard/'

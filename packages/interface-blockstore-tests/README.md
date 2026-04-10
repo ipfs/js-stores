@@ -52,7 +52,7 @@ $ npm i interface-blockstore-tests
 
 # API Docs
 
-- <https://ipfs.github.io/js-stores/modules/interface_blockstore_tests.html>
+- <https://ipfs.github.io/js-stores/modules/interface-blockstore-tests.html>
 
 # License
 

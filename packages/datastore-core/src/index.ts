@@ -3,18 +3,11 @@
  *
  * Various Datastore implementations are available.
  *
- * ## Implementations
+ * ## BaseDatastore
  *
- * - Mount: [`src/mount`](./src/mount.ts)
- * - Keytransform: [`src/keytransform`](./src/keytransform.ts)
- * - Sharding: [`src/sharding`](./src/sharding.ts)
- * - Tiered: [`src/tiered`](./src/tirered.ts)
- * - Namespace: [`src/namespace`](./src/namespace.ts)
- * - BlackHole: [`src/black-hole`](./src/black-hole.ts)
+ * An base store is made available to make implementing your own datastore easier.
  *
- * @example BaseDatastore
- *
- * An base store is made available to make implementing your own datastore easier:
+ * @example
  *
  * ```javascript
  * import { BaseDatastore } from 'datastore-core'
@@ -36,9 +29,11 @@
  * }
  * ```
  *
- * See the [MemoryDatastore](./src/memory.js) for an example of how it is used.
+ * See the [MemoryDatastore](https://github.com/ipfs/js-stores/blob/main/packages/datastore-core/src/memory.ts) for an example of how it is used.
  *
- * @example Wrapping Stores
+ * ## Wrapping Stores
+ *
+ * @example
  *
  * ```js
  * import { Key } from 'interface-datastore'
@@ -50,27 +45,29 @@
  * const store = new MountStore({prefix: new Key('/a'), datastore: new MemoryStore()})
  * ```
  *
- * @example BlackHoleDatastore
+ * ## BlackHoleDatastore
+ *
+ * @example
  *
  * A datastore that does not store any data.
  *
  * ```js
- * import { BlackHoleDatastore } from 'datastore-core/black-hole'
+ * import { BlackHoleDatastore } from 'datastore-core'
  *
  * const store = new BlackHoleDatastore()
  * ```
  */
 
-import * as shard from './shard.js'
+import * as shard from './shard.ts'
 import type { Key } from 'interface-datastore'
 
-export { BaseDatastore } from './base.js'
-export { MemoryDatastore } from './memory.js'
-export { KeyTransformDatastore } from './keytransform.js'
-export { ShardingDatastore } from './sharding.js'
-export { MountDatastore } from './mount.js'
-export { TieredDatastore } from './tiered.js'
-export { NamespaceDatastore } from './namespace.js'
+export { BaseDatastore } from './base.ts'
+export { MemoryDatastore } from './memory.ts'
+export { KeyTransformDatastore } from './keytransform.ts'
+export { ShardingDatastore } from './sharding.ts'
+export { MountDatastore } from './mount.ts'
+export { TieredDatastore } from './tiered.ts'
+export { NamespaceDatastore } from './namespace.ts'
 
 export { shard }
 
