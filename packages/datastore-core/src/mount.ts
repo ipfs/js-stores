@@ -80,7 +80,7 @@ export class MountDatastore extends BaseDatastore {
     const lookup = (key: Key): { batch: Batch } => {
       const match = this._lookup(key)
       if (match == null) {
-        throw new Error('No datastore mounted for this key')
+        throw new Error(`No datastore mounted for key "${key}"`)
       }
 
       const m = match.mountpoint.toString()

@@ -25,6 +25,9 @@ describe('LevelDatastore', () => {
         }, {
           prefix: new Key('/z'),
           datastore: new LevelDatastore(`three-${Math.random()}`)
+        }, {
+          prefix: new Key('/dht'),
+          datastore: new LevelDatastore(`four-${Math.random()}`)
         }])
       },
       teardown () {}
