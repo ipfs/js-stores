@@ -1,3 +1,9 @@
+## [datastore-idb-v4.0.2](https://github.com/ipfs/js-stores/compare/datastore-idb-4.0.1...datastore-idb-4.0.2) (2026-04-10)
+
+### Bug Fixes
+
+* allow require and update doc links ([#369](https://github.com/ipfs/js-stores/issues/369)) ([dadf436](https://github.com/ipfs/js-stores/commit/dadf4361e985e091d33d753f48dcca3dea542217))
+
 ## [datastore-idb-v4.0.1](https://github.com/ipfs/js-stores/compare/datastore-idb-4.0.0...datastore-idb-4.0.1) (2025-10-03)
 
 ### Bug Fixes

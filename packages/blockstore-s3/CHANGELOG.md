@@ -1,3 +1,13 @@
+## [blockstore-s3-v3.0.2](https://github.com/ipfs/js-stores/compare/blockstore-s3-3.0.1...blockstore-s3-3.0.2) (2026-04-10)
+
+### Bug Fixes
+
+* allow require and update doc links ([#369](https://github.com/ipfs/js-stores/issues/369)) ([dadf436](https://github.com/ipfs/js-stores/commit/dadf4361e985e091d33d753f48dcca3dea542217))
+
+### Trivial Changes
+
+* bump @types/sinon from 17.0.4 to 21.0.0 ([#363](https://github.com/ipfs/js-stores/issues/363)) ([1c51514](https://github.com/ipfs/js-stores/commit/1c51514c4af49b022740354c6e0d3d2555d6406d))
+
 ## [blockstore-s3-v3.0.1](https://github.com/ipfs/js-stores/compare/blockstore-s3-3.0.0...blockstore-s3-3.0.1) (2025-10-03)
 
 ### Bug Fixes

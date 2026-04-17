@@ -1,3 +1,9 @@
+## [blockstore-core-v6.1.3](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.2...blockstore-core-6.1.3) (2026-04-10)
+
+### Bug Fixes
+
+* allow require and update doc links ([#369](https://github.com/ipfs/js-stores/issues/369)) ([dadf436](https://github.com/ipfs/js-stores/commit/dadf4361e985e091d33d753f48dcca3dea542217))
+
 ## [blockstore-core-v6.1.2](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.1...blockstore-core-6.1.2) (2026-01-08)
 
 ### Bug Fixes
