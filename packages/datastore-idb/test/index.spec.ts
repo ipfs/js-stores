@@ -27,25 +27,26 @@ describe('IndexedDB Datastore', function () {
         const one = new IDBDatastore(`one-${Date.now()}`)
         const two = new IDBDatastore(`two-${Date.now()}`)
         const three = new IDBDatastore(`three-${Date.now()}`)
+        const four = new IDBDatastore(`four-${Date.now()}`)
 
         await one.open()
         await two.open()
         await three.open()
+        await four.open()
 
-        const d = new MountDatastore([
-          {
-            prefix: new Key('/a'),
-            datastore: one
-          },
-          {
-            prefix: new Key('/q'),
-            datastore: two
-          },
-          {
-            prefix: new Key('/z'),
-            datastore: three
-          }
-        ])
+        const d = new MountDatastore([{
+          prefix: new Key('/a'),
+          datastore: one
+        }, {
+          prefix: new Key('/q'),
+          datastore: two
+        }, {
+          prefix: new Key('/z'),
+          datastore: three
+        }, {
+          prefix: new Key('/dht'),
+          datastore: four
+        }])
 
         return d
       },

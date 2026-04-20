@@ -129,6 +129,9 @@ describe('MountDatastore', () => {
         }, {
           prefix: new Key('/q'),
           datastore: new MemoryDatastore()
+        }, {
+          prefix: new Key('/dht/provider/third'),
+          datastore: new MemoryDatastore()
         }])
       },
       teardown () { }

@@ -27,7 +27,7 @@ describe('LevelDatastore', () => {
       async setup () {
         return new MountDatastore(
           await Promise.all(
-            ['/a', '/q', '/z'].map(async prefix => {
+            ['/a', '/q', '/z', '/dht'].map(async prefix => {
               const datastore = new LevelDatastore(tempdir())
               await datastore.open()
 
