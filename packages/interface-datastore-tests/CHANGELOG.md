@@ -1,3 +1,9 @@
+## [interface-datastore-tests-v6.0.7](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.6...interface-datastore-tests-6.0.7) (2026-04-20)
+
+### Bug Fixes
+
+* prefix filtering in datastore-fs ([#354](https://github.com/ipfs/js-stores/issues/354)) ([90f7b32](https://github.com/ipfs/js-stores/commit/90f7b32cc7ecce64696a8e6c09b0fa0193f05e04))
+
 ## [interface-datastore-tests-v6.0.6](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.5...interface-datastore-tests-6.0.6) (2026-04-10)
 
 ### Bug Fixes
