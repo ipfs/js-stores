@@ -155,7 +155,7 @@
   "devDependencies": {
     "@types/sinon": "^21.0.1",
     "@types/xmldom": "^0.1.34",
-    "aegir": "^47.1.0",
+    "aegir": "^48.0.1",
     "interface-blockstore-tests": "^8.0.0",
     "it-drain": "^3.0.10",
     "p-defer": "^4.0.1",

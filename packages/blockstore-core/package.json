@@ -195,7 +195,7 @@
     "multiformats": "^13.4.2"
   },
   "devDependencies": {
-    "aegir": "^47.1.0",
+    "aegir": "^48.0.1",
     "interface-blockstore-tests": "^8.0.0",
     "it-drain": "^3.0.10",
     "it-to-buffer": "^4.0.10",
