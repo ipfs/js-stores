@@ -159,7 +159,7 @@
     "interface-blockstore-tests": "^8.0.0",
     "it-drain": "^3.0.10",
     "p-defer": "^4.0.1",
-    "sinon": "^21.1.0",
+    "sinon": "^22.0.0",
     "xmldom": "^0.6.0"
   }
 }

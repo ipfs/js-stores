@@ -159,7 +159,7 @@
     "aegir": "^47.1.0",
     "interface-datastore-tests": "^6.0.0",
     "p-defer": "^4.0.1",
-    "sinon": "^21.1.0",
+    "sinon": "^22.0.0",
     "xmldom": "^0.6.0"
   }
 }
