@@ -199,6 +199,6 @@
     "interface-blockstore-tests": "^8.0.0",
     "it-drain": "^3.0.10",
     "it-to-buffer": "^4.0.10",
-    "uint8arrays": "^5.1.0"
+    "uint8arrays": "^6.0.0"
   }
 }
