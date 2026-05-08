@@ -1,8 +1,6 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { fromString as uint8ArrayFromString } from 'uint8arrays'
-import { Key } from '../src/key.js'
+import { Key } from '../src/key.ts'
 
 const pathSep = '/'
 

@@ -1,11 +1,9 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { MemoryDatastore } from '../src/memory.js'
-import { TieredDatastore } from '../src/tiered.js'
+import { MemoryDatastore } from '../src/memory.ts'
+import { TieredDatastore } from '../src/tiered.ts'
 import type { Datastore } from 'interface-datastore'
 
 /**

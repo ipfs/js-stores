@@ -1,6 +1,6 @@
 import tempdir from 'ipfs-utils/src/temp-dir.js'
 import { CID } from 'multiformats/cid'
-import { LevelBlockstore } from '../../src/index.js'
+import { LevelBlockstore } from '../../src/index.ts'
 
 async function testLevelIteratorDestroy (): Promise<void> {
   const store = new LevelBlockstore(tempdir())

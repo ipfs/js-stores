@@ -1,12 +1,10 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import all from 'it-all'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { MemoryDatastore } from '../src/memory.js'
-import { NamespaceDatastore } from '../src/namespace.js'
+import { MemoryDatastore } from '../src/memory.ts'
+import { NamespaceDatastore } from '../src/namespace.ts'
 
 describe('NamespaceDatastore', () => {
   const prefixes = [

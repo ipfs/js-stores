@@ -1,12 +1,10 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import {
   Prefix,
   Suffix,
   NextToLast,
   parseShardFun
-} from '../src/shard.js'
+} from '../src/shard.ts'
 
 describe('shard', () => {
   it('prefix', () => {

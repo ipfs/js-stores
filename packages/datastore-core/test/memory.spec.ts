@@ -1,7 +1,5 @@
-/* eslint-env mocha */
-
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
-import { MemoryDatastore } from '../src/memory.js'
+import { MemoryDatastore } from '../src/memory.ts'
 
 describe('Memory', () => {
   describe('interface-datastore', () => {

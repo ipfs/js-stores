@@ -1,7 +1,5 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
-import * as utils from '../src/utils.js'
+import * as utils from '../src/utils.ts'
 
 describe('utils', () => {
   it('replaceStartWith', () => {

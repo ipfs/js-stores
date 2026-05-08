@@ -1,12 +1,10 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import all from 'it-all'
 import { CID } from 'multiformats/cid'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { MemoryBlockstore } from '../src/memory.js'
-import { TieredBlockstore } from '../src/tiered.js'
+import { MemoryBlockstore } from '../src/memory.ts'
+import { TieredBlockstore } from '../src/tiered.ts'
 import type { Blockstore } from 'interface-blockstore'
 
 describe('Tiered', () => {

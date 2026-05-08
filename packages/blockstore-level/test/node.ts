@@ -1,11 +1,9 @@
-/* eslint-env mocha */
-
 import childProcess from 'child_process'
 import path from 'path'
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
-import { LevelBlockstore } from '../src/index.js'
+import { LevelBlockstore } from '../src/index.ts'
 
 describe('LevelBlockstore', () => {
   describe('interface-blockstore (leveldown)', () => {

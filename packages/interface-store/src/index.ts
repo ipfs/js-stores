@@ -136,4 +136,4 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
   ): AwaitGenerator<Key>
 }
 
-export * from './errors.js'
+export * from './errors.ts'

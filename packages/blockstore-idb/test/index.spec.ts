@@ -1,11 +1,9 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
 import all from 'it-all'
 import drain from 'it-drain'
 import { CID } from 'multiformats/cid'
-import { IDBBlockstore } from '../src/index.js'
+import { IDBBlockstore } from '../src/index.ts'
 
 describe('IndexedDB Blockstore', () => {
   describe('interface-blockstore (idb)', () => {

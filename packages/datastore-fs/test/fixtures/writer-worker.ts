@@ -1,7 +1,7 @@
 import { Key } from 'interface-datastore'
 // @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { expose } from 'threads/worker'
-import { FsDatastore } from '../../src/index.js'
+import { FsDatastore } from '../../src/index.ts'
 
 let fs: FsDatastore
 expose({

@@ -1,9 +1,7 @@
-/* eslint-env mocha */
-
 import { MountDatastore } from 'datastore-core'
 import { Key } from 'interface-datastore/key'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
-import { LevelDatastore } from '../src/index.js'
+import { LevelDatastore } from '../src/index.ts'
 
 describe('LevelDatastore', () => {
   describe('interface-datastore (leveljs)', () => {

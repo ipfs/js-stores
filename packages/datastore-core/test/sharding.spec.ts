@@ -1,18 +1,16 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
-import { MemoryDatastore } from '../src/memory.js'
+import { MemoryDatastore } from '../src/memory.ts'
 import {
   NextToLast,
   SHARDING_FN
-} from '../src/shard.js'
+} from '../src/shard.ts'
 import {
   ShardingDatastore
-} from '../src/sharding.js'
+} from '../src/sharding.ts'
 
 describe('ShardingDatastore', () => {
   it('create', async () => {
