@@ -167,7 +167,7 @@
     "it-glob": "^3.0.4",
     "it-map": "^3.1.4",
     "it-parallel-batch": "^3.0.9",
-    "multiformats": "^13.4.2",
+    "multiformats": "^14.0.0",
     "race-signal": "^2.0.0",
     "steno": "^4.0.2"
   },

@@ -141,7 +141,7 @@
     "it-all": "^3.0.9",
     "it-drain": "^3.0.10",
     "it-map": "^3.1.4",
-    "multiformats": "^13.4.2",
+    "multiformats": "^14.0.0",
     "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
