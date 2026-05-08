@@ -172,7 +172,7 @@
     "steno": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^47.1.0",
+    "aegir": "^48.0.4",
     "interface-blockstore-tests": "^8.0.0",
     "it-all": "^3.0.9",
     "threads": "^1.7.0"

@@ -159,7 +159,7 @@
     "race-signal": "^2.0.0"
   },
   "devDependencies": {
-    "aegir": "^47.1.0",
+    "aegir": "^48.0.4",
     "interface-datastore-tests": "^6.0.0",
     "ipfs-utils": "^9.0.14",
     "memory-level": "^3.1.0"
