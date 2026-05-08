@@ -1,5 +1,6 @@
+import type { AbortOptions } from 'abort-error'
 import type { Blockstore, InputPair, Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export class BaseBlockstore implements Blockstore {

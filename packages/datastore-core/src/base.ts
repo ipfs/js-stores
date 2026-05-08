@@ -2,8 +2,9 @@ import drain from 'it-drain'
 import filter from 'it-filter'
 import sort from 'it-sort'
 import take from 'it-take'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 export class BaseDatastore implements Datastore {
   put (key: Key, val: Uint8Array, options?: AbortOptions): Await<Key> {

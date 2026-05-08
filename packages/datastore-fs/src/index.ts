@@ -22,8 +22,9 @@ import map from 'it-map'
 import parallel from 'it-parallel-batch'
 import { raceSignal } from 'race-signal'
 import { Writer } from 'steno'
+import type { AbortOptions } from 'abort-error'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 
 /**
  * Write a file atomically

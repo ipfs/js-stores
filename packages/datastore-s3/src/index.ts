@@ -46,8 +46,9 @@ import filter from 'it-filter'
 import toBuffer from 'it-to-buffer'
 import { fromString as uint8arrayFromString } from 'uint8arrays'
 import type { S3 } from '@aws-sdk/client-s3'
+import type { AbortOptions } from 'abort-error'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
+import type { AwaitGenerator } from 'interface-store'
 
 export interface S3DatastoreInit {
   /**

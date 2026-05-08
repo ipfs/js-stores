@@ -14,12 +14,8 @@
  * - S3: [`blockstore-s3`](https://github.com/ipfs/js-stores/tree/main/packages/blockstore-s3)
  */
 
-import type {
-  AbortOptions,
-  AwaitGenerator,
-  AwaitIterable,
-  Store
-} from 'interface-store'
+import type { AbortOptions } from 'abort-error'
+import type { AwaitGenerator, AwaitIterable, Store } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export interface Pair {

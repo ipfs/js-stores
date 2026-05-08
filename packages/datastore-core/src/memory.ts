@@ -1,8 +1,9 @@
 import { Key } from 'interface-datastore/key'
 import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, Await, AwaitGenerator } from 'interface-store'
+import type { Await, AwaitGenerator } from 'interface-store'
 
 export class MemoryDatastore extends BaseDatastore {
   private readonly data: Map<string, Uint8Array>

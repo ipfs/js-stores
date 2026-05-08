@@ -97,12 +97,8 @@
  */
 
 import { Key } from './key.ts'
-import type {
-  Await,
-  Store,
-  AbortOptions,
-  AwaitGenerator
-} from 'interface-store'
+import type { AbortOptions } from 'abort-error'
+import type { Await, Store, AwaitGenerator } from 'interface-store'
 
 export interface Pair {
   key: Key

@@ -5,8 +5,9 @@ import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
 import { BaseBlockstore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 function isPromise <T> (p?: any): p is Promise<T> {
   return typeof p?.then === 'function'

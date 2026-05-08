@@ -19,9 +19,10 @@ import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutF
 import filter from 'it-filter'
 import sort from 'it-sort'
 import { raceSignal } from 'race-signal'
+import type { AbortOptions } from 'abort-error'
 import type { IDBPDatabase } from 'idb'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
+import type { AwaitGenerator } from 'interface-store'
 
 export interface IDBDatastoreInit {
   /**

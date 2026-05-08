@@ -1,8 +1,9 @@
 import { logger } from '@libp2p/logger'
 import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 
 const log = logger('datastore:core:tiered')
 

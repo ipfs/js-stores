@@ -22,9 +22,10 @@ import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
 import { raceSignal } from 'race-signal'
+import type { AbortOptions } from 'abort-error'
 import type { IDBPDatabase } from 'idb'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
 
 export interface IDBBlockstoreInit {

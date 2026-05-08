@@ -7,8 +7,9 @@ import {
   SHARDING_FN
 } from './shard.ts'
 import type { Shard } from './index.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, KeyQuery, KeyQueryFilter, Pair, Query, QueryFilter, Datastore } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 
 const shardKey = new Key(SHARDING_FN)
 

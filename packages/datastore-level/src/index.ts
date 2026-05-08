@@ -53,8 +53,9 @@ import sort from 'it-sort'
 import take from 'it-take'
 import { Level } from 'level'
 import { raceSignal } from 'race-signal'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
+import type { AwaitGenerator } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
 interface BatchPut {

@@ -1,8 +1,9 @@
 import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Pair, Query, KeyQuery } from 'interface-datastore'
 import type { Key } from 'interface-datastore/key'
-import type { AbortOptions, Await, AwaitGenerator } from 'interface-store'
+import type { Await, AwaitGenerator } from 'interface-store'
 
 export class BlackHoleDatastore extends BaseDatastore {
   put (key: Key, value: Uint8Array, options?: AbortOptions): Await<Key> {

@@ -4,8 +4,9 @@ import merge from 'it-merge'
 import sort from 'it-sort'
 import take from 'it-take'
 import { BaseDatastore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
+import type { AwaitGenerator } from 'interface-store'
 
 /**
  * A datastore that can combine multiple stores inside various

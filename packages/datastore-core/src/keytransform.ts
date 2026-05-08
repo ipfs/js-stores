@@ -2,8 +2,9 @@ import map from 'it-map'
 import { pipe } from 'it-pipe'
 import { BaseDatastore } from './base.ts'
 import type { KeyTransform } from './index.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 
 /**
  * A datastore shim, that wraps around a given datastore, changing

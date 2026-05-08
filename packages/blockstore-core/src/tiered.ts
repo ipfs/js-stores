@@ -3,8 +3,9 @@ import { NotFoundError } from 'interface-store'
 import filter from 'it-filter'
 import merge from 'it-merge'
 import { BaseBlockstore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Blockstore, InputPair, Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 const log = logger('blockstore:core:tiered')

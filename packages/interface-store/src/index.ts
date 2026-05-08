@@ -4,6 +4,8 @@
  * An abstraction of the Datastore/Blockstore codebases.
  */
 
+import type { AbortOptions } from 'abort-error'
+
 /**
  * An iterable or async iterable of values
  */
@@ -18,15 +20,6 @@ export type AwaitGenerator<T, TReturn = any, TNext = any> = Generator<T, TReturn
  * A value or a promise of a value
  */
 export type Await<T> = Promise<T> | T
-
-/**
- * Options for async operations
- *
- * @deprecated import from 'abort-error' module instead - this will be removed in a future release
- */
-export interface AbortOptions {
-  signal?: AbortSignal
-}
 
 export interface Store<Key, Input, Output, InputPair, OutputPair,
   HasOptionsExtension = {}, PutOptionsExtension = {},

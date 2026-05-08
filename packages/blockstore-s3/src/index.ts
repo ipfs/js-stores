@@ -49,8 +49,9 @@ import { fromString as uint8arrayFromString } from 'uint8arrays'
 import { NextToLast } from './sharding.ts'
 import type { ShardingStrategy } from './sharding.ts'
 import type { S3 } from '@aws-sdk/client-s3'
+import type { AbortOptions } from 'abort-error'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
+import type { AwaitGenerator } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export type { ShardingStrategy }

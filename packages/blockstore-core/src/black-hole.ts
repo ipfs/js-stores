@@ -1,7 +1,8 @@
 import { NotFoundError } from 'interface-store'
 import { BaseBlockstore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
+import type { Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export class BlackHoleBlockstore extends BaseBlockstore {
