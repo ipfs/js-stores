@@ -1,10 +1,8 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
 import all from 'it-all'
-import { KeyTransformDatastore } from '../src/keytransform.js'
-import { MemoryDatastore } from '../src/memory.js'
+import { KeyTransformDatastore } from '../src/keytransform.ts'
+import { MemoryDatastore } from '../src/memory.ts'
 
 describe('KeyTransformDatastore', () => {
   it('basic', async () => {

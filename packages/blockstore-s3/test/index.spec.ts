@@ -1,6 +1,4 @@
-/* eslint-env mocha */
-
-import './utils/domparser-polyfill.js'
+import './utils/domparser-polyfill.ts'
 import { S3 } from '@aws-sdk/client-s3'
 import { expect } from 'aegir/chai'
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
@@ -8,7 +6,7 @@ import drain from 'it-drain'
 import { CID } from 'multiformats/cid'
 import defer from 'p-defer'
 import sinon from 'sinon'
-import { S3Blockstore } from '../src/index.js'
+import { S3Blockstore } from '../src/index.ts'
 import { s3Resolve, s3Reject, S3Error, s3Mock } from './utils/s3-mock.ts'
 import type { CreateBucketCommand, HeadObjectCommand } from '@aws-sdk/client-s3'
 

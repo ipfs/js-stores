@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import { setMaxListeners } from 'node:events'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -9,7 +8,7 @@ import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
 // @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { spawn, Thread, Worker } from 'threads'
-import { FsDatastore } from '../src/index.js'
+import { FsDatastore } from '../src/index.ts'
 
 const utf8Encoder = new TextEncoder()
 
@@ -183,7 +182,7 @@ describe('FsDatastore', () => {
     const dir = tempdir()
     const key = new Key('CIQGFTQ7FSI2COUXWWLOQ45VUM2GUZCGAXLWCTOKKPGTUWPXHBNIVOY')
     const workers = await Promise.all(new Array(10).fill(0).map(async () => {
-      const w = new Worker('./fixtures/writer-worker.js')
+      const w = new Worker('./fixtures/writer-worker.ts')
       setMaxListeners(Infinity, w)
       const worker = await spawn(w)
       await worker.isReady(dir)

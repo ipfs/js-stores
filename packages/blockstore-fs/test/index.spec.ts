@@ -9,8 +9,8 @@ import { base32 } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
 // @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { spawn, Thread, Worker } from 'threads'
-import { FsBlockstore } from '../src/index.js'
-import { FlatDirectory, NextToLast } from '../src/sharding.js'
+import { FsBlockstore } from '../src/index.ts'
+import { FlatDirectory, NextToLast } from '../src/sharding.ts'
 
 const utf8Encoder = new TextEncoder()
 
@@ -186,7 +186,7 @@ describe('FsBlockstore', () => {
     const dir = path.join(os.tmpdir(), `test-${Math.random()}`)
     const key = CID.parse('QmeimKZyjcBnuXmAD9zMnSjM9JodTbgGT3gutofkTqz9rE')
     const workers = await Promise.all(new Array(10).fill(0).map(async () => {
-      const w = new Worker('./fixtures/writer-worker.js')
+      const w = new Worker('./fixtures/writer-worker.ts')
       setMaxListeners(Infinity, w)
       const worker = await spawn(w)
       await worker.isReady(dir)

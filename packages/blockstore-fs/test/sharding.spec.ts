@@ -1,8 +1,7 @@
-/* eslint-env mocha */
 import { expect } from 'aegir/chai'
 import { base32upper } from 'multiformats/bases/base32'
 import { CID } from 'multiformats/cid'
-import { FlatDirectory, NextToLast } from '../src/sharding.js'
+import { FlatDirectory, NextToLast } from '../src/sharding.ts'
 
 describe('flat', () => {
   it('should encode', () => {

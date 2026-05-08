@@ -1,7 +1,7 @@
 import { CID } from 'multiformats/cid'
 // @ts-expect-error types are broken: https://github.com/andywer/threads.js/pull/470
 import { expose } from 'threads/worker'
-import { FsBlockstore } from '../../src/index.js'
+import { FsBlockstore } from '../../src/index.ts'
 
 let fs: FsBlockstore
 expose({

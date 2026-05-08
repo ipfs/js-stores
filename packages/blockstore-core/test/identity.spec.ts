@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import all from 'it-all'
 import drain from 'it-drain'
@@ -8,8 +6,8 @@ import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import { identity } from 'multiformats/hashes/identity'
 import { sha256 } from 'multiformats/hashes/sha2'
-import { IdentityBlockstore } from '../src/identity.js'
-import { MemoryBlockstore } from '../src/memory.js'
+import { IdentityBlockstore } from '../src/identity.ts'
+import { MemoryBlockstore } from '../src/memory.ts'
 import type { Blockstore } from 'interface-blockstore'
 import type { AbortOptions } from 'interface-store'
 

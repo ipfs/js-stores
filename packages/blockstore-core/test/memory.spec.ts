@@ -1,7 +1,5 @@
-/* eslint-env mocha */
-
 import { interfaceBlockstoreTests } from 'interface-blockstore-tests'
-import { MemoryBlockstore } from '../src/memory.js'
+import { MemoryBlockstore } from '../src/memory.ts'
 
 describe('memory', () => {
   describe('interface-blockstore', () => {

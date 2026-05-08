@@ -1,11 +1,9 @@
-/* eslint-env mocha */
-
 import { expect } from 'aegir/chai'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
 import tempdir from 'ipfs-utils/src/temp-dir.js'
 import { Level } from 'level'
 import { MemoryLevel } from 'memory-level'
-import { LevelDatastore } from '../src/index.js'
+import { LevelDatastore } from '../src/index.ts'
 
 describe('LevelDatastore', () => {
   describe('initialization', () => {
