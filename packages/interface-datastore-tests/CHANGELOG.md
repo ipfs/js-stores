@@ -1,3 +1,9 @@
+## [interface-datastore-tests-v7.0.1](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-7.0.0...interface-datastore-tests-7.0.1) (2026-05-11)
+
+### Bug Fixes
+
+* update sibling deps ([#377](https://github.com/ipfs/js-stores/issues/377)) ([280842e](https://github.com/ipfs/js-stores/commit/280842ed2cabefbf9ae7b1baa3745876173b3cc9))
+
 ## [interface-datastore-tests-v7.0.0](https://github.com/ipfs/js-stores/compare/interface-datastore-tests-6.0.7...interface-datastore-tests-7.0.0) (2026-05-11)
 
 ### ⚠ BREAKING CHANGES
