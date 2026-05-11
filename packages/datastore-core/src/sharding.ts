@@ -9,7 +9,6 @@ import {
 import type { Shard } from './index.ts'
 import type { AbortOptions } from 'abort-error'
 import type { Batch, KeyQuery, KeyQueryFilter, Pair, Query, QueryFilter, Datastore } from 'interface-datastore'
-import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 
 const shardKey = new Key(SHARDING_FN)
 
@@ -100,15 +99,15 @@ export class ShardingDatastore extends BaseDatastore {
     await this.child.delete(key, options)
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
+  async * putMany (source: Iterable<Pair> | AsyncIterable<Pair>, options: AbortOptions = {}): Generator<Key> | AsyncGenerator<Key> {
     yield * this.child.putMany(source, options)
   }
 
-  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Pair> {
+  async * getMany (source: Iterable<Key> | AsyncIterable<Key>, options: AbortOptions = {}): Generator<Pair> | AsyncGenerator<Pair> {
     yield * this.child.getMany(source, options)
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
+  async * deleteMany (source: Iterable<Key> | AsyncIterable<Key>, options: AbortOptions = {}): Generator<Key> | AsyncGenerator<Key> {
     yield * this.child.deleteMany(source, options)
   }
 
@@ -116,7 +115,7 @@ export class ShardingDatastore extends BaseDatastore {
     return this.child.batch()
   }
 
-  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     const omitShard: QueryFilter = ({ key }) => key.toString() !== shardKey.toString()
 
     const tq: Query = {
@@ -129,7 +128,7 @@ export class ShardingDatastore extends BaseDatastore {
     return this.child.query(tq, options)
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     const omitShard: KeyQueryFilter = (key) => key.toString() !== shardKey.toString()
 
     const tq: KeyQuery = {

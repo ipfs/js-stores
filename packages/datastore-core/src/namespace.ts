@@ -3,7 +3,6 @@ import map from 'it-map'
 import { KeyTransformDatastore } from './keytransform.ts'
 import type { AbortOptions } from 'abort-error'
 import type { Datastore, Query, Pair, KeyQuery } from 'interface-datastore'
-import type { AwaitGenerator } from 'interface-store'
 
 /**
  * Wraps a given datastore into a keytransform which
@@ -39,7 +38,7 @@ export class NamespaceDatastore extends KeyTransformDatastore {
     this.iKey = prefix
   }
 
-  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     const query: Query = {
       ...q
     }
@@ -75,7 +74,7 @@ export class NamespaceDatastore extends KeyTransformDatastore {
     })
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     const query = {
       ...q
     }

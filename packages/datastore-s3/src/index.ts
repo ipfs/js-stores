@@ -48,7 +48,6 @@ import { fromString as uint8arrayFromString } from 'uint8arrays'
 import type { S3 } from '@aws-sdk/client-s3'
 import type { AbortOptions } from 'abort-error'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AwaitGenerator } from 'interface-store'
 
 export interface S3DatastoreInit {
   /**
@@ -264,7 +263,7 @@ export class S3Datastore extends BaseDatastore {
     }
   }
 
-  async * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  async * _all (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     for await (const key of this._allKeys({ prefix: q.prefix }, options)) {
       try {
         const res: Pair = {
@@ -282,7 +281,7 @@ export class S3Datastore extends BaseDatastore {
     }
   }
 
-  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     const prefix = [this.path, q.prefix ?? ''].filter(Boolean).join('/').replace(/\/\/+/g, '/')
 
     // Get all the keys via list object, recursively as needed

@@ -51,7 +51,6 @@ import type { ShardingStrategy } from './sharding.ts'
 import type { S3 } from '@aws-sdk/client-s3'
 import type { AbortOptions } from 'abort-error'
 import type { Pair } from 'interface-blockstore'
-import type { AwaitGenerator } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export type { ShardingStrategy }
@@ -119,7 +118,7 @@ export class S3Blockstore extends BaseBlockstore {
   /**
    * Read from s3
    */
-  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): Generator<Uint8Array> | AsyncGenerator<Uint8Array> {
     try {
       options?.signal?.throwIfAborted()
       const data = await this.s3.send(
@@ -216,7 +215,7 @@ export class S3Blockstore extends BaseBlockstore {
     }
   }
 
-  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     const params: Record<string, any> = {}
 
     try {

@@ -25,7 +25,6 @@ import { raceSignal } from 'race-signal'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import type { AbortOptions } from 'abort-error'
 import type { Pair } from 'interface-blockstore'
-import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
 
@@ -35,6 +34,11 @@ export interface LevelBlockstoreInit extends DatabaseOptions<string, Uint8Array>
    * default: base32upper
    */
   base?: MultibaseCodec<string>
+}
+
+interface LevelQueryResult {
+  key: string
+  value: Generator<Uint8Array> | AsyncGenerator<Uint8Array>
 }
 
 /**
@@ -81,7 +85,7 @@ export class LevelBlockstore extends BaseBlockstore {
     }
   }
 
-  async put (key: CID, value: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, value: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     try {
       options?.signal?.throwIfAborted()
 
@@ -101,7 +105,7 @@ export class LevelBlockstore extends BaseBlockstore {
     return key
   }
 
-  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): Generator<Uint8Array> | AsyncGenerator<Uint8Array> {
     let buf
 
     try {
@@ -138,15 +142,18 @@ export class LevelBlockstore extends BaseBlockstore {
     await this.db.close()
   }
 
-  async * getAll (options?: AbortOptions | undefined): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions | undefined): Generator<Pair> | AsyncGenerator<Pair> {
     options?.signal?.throwIfAborted()
 
     for await (const { key, value } of this.#query({ values: true }, options)) {
-      yield { cid: this.#decode(key), bytes: value }
+      yield {
+        cid: this.#decode(key),
+        bytes: value
+      }
     }
   }
 
-  async * #query (opts: { values: boolean, prefix?: string }, options?: AbortOptions): AwaitGenerator<{ key: string, value: AwaitGenerator<Uint8Array> }> {
+  async * #query (opts: { values: boolean, prefix?: string }, options?: AbortOptions): AsyncGenerator<LevelQueryResult> {
     options?.signal?.throwIfAborted()
 
     const iteratorOpts: IteratorOptions<string, Uint8Array> = {

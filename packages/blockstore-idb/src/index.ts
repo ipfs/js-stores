@@ -25,7 +25,6 @@ import { raceSignal } from 'race-signal'
 import type { AbortOptions } from 'abort-error'
 import type { IDBPDatabase } from 'idb'
 import type { Pair } from 'interface-blockstore'
-import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { MultibaseCodec } from 'multiformats/bases/interface'
 
 export interface IDBBlockstoreInit {
@@ -88,7 +87,7 @@ export class IDBBlockstore extends BaseBlockstore {
     this.db?.close()
   }
 
-  async put (key: CID, val: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, val: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }
@@ -111,7 +110,7 @@ export class IDBBlockstore extends BaseBlockstore {
     return key
   }
 
-  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): Generator<Uint8Array> | AsyncGenerator<Uint8Array> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }
@@ -160,7 +159,7 @@ export class IDBBlockstore extends BaseBlockstore {
     }
   }
 
-  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     if (this.db == null) {
       throw new Error('Blockstore needs to be opened.')
     }

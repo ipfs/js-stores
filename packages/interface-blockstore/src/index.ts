@@ -15,23 +15,23 @@
  */
 
 import type { AbortOptions } from 'abort-error'
-import type { AwaitGenerator, AwaitIterable, Store } from 'interface-store'
+import type { Store } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 export interface Pair {
   cid: CID
-  bytes: AwaitGenerator<Uint8Array>
+  bytes: Generator<Uint8Array> | AsyncGenerator<Uint8Array>
 }
 
 export interface InputPair {
   cid: CID
-  bytes: Uint8Array | AwaitIterable<Uint8Array>
+  bytes: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>
 }
 
 export interface Blockstore <HasOptionsExtension = {},
 PutOptionsExtension = {}, PutManyOptionsExtension = {},
 GetOptionsExtension = {}, GetManyOptionsExtension = {}, GetAllOptionsExtension = {},
-DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array | AwaitIterable<Uint8Array>, AwaitGenerator<Uint8Array>, InputPair, Pair, HasOptionsExtension,
+DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID, Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, Generator<Uint8Array> | AsyncGenerator<Uint8Array>, InputPair, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
   DeleteOptionsExtension, DeleteManyOptionsExtension> {
@@ -46,5 +46,5 @@ DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {}> extends Store<CID,
    * }
    * ```
    */
-  getAll(options?: AbortOptions & GetAllOptionsExtension): AwaitGenerator<Pair>
+  getAll(options?: AbortOptions & GetAllOptionsExtension): Generator<Pair> | AsyncGenerator<Pair>
 }

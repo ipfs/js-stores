@@ -5,7 +5,6 @@ import merge from 'it-merge'
 import { BaseBlockstore } from './base.ts'
 import type { AbortOptions } from 'abort-error'
 import type { Blockstore, InputPair, Pair } from 'interface-blockstore'
-import type { AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 const log = logger('blockstore:core:tiered')
@@ -25,7 +24,7 @@ export class TieredBlockstore extends BaseBlockstore {
     this.stores = stores.slice()
   }
 
-  async put (key: CID, value: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, value: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     await Promise.all(
       this.stores.map(async store => {
         await store.put(key, value, options)
@@ -35,7 +34,7 @@ export class TieredBlockstore extends BaseBlockstore {
     return key
   }
 
-  async * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  async * get (key: CID, options?: AbortOptions): Generator<Uint8Array> | AsyncGenerator<Uint8Array> {
     let error: Error | undefined
 
     for (const store of this.stores) {
@@ -69,21 +68,21 @@ export class TieredBlockstore extends BaseBlockstore {
     )
   }
 
-  async * putMany (source: AwaitIterable<InputPair>, options: AbortOptions = {}): AwaitGenerator<CID> {
+  async * putMany (source: Iterable<InputPair> | AsyncIterable<InputPair>, options: AbortOptions = {}): Generator<CID> | AsyncGenerator<CID> {
     for await (const pair of source) {
       await this.put(pair.cid, pair.bytes, options)
       yield pair.cid
     }
   }
 
-  async * deleteMany (source: AwaitIterable<CID>, options: AbortOptions = {}): AwaitGenerator<CID> {
+  async * deleteMany (source: Iterable<CID> | AsyncIterable<CID>, options: AbortOptions = {}): Generator<CID> | AsyncGenerator<CID> {
     for await (const cid of source) {
       await this.delete(cid, options)
       yield cid
     }
   }
 
-  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     // deduplicate yielded pairs
     const seen = new Set<string>()
 

@@ -3,7 +3,6 @@ import { NotFoundError } from 'interface-store'
 import { BaseDatastore } from './base.ts'
 import type { AbortOptions } from 'abort-error'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { Await, AwaitGenerator } from 'interface-store'
 
 export class MemoryDatastore extends BaseDatastore {
   private readonly data: Map<string, Uint8Array>
@@ -14,7 +13,7 @@ export class MemoryDatastore extends BaseDatastore {
     this.data = new Map()
   }
 
-  put (key: Key, val: Uint8Array, options?: AbortOptions): Await<Key> {
+  put (key: Key, val: Uint8Array, options?: AbortOptions): Key | Promise<Key> {
     options?.signal?.throwIfAborted()
 
     this.data.set(key.toString(), val)
@@ -22,7 +21,7 @@ export class MemoryDatastore extends BaseDatastore {
     return key
   }
 
-  get (key: Key, options?: AbortOptions): Await<Uint8Array> {
+  get (key: Key, options?: AbortOptions): Uint8Array | Promise<Uint8Array> {
     options?.signal?.throwIfAborted()
 
     const result = this.data.get(key.toString())
@@ -34,17 +33,17 @@ export class MemoryDatastore extends BaseDatastore {
     return result
   }
 
-  has (key: Key, options?: AbortOptions): Await<boolean> {
+  has (key: Key, options?: AbortOptions): boolean | Promise<boolean> {
     options?.signal?.throwIfAborted()
     return this.data.has(key.toString())
   }
 
-  delete (key: Key, options?: AbortOptions): Await<void> {
+  delete (key: Key, options?: AbortOptions): void | Promise<void> {
     options?.signal?.throwIfAborted()
     this.data.delete(key.toString())
   }
 
-  * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  * _all (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     options?.signal?.throwIfAborted()
     for (const [key, value] of this.data.entries()) {
       yield { key: new Key(key), value }
@@ -52,7 +51,7 @@ export class MemoryDatastore extends BaseDatastore {
     }
   }
 
-  * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  * _allKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     options?.signal?.throwIfAborted()
     for (const key of this.data.keys()) {
       yield new Key(key)
