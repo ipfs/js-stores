@@ -1,3 +1,9 @@
+## [datastore-level-v13.0.1](https://github.com/ipfs/js-stores/compare/datastore-level-13.0.0...datastore-level-13.0.1) (2026-05-11)
+
+### Bug Fixes
+
+* update sibling deps ([#377](https://github.com/ipfs/js-stores/issues/377)) ([280842e](https://github.com/ipfs/js-stores/commit/280842ed2cabefbf9ae7b1baa3745876173b3cc9))
+
 ## [datastore-level-v13.0.0](https://github.com/ipfs/js-stores/compare/datastore-level-12.0.4...datastore-level-13.0.0) (2026-05-11)
 
 ### ⚠ BREAKING CHANGES
