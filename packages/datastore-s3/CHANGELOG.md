@@ -1,3 +1,18 @@
+## [datastore-s3-v14.0.0](https://github.com/ipfs/js-stores/compare/datastore-s3-13.0.2...datastore-s3-14.0.0) (2026-05-11)
+
+### ⚠ BREAKING CHANGES
+
+* bump multiformats from 13.4.2 to 14.0.0 (#372)
+
+### Trivial Changes
+
+* bump aegir from 47.2.0 to 48.0.4 ([#375](https://github.com/ipfs/js-stores/issues/375)) ([be6174f](https://github.com/ipfs/js-stores/commit/be6174f87f17ba02c3cf2eac17f78807d4cd8630))
+* bump sinon from 21.1.2 to 22.0.0 ([#371](https://github.com/ipfs/js-stores/issues/371)) ([84327fb](https://github.com/ipfs/js-stores/commit/84327fb2a9fbbccd54fd9840cbf0cd3ab7825342))
+
+### Dependencies
+
+* bump multiformats from 13.4.2 to 14.0.0 ([#372](https://github.com/ipfs/js-stores/issues/372)) ([5bc9912](https://github.com/ipfs/js-stores/commit/5bc991280ce2a386cfa89a5b4474c1ca07e2b1ed))
+
 ## [datastore-s3-v13.0.2](https://github.com/ipfs/js-stores/compare/datastore-s3-13.0.1...datastore-s3-13.0.2) (2026-04-10)
 
 ### Bug Fixes
