@@ -1,7 +1,7 @@
 import { NotFoundError } from 'interface-store'
 import { BaseBlockstore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 
 // https://github.com/multiformats/multicodec/blob/d06fc6194710e8909bac64273c43f16b56ca4c34/table.csv#L2
@@ -27,7 +27,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     this.maxDigestLength = init?.maxDigestLength
   }
 
-  put (key: CID, block: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Await<CID> {
+  put (key: CID, block: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): CID | Promise<CID> {
     if (key.multihash.code === IDENTITY_CODEC) {
       if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
         throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
@@ -64,7 +64,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     yield * this.child.get(key, options)
   }
 
-  has (key: CID, options?: AbortOptions): Await<boolean> {
+  has (key: CID, options?: AbortOptions): boolean | Promise<boolean> {
     if (key.multihash.code === IDENTITY_CODEC) {
       if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
         throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)
@@ -82,7 +82,7 @@ export class IdentityBlockstore extends BaseBlockstore {
     return this.child.has(key, options)
   }
 
-  delete (key: CID, options?: AbortOptions): Await<void> {
+  delete (key: CID, options?: AbortOptions): void | Promise<void> {
     if (key.code === IDENTITY_CODEC) {
       if (this.maxDigestLength != null && key.multihash.digest.byteLength > this.maxDigestLength) {
         throw new IdentityHashDigestTooLongError(`Identity digest too long - ${key.multihash.digest.byteLength} > this.maxDigestLength`)

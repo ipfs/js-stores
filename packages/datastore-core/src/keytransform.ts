@@ -2,8 +2,8 @@ import map from 'it-map'
 import { pipe } from 'it-pipe'
 import { BaseDatastore } from './base.ts'
 import type { KeyTransform } from './index.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 /**
  * A datastore shim, that wraps around a given datastore, changing
@@ -39,7 +39,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     await this.child.delete(this.transform.convert(key), options)
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
+  async * putMany (source: Iterable<Pair> | AsyncIterable<Pair>, options: AbortOptions = {}): Generator<Key> | AsyncGenerator<Key> {
     const transform = this.transform
     const child = this.child
 
@@ -60,7 +60,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     )
   }
 
-  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Pair> {
+  async * getMany (source: Iterable<Key> | AsyncIterable<Key>, options: AbortOptions = {}): Generator<Pair> | AsyncGenerator<Pair> {
     const transform = this.transform
     const child = this.child
 
@@ -81,7 +81,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     )
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
+  async * deleteMany (source: Iterable<Key> | AsyncIterable<Key>, options: AbortOptions = {}): Generator<Key> | AsyncGenerator<Key> {
     const transform = this.transform
     const child = this.child
 
@@ -114,7 +114,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     const query: Query = {
       ...q
     }
@@ -148,7 +148,7 @@ export class KeyTransformDatastore extends BaseDatastore {
     })
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     const query = {
       ...q
     }

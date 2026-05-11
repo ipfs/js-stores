@@ -8,8 +8,8 @@ import { identity } from 'multiformats/hashes/identity'
 import { sha256 } from 'multiformats/hashes/sha2'
 import { IdentityBlockstore } from '../src/identity.ts'
 import { MemoryBlockstore } from '../src/memory.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Blockstore } from 'interface-blockstore'
-import type { AbortOptions } from 'interface-store'
 
 describe('identity', () => {
   let blockstore: Blockstore

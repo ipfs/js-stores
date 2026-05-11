@@ -19,9 +19,9 @@ import { DeleteFailedError, GetFailedError, NotFoundError, OpenFailedError, PutF
 import filter from 'it-filter'
 import sort from 'it-sort'
 import { raceSignal } from 'race-signal'
+import type { AbortOptions } from 'abort-error'
 import type { IDBPDatabase } from 'idb'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
 
 export interface IDBDatastoreInit {
   /**
@@ -176,7 +176,7 @@ export class IDBDatastore extends BaseDatastore {
     }
   }
 
-  async * query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  async * query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     let it = this.#queryIt(q, (key, value) => {
       return { key, value }
     }, options)
@@ -192,7 +192,7 @@ export class IDBDatastore extends BaseDatastore {
     yield * it
   }
 
-  async * queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  async * queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     let it = this.#queryIt(q, (key) => key, options)
 
     if (Array.isArray(q.filters)) {

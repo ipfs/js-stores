@@ -97,12 +97,8 @@
  */
 
 import { Key } from './key.ts'
-import type {
-  Await,
-  Store,
-  AbortOptions,
-  AwaitGenerator
-} from 'interface-store'
+import type { AbortOptions } from 'abort-error'
+import type { Store } from 'interface-store'
 
 export interface Pair {
   key: Key
@@ -112,7 +108,7 @@ export interface Pair {
 export interface Batch<BatchOptionsExtension = {}> {
   put(key: Key, value: Uint8Array): void
   delete(key: Key): void
-  commit(options?: AbortOptions & BatchOptionsExtension): Await<void>
+  commit(options?: AbortOptions & BatchOptionsExtension): void | Promise<void>
 }
 
 export interface Datastore <HasOptionsExtension = {},
@@ -121,7 +117,7 @@ GetOptionsExtension = {}, GetManyOptionsExtension = {},
 DeleteOptionsExtension = {}, DeleteManyOptionsExtension = {},
 QueryOptionsExtension = {}, QueryKeysOptionsExtension = {},
 BatchOptionsExtension = {}
-> extends Store<Key, Uint8Array, Await<Uint8Array>, Pair, Pair, HasOptionsExtension,
+> extends Store<Key, Uint8Array, Uint8Array | Promise<Uint8Array>, Pair, Pair, HasOptionsExtension,
   PutOptionsExtension, PutManyOptionsExtension,
   GetOptionsExtension, GetManyOptionsExtension,
   DeleteOptionsExtension, DeleteManyOptionsExtension> {
@@ -155,7 +151,7 @@ BatchOptionsExtension = {}
    * console.log('ALL THE VALUES', list)
    * ```
    */
-  query(query: Query, options?: AbortOptions & QueryOptionsExtension): AwaitGenerator<Pair>
+  query(query: Query, options?: AbortOptions & QueryOptionsExtension): Generator<Pair> | AsyncGenerator<Pair>
 
   /**
    * Query the datastore.
@@ -170,7 +166,7 @@ BatchOptionsExtension = {}
    * console.log('ALL THE KEYS', key)
    * ```
    */
-  queryKeys(query: KeyQuery, options?: AbortOptions & QueryKeysOptionsExtension): AwaitGenerator<Key>
+  queryKeys(query: KeyQuery, options?: AbortOptions & QueryKeysOptionsExtension): Generator<Key> | AsyncGenerator<Key>
 }
 
 export interface QueryFilter { (item: Pair): boolean }

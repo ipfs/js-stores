@@ -4,8 +4,8 @@ import merge from 'it-merge'
 import sort from 'it-sort'
 import take from 'it-take'
 import { BaseDatastore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
 
 /**
  * A datastore that can combine multiple stores inside various
@@ -108,7 +108,7 @@ export class MountDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     const qs = this.mounts.map(m => {
       return m.datastore.query({
         prefix: q.prefix,
@@ -129,7 +129,7 @@ export class MountDatastore extends BaseDatastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     const qs = this.mounts.map(m => {
       return m.datastore.queryKeys({
         prefix: q.prefix,

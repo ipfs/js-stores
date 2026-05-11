@@ -5,8 +5,8 @@ import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import * as Digest from 'multiformats/hashes/digest'
 import { BaseBlockstore } from './base.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Pair } from 'interface-blockstore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 function isPromise <T> (p?: any): p is Promise<T> {
   return typeof p?.then === 'function'
@@ -21,7 +21,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     this.data = new Map()
   }
 
-  put (key: CID, val: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Await<CID> {
+  put (key: CID, val: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): CID | Promise<CID> {
     options?.signal?.throwIfAborted()
 
     let buf: Uint8Array[]
@@ -43,7 +43,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     return this._put(key, buf, options)
   }
 
-  private _put (key: CID, val: Uint8Array[], options?: AbortOptions): Await<CID> {
+  private _put (key: CID, val: Uint8Array[], options?: AbortOptions): CID | Promise<CID> {
     options?.signal?.throwIfAborted()
 
     this.data.set(base32.encode(key.multihash.bytes), val)
@@ -51,7 +51,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     return key
   }
 
-  * get (key: CID, options?: AbortOptions): AwaitGenerator<Uint8Array> {
+  * get (key: CID, options?: AbortOptions): Generator<Uint8Array> | AsyncGenerator<Uint8Array> {
     options?.signal?.throwIfAborted()
     const buf = this.data.get(base32.encode(key.multihash.bytes))
 
@@ -62,7 +62,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     yield * buf
   }
 
-  has (key: CID, options?: AbortOptions): Await<boolean> {
+  has (key: CID, options?: AbortOptions): boolean | Promise<boolean> {
     options?.signal?.throwIfAborted()
     return this.data.has(base32.encode(key.multihash.bytes))
   }
@@ -72,7 +72,7 @@ export class MemoryBlockstore extends BaseBlockstore {
     this.data.delete(base32.encode(key.multihash.bytes))
   }
 
-  * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  * getAll (options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     options?.signal?.throwIfAborted()
 
     for (const [key, value] of this.data.entries()) {

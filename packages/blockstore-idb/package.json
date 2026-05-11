@@ -144,13 +144,14 @@
     "release": "aegir release"
   },
   "dependencies": {
+    "abort-error": "^1.0.2",
     "blockstore-core": "^6.0.0",
     "idb": "^8.0.3",
     "interface-blockstore": "^6.0.0",
     "interface-store": "^7.0.0",
     "it-all": "^3.0.9",
-    "it-to-buffer": "^4.0.10",
-    "multiformats": "^13.4.2",
+    "it-to-buffer": "^5.0.0",
+    "multiformats": "^14.0.0",
     "race-signal": "^2.0.0"
   },
   "devDependencies": {

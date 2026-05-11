@@ -2,34 +2,34 @@ import drain from 'it-drain'
 import filter from 'it-filter'
 import sort from 'it-sort'
 import take from 'it-take'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, Datastore, Key, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, Await, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 export class BaseDatastore implements Datastore {
-  put (key: Key, val: Uint8Array, options?: AbortOptions): Await<Key> {
+  put (key: Key, val: Uint8Array, options?: AbortOptions): Key | Promise<Key> {
     return Promise.reject(new Error('.put is not implemented'))
   }
 
-  get (key: Key, options?: AbortOptions): Await<Uint8Array> {
+  get (key: Key, options?: AbortOptions): Uint8Array | Promise<Uint8Array> {
     return Promise.reject(new Error('.get is not implemented'))
   }
 
-  has (key: Key, options?: AbortOptions): Await<boolean> {
+  has (key: Key, options?: AbortOptions): boolean | Promise<boolean> {
     return Promise.reject(new Error('.has is not implemented'))
   }
 
-  delete (key: Key, options?: AbortOptions): Await<void> {
+  delete (key: Key, options?: AbortOptions): void | Promise<void> {
     return Promise.reject(new Error('.delete is not implemented'))
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options: AbortOptions = {}): AwaitGenerator<Key> {
+  async * putMany (source: Iterable<Pair> | AsyncIterable<Pair>, options: AbortOptions = {}): Generator<Key> | AsyncGenerator<Key> {
     for await (const { key, value } of source) {
       await this.put(key, value, options)
       yield key
     }
   }
 
-  async * getMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Pair> {
+  async * getMany (source: Iterable<Key> | AsyncIterable<Key>, options: AbortOptions = {}): Generator<Pair> | AsyncGenerator<Pair> {
     for await (const key of source) {
       yield {
         key,
@@ -38,7 +38,7 @@ export class BaseDatastore implements Datastore {
     }
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options: AbortOptions = {}): AwaitGenerator<Key> {
+  async * deleteMany (source: Iterable<Key> | AsyncIterable<Key>, options: AbortOptions = {}): Generator<Key> | AsyncGenerator<Key> {
     for await (const key of source) {
       await this.delete(key, options)
       yield key
@@ -70,7 +70,7 @@ export class BaseDatastore implements Datastore {
    * Extending classes should override `query` or implement this method
    */
   // eslint-disable-next-line require-yield
-  async * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  async * _all (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     throw new Error('._all is not implemented')
   }
 
@@ -78,11 +78,11 @@ export class BaseDatastore implements Datastore {
    * Extending classes should override `queryKeys` or implement this method
    */
   // eslint-disable-next-line require-yield
-  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     throw new Error('._allKeys is not implemented')
   }
 
-  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     let it = this._all(q, options)
 
     if (q.prefix != null) {
@@ -111,7 +111,7 @@ export class BaseDatastore implements Datastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     let it = this._allKeys(q, options)
 
     if (q.prefix != null) {

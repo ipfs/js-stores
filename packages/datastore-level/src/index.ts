@@ -53,8 +53,8 @@ import sort from 'it-sort'
 import take from 'it-take'
 import { Level } from 'level'
 import { raceSignal } from 'race-signal'
+import type { AbortOptions } from 'abort-error'
 import type { Batch, KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator } from 'interface-store'
 import type { DatabaseOptions, OpenOptions, IteratorOptions } from 'level'
 
 interface BatchPut {
@@ -179,7 +179,7 @@ export class LevelDatastore extends BaseDatastore {
     }
   }
 
-  query (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  query (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     let it = map(this._query({
       values: true,
       prefix: q.prefix
@@ -209,7 +209,7 @@ export class LevelDatastore extends BaseDatastore {
     return it
   }
 
-  queryKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  queryKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     let it = map(this._query({
       values: false,
       prefix: q.prefix

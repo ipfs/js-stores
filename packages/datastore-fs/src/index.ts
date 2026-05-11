@@ -22,8 +22,8 @@ import map from 'it-map'
 import parallel from 'it-parallel-batch'
 import { raceSignal } from 'race-signal'
 import { Writer } from 'steno'
+import type { AbortOptions } from 'abort-error'
 import type { KeyQuery, Pair, Query } from 'interface-datastore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 
 /**
  * Write a file atomically
@@ -160,7 +160,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AwaitGenerator<Key> {
+  async * putMany (source: Iterable<Pair> | AsyncIterable<Pair>, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     yield * parallel(
       map(source, ({ key, value }) => {
         return async () => {
@@ -183,7 +183,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * getMany (source: AwaitIterable<Key>, options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getMany (source: Iterable<Key> | AsyncIterable<Key>, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     yield * parallel(
       map(source, key => {
         return async () => {
@@ -197,7 +197,7 @@ export class FsDatastore extends BaseDatastore {
     )
   }
 
-  async * deleteMany (source: AwaitIterable<Key>, options?: AbortOptions): AwaitGenerator<Key> {
+  async * deleteMany (source: Iterable<Key> | AsyncIterable<Key>, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     yield * parallel(
       map(source, key => {
         return async () => {
@@ -237,7 +237,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * _all (q: Query, options?: AbortOptions): AwaitGenerator<Pair> {
+  async * _all (q: Query, options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     let prefix = q.prefix ?? '**'
 
     // strip leading slashes
@@ -272,7 +272,7 @@ export class FsDatastore extends BaseDatastore {
     }
   }
 
-  async * _allKeys (q: KeyQuery, options?: AbortOptions): AwaitGenerator<Key> {
+  async * _allKeys (q: KeyQuery, options?: AbortOptions): Generator<Key> | AsyncGenerator<Key> {
     let prefix = q.prefix ?? '**'
 
     // strip leading slashes

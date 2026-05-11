@@ -4,29 +4,7 @@
  * An abstraction of the Datastore/Blockstore codebases.
  */
 
-/**
- * An iterable or async iterable of values
- */
-export type AwaitIterable<T> = Iterable<T> | AsyncIterable<T>
-
-/**
- * A generator or async generator of values
- */
-export type AwaitGenerator<T, TReturn = any, TNext = any> = Generator<T, TReturn, TNext> | AsyncGenerator<T, TReturn, TNext>
-
-/**
- * A value or a promise of a value
- */
-export type Await<T> = Promise<T> | T
-
-/**
- * Options for async operations
- *
- * @deprecated import from 'abort-error' module instead - this will be removed in a future release
- */
-export interface AbortOptions {
-  signal?: AbortSignal
-}
+import type { AbortOptions } from 'abort-error'
 
 export interface Store<Key, Input, Output, InputPair, OutputPair,
   HasOptionsExtension = {}, PutOptionsExtension = {},
@@ -47,7 +25,7 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
    *}
    *```
    */
-  has(key: Key, options?: AbortOptions & HasOptionsExtension): Await<boolean>
+  has(key: Key, options?: AbortOptions & HasOptionsExtension): boolean | Promise<boolean>
 
   /**
    * Store the passed value under the passed key
@@ -58,7 +36,7 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
    * await store.put([{ key: new Key('awesome'), value: new Uint8Array([0, 1, 2, 3]) }])
    * ```
    */
-  put(key: Key, val: Input, options?: AbortOptions & PutOptionsExtension): Await<Key>
+  put(key: Key, val: Input, options?: AbortOptions & PutOptionsExtension): Key | Promise<Key>
 
   /**
    * Store the given key/value pairs
@@ -73,9 +51,9 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
    * ```
    */
   putMany(
-    source: AwaitIterable<InputPair>,
+    source: Iterable<InputPair> | AsyncIterable<InputPair>,
     options?: AbortOptions & PutManyOptionsExtension
-  ): AwaitGenerator<Key>
+  ): Generator<Key> | AsyncGenerator<Key>
 
   /**
    * Retrieve the value stored under the given key
@@ -101,9 +79,9 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
    * ```
    */
   getMany(
-    source: AwaitIterable<Key>,
+    source: Iterable<Key> | AsyncIterable<Key>,
     options?: AbortOptions & GetManyOptionsExtension
-  ): AwaitGenerator<OutputPair>
+  ): Generator<OutputPair> | AsyncGenerator<OutputPair>
 
   /**
    * Remove the record for the passed key
@@ -115,7 +93,7 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
    * console.log('deleted awesome content :(')
    * ```
    */
-  delete(key: Key, options?: AbortOptions & DeleteOptionsExtension): Await<void>
+  delete(key: Key, options?: AbortOptions & DeleteOptionsExtension): void | Promise<void>
 
   /**
    * Remove values for the passed keys
@@ -131,9 +109,9 @@ export interface Store<Key, Input, Output, InputPair, OutputPair,
    * ```
    */
   deleteMany(
-    source: AwaitIterable<Key>,
+    source: Iterable<Key> | AsyncIterable<Key>,
     options?: AbortOptions & DeleteManyOptionsExtension
-  ): AwaitGenerator<Key>
+  ): Generator<Key> | AsyncGenerator<Key>
 }
 
 export * from './errors.ts'

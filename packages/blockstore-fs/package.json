@@ -162,12 +162,13 @@
     "release": "aegir release"
   },
   "dependencies": {
+    "abort-error": "^1.0.2",
     "interface-blockstore": "^6.0.0",
     "interface-store": "^7.0.0",
     "it-glob": "^3.0.4",
     "it-map": "^3.1.4",
     "it-parallel-batch": "^3.0.9",
-    "multiformats": "^13.4.2",
+    "multiformats": "^14.0.0",
     "race-signal": "^2.0.0",
     "steno": "^4.0.2"
   },

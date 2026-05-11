@@ -146,12 +146,13 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1028.0",
+    "abort-error": "^1.0.2",
     "datastore-core": "^11.0.0",
     "interface-datastore": "^9.0.0",
     "interface-store": "^7.0.0",
     "it-filter": "^3.1.4",
-    "it-to-buffer": "^4.0.10",
-    "uint8arrays": "^5.1.0"
+    "it-to-buffer": "^5.0.0",
+    "uint8arrays": "^6.1.1"
   },
   "devDependencies": {
     "@types/sinon": "^21.0.1",

@@ -22,15 +22,15 @@ import { raceSignal } from 'race-signal'
 import { Writer } from 'steno'
 import { NextToLast } from './sharding.ts'
 import type { ShardingStrategy } from './sharding.ts'
+import type { AbortOptions } from 'abort-error'
 import type { Blockstore, Pair } from 'interface-blockstore'
-import type { AbortOptions, AwaitGenerator, AwaitIterable } from 'interface-store'
 import type { CID } from 'multiformats/cid'
 import type { FileHandle } from 'node:fs/promises'
 
 /**
  * Write a file atomically
  */
-async function writeFile (file: string, contents: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<void> {
+async function writeFile (file: string, contents: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): Promise<void> {
   try {
     options?.signal?.throwIfAborted()
     await raceSignal(fs.mkdir(path.dirname(file), {
@@ -147,7 +147,7 @@ export class FsBlockstore implements Blockstore {
     await Promise.resolve()
   }
 
-  async put (key: CID, val: Uint8Array | AwaitIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
+  async put (key: CID, val: Uint8Array | Iterable<Uint8Array> | AsyncIterable<Uint8Array>, options?: AbortOptions): Promise<CID> {
     const { dir, file } = this.shardingStrategy.encode(key)
 
     try {
@@ -159,7 +159,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * putMany (source: AwaitIterable<Pair>, options?: AbortOptions): AsyncGenerator<CID> {
+  async * putMany (source: Iterable<Pair> | AsyncIterable<Pair>, options?: AbortOptions): AsyncGenerator<CID> {
     yield * parallelBatch(
       map(source, ({ cid, bytes }) => {
         return async () => {
@@ -191,7 +191,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * getMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<Pair> {
+  async * getMany (source: Iterable<CID> | AsyncIterable<CID>, options?: AbortOptions): AsyncGenerator<Pair> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
@@ -220,7 +220,7 @@ export class FsBlockstore implements Blockstore {
     }
   }
 
-  async * deleteMany (source: AwaitIterable<CID>, options?: AbortOptions): AsyncGenerator<CID> {
+  async * deleteMany (source: Iterable<CID> | AsyncIterable<CID>, options?: AbortOptions): AsyncGenerator<CID> {
     yield * parallelBatch(
       map(source, key => {
         return async () => {
@@ -245,7 +245,7 @@ export class FsBlockstore implements Blockstore {
     return true
   }
 
-  async * getAll (options?: AbortOptions): AwaitGenerator<Pair> {
+  async * getAll (options?: AbortOptions): Generator<Pair> | AsyncGenerator<Pair> {
     const pattern = `**/*${this.shardingStrategy.extension}`
       .split(path.sep)
       .join('/')
