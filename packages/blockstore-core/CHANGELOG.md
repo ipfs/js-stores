@@ -1,3 +1,17 @@
+## [blockstore-core-v7.0.0](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.3...blockstore-core-7.0.0) (2026-05-11)
+
+### ⚠ BREAKING CHANGES
+
+* bump multiformats from 13.4.2 to 14.0.0 (#372)
+
+### Trivial Changes
+
+* bump aegir from 47.2.0 to 48.0.4 ([#375](https://github.com/ipfs/js-stores/issues/375)) ([be6174f](https://github.com/ipfs/js-stores/commit/be6174f87f17ba02c3cf2eac17f78807d4cd8630))
+
+### Dependencies
+
+* bump multiformats from 13.4.2 to 14.0.0 ([#372](https://github.com/ipfs/js-stores/issues/372)) ([5bc9912](https://github.com/ipfs/js-stores/commit/5bc991280ce2a386cfa89a5b4474c1ca07e2b1ed))
+
 ## [blockstore-core-v6.1.3](https://github.com/ipfs/js-stores/compare/blockstore-core-6.1.2...blockstore-core-6.1.3) (2026-04-10)
 
 ### Bug Fixes
