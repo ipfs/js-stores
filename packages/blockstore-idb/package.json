@@ -144,6 +144,7 @@
     "release": "aegir release"
   },
   "dependencies": {
+    "abort-error": "^1.0.2",
     "blockstore-core": "^6.0.0",
     "idb": "^8.0.3",
     "interface-blockstore": "^6.0.0",

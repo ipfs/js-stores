@@ -142,6 +142,7 @@
     "release": "aegir release"
   },
   "dependencies": {
+    "abort-error": "^1.0.2",
     "datastore-core": "^11.0.0",
     "idb": "^8.0.3",
     "interface-datastore": "^9.0.0",

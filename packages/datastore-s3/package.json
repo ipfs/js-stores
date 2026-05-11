@@ -146,6 +146,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1028.0",
+    "abort-error": "^1.0.2",
     "datastore-core": "^11.0.0",
     "interface-datastore": "^9.0.0",
     "interface-store": "^7.0.0",

@@ -212,6 +212,7 @@
   },
   "dependencies": {
     "@libp2p/logger": "^6.2.4",
+    "abort-error": "^1.0.2",
     "interface-datastore": "^9.0.0",
     "interface-store": "^7.0.0",
     "it-drain": "^3.0.10",
