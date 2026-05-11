@@ -130,7 +130,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "interface-store": "^7.0.0",
+    "interface-store": "^8.0.0",
     "multiformats": "^14.0.0"
   },
   "devDependencies": {
