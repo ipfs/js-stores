@@ -1,6 +1,6 @@
 {
   "name": "datastore-idb",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "description": "Datastore implementation with IndexedDB backend.",
   "author": "Hugo Dias <hugomrdias@gmail.com>",
   "license": "Apache-2.0 OR MIT",
