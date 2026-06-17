@@ -1,0 +1,25 @@
+{
+  "extends": "aegir/src/config/tsconfig.aegir.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "lib": ["DOM", "DOM.AsyncIterable"]
+  },
+  "include": [
+    "src",
+    "test"
+  ],
+  "references": [
+    {
+      "path": "../blockstore-core"
+    },
+    {
+      "path": "../interface-blockstore"
+    },
+    {
+      "path": "../interface-blockstore-tests"
+    },
+    {
+      "path": "../interface-store"
+    }
+  ]
+}
