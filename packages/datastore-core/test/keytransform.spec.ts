@@ -47,4 +47,37 @@ describe('KeyTransformDatastore', () => {
       expect(kA).to.eql(transform.convert(kB))
     })
   })
+
+  for (const method of ['query', 'queryKeys'] as const) {
+    it(`${method} filters on the original keys before ordering and pagination`, async () => {
+      const store = new KeyTransformDatastore(new MemoryDatastore(), {
+        convert: key => new Key('/storage').child(key),
+        invert: key => Key.withNamespaces(key.list().slice(1))
+      })
+      const keys = ['/keep/c', '/drop/a', '/keep/a', '/keep/b']
+
+      for (const key of keys) {
+        await store.put(new Key(key), new TextEncoder().encode(key))
+      }
+
+      if (method === 'query') {
+        const results = await all(store.query({
+          filters: [({ key, value }) => key.toString().startsWith('/keep/') && new TextDecoder().decode(value) === key.toString()],
+          orders: [(a, b) => a.key.toString() < b.key.toString() ? -1 : a.key.toString() > b.key.toString() ? 1 : 0],
+          offset: 1,
+          limit: 1
+        }))
+        expect(results.map(({ key }) => key.toString())).to.deep.equal(['/keep/b'])
+        expect(new TextDecoder().decode(results[0].value)).to.equal('/keep/b')
+      } else {
+        const results = await all(store.queryKeys({
+          filters: [key => key.toString().startsWith('/keep/')],
+          orders: [(a, b) => a.toString() < b.toString() ? -1 : a.toString() > b.toString() ? 1 : 0],
+          offset: 1,
+          limit: 1
+        }))
+        expect(results.map(key => key.toString())).to.deep.equal(['/keep/b'])
+      }
+    })
+  }
 })
