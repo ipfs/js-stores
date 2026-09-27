@@ -1,6 +1,7 @@
 import { expect } from 'aegir/chai'
 import { Key } from 'interface-datastore/key'
 import { interfaceDatastoreTests } from 'interface-datastore-tests'
+import all from 'it-all'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import { MemoryDatastore } from '../src/memory.ts'
@@ -59,5 +60,32 @@ describe('ShardingDatastore', () => {
       },
       teardown () { }
     })
+  })
+
+  it('filters queries using unsharded keys', async () => {
+    const store = new ShardingDatastore(new MemoryDatastore(), new NextToLast(2))
+    await store.open()
+
+    await store.put(new Key('/keep/one'), uint8ArrayFromString('one'))
+    await store.put(new Key('/drop/two'), uint8ArrayFromString('two'))
+
+    const entries = await all(store.query({
+      filters: [({ key }) => key.toString().startsWith('/keep/')]
+    }))
+    expect(entries.map(({ key }) => key.toString())).to.deep.equal(['/keep/one'])
+    expect(uint8ArrayToString(entries[0].value)).to.equal('one')
+  })
+
+  it('filters key queries using unsharded keys', async () => {
+    const store = new ShardingDatastore(new MemoryDatastore(), new NextToLast(2))
+    await store.open()
+
+    await store.put(new Key('/keep/one'), uint8ArrayFromString('one'))
+    await store.put(new Key('/drop/two'), uint8ArrayFromString('two'))
+
+    const keys = await all(store.queryKeys({
+      filters: [key => key.toString().startsWith('/keep/')]
+    }))
+    expect(keys.map(key => key.toString())).to.deep.equal(['/keep/one'])
   })
 })
