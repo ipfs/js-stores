@@ -100,6 +100,12 @@ export class IDBBlockstore extends BaseBlockstore {
       buf = toBuffer(await all(val))
     }
 
+    // IndexedDB structured-clones the whole ArrayBuffer behind a view, so a
+    // view onto part of a larger buffer would store (and read back) all of it
+    if (buf.byteOffset !== 0 || buf.byteLength !== buf.buffer.byteLength) {
+      buf = new Uint8Array(buf)
+    }
+
     try {
       options?.signal?.throwIfAborted()
       await raceSignal(this.db.put(this.location, buf, this.#encode(key)), options?.signal)

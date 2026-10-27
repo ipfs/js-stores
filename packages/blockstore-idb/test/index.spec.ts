@@ -86,4 +86,31 @@ describe('IndexedDB Blockstore', () => {
       }, 5000)
     })
   })
+
+  describe('views', () => {
+    let store: IDBBlockstore
+
+    before(async () => {
+      store = new IDBBlockstore(`views-${Math.random()}`)
+      await store.open()
+    })
+
+    after(async () => {
+      await store.close()
+      await store.destroy()
+    })
+
+    it('should store only the bytes of a view, not its whole backing buffer', async () => {
+      const view = new Uint8Array(1024 * 1024).subarray(100, 104)
+      view.set([0, 1, 2, 3])
+      const key = CID.parse('QmaQwYWpchozXhFv8nvxprECWBSCEppN9dfd2VQiJfRo3F')
+
+      await store.put(key, view)
+      const [stored] = await all(store.get(key))
+
+      expect(stored).to.deep.equal(Uint8Array.from([0, 1, 2, 3]))
+      expect(stored.byteOffset).to.equal(0)
+      expect(stored.buffer.byteLength).to.equal(4)
+    })
+  })
 })
